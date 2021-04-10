@@ -20,7 +20,7 @@ This quarter, we will be working on making a [Bullet Journal](https://en.wikiped
 - Manda Tran
 - James Daza
 - Angelica Consengco
-- Chris Bauke
+- Chris Baucke
 - Nicholas Willison
 - **Mentor** - Sasya Reddi
 
