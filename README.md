@@ -12,7 +12,7 @@ Repo for CSE 110 Sp21 Group 19
 This quarter, we will be working on making a [Bullet Journal](https://en.wikipedia.org/wiki/Bullet_journal)
 
 # Members
-- Derek Hwang
+- Derek Hwang 
 - Michael Shao
 - Malhar Nerurkar
 - Garvin Mo Zhen
