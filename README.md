@@ -14,7 +14,7 @@ This quarter, we will be working on making a [Bullet Journal](https://en.wikiped
 # Members
 - Derek Hwang
 - Michael Shao
-- Mathar Nerukar
+- Malhar Nerurkar
 - Garvin Mo Zhen
 - Cory Huynh
 - Manda Tran
