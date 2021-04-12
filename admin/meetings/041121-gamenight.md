@@ -1,5 +1,5 @@
 # 4/11/21 - Game Night
-7:00pm
+4/11/21 7:00pm - 8:30pm PST
 
 ### Agenda
 1. Discuss ground rules and meeting formats (kickoff); (< 10 min)
@@ -20,11 +20,13 @@
 - Nicholas Willison
 
 ### What We Did
+Kickoff ~40min)
 - Go over the Group Contract - how to finialize
 - Go over google form
 - Go over canvas assignment - and turn ins
 
 with Sasya
+
 Roles
 - planner
 - builder
@@ -32,8 +34,11 @@ Roles
 - designer
 - rest to be dmed from Sasya
 
+Bonding (~50min)
+- 2 rounds of code names
+
 ### Points of Action
 - Turn in canvas assignments (Bonding, Kickoff) 
-- Next Meeting 4/13 7-8pm
+- **Next Meeting 4/13 7-8pm PST**
 - finalize Contract, fill form
-- Think about personal profile page
+- Think about personal profile page/branding
