@@ -7,7 +7,6 @@ X/XX/21 X:XXpm - X:XXpm PST
 
 ### Agenda
 
-
 ### Attendees
 
 ### What We Did
