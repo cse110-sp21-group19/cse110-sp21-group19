@@ -1,5 +1,8 @@
 # CSE 110 Sp21 Group 19
 Repo for CSE 110 Sp21 Group 19
+<!--- Change instances of "CSE 110 Sp21 Group 19" to Team Name--->
+
+[[Insert Team Name] Group Page](admin/team.md)
 
 # Project Navigation
 - [CSE 110 Sp21 Group 19](#cse-110-sp21-group-19)
