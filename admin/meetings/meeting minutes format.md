@@ -1,3 +1,21 @@
+# Format
+
+---
+
+# X/XX/21 - [Placeholder]
+X/XX/21 X:XXpm - X:XXpm PST
+
+### Agenda
+
+
+### Attendees
+
+### What We Did
+
+### Points of Action
+
+---
+
 Meeting minutes format (from Canvas assignment)
 
 Team number / team name
@@ -15,3 +33,5 @@ The agenda of what is discussed
 
 Any decisions made & their reasoning (if there were dissenting opinions include them, then write why the group decided to make that decision anyways)
 When the meeting finished
+
+---

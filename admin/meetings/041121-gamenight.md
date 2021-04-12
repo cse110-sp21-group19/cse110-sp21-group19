@@ -1,6 +1,8 @@
 # 4/11/21 - Game Night
 4/11/21 7:00pm - 8:30pm PST
 
+Group Meeting: Introduction to the Team / Bonding
+
 ### Agenda
 1. Discuss ground rules and meeting formats (kickoff); (< 10 min)
 2. Decide branding for group (team name, color, logo, mascot, etc. -- consult canvas); (15 min)
