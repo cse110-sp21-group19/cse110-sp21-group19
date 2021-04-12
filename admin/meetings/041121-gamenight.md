@@ -33,4 +33,7 @@ Roles
 - rest to be dmed from Sasya
 
 ### Points of Action
-- get canvas assignments done 
+- Turn in canvas assignments (Bonding, Kickoff) 
+- Next Meeting 4/13 7-8pm
+- finalize Contract, fill form
+- Think about personal profile page
