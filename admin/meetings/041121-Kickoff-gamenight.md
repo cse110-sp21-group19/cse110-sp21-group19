@@ -1,4 +1,10 @@
-# 4/11/21 - Game Night
+# 4/11/21 - Kickoff-Game Night
+
+# Where
+Derek's Zoom Room
+
+# Started at
+7:00 PM PST
 
 ### Agenda
 1. Discuss ground rules and meeting formats (kickoff); (< 10 min)
@@ -9,3 +15,6 @@
 ### Attendees
 
 ### Points of Action
+
+# Ended at
+*insert time here*
