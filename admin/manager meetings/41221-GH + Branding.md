@@ -41,4 +41,4 @@ CSE 110 Discord
 - assign roles sometime in week 3 (early)
 
 # Ended at
- PM PST
+ 8:45 PM PST
