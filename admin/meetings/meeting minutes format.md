@@ -3,7 +3,10 @@
 ---
 
 # X/XX/21 - [Placeholder]
-X/XX/21 X:XXpm - X:XXpm PST
+
+## Where
+
+## Started at
 
 ### Agenda
 
@@ -12,6 +15,8 @@ X/XX/21 X:XXpm - X:XXpm PST
 ### What We Did
 
 ### Points of Action
+
+## Ended at
 
 ---
 
