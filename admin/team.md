@@ -18,7 +18,7 @@ We strive to promote high psychological safety within this group and will do eve
 
 ## Meet The Team
 ### [Derek Hwang - Project Manager](https://github.com/derek-hwang27)
-- Derek Hwang is a 2nd year Computer Science major from ERC. He is serving as a Project Manager for Group 19 during Sp21.
+Derek Hwang is a 2nd year Computer Science major from ERC. He is serving as a Project Manager for Group 19 during Sp21.
 <!--- May add more as more things come to mind--->
 
 ### [Michael Shao - Project Manager](https://github.com/michl1001)

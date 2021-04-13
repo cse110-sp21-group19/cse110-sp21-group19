@@ -5,7 +5,6 @@ Repo for CSE 110 Sp21 Group 19
 [[Insert Team Name] Group Page](admin/team.md)
 
 # Project Navigation
-- [Task List](https://docs.google.com/document/d/15Oxk0KUmt_rYlBVfTBxi9F2t3tE2Q7p1nmYHtQTzrUQ/edit?usp=sharing)
 - [Meeting Notes](#meeting-notes)
 - [Members](#members)
 
