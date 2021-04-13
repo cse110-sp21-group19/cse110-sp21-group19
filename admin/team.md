@@ -21,8 +21,10 @@ We strive to promote high psychological safety within this group and will do eve
 Derek Hwang is a 2nd year Computer Science major from ERC. He is serving as a Project Manager for Group 19 during Sp21.
 <!--- May add more as more things come to mind--->
 
-### Michael Shao - Project Manager
-- **TODO for Michael**
+### [Michael Shao - Project Manager](https://github.com/michl1001)
+- Hi! I'm Michael Shao, a 2nd year Computer Engineering Major at Sixth. 
+- See [here](https://github.com/michl1001) for some of my oher work!
+<!--- May add more as we figure out our brand stuff--->
 
 ### Malhar Nerurkar - TBD
 - **TODO for Malhar**
