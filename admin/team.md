@@ -30,7 +30,7 @@ We strive to promote high psychological safety within this group and will do eve
 - **TODO for Malhar**
 
 ### Garvin Mo Zhen - TBD
-- **TODO for Garvin**
+- Hey, I'm Garvin Mo Zhen. I'm a 3rd year Cognitive Science-ML Major with a CS minor in Warren. I like to play volleyball, and league.
   
 ### Cory Huynh - TBD
 - **TODO for Cory**
