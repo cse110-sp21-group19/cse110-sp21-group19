@@ -44,8 +44,8 @@ We strive to promote high psychological safety within this group and will do eve
 ### Angelica Consengco - TBD
 - **TODO for Angelica**
   
-### Chris Baucke - TBD
-- **TODO for Chris**
+### [Chris Baucke](https://github.com/cbaucke)
+- Hello! I am Chris Baucke, a 2nd year computer science major from Warren
   
 ### Nicholas Willison - TBD
 - **TODO for Nicholas**
