@@ -24,14 +24,14 @@ In our project, we aim to bring a minimalist approach where we prioritize user a
 
 ### [Michael Shao - Project Manager](https://github.com/michl1001)
 - Hi! I'm Michael Shao, a 2nd year Computer Engineering Major at Sixth. 
+- I a big fan of Sci-fi, Robots, games and Books!
 - See [here](https://github.com/michl1001) for some of my oher work!
-<!--- May add more as we figure out our brand stuff--->
 
 ### [Malhar Nerurkar - Developer](https://github.com/malhar715)
 - Hello, I'm Malhar! I'm a 4th-year Math-CS major at Sixth College.
 
-### Garvin Mo Zhen - Developer
-- **TODO for Garvin**
+### [Garvin Mo Zhen - Developer](https://github.com/garvingit/)
+- Hey, I'm Garvin Mo Zhen. I'm a 3rd year Cognitive Science-ML Major with a CS minor in Warren. I like to play volleyball, and league.
   
 ### [Cory Huynh - Developer](https://github.com/coryhuynh)
 - Hello! My name is Cory Huynh and I am a 2nd year Computer Engineering Major at Marshall college. 
