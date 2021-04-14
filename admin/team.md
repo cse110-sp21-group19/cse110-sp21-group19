@@ -43,7 +43,7 @@ In our project, we aim to bring a minimalist approach where we prioritize user a
 ### James Daza - Developer
 - **TODO for James**
   
-### Angelica Consengco - Developer
+### [Angelica Consengco - Developer](https://github.com/expjel)
 - Hi everyone, I'm Angelica! I am a 4th year transfer student Computer Engineering (ECE) Major in Sixth College. I enjoy cooking, watching movies and televsion, and music and live shows.
   
 ### [Chris Baucke - Developer](https://github.com/cbaucke)
