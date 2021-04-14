@@ -10,7 +10,8 @@
 ### About Us
 We're a group of 10 students gathered to build something together. We consist of students in the 2nd, 3rd, and 4th year @ UCSD. We are mentored by Sasya Reddi.
 
-We strive to promote high psychological safety within this group and will do everything possible in order to realize this reality. 
+Internally, we strive to promote high psychological safety within this group by maintaining a open mind philosophy and recognizing both our team's strengths and limitations. 
+In our project, we aim to bring a minimalist approach where we prioritize user accessibility.
 
 <!--- Include Branding (Mascot/colors/etc.) when that's finalized --->
 
