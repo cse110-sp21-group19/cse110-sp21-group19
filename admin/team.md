@@ -35,8 +35,8 @@ We strive to promote high psychological safety within this group and will do eve
 ### Cory Huynh - TBD
 - **TODO for Cory**
   
-### Manda Tran - TBD
-- **TODO for Manda**
+### [Manda Tran - TBD](https://github.com/mandatran)
+- Hello! I'm Manda Tran and I am a 4th year Math-Computer Science Major in Sixth College. I like pandas, croissants, and the color purple.
   
 ### James Daza - TBD
 - **TODO for James**
