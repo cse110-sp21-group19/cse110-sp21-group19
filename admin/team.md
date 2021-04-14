@@ -23,8 +23,8 @@ We strive to promote high psychological safety within this group and will do eve
 
 ### [Michael Shao - Project Manager](https://github.com/michl1001)
 - Hi! I'm Michael Shao, a 2nd year Computer Engineering Major at Sixth. 
+- I a big fan of Sci-fi, Robots, games and Books!
 - See [here](https://github.com/michl1001) for some of my oher work!
-<!--- May add more as we figure out our brand stuff--->
 
 ### Malhar Nerurkar - TBD
 - Hello, I'm Malhar! I'm a 4th-year Math-CS major at Sixth College.

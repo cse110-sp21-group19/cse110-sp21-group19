@@ -16,14 +16,15 @@ Derek's Zoom
 6. Check availability for next meeting (4/17/21 - 4/19/21, maybe 4/18/21) 
 
 ### Attendees
-All - Angelica
+All except Angelica
 
 ### What We Did
 - Tested Miro
 - Team Name is "I need a <br>"
 - Mascot Sloth
 - Video - 3 3 sec clips due by 4/14 6:00pm PST (iCarly)
-- Go over pull requests
+- Go over pull requests and GitHub logistics
+- Completed a bit of Team page work
 
 ### Points of Action
 - Format for Team Page
