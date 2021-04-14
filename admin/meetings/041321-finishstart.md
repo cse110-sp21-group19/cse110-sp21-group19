@@ -22,7 +22,7 @@ All - Angelica
 - Tested Miro
 - Team Name is "I need a <br>"
 - Mascot Sloth
-- Videon - 3 3 sec clips due by 4/14 6:00pm PST (iCarly)
+- Video - 3 3 sec clips due by 4/14 6:00pm PST (iCarly)
 - Go over pull requests
 
 ### Points of Action
