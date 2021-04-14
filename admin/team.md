@@ -32,8 +32,9 @@ We strive to promote high psychological safety within this group and will do eve
 ### Garvin Mo Zhen - TBD
 - **TODO for Garvin**
   
-### Cory Huynh - TBD
-- **TODO for Cory**
+### [Cory Huynh - TBD](https://github.com/coryhuynh)
+- Hello! My name is Cory Huynh and I am a 2nd year Computer Engineering Major at Marshall college. 
+- I am an avid Lakers fan and skilled Googler
   
 ### [Manda Tran - TBD](https://github.com/mandatran)
 - Hello! I'm Manda Tran and I am a 4th year Math-Computer Science Major in Sixth College. I like pandas, croissants, and the color purple.
