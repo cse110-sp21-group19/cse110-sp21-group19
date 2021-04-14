@@ -29,8 +29,8 @@ We strive to promote high psychological safety within this group and will do eve
 ### Malhar Nerurkar - TBD
 - Hello, I'm Malhar! I'm a 4th-year Math-CS major at Sixth College.
 
-### Garvin Mo Zhen - TBD
-- **TODO for Garvin**
+### [Garvin Mo Zhen - TBD](https://github.com/garvingit/)
+- Hey, I'm Garvin Mo Zhen. I'm a 3rd year Cognitive Science-ML Major with a CS minor in Warren. I like to play volleyball, and league.
   
 ### [Cory Huynh - TBD](https://github.com/coryhuynh)
 - Hello! My name is Cory Huynh and I am a 2nd year Computer Engineering Major at Marshall college. 
