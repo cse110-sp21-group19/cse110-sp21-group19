@@ -20,7 +20,7 @@ All - Angelica
 
 ### What We Did
 - Tested Miro
-- Team Name is "I need a <br>"
+- Team Name is "I need a \<br>"
 - Mascot Sloth
 - Video - 3 3 sec clips due by 4/14 6:00pm PST (iCarly)
 - Go over pull requests

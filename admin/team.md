@@ -1,4 +1,4 @@
-# [insert Team Name here]
+# I need a \<br> - Group Page
 ##### CSE 110 Sp 21 Group 19
 
 ***
@@ -26,29 +26,29 @@ We strive to promote high psychological safety within this group and will do eve
 - See [here](https://github.com/michl1001) for some of my oher work!
 <!--- May add more as we figure out our brand stuff--->
 
-### Malhar Nerurkar - TBD
+### [Malhar Nerurkar - Developer](https://github.com/malhar715)
 - Hello, I'm Malhar! I'm a 4th-year Math-CS major at Sixth College.
 
-### Garvin Mo Zhen - TBD
+### Garvin Mo Zhen - Developer
 - **TODO for Garvin**
   
-### [Cory Huynh - TBD](https://github.com/coryhuynh)
+### [Cory Huynh - Developer](https://github.com/coryhuynh)
 - Hello! My name is Cory Huynh and I am a 2nd year Computer Engineering Major at Marshall college. 
 - I am an avid Lakers fan and skilled Googler
   
-### [Manda Tran - TBD](https://github.com/mandatran)
+### [Manda Tran - Developer](https://github.com/mandatran)
 - Hello! I'm Manda Tran and I am a 4th year Math-Computer Science Major in Sixth College. I like pandas, croissants, and the color purple.
   
-### James Daza - TBD
+### James Daza - Developer
 - **TODO for James**
   
-### Angelica Consengco - TBD
+### Angelica Consengco - Developer
 - **TODO for Angelica**
   
-### [Chris Baucke](https://github.com/cbaucke)
+### [Chris Baucke - Developer](https://github.com/cbaucke)
 - Hello! I am Chris Baucke, a 2nd year computer science major from Warren
   
-### Nicholas Willison - TBD
+### Nicholas Willison - Developer
 - **TODO for Nicholas**
 
 ---
