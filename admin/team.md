@@ -27,7 +27,7 @@ We strive to promote high psychological safety within this group and will do eve
 <!--- May add more as we figure out our brand stuff--->
 
 ### Malhar Nerurkar - TBD
-- **TODO for Malhar**
+- Hello, I'm Malhar! I'm a 4th-year Math-CS major at Sixth College.
 
 ### Garvin Mo Zhen - TBD
 - **TODO for Garvin**
