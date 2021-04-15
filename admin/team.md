@@ -40,8 +40,8 @@ In our project, we aim to bring a minimalist approach where we prioritize user a
 ### [Manda Tran - Developer](https://github.com/mandatran)
 - Hello! I'm Manda Tran and I am a 4th year Math-Computer Science Major in Sixth College. I like pandas, croissants, and the color purple.
   
-### James Daza - Developer
-- **TODO for James**
+### [James Daza - Developer](https://github.com/jamesrdaza)
+- Hello! I am James Daza I am a 3rd year Computer Science Major in Sixth College. I love to play video games and tennis.
   
 ### [Angelica Consengco - Developer](https://github.com/expjel)
 - Hi everyone, I'm Angelica! I am a 4th year transfer student Computer Engineering (ECE) Major in Sixth College. I enjoy cooking, watching movies and televsion, and music and live shows.
