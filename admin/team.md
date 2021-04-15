@@ -49,7 +49,7 @@ In our project, we aim to bring a minimalist approach where we prioritize user a
 ### [Chris Baucke - Developer](https://github.com/cbaucke)
 - Hello! I am Chris Baucke, a 2nd year computer science major from Warren
   
-### [Nicholas Willison - Developer](https:/github.com/nwilliso)
+### [Nicholas Willison - Developer](https://github.com/nwilliso)
 - Hello! I am Nicholas Willison, and I am a second year Computer Science major in Marshall college. Currently, I work part-time at Best Buy. I love the MCU, Pokemon, and hanging out with my roommates especially by playing tennis or co-op video games.
 
 ---
