@@ -8,6 +8,8 @@ Derek's Zoom
 
 ### Agenda
 - Brainstorm using Miro
+  - Define Users (Who) and when they'd be using BuJo
+  - Discuss (as users) what we would like to have as users
   - Review BuJo apps from Monday Discussion - discuss pros and cons
   - Sketch out potential layouts for page (UI)
 - Set up at least 1 more meeting before 4/26 to solidfy ideas
