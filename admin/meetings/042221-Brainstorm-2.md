@@ -20,9 +20,11 @@ Derek's Zoom
    - What kind of feeling do we want to give off
  - Project pitch discussion
  - Start Defining design decisions? (if time)
+   - Where will this app live?
    - System Diagrams
    - Interface design stuff
  - Roles meetings (if time)
+   - Get a judge of experience
 
 ### Attendees
 
