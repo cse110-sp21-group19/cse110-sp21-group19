@@ -22,6 +22,7 @@ Derek's Zoom
  - Start Defining design decisions? (if time)
    - System Diagrams
    - Interface design stuff
+ - Roles meetings (if time)
 
 ### Attendees
 
