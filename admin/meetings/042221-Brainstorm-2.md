@@ -30,7 +30,7 @@ Derek's Zoom
 - Everyone
 
 ### What We Did
-- Brainstorming on [Miro](../../specs/4_22%20Brainstorm%202.jpg)
+- Brainstorming on [Miro](../../specs/Brainstorm/4_22%20Brainstorm%202.jpg)
 - confirmed principles
 - Started brainstorming core features
 - Introduced Roles / think about what people want to use as tools
