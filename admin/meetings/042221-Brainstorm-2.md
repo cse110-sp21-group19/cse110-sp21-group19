@@ -27,9 +27,19 @@ Derek's Zoom
    - Get a judge of experience
 
 ### Attendees
+- Everyone
 
 ### What We Did
+- Brainstorming on [Miro](../../specs/4_22%20Brainstorm%202.jpg)
+- confirmed principles
+- Started brainstorming core features
+- Introduced Roles / think about what people want to use as tools
+- Foundation for a pitch 
+- Foundation for UX
 
 ### Points of Action
+- Get people to get used to their roles - tools
+- Next Meeting 4/27 7-8pm
 
 ## Ended at
+8:05pm PST
