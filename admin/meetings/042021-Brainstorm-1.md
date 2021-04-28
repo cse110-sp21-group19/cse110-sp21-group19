@@ -20,7 +20,7 @@ Derek's Zoom
 
 ### What We Did
 - Nail down Design Space (Who are we targeting / What problem are we solving?)
-- Brainstorm image - [Miro](../../specs/4_20%20Brainstorm%201.jpg)
+- Brainstorm image - [Miro](../../specs/Brainstorm/4_20%20Brainstorm%201.jpg)
 
 ### Points of Action
 - Michael leads the next meeting
