@@ -38,7 +38,14 @@ Derek's Discord
 Everyone
 
 ### What We Did
+- [miro](cse110-sp21-group19\specs\Pitch\PitchPlanning.JPG)
+- Got feedback on the pitch proposal
+- Viewed Early Design Flows from Designers
+- Sorted core components in Flowchart
 
 ### Points of Action
+- Designers, FE, and BE will define the details within the Flowchart
+- FE and BE will meet on Sunday @ 2:00PM PST
 
 ## Ended at
+8:05PM PST
