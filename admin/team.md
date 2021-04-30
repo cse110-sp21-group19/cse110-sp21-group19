@@ -18,38 +18,38 @@ In our project, we aim to bring a minimalist approach where we prioritize user a
 ---
 
 ## Meet The Team
-### [Derek Hwang - Project Manager](https://github.com/derek-hwang27)
+### [Derek Hwang - Project Manager, Unit Tester](https://github.com/derek-hwang27)
 - Derek Hwang is a 2nd year Computer Science major from ERC. He is serving as a Project Manager for Group 19 during Sp21.
 <!--- May add more as more things come to mind--->
 
-### [Michael Shao - Project Manager](https://github.com/michl1001)
+### [Michael Shao - Project Manager, Builder(DevOps)](https://github.com/michl1001)
 - Hi! I'm Michael Shao, a 2nd year Computer Engineering Major at Sixth. 
 - I a big fan of Sci-fi, Robots, games and Books!
 - See [here](https://github.com/michl1001) for some of my oher work!
 
-### [Malhar Nerurkar - Developer](https://github.com/malhar715)
+### [Malhar Nerurkar - Front End Developer](https://github.com/malhar715)
 - Hello, I'm Malhar! I'm a 4th-year Math-CS major at Sixth College.
 
-### [Garvin Mo Zhen - Developer](https://github.com/garvingit/)
+### [Garvin Mo Zhen - Back End Developer](https://github.com/garvingit/)
 - Hey, I'm Garvin Mo Zhen. I'm a 3rd year Cognitive Science-ML Major with a CS minor in Warren. I like to play volleyball, and league.
   
-### [Cory Huynh - Developer](https://github.com/coryhuynh)
+### [Cory Huynh - Front End Developer](https://github.com/coryhuynh)
 - Hello! My name is Cory Huynh and I am a 2nd year Computer Engineering Major at Marshall college. 
 - I am an avid Lakers fan and skilled Googler
   
-### [Manda Tran - Developer](https://github.com/mandatran)
+### [Manda Tran - Front End Developer](https://github.com/mandatran)
 - Hello! I'm Manda Tran and I am a 4th year Math-Computer Science Major in Sixth College. I like pandas, croissants, and the color purple.
   
-### [James Daza - Developer](https://github.com/jamesrdaza)
+### [James Daza - Unit Tester](https://github.com/jamesrdaza)
 - Hello! I am James Daza I am a 3rd year Computer Science Major in Sixth College. I love to play video games and tennis.
   
-### [Angelica Consengco - Developer](https://github.com/expjel)
+### [Angelica Consengco - Designer](https://github.com/expjel)
 - Hi everyone, I'm Angelica! I am a 4th year transfer student Computer Engineering (ECE) Major in Sixth College. I enjoy cooking, watching movies and televsion, and music and live shows.
   
-### [Chris Baucke - Developer](https://github.com/cbaucke)
+### [Chris Baucke - Back End Developer](https://github.com/cbaucke)
 - Hello! I am Chris Baucke, a 2nd year computer science major from Warren
   
-### [Nicholas Willison - Developer](https://github.com/nwilliso)
+### [Nicholas Willison - Designer](https://github.com/nwilliso)
 - Hello! I am Nicholas Willison, and I am a second year Computer Science major in Marshall college. Currently, I work part-time at Best Buy. I love the MCU, Pokemon, and hanging out with my roommates especially by playing tennis or co-op video games.
 
 ---
