@@ -14,6 +14,7 @@ Repo for CSE 110 Sp21 Group 19
 This quarter, we will be working on making a [Bullet Journal](https://en.wikipedia.org/wiki/Bullet_journal)
 
 # Meeting Notes
+- [4/29/21 - Diagramming Flowchart](admin/meetings/042921-Diagramming_Flowchart.md)
 - [4/27/21 - Diagramming and Design](admin/meetings/042721-Diagramming_And_Design.md)
 - [4/22/21 - Brainstorm 2](admin/meetings/042221-Brainstorm-2.md)
 - [4/20/21 - Brainstorm 1](/admin/meetings/042021-Brainstorm-1.md)
