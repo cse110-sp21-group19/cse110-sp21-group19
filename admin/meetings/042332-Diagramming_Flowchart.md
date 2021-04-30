@@ -13,9 +13,14 @@ Derek's Discord
   -  **Our app is a intuitive, lightweight tool that seeks to reduce the friction of keeping a Bullet Journal, emphasizing quick, intuitive note taking and powerful organizational tools**  <--- condense from our pitch idealization
     - This should be VERY quick, as this will not be final, we'll be ccoming back to this after our flowchart process
 
-- Allow Designers to present preliminary UX storyboard
+- Allow Designers to present [preliminary UX storyboard](https://www.figma.com/file/20ES5bQuZFBnyFlrwpR0zM/bullet-journal-sketch-1?node-id=2%3A26)
 - Discuss projected user workflow (what people like, what chould change, risks, problems, etc)
+  - Login, welcome, or daily note page first?
+  - How do we feel about the amount of stuff on the page?
+    - Too minimalist?
+    - Too Cluttered?
 - Condense core elements into flow chart
+- Order core elements
 - Group flow chart by actionable work issues and what teams would have to work on these
 - Start discussion of additional flow chart work flows
 
