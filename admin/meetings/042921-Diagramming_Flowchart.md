@@ -10,7 +10,7 @@ Derek's Discord
 - Recap last meeting
 - Mention Shape Up Book
 - Discuss/Revise Purpose Statement
-  -  **Our app is a intuitive, lightweight tool that seeks to reduce the friction of keeping a Bullet Journal, emphasizing quick, intuitive note taking and powerful organizational tools**  <--- condense from our pitch idealization
+  -  **Our app is a intuitive, lightweight tool that seeks to reduce the friction of keeping a Bullet Journal, emphasizing quick, intuitive note taking and powerful organizational tools**  <--- condensed from our pitch idealization
     - This should be VERY quick, as this will not be final, we'll be ccoming back to this after our flowchart process
 
 - Allow Designers to present [preliminary UX storyboard](https://www.figma.com/file/20ES5bQuZFBnyFlrwpR0zM/bullet-journal-sketch-1?node-id=2%3A26)
