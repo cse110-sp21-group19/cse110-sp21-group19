@@ -24,7 +24,18 @@ Michael's Zoom Room
 Michael, FE team and BE team
 
 ### What We Did
+- [Miro](https://miro.com/app/board/o9J_lG5TT0s=/)
 
 ### Points of Action
+- We made several fundamental decisions:
+  - Google accounts login using Google API
+    - Benefits
+      - Cross platform access
+      - Frictionless login
+    - Costs, Risks, Rabbit holes
+      - Learning curve to work with API
+  - Database accessed through Custom Backend API (as opposed to local storage)
+    - Consistant access with cross platform capability
 
 ## Ended at
+3:20 PM PST
