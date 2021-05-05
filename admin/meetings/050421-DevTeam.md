@@ -12,8 +12,9 @@ Derek's Zoom room
 - Discuss file structure
 - Go over Database types/options (Pros/Cons)
   - Pick out best choice for our design if possible
+  - DB types/structure?
 - Discuss API 
-  - Discuss ecryption???
+  - Discuss excryption???
   - Start designing API routes
     - inputs
     - outputs/effect
@@ -22,6 +23,7 @@ Derek's Zoom room
   - Front-end team:
     - Refine User Persona?
     - Look into Google API redirect services
+      - 
     - Look into making a PoC for our text area
   - Backend team:
     - Finish API spec
@@ -31,12 +33,37 @@ Derek's Zoom room
 
 
 ### Attendees
+- All members except Designers
 
 ### What We Did
+- Brief on the FE, API and database website system
+- Brief of what the Google Account API will require of us
+  - FE:
+    - Must display the profile information
+  - BE:
+    - Must store identifying info for the user w/o risking sensitive personal info
+- Gave FE team task of exploring editable formatted text
+- Briefed BE on the types of Databases and options
+- Discussed preliminary [Model](https://docs.google.com/document/d/13vq25D-qup2cG91aC82-njmaQDTNEOMQUmc0ZeJflzU/edit) designs for Database
+- Briefed FE and BE on what an API is and how they are designed
+- Discussed prelimary [API routes](https://docs.google.com/document/d/13vq25D-qup2cG91aC82-njmaQDTNEOMQUmc0ZeJflzU/edit)
+
 
 ### Points of Action
+- BE picked Table based database with SQL
+  - No need for third party service
+  - Structured design
+- Tasks by Thursday:
+  - FE
+    - Explore editable formatted text
+    - Explore Google API docs
+  - BE
+    - Explore Google API docs
+    - Continue writing out the API routes and Database design
+      - Come to Next meeting to discuss needed stored items with Design time
 
 ## Ended at
+8:45 PM PST
 
 ---
 
