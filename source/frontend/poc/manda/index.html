@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manda Proof of Concept</title>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style/css/main.css">
+</head>
+
+<body>
+  <header>
+    <h1>Bullet List</h1>
+  </header>
+
+  <main></main>
+
+  <div class="new-bullet" id="new-bullet">
+      <select id="bullet-type">
+          <option value="note" selected>  New Note <h5> - </h5></option> <!-- default is a note bullet-->
+          <option value="task"> New Task <h5>&#8226;</h5></option>
+          <option value="event"> New Event <h5>&#9900;</h5></option>
+      </select>
+      <input type="text" id="bullet-input" placeholder="new bullet...">
+  </div>
+
+  <!-- This is what each <journal-entry> will look like -->
+  <template>
+    <article class="entry">
+      <h2 class="entry-title">Template Title</h2>
+      <p class="entry-date">mm/dd/yyyy</p>
+      <p class="entry-content">blah blah blah...</p>
+      <img src="" alt="Some Image" class="entry-image" />
+      <audio src="" controls class="entry-audio"></audio>
+    </article>
+  </template>
+
+  <!-- journal-entry web component -->
+  <script src="./components/bullet.js" type="module"></script>
+
+  <!-- Main Script -->
+  <script src="./scripts/script.js" type="module"></script>
+</body>
+
+</html>
