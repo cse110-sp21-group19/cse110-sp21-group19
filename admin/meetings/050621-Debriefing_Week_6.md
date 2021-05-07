@@ -20,6 +20,7 @@ Derek's Zoom
 - Linting and NPM
   - How to
 - Issues on Github
+- Stand up Meetings 
 
 ### Attendees
 
