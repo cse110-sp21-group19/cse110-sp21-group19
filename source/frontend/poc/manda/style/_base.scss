@@ -1,0 +1,30 @@
+/* Main Stylesheet */
+
+* {
+    color: $dark;
+    font-family: $sans-serif;
+  }
+  
+  body {
+    // align-items: center;
+    background-color: $light;
+    display: grid;
+    justify-items: center;
+    margin: auto;
+    width: 70%;
+    margin-top: 10%;
+  }
+  
+  header {
+    margin: 0;
+    top: 0;
+    width: 100%;
+  }
+  
+  ul {
+    display: grid;
+    justify-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  

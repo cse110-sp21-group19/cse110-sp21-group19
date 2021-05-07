@@ -1,0 +1,19 @@
+.new-bullet {
+    border: 1px solid grey;
+    width: 100%;
+    input[type=text], select {
+        padding: 12px;
+        margin: 4px 0;
+        box-sizing: border-box;
+        border: none;
+    }
+    input[type=text] {
+        width: 70%;
+    }
+    select {
+        width: 20%;
+        &:active {
+            background-color: white;
+        }
+    }
+}

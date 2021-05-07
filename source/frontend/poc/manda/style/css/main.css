@@ -1,0 +1,66 @@
+/* fonts */
+/* colors */
+/* spacing */
+/* Main Stylesheet */
+* {
+  color: #181A18;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+body {
+  background-color: #fcfcfc;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  margin: auto;
+  width: 70%;
+  margin-top: 10%;
+}
+
+header {
+  margin: 0;
+  top: 0;
+  width: 100%;
+}
+
+ul {
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.new-bullet {
+  border: 1px solid grey;
+  width: 100%;
+}
+
+.new-bullet input[type=text], .new-bullet select {
+  padding: 12px;
+  margin: 4px 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: none;
+}
+
+.new-bullet input[type=text] {
+  width: 70%;
+}
+
+.new-bullet select {
+  width: 20%;
+}
+
+.new-bullet select:active {
+  background-color: white;
+}
+
+main {
+  width: 100%;
+}
+
+main .bullet-entry {
+  width: inherit;
+}
+/*# sourceMappingURL=main.css.map */
