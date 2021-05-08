@@ -4,14 +4,9 @@ Repo for CSE 110 Sp21 Group 19
 
 [iNeedA\<br> - Group Page](admin/team.md)
 
-<<<<<<< HEAD
 ## Project Navigation
 - [Project Source Code](source)
-- [Task List](https://docs.google.com/document/d/15Oxk0KUmt_rYlBVfTBxi9F2t3tE2Q7p1nmYHtQTzrUQ/edit?usp=sharing)
-=======
-# Project Navigation
 - [Task List]
->>>>>>> e0798a80056b02c4b474e640237a7e272d596c24
 - [Meeting Notes](#meeting-notes)
 - [Members](#members)
 
