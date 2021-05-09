@@ -1,11 +1,15 @@
 {
     "version": 3,
-    "mappings": "ACAA,AAAA,IAAI,CAAC;EAED,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,IAAI;CAiBf;;AApBD,AAKI,IALA,CAKA,UAAU,CAAC;EACP,OAAO,EAAE,IAAI;EACb,MAAM,EAAE,eAAe;EACvB,qBAAqB,EAAE,OAAO;CAWjC;;AAnBL,AASQ,IATJ,CAKA,UAAU,CAIN,WAAW,CAAC;EACR,iBAAiB,EAAE,CAAC;EACpB,SAAS,EAAE,KAAK;EAChB,MAAM,EAAE,eAAe;CAC1B;;AAbT,AAcQ,IAdJ,CAKA,UAAU,CASN,UAAU,CAAC;EACP,iBAAiB,EAAE,CAAC;EACpB,SAAS,EAAE,KAAK;EAChB,MAAM,EAAE,eAAe;CAC1B",
+    "mappings": "ACAA,AAAA,IAAI,CAAC;EAED,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,IAAI;CAef;;AAlBD,AAKI,IALA,CAKA,UAAU,CAAC;EACP,OAAO,EAAE,IAAI;EACb,MAAM,EAAE,eAAe;EACvB,qBAAqB,EAAE,OAAO;CASjC;;AAjBL,AASQ,IATJ,CAKA,UAAU,CAIN,WAAW,CAAC;EACR,iBAAiB,EAAE,CAAC;EACpB,MAAM,EAAE,eAAe;CAC1B;;AAZT,AAaQ,IAbJ,CAKA,UAAU,CAQN,UAAU,CAAC;EACP,iBAAiB,EAAE,CAAC;EACpB,MAAM,EAAE,eAAe;CAC1B;;AGhBT,iCAAiC;ACAjC,uBAAuB;ACAvB,oBAAoB;ACApB,uBAAuB",
     "sources": [
         "../main.scss",
-        "../layout/layout.scss",
-        "../layout/header.scss",
-        "../layout/footer.scss"
+        "../layout/_layout.scss",
+        "../layout/_header.scss",
+        "../layout/_footer.scss",
+        "../components/_additional.scss",
+        "../components/_maintext.scss",
+        "../components/_sidebar.scss",
+        "../components/_weeklynav.scss"
     ],
     "names": [],
     "file": "main.css"

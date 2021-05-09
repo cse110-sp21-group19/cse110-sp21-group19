@@ -14,14 +14,17 @@ body .container {
 body .container .weekly-nav {
   -ms-grid-column: 1;
       grid-column-start: 1;
-  max-width: 70rem;
   border: 5px solid black;
 }
 
 body .container .daily-log {
   -ms-grid-column: 2;
       grid-column-start: 2;
-  max-width: 70rem;
   border: 5px solid black;
 }
+
+/* Additional Entries - Malhar */
+/* Main Text - Manda */
+/* Sidebar - Cory */
+/* Weekly Nav - Cory */
 /*# sourceMappingURL=main.css.map */
