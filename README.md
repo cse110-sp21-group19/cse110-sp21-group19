@@ -6,7 +6,8 @@ Repo for CSE 110 Sp21 Group 19
 
 ## Project Navigation
 - [Project Source Code](source)
-- [Task List]
+- [Style Guide](specs/style_guide.md)
+- Task List
 - [Meeting Notes](#meeting-notes)
 - [Members](#members)
 
