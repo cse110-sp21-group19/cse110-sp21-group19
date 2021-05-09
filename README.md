@@ -4,13 +4,14 @@ Repo for CSE 110 Sp21 Group 19
 
 [iNeedA\<br> - Group Page](admin/team.md)
 
-# Project Navigation
+## Project Navigation
+- [Project Source Code](source)
 - [Task List]
 - [Meeting Notes](#meeting-notes)
 - [Members](#members)
 
 
-# Project Description
+## Project Description
 This quarter, we will be working on making a [Bullet Journal](https://en.wikipedia.org/wiki/Bullet_journal)
 
 # Meeting Notes
@@ -25,7 +26,7 @@ This quarter, we will be working on making a [Bullet Journal](https://en.wikiped
 - [4/13/21 - Finish Start](admin/meetings/041321-finishstart.md)
 - [4/11/21 - Game Night](admin/meetings/041121-gamenight.md)
 
-# Members
+## Members
 - Derek Hwang 
 - Michael Shao
 - Malhar Nerurkar
@@ -38,6 +39,10 @@ This quarter, we will be working on making a [Bullet Journal](https://en.wikiped
 - Nicholas Willison
 - **Mentor** - Sasya Reddi
 
-
-
+## Running/Developing the project
+- If you are developing for this project, run the following:
+  ```npm install -D```
+- Here are the main scripts for working with our project:
+  - ```npm run lint``` - Runs eslint to give styling feedback
+  - ```npm run lint:fix``` - Fixes minor linting errors
 
