@@ -43,8 +43,8 @@
   - See above example
 
 ## CSS
-- Name CSS file(s) with their corresponding html file (as applicable). They must end in `.css`. There may be one huge css file named `style.css`
-  - i.e. `dailypage.css`, `yearview.css`, `style.css`
+- Name CSS file(s) with their corresponding html file (as applicable). They must end in `.css` or `.scss`. There may be one huge css file named `style.css`
+  - i.e. `dailypage.scss`, `yearview.scss`, `style.css`
 - Include newlines between new CSS definitions
 - Group relevant definitions together
   - i.e. Class CSS together, ID CSS together, etc.
@@ -59,6 +59,8 @@ General
 - Use `let` and `const`, avoid using `var`
 - Include spaces between operators
   - i.e. `let z = x + y;`, `let message = "hello";`
+- Enclose Strings in double quotes
+  - i.e. `let name = "iNeedA<br>";`
 - Use `//` for all inline comments, including multi-line comments
 
 Naming Conventions
