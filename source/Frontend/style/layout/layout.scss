@@ -1,0 +1,19 @@
+body {
+    //max-width: 1280px;
+    width: 80%;
+    margin: auto;
+
+    .container {
+        display: grid;
+        border: 5px solid black;
+        grid-template-columns: 40% 60%;
+        .weekly-nav {
+            grid-column-start: 1;
+            border: 5px solid black; // get rid of later
+        }
+        .daily-log {
+            grid-column-start: 2;
+            border: 5px solid black; // get rid of later
+        }
+    }
+}
