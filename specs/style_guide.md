@@ -11,6 +11,8 @@
 <hr>
 
 ## HTML
+- Name HTML files based on the page name. They must use the file extension `.html`
+  - i.e. `dailypage.html`, `yearview.html`, etc.
 - Keep styling out of html files
   - Exception: Element is unique, does not fit a style already defined, and the styling is simple (~2 style properties), then styling may be defined within the element
 - Give elements ids unless you have a really good reason to not include it
@@ -41,17 +43,23 @@
   - See above example
 
 ## CSS
+- Name CSS file(s) with their corresponding html file (as applicable). They must end in `.css`. There may be one huge css file named `style.css`
+  - i.e. `dailypage.css`, `yearview.css`, `style.css`
 - Include newlines between new CSS definitions
 - Group relevant definitions together
   - i.e. Class CSS together, ID CSS together, etc.
 
 ## Javascript
 General
+- Name JS file(s) with a short word/phrase describing its use. JS files may include multiple uses, then find an appropriate name / corresponding html file that uses the JS file(s). These files must end in `.js`.
+  - If naming based on an html file, include "Script" after the html name
+  - i.e. `script.js`, `dailypageScript.js`, `entryScript.js` 
 - Use tabs instead of spaces for indentation
 - Always end lines with semicolons
 - Use `let` and `const`, avoid using `var`
 - Include spaces between operators
   - i.e. `let z = x + y;`, `let message = "hello";`
+- Use `//` for all inline comments, including multi-line comments
 
 Naming Conventions
 - Constants are all uppercase, no spaces
