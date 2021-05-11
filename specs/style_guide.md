@@ -45,6 +45,9 @@
 ## CSS
 - Name CSS file(s) with their corresponding html file (as applicable). They must end in `.css` or `.scss`. There may be one huge css file named `style.css`
   - i.e. `dailypage.scss`, `yearview.scss`, `style.css`
+- Separate `.scss` files as specific pages. 
+  - i.e. daily page css goes into `dailypage.scss`
+  - Exception: If users can control the format that SASS compiles `.scss` into `.css`, then make sure the order grouped by component, then by selector. If users cannot control, don't worry about it.
 - Include newlines between new CSS definitions
 - Group relevant definitions together
   - i.e. Class CSS together, ID CSS together, etc.
