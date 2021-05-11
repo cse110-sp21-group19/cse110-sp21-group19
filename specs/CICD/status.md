@@ -6,9 +6,9 @@ Our CI/CD build system will be implemented in stages as our code base is built -
 ## In Progress
 - pull request - no formal tooling has been choosen; we plan to use main branch protection but that tool must be paid for, Sasya is currently talking to the professor about our options there
 
-- unit test automation - awaiting backend api codebase to be fleshed out; we likely are goign to use jest, but we are awaiting for more code to be filled out so our pipeline scripts can really run
+- unit test automation - awaiting backend api codebase to be fleshed out; we likely are going to use jest, but we are awaiting for more code to be filled out so our pipeline scripts can really run
 
-- documentation - awaiting backend api codebase to be fleshed out; we likely are goign to use JSdoc, but we are awaiting for more code to be filled out so our CI pipeline can really run
+- documentation - awaiting backend api codebase to be fleshed out; we likely are going to use JSdoc, but we are awaiting for more code to be filled out so our CI pipeline can really run
 
 ## Backlog  
 - code quality - research ongoing; still looking at options
