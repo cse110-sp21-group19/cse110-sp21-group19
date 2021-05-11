@@ -1,3 +1,13 @@
+/* Tools, Helpers, Variables, Config, etc. */
+@import 'abstracts/mixins', 'abstracts/variables';
+
+/* Base Styles */
+@import 'base/reset', 'base/typography';
+
+/* Layout */
 @import 'layout/layout', 'layout/header', 'layout/footer';
 
+/* Components */
 @import 'components/additional', 'components/maintext', 'components/sidebar', 'components/weeklynav';
+
+/* Pages */

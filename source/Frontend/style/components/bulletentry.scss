@@ -1,0 +1,48 @@
+.bullet-entry {
+    width: 100%;
+
+    &:hover {
+        background-color: #d0ecfd;
+        display: inline-block;
+    }
+
+}
+
+.bullet-entry:hover > button:hover {
+    color: black;
+}
+
+.bullet-entry:hover > select, .bullet-entry:hover > button {
+    color: grey;
+}
+
+input[type=text], select, button {
+    padding: 12px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+}
+
+select, button {
+    cursor: pointer;
+}
+
+input[type=text] {
+    width: 70%;
+}
+
+select {
+    width: 20%;
+    -o-appearance: none;
+    -ms-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-align-last: right;
+}
+
+button {
+    color: transparent;
+    width: auto;
+}
