@@ -1,0 +1,244 @@
+/* Style new entry modal*/
+*:focus {
+  outline: none;
+}
+
+.new-entry-modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 600px;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(255, 255, 255, 0.7);
+  overflow-y: auto;
+}
+
+.modal-content {
+  background: #C4C4C4;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+  height: 70%;
+}
+
+.modal-content .close {
+  font-size: 30px;
+}
+
+.modal-content .close:hover {
+  cursor: pointer;
+  color: #535353;
+}
+
+.modal-content h1 {
+  text-align: center;
+}
+
+.modal-content .options {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  margin-top: 200px;
+  text-align: center;
+}
+
+.modal-content .options #note {
+  font-size: 30px;
+}
+
+.modal-content .options #note:hover {
+  cursor: pointer;
+  color: #535353;
+}
+
+.modal-content .options #media {
+  font-size: 30px;
+}
+
+.modal-content .options #media:hover {
+  cursor: pointer;
+  color: #535353;
+}
+
+/* End styling new entry modal*/
+/* Begin styling text modal*/
+.text-modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 650px;
+  background-color: black;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.text-modal-content {
+  background: #C4C4C4;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+  height: 70%;
+}
+
+.text-modal-content .close {
+  font-size: 30px;
+}
+
+.text-modal-content .close:hover {
+  cursor: pointer;
+  color: #535353;
+}
+
+.text-modal-content h1 {
+  text-align: center;
+}
+
+.text-modal-content .elements {
+  background: white;
+  height: inherit;
+  width: 100%;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.text-modal-content .elements #text-area {
+  height: 90%;
+  width: inherit;
+  margin: 0;
+  overflow: auto;
+}
+
+.text-modal-content .elements #text-area:hover {
+  cursor: text;
+}
+
+.text-modal-content .text-options {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+}
+
+.text-modal-content .text-options #save {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.text-modal-content .text-options #save:hover {
+  cursor: pointer;
+  color: #535353;
+}
+
+.text-modal-content .text-options #cancel {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.text-modal-content .text-options #cancel:hover {
+  cursor: pointer;
+  color: #535353;
+}
+
+/*End styling text modal*/
+/*Begin styling upload media modal*/
+.pic-modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 650px;
+  background-color: black;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.pic-modal-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  background: #C4C4C4;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+  height: 70%;
+}
+
+.pic-modal-content #img-save {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.pic-modal-content #img-save:hover {
+  cursor: pointer;
+  color: #535353;
+}
+
+.pic-modal-content #img-cancel {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.pic-modal-content #img-cancel:hover {
+  cursor: pointer;
+  color: #535353;
+}
+
+/*End styling upload media modal*/
+/*Begin styling saved entries*/
+.saved_entries {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.saved_entries .new-entry {
+  padding-left: 10px;
+}
+
+.saved_entries .new-entry canvas {
+  z-index: 1;
+  width: 90%;
+  height: 150px;
+  border: 1px solid black;
+}
+
+.saved_entries .new-entry .close {
+  color: black;
+  font-weight: bold;
+  padding-left: 3px;
+  position: absolute;
+  z-index: 2;
+  font-size: 20px;
+}
+
+.saved_entries .new-entry .close:hover {
+  cursor: pointer;
+  color: #535353;
+}
+
+/*End styling saved entries*/
+/*# sourceMappingURL=modals.css.map */

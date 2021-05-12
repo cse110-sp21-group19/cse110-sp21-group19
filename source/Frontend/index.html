@@ -10,6 +10,9 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style/css/main.css">
+  <!-- Additional entries stylesheet-->
+  <link rel="stylesheet" href="style/css/addl_entry_btn.css">
+  <link rel="stylesheet" href="style/css/modals.css">
 </head>
 
 <body>
@@ -23,15 +26,20 @@
             <div class="main-text">
                 <h1>MAIN TEXT HERE</h1>
             </div>
+
+            <!-- Begin Additional entries-->
             <div id="additional" class="additional">
-                <h1>ADDITIONAL ENTRIES HERE</h1>
+              <div class="saved_entries">
+              </div>
+                <addl-entrybtn></addl-entrybtn> 
             </div>
-        </div>
-      </div>
+            <!-- End Additional entries-->
   </main>
 
   <!-- add web component here -->
-
+  <script src="./components/addl_entries/modals.js" type="module"></script>
+  <script src="./components/addl_entries/addl_entry_btn.js" type="module"></script>
+  
   <!-- Main Script -->
   <script src="./scripts/script.js" type="module"></script>
 </body>

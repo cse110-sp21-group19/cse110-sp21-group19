@@ -1,0 +1,61 @@
+/* Additional Entries - Malhar */
+/* Begin styling addl button */
+.addl-entries-btn {
+  background: #E5E5E5;
+  height: 70px;
+  display: -ms-grid;
+  display: grid;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.addl-entries-btn #btn-text {
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  -ms-grid-column: 6;
+      grid-column-start: 6;
+  grid-column-end: 9;
+}
+
+.addl-entries-btn #btn {
+  height: 55px;
+  width: 55px;
+  border: 2px solid black;
+  background: #E5E5E5;
+  border-radius: 50%;
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  grid-column-end: 5;
+}
+
+.addl-entries-btn #btn:hover {
+  cursor: pointer;
+  background-color: white;
+}
+
+.addl-entries-btn #btn::before {
+  content: " ";
+  display: block;
+  background-color: black;
+  position: absolute;
+  width: 15px;
+  height: 2px;
+  margin-left: 13px;
+}
+
+.addl-entries-btn #btn::after {
+  content: " ";
+  display: block;
+  background-color: black;
+  position: absolute;
+  width: 15px;
+  height: 2px;
+  margin-left: 13px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  margin-top: 0px;
+}
+
+/* End styling addl button */
+/*# sourceMappingURL=addl_entry_btn.css.map */
