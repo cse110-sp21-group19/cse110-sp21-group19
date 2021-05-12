@@ -1,4 +1,9 @@
-class Modal extends HTMLElement{
+/**
+ * @class {Modal} 
+ *
+ * This class represents the modal (popup prompts) web component
+ */
+class modal extends HTMLElement{
 	constructor() {
 		super();
 	
@@ -204,10 +209,11 @@ class Modal extends HTMLElement{
 		imgCancel.addEventListener("click", function(){
 			imgModal.style.display = "none";
 		});
-	}
+	}/*connectedCallback*/
 
-}/*connectedCallback*/
-customElements.define("addl-modal", Modal);
+}/*modal*/
+//define the custom web component "addl-entrybtn" and associate it to the class "addlEntries"
+customElements.define("addl-modal", modal);
 
 /*
 * Helper function to resize an image to fit a canvas

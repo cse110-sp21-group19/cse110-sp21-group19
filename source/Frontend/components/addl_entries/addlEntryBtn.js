@@ -11,7 +11,7 @@ class addlEntries extends HTMLElement{
 		const template = document.createElement("template");
 		// change inner html of template to the correct format
 		template.innerHTML = `
-			<link rel="stylesheet" href="style/css/addl_entry_btn.css">
+			<link rel="stylesheet" href="style/css/addlEntryBtn.css">
 			<div class="addl-entries-btn">
 				<button id="btn" class="plus-button"></button>
 				<p id="btn-text">Additional entry/element</p>
@@ -53,5 +53,6 @@ class addlEntries extends HTMLElement{
 		}); /* event listener*/
 	} /* connectedCallback */
 } /* addlEntries */
-//define the custom web component "addl-entrybtn" and associate it to the class "addlEntries
+
+//define the custom web component "addl-entrybtn" and associate it to the class "addlEntries"
 customElements.define("addl-entrybtn", addlEntries);
