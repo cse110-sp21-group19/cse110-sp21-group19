@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Add Reviewers
-      uses: madrapps/add-reviewers@v1
+      uses: madrapps/add-reviewers@main
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         reviewers: michl1001,derek-hwang27
