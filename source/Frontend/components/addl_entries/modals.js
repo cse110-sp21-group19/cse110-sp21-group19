@@ -77,22 +77,23 @@ class modal extends HTMLElement{
 		let imgSave = this.shadowRoot.getElementById("img-save");
 		let imgCancel = this.shadowRoot.getElementById("img-cancel");
 		let myImg = new Image();
-
+		//display the modal for adding a new entry
 		newModal.style.display = "block";
-
+		//close the modal for adding a new entry
 		exitBtn.addEventListener("click", function() {
 			newModal.style.display = "none";
 		});
-
+		//event listener for when user chooses to add new textEntry
 		addTextEntry.addEventListener("click", function() {
 			textArea.addEventListener("click", function(){
+				//if no bullets exist, create one by clicking on the screen
 				if(textArea.childElementCount == 0){
 					let newBullet = document.createElement("li");
 					newBullet.innerHTML = "";
 					newBullet.setAttribute("contenteditable", true);
 
 					textArea.appendChild(newBullet);
-
+					//ability to add additional bullets by pressing enter
 					newBullet.addEventListener("keydown", function(event){
 						if(event.code === "Enter"){
 							let addlBullet = document.createElement("li");
@@ -104,15 +105,18 @@ class modal extends HTMLElement{
 					
 				}
 			});
+			//hide the modal for new entries
 			newModal.style.display = "none";
+			//display the modal for adding a text entry
 			textModal.style.display = "block";
 
-
 		});
+		//display the modal for adding a new image entry
 		addImgEntry.addEventListener("click", function() {
 			newModal.style.display = "none";
 			imgModal.style.display = "block";
 		});
+		//event listener for when user decides to save a text entry
 		saveButton.addEventListener("click", function(){
 			let userText = textArea.innerText;
 			//split the inputted text at every newline
