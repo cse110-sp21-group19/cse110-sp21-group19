@@ -8,12 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Add Reviewers
-      uses: madrapps/add-reviewers@main
+    - name: "Assign Reviewers to PR"
+      uses: itsOliverBott/assign-pr-reviewers@release
       with:
-        token: ${{ secrets.REPO_SCOPED_TOKEN }}
-        reviewers: michl1001,derek-hwang27
-        re-request-when-approved: true
-        re-request-when-changes-requested: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        users: "michl1001,derek-hwang27" # comma-separated (example: "itsOliverBott, SantaClaus, b4tman, sp0derman")
+        ignore-drafts: true # defaults to false if not provided
