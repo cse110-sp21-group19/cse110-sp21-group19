@@ -8,10 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+
     - name: Add Reviewers
       uses: madrapps/add-reviewers@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        reviewers: michl1001, derek-hwang27 
+        reviewers: michl1001,derek-hwang27
         re-request-when-approved: true
         re-request-when-changes-requested: true
