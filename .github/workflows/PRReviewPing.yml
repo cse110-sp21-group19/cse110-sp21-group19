@@ -13,7 +13,7 @@ jobs:
     - name: Add Reviewers
       uses: madrapps/add-reviewers@main
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
         reviewers: michl1001,derek-hwang27
         re-request-when-approved: true
         re-request-when-changes-requested: true
