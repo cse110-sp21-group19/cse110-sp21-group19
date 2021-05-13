@@ -2,6 +2,7 @@ name: Add Reviewers
 
 on:
   pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -11,6 +12,6 @@ jobs:
       uses: madrapps/add-reviewers@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        reviewers: michl1001, 
+        reviewers: michl1001, derek-hwang27 
         re-request-when-approved: true
         re-request-when-changes-requested: true
