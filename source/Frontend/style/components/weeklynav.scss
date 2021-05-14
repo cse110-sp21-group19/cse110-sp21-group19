@@ -1,0 +1,19 @@
+/* Weekly Nav - Cory */
+.weekly-container{
+    background-color: aquamarine ;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    .wn-item{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        .wn-day-of-week{
+            font-size: 30px;
+        }
+        .wn-date{
+            font-size: 20px;
+        }
+        .wn-bullets{
+            font-size: 10px;
+        }
+    }
+}

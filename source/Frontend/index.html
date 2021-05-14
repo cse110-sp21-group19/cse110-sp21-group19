@@ -11,13 +11,13 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style/css/main.css">
 </head>
-
 <body>
   <main>
-      <div id="sidebar" class="sidebar"></div>
+      <div id="side-nav-container" class="side-nav-container">
+
+      </div>
       <div id="container" class="container">
-        <div id="weekly-nav" class="weekly-nav">
-            <h1>WEEKLY NAV HERE</h1>
+        <div id="weekly-nav-container" class="weekly-nav-container">           
         </div>
         <div id="daily-log" class="daily-log">
             <div class="main-text">
@@ -31,9 +31,12 @@
   </main>
 
   <!-- add web component here -->
-
+  <script src="./components/side-nav.js" type="module"></script>
+  <script src="./components/weekly-nav.js" type="module"></script>
   <!-- Main Script -->
+  <script src="./scripts/weekly-nav-script.js" type="module"></script>
   <script src="./scripts/script.js" type="module"></script>
+  
 </body>
 
 </html>
