@@ -20,11 +20,11 @@ Derek's Zoom
   - All three parts completed
   - Demo
   - Status on styling
-  - ADR for Page Loads
+  - ADR for Page Loads - [Rail](https://web.dev/rail/)
     - Page Load Times
     - Reponse Times
     - Animations
-- Debrief Backend - [Usability](usabilityhub.com)
+- Debrief Backend - [Usability](usabilityhub.com), [Rail](https://web.dev/rail/)
   - API
   - Database
   - Google Login API
@@ -32,9 +32,10 @@ Derek's Zoom
 - Update for Builders, Testers, and Documentation
   - CI/CD Pipeline
   - Jest
-    - Load testing - 50 people (expect less, prepare for more)
+    - Load testing - 50 people (expect less, prepare for more) - [Rail](https://web.dev/rail/)
   - JSDocs
-- Schedule for review + retrospective meeting
+- Schedule for review (This is what I did and I think it's pretty cool) + retrospective (How did we do and how do we do better?) meeting
+  - Saturday, Monday, Tuesday
 
 ### Attendees
 
