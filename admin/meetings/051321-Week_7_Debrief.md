@@ -12,6 +12,7 @@ Derek's Zoom
   - Making sure stuff is documented
   - Go over completed HiFi for Daily Log
   - Go over remaining LoFis
+  - User Heuristics
 - Debrief Frontend
   - All three parts completed
   - Demo
