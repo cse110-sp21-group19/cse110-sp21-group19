@@ -21,6 +21,7 @@ Derek's Zoom
   - API
   - Database
   - Google Login API
+  - ADR for Loads (from API / DB)
 - Update for Builders, Testers, and Documentation
   - CI/CD Pipeline
   - Jest
