@@ -3,11 +3,12 @@ body {
     width: 80%;
     margin: auto;
 
+
     .container {
         display: grid;
         border: 5px solid black;
         grid-template-columns: 40% 60%;
-        .weekly-nav {
+        .weekly-nav-container {
             grid-column-start: 1;
             border: 5px solid black; // get rid of later
         }

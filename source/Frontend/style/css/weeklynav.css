@@ -1,0 +1,27 @@
+/* Weekly Nav - Cory */
+.weekly-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto auto auto auto auto auto auto;
+      grid-template-rows: auto auto auto auto auto auto auto;
+}
+
+.weekly-container .wn-item {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+}
+
+.weekly-container .wn-item .wn-day-of-week {
+  font-size: 30px;
+}
+
+.weekly-container .wn-item .wn-date {
+  font-size: 20px;
+}
+
+.weekly-container .wn-item .wn-bullets {
+  font-size: 10px;
+}
+/*# sourceMappingURL=weeklynav.css.map */
