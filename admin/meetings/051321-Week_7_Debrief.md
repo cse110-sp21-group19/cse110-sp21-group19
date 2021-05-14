@@ -8,6 +8,9 @@ Derek's Zoom
 
 ### Agenda
 - Review Name for Web App
+- Status of Webapp
+  - Local - Like Lab's Meme Generator
+  - Online - Like actual internet stuff
 - Debrief Design
   - Making sure stuff is documented
   - Go over completed HiFi for Daily Log
@@ -17,6 +20,10 @@ Derek's Zoom
   - All three parts completed
   - Demo
   - Status on styling
+  - ADR for Page Loads
+    - Page Load Times
+    - Reponse Times
+    - Animations
 - Debrief Backend - [Usability](usabilityhub.com)
   - API
   - Database
