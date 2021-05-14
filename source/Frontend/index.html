@@ -10,6 +10,9 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style/css/main.css">
+  <!-- Additional entries stylesheet-->
+  <link rel="stylesheet" href="style/css/addlEntryBtn.css">
+  <link rel="stylesheet" href="style/css/modals.css">
 </head>
 <body>
   <main>
@@ -23,11 +26,14 @@
             <div id="main-text" class="main-text">
                 <h1>MAIN TEXT HERE</h1>
             </div>
+
+            <!-- Begin Additional entries-->
             <div id="additional" class="additional">
-                <h1>ADDITIONAL ENTRIES HERE</h1>
+              <div class="saved_entries">
+              </div>
+                <addl-entrybtn></addl-entrybtn> 
             </div>
-        </div>
-      </div>
+            <!-- End Additional entries-->
   </main>
 
   <!-- Font Awesome Kit -->
@@ -41,6 +47,9 @@
   <script src="./components/side-nav.js" type="module"></script>
   <script src="./components/weekly-nav.js" type="module"></script>
 
+  <script src="./components/addl_entries/addlEntryBtn.js" type="module"></script>
+  <script src="./components/addl_entries/modals.js" type="module"></script>
+  
   <!-- Main Script -->
   <script src="./scripts/weekly-nav-script.js" type="module"></script>
   <script src="./scripts/script.js" type="module"></script>
