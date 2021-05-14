@@ -16,6 +16,9 @@ Repo for CSE 110 Sp21 Group 19
 This quarter, we will be working on making a [Bullet Journal](https://en.wikipedia.org/wiki/Bullet_journal)
 
 # Meeting Notes
+- [5/13/21 - Week 7 Debrief](admin/meetings/051321-Week_7_Debrief.md)
+- [5/7/21 - Week 7 Dev Team](admin/meetings/051121-Week7Dev.md)
+- [5/7/21 - Week 7 Design Team](admin/meetings/051121-Week7Design.md)
 - [5/6/21 - Debriefing Week 6](admin/meetings/050621-Debriefing_Week_6.md)
 - [5/4/21 - DevTeam](admin/meetings/050421-DevTeam.md)
 - [5/4/21 - DesignTeam](admin/meetings/0504221-DesignTeam.md)
