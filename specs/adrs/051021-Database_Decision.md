@@ -1,5 +1,7 @@
 # 5/10/21 - Data Storage
 
+**Updated 5/13/21 - This decision has been removed as we have moved to a Local APP**
+
 We wanted to look into data storage options and how we would use them with respect to the app
 
 ## Options Considered
