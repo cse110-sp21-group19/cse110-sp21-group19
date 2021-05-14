@@ -119,6 +119,14 @@ body .container .daily-log {
 /* Components */
 /* Additional Entries - Malhar */
 /* Main Text - Manda */
+.main-text {
+  height: 80vh;
+  border-radius: 1rem;
+  background: lightblue;
+  padding: 2rem;
+  margin: 1rem;
+}
+
 /* Sidebar - Cory */
 /* Weekly Nav - Cory */
 /* Pages */

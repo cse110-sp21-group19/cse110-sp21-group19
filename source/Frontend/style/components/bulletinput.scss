@@ -1,0 +1,29 @@
+.new-bullet {
+    background-color: #d0ecfd;
+    border-radius: 0.25rem;
+}
+
+input[type=text], select, button {
+    padding: 0.5rem;
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+}
+
+select, button {
+    cursor: pointer;
+}
+
+input[type=text] {
+    width: 70%;
+}
+
+select {
+    width: 20%;
+    -o-appearance: none;
+    -ms-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-align-last: right;
+}
