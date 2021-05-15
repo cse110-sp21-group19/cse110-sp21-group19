@@ -35,21 +35,20 @@ class addlEntries extends HTMLElement{
 		 * event listener for when the user clicks on the "add additional entries" button
 		 */
 		newModalBtn.addEventListener("click", function() {
-			if(document.querySelector(".saved_entries").childElementCount != 3){
-				let parentContainer = document.getElementById("additional");
-				let newModal = document.createElement("addl-modal");
-				//if a newModal already exists
-				if(parentContainer.childElementCount == 3){
-					//remove the existing one
-					parentContainer.removeChild(document.getElementsByTagName("addl-modal")[0]); 
-					//and append a new one
-					document.getElementById("additional").appendChild(newModal);
-				}
-				else{
-					//otherwise, append a new modal
-					document.getElementById("additional").appendChild(newModal);
-				}
+			let parentContainer = document.getElementById("additional");
+			let newModal = document.createElement("addl-modal");
+			//if a newModal already exists
+			if(parentContainer.childElementCount == 3){
+				//remove the existing one
+				parentContainer.removeChild(document.getElementsByTagName("addl-modal")[0]); 
+				//and append a new one
+				document.getElementById("additional").appendChild(newModal);
 			}
+			else{
+				//otherwise, append a new modal
+				document.getElementById("additional").appendChild(newModal);
+			}
+
 		}); /* event listener*/
 	} /* connectedCallback */
 } /* addlEntries */

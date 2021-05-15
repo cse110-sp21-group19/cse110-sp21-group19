@@ -1,3 +1,4 @@
+@import '../abstracts/mixins', '../abstracts/variables';
 /* Begin styling new entry modal*/
 *:focus{
     outline: none;
@@ -12,25 +13,25 @@
     width: 100%; 
     height: 600px; 
     overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(255, 255, 255, 0.7);
     overflow-y: auto;
   }
 
   .modal-content {
-    background: #C4C4C4;
+    background: $accent;
     margin: 5% auto; 
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid black;
     width: 70%; 
     height: 70%;
+    border-radius: 1rem;
     
     .close{
         font-size: 30px;
+        color: black;
     }
     .close:hover{
         cursor: pointer;
-        color:rgb(83, 83, 83);
+        color:grey;
     }
     h1{
         text-align: center;
@@ -67,12 +68,11 @@
     top: 0;
     width: 100%; 
     height: 650px;
-    background-color: rgb(0,0,0); 
-    background-color: rgba(255, 255, 255, 0.7); 
   }
 
   .text-modal-content {
-    background: #C4C4C4;
+    border-radius: 1rem;
+    background: $accent;
     margin: 5% auto; 
     padding: 20px;
     border: 1px solid #888;
@@ -95,6 +95,7 @@
         width: 100%;
         margin:0;
         padding-top: 10px;
+        border-radius: 1rem;
         #text-area{
             height: 90%;
             width: inherit;
@@ -112,20 +113,22 @@
             text-align: center;
             font-weight: bold;
             font-size: 25px;
+            color:black;
             
         }
         #save:hover{
             cursor: pointer;
-            color:rgb(83, 83, 83);
+            color: grey;
         }
         #cancel{
             text-align: center;
             font-weight: bold;
             font-size: 25px;
+            color:black;
         }
         #cancel:hover{
             cursor: pointer;
-            color:rgb(83, 83, 83);
+            color: grey;
         }
     }
     
@@ -141,15 +144,15 @@
     top: 0;
     width: 100%; 
     height: 650px; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(255, 255, 255, 0.7); 
+
   }
 
   .pic-modal-content {
+    border-radius: 1rem;
     display: flex;
     align-items: flex-end;
     justify-content: space-evenly;
-    background: #C4C4C4;
+    background: $accent;
     margin: 5% auto; 
     padding: 20px;
     border: 1px solid #888;
@@ -179,13 +182,19 @@
 
 /*Begin styling saved entries*/
 .saved_entries{
-    display: flex;
-    justify-content: space-evenly;
+    padding-left: 10rem;
+    white-space: nowrap;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    
     .new-entry{
         padding-left: 10px;
+        display: inline-block;
         canvas{
             z-index: 1;
             width: 90%;
+            min-width: 150px;
             height: 150px;
             border: 1px solid black;
         }
@@ -203,4 +212,12 @@
         }
     }
 }
+.saved_entries::-webkit-scrollbar {
+    height: 8px;               /* width of the entire scrollbar */
+  }
+
+  .saved_entries::-webkit-scrollbar-thumb {
+    background-color: #C4C4C4;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+  }
 /*End styling saved entries*/

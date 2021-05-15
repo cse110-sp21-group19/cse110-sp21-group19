@@ -124,7 +124,7 @@ class modal extends HTMLElement{
 			let textHeight = 40;
 			let myCanvas = document.createElement("canvas");
 			let ctx = myCanvas.getContext("2d");
-			ctx.fillStyle="#E5E5E5";
+			ctx.fillStyle="#FFFFFF";
 			ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
 			ctx.fillStyle="black";
 			ctx.font = "15px Verdana";
@@ -137,27 +137,26 @@ class modal extends HTMLElement{
 					textHeight += 20;
 				}
 			}
-			//if there are currently less than 3 additional entries, create a new canvas object w/ the appropriate text
-			if(document.querySelector(".saved_entries").childElementCount != 3){
-				let closeBtn = document.createElement("span");
-				let newEntry = document.createElement("div");
 
-				newEntry.setAttribute("class", "new-entry");
+			let closeBtn = document.createElement("span");
+			let newEntry = document.createElement("div");
 
-				closeBtn.setAttribute("class", "close");
-				closeBtn.innerHTML = "&times;";
+			newEntry.setAttribute("class", "new-entry");
 
-				newEntry.appendChild(closeBtn);
-				newEntry.appendChild(myCanvas);
+			closeBtn.setAttribute("class", "close");
+			closeBtn.innerHTML = "&times;";
 
-				document.querySelector(".saved_entries").appendChild(newEntry);
+			newEntry.appendChild(closeBtn);
+			newEntry.appendChild(myCanvas);
 
-				closeBtn.addEventListener("click", function(){
-					//prompt the user to confirm that they want to delete the entry
-					if(confirm("Delete this entry?"))
-						document.querySelector(".saved_entries").removeChild(newEntry);
-				});
-			}
+			document.querySelector(".saved_entries").appendChild(newEntry);
+
+			closeBtn.addEventListener("click", function(){
+				//prompt the user to confirm that they want to delete the entry
+				if(confirm("Delete this entry?"))
+					document.querySelector(".saved_entries").removeChild(newEntry);
+			});
+			
 			textModal.style.display = "none";
 			textArea.innerHTML = "";
 
@@ -182,29 +181,28 @@ class modal extends HTMLElement{
 			let myCanvas = document.createElement("canvas");
 			let ctx = myCanvas.getContext("2d");
 			let dim = getDimensions(myCanvas.width, myCanvas.height, myImg.width, myImg.height);
-			ctx.fillStyle="#E5E5E5";
+			ctx.fillStyle="#FFFFFF";
 			ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
 			ctx.drawImage(myImg, dim.startX, dim.startY, dim.width, dim.height);
-			//if there are currently less than 3 entries, create a new canvas object with the chosen image
-			if(document.querySelector(".saved_entries").childElementCount != 3){
-				let closeBtn = document.createElement("span");
-				let newEntry = document.createElement("div");
 
-				newEntry.setAttribute("class", "new-entry");
+			let closeBtn = document.createElement("span");
+			let newEntry = document.createElement("div");
 
-				closeBtn.setAttribute("class", "close");
-				closeBtn.innerHTML = "&times;";
+			newEntry.setAttribute("class", "new-entry");
 
-				newEntry.appendChild(closeBtn);
-				newEntry.appendChild(myCanvas);
-				document.querySelector(".saved_entries").appendChild(newEntry);
+			closeBtn.setAttribute("class", "close");
+			closeBtn.innerHTML = "&times;";
 
-				closeBtn.addEventListener("click", function(){
-					//prompt the user to confirm that they want to delete the entry
-					if(confirm("Delete this entry?"))
-						document.querySelector(".saved_entries").removeChild(newEntry);
-				});
-			}
+			newEntry.appendChild(closeBtn);
+			newEntry.appendChild(myCanvas);
+			document.querySelector(".saved_entries").appendChild(newEntry);
+
+			closeBtn.addEventListener("click", function(){
+				//prompt the user to confirm that they want to delete the entry
+				if(confirm("Delete this entry?"))
+					document.querySelector(".saved_entries").removeChild(newEntry);
+			});
+			
 			//close the image selection modal
 			imgModal.style.display = "none";
 

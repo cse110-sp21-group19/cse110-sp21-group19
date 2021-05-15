@@ -1,3 +1,7 @@
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* colors */
+/* spacing */
 /* Begin styling new entry modal*/
 *:focus {
   outline: none;
@@ -12,27 +16,27 @@
   width: 100%;
   height: 600px;
   overflow: auto;
-  background-color: black;
-  background-color: rgba(255, 255, 255, 0.7);
   overflow-y: auto;
 }
 
 .modal-content {
-  background: #C4C4C4;
+  background: #a1b3a1;
   margin: 5% auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 1px solid black;
   width: 70%;
   height: 70%;
+  border-radius: 1rem;
 }
 
 .modal-content .close {
   font-size: 30px;
+  color: black;
 }
 
 .modal-content .close:hover {
   cursor: pointer;
-  color: #535353;
+  color: grey;
 }
 
 .modal-content h1 {
@@ -76,12 +80,11 @@
   top: 0;
   width: 100%;
   height: 650px;
-  background-color: black;
-  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .text-modal-content {
-  background: #C4C4C4;
+  border-radius: 1rem;
+  background: #a1b3a1;
   margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -108,6 +111,7 @@
   width: 100%;
   margin: 0;
   padding-top: 10px;
+  border-radius: 1rem;
 }
 
 .text-modal-content .elements #text-area {
@@ -132,22 +136,24 @@
   text-align: center;
   font-weight: bold;
   font-size: 25px;
+  color: black;
 }
 
 .text-modal-content .text-options #save:hover {
   cursor: pointer;
-  color: #535353;
+  color: grey;
 }
 
 .text-modal-content .text-options #cancel {
   text-align: center;
   font-weight: bold;
   font-size: 25px;
+  color: black;
 }
 
 .text-modal-content .text-options #cancel:hover {
   cursor: pointer;
-  color: #535353;
+  color: grey;
 }
 
 /*End styling text modal*/
@@ -160,11 +166,10 @@
   top: 0;
   width: 100%;
   height: 650px;
-  background-color: black;
-  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .pic-modal-content {
+  border-radius: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -174,7 +179,7 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  background: #C4C4C4;
+  background: #a1b3a1;
   margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -207,21 +212,22 @@
 /*End styling upload media modal*/
 /*Begin styling saved entries*/
 .saved_entries {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  padding-left: 10rem;
+  white-space: nowrap;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .saved_entries .new-entry {
   padding-left: 10px;
+  display: inline-block;
 }
 
 .saved_entries .new-entry canvas {
   z-index: 1;
   width: 90%;
+  min-width: 150px;
   height: 150px;
   border: 1px solid black;
 }
@@ -238,6 +244,18 @@
 .saved_entries .new-entry .close:hover {
   cursor: pointer;
   color: #535353;
+}
+
+.saved_entries::-webkit-scrollbar {
+  height: 8px;
+  /* width of the entire scrollbar */
+}
+
+.saved_entries::-webkit-scrollbar-thumb {
+  background-color: #C4C4C4;
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
 }
 
 /*End styling saved entries*/
