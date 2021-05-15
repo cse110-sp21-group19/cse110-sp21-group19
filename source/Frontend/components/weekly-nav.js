@@ -35,6 +35,16 @@ class WeeklyNav extends HTMLElement{
     }
 
 
+    /*
+     * set daysOfWeek takes in an array of objects which contains date objects of a week 
+     * and fills the weekly nav menu with objects corresponding to those days. Those date
+     * objects could also contain important bullet info to fill menu.
+     * 
+     * @param {Array} week - an array of objects corresponding to one week
+     * 
+     * @example
+     *      this.daysOfWeek = week
+     */
     set daysOfWeek(week){
         //set the weekly-nav title
         const navTitle = this.shadowRoot.querySelector("[class='weekly-nav-title']");
@@ -43,9 +53,9 @@ class WeeklyNav extends HTMLElement{
         //Add each day to the nav menu
         week.forEach(element => {
             let day = getDateString(element.getDay());
-            //convert month and date to string of form M/D
             let date = element.getDate();
             let month = element.getMonth();
+
             let navItem = document.createElement("div");
             navItem.className = "wn-item";
             let navDay = document.createElement("h2");
@@ -54,6 +64,7 @@ class WeeklyNav extends HTMLElement{
             let navDate = document.createElement("h3");
             navDate.className = "wn-date";
             navDate.textContent = date;
+            //create hidden month object in order to retrieve it later on click
             let hiddenMonth = document.createElement("p");
             hiddenMonth.textContent = month;
 
@@ -61,16 +72,27 @@ class WeeklyNav extends HTMLElement{
             navItem.appendChild(navDate);
             navItem.appendChild(hiddenMonth);
 
-
             navContainer.appendChild(navItem);
-        });
+        }); 
     
-    }
+    }/* set daysOfWeek */
 
+    /*
+     * get selectedInfo
+     * get the date info of the item selected
+     * @param {}
+     * @returns an object containing the date info of the current selected item in the 
+     * weekly nav menu
+     * 
+     * @example
+     *      this.selectedInfo
+     */
     get selectedInfo (){
+
         const navContainer = this.shadowRoot.querySelector("[class='week-container']");
 
-
+        //iterate over weekly nav items and return info of item with border
+        //(the one with a border is the selected one) 
         for(let i = 1; i < navContainer.childNodes.length; i++){
             if(navContainer.childNodes[i].style.borderLeft == "0.4rem solid blue"){
                 let dateObj = {
@@ -78,22 +100,24 @@ class WeeklyNav extends HTMLElement{
                     "date": navContainer.childNodes[i].querySelector("[class='wn-date']").textContent,
                     "month": navContainer.childNodes[i].querySelector("p").textContent
                 };
-                
+
                 return dateObj;
             }
         }
-    }
-    // get selectedDay(){
-    //     const navContainer = this.shadowRoot.querySelector("[class='week-container']");
-    //     for(let i = 1; i < navContainer.childNodes.length; i++){
-    //         if(!navContainer.childNodes[i].style.borderLeft){
-    //             return i;
-    //         }
-    //     }
-    // }
+    }/* get selectedInfo */
 
+    /*
+     * set selectedDay 
+     * set an item in the list as selected
+     * 
+     * @param {number} day - the day of the week of the item that is to be styled as selected
+     * 
+     * @example
+     *      this.selectedDay = day
+     */
     set selectedDay(day){
         const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+
         for(let i = 1; i < navContainer.childNodes.length; i++){
             if(i == day){
                 //REPLACE STYLE TO CONST AT TOP
@@ -103,16 +127,20 @@ class WeeklyNav extends HTMLElement{
                 navContainer.childNodes[i].style.borderLeft = null;
             }
         }
-    }
+    } /* set seletedDay */
 }
 
 
-/**
- * getDateString - converts integer day of week to its related string
+/*
+ * getDateString 
+ * converts integer day of week to its related string
  * 
  * @param {number} day - An integer of the day of the week (0-6)
  * 
  * @returns A string of the related day of the week of the parameter
+ * 
+ * @example
+ *      getDateString(day)
  */
 function getDateString(day){
     switch(day){
@@ -135,14 +163,19 @@ function getDateString(day){
     }
 }/* getDateString */
 
-/**
- * getWeeklyNavTitle - Formats the title on top of the weekly nav menu,
+/*
+ * getWeeklyNavTitle 
+ * Formats the title on top of the weekly nav menu,
  * Also address edge case if week is between two months and/or two years
  * 
  * @param {Date} first - A date object referring to the first day of the week
  * @param {Date} last - A date object referring to the last day of the week
  * 
- * @returns A string of the correct title in the format "Month, Year" or "Month1/Month2, Year" or "Month1/Month2, Year1/Year2"
+ * @returns A string of the correct title in the format "Month, Year" or 
+ * "Month1/Month2, Year" or "Month1/Month2, Year1/Year2"
+ * 
+ * @example
+ *      getWeekyNavTitle(first, last)
  */
 function getWeeklyNavTitle(first, last){
     let title = "";
@@ -163,6 +196,6 @@ function getWeeklyNavTitle(first, last){
     }
 
     return title;
-}
+}/* getWeeklyNavTitle */
 
 customElements.define('weekly-nav', WeeklyNav);
