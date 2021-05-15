@@ -20,11 +20,11 @@ select, button {
 }
 
 input[type=text] {
-  width: 70%;
+  width: 80%;
 }
 
 select {
-  width: 20%;
+  width: 10%;
   -o-appearance: none;
   -ms-appearance: none;
   -webkit-appearance: none;

@@ -168,13 +168,14 @@ function completeTask(newEntry) {
 
 // Create Nested Bullets
 INPUT.addEventListener("keydown", function(event) {
-    // FIXME: Shift + Tab doesn't work yet
+    // FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
     // Unnest by one level on backspace
-    if ((event.key === "Shift" && event.key === "Tab") || event.key === "Backspace") {
+    if ((event.shiftKey && event.key === "Tab")) {
         event.preventDefault();
-        console.log("HERE");
         if (bulletStack.length > 1) {
             bulletStack.pop(bulletStack[bulletStack.length - 1]);
+            // unindent the input text
+            BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
         }
     }
     // Nest by one level on tab
@@ -185,6 +186,8 @@ INPUT.addEventListener("keydown", function(event) {
         const newSublist = document.createElement("bullet-list");
         bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
         bulletStack.push(newSublist);
+        // indent the input text
+        BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
     }
 });
 

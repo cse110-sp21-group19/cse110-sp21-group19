@@ -77,9 +77,9 @@ class BulletInput extends HTMLElement {
         template.innerHTML = `
             <div class="new-bullet" id="new-bullet">
                 <select id="bullet-type">
-                    <option value="note" selected>  New Note <h5> - </h5></option> <!-- default is a note bullet-->
-                    <option value="task"> New Task <h5>&#9633;</h5></option>
-                    <option value="event"> New Event <h5>&#9675;</h5></option>
+                    <option value="note" selected>Note <h5> - </h5></option> <!-- default is a note bullet-->
+                    <option value="task">Task <h5>&#9633;</h5></option>
+                    <option value="event">Event <h5>&#9675;</h5></option>
                 </select>
                 <input type="text" id="bullet-input" placeholder="New note...">
             </div>
@@ -260,7 +260,7 @@ customElements.define('bullet-entry', BulletEntry);
  *   date: "foo",
  *   content: "foo",
  *   priority: false, // default
- *   completed: false // default
+ *   completed: false, // default
  *   children: [] // json objects (bullet-entries)
  * }
  */
