@@ -1,7 +1,10 @@
 /* Weekly Nav - Cory */
+/* fonts */
+/* colors */
+/* spacing */
 .week-container {
   margin-top: 80px;
-  background: aquamarine;
+  background: #a1b3a1;
   border-radius: 1rem;
   padding: 2rem;
   display: -ms-grid;

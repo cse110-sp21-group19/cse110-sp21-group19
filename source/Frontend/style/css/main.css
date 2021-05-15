@@ -92,6 +92,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Layout */
 body {
+  background: #a1b3a1;
   margin: auto;
   padding: 0 3rem;
 }
@@ -130,7 +131,7 @@ body .side-nav-container {
 .main-text {
   height: 65vh;
   border-radius: 1rem;
-  background: lightblue;
+  background: #a1b3a1;
   padding: 2rem;
   margin: 1rem;
 }

@@ -1,7 +1,9 @@
 /* Weekly Nav - Cory */
+@import '../abstracts/mixins', '../abstracts/variables';
+
 .week-container{
     margin-top: 80px; // fix later
-    background: aquamarine ;
+    background: $accent;
     border-radius: 1rem;
     padding: 2rem;
     display: grid;

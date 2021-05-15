@@ -1,8 +1,10 @@
 /* Additional Entries - Malhar */
 
+@import '../abstracts/mixins', '../abstracts/variables';
+
 /* Begin styling addl button */
 .addl-entries-btn{
-    background: #E5E5E5;
+    background: $accent;
     height: 70px;
     display: grid;
     padding-left: 10px;
@@ -18,7 +20,7 @@
         height: 55px;
         width: 55px;
         border: 2px solid black;
-        background: #E5E5E5;
+        background: $accent; // #E5E5E5;
         border-radius: 50%;
         grid-column-start: 2;
         grid-column-end: 5;

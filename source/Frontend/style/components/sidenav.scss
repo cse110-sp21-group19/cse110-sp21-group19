@@ -19,6 +19,7 @@
 //         transition: 0.4s;
 //     }
 // }
+@import '../abstracts/mixins', '../abstracts/variables';
 
 .side-nav{
     display: block;
@@ -63,7 +64,7 @@
         position: relative;
         top:30px;
         left:30px;
-        background: #cdcdcd;
+        background: $accent;
         border-radius: 3px;
         
         z-index: 1;
@@ -106,7 +107,7 @@
     margin: -30px 0 0 0;
     height: 100%;
     padding-top: 100px;
-    background: #ededed;
+    background: $accent;
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
     /* to stop flickering of text in safari */

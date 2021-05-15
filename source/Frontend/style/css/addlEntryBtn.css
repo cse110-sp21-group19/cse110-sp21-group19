@@ -1,7 +1,10 @@
 /* Additional Entries - Malhar */
+/* fonts */
+/* colors */
+/* spacing */
 /* Begin styling addl button */
 .addl-entries-btn {
-  background: #E5E5E5;
+  background: #a1b3a1;
   height: 70px;
   display: -ms-grid;
   display: grid;
@@ -22,7 +25,7 @@
   height: 55px;
   width: 55px;
   border: 2px solid black;
-  background: #E5E5E5;
+  background: #a1b3a1;
   border-radius: 50%;
   -ms-grid-column: 2;
       grid-column-start: 2;
