@@ -1,16 +1,11 @@
 // TODO: FIGURE OUT HOW TO DECLARE GLOBAL VARIABLES
 
 // Constants for different bullet types
-//  Note Bullets:
-const NOTEBULLET = "-"
 //  Task Bullets:
 const TASKBULLET = "□";
 const TASKCOMPLETE = "☑";
 //const TASKBULLET = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"/></svg>`;
 //const TASKCOMPLETE = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zm0 400H48V80h352v352zm-35.864-241.724L191.547 361.48c-4.705 4.667-12.303 4.637-16.97-.068l-90.781-91.516c-4.667-4.705-4.637-12.303.069-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l59.792 60.277 141.352-140.216c4.705-4.667 12.303-4.637 16.97.068l22.536 22.718c4.667 4.706 4.637 12.304-.068 16.971z"/></svg>`;
-
-//  Event Bullets:
-const EVENTBULLET = "<i class=\"far fa-circle\"></i>";
 
 // Priority Markers:
 const NOTPRIORITY = "&#9734;";
@@ -36,33 +31,33 @@ bulletStack.push(BULLETS);
 MAINTEXT.appendChild(BULLETS);
 MAINTEXT.appendChild(INPUT);
 
-INPUT.addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
+INPUT.addEventListener("keyup", function(event) {
+	if (event.key === "Enter") {
+		event.preventDefault();
 
-        let entry = {
-            "type": BULLETTYPE.value,
-            "date": new Date(Date.now()),
-            "content": BULLETINPUT.value,
-            "priority": false,
-            "completed": false
-        };
+		let entry = {
+			"type": BULLETTYPE.value,
+			"date": new Date(Date.now()),
+			"content": BULLETINPUT.value,
+			"priority": false,
+			"completed": false
+		};
 
-        let newBullet = document.createElement('bullet-entry');
-        newBullet.entry = entry;
+		let newBullet = document.createElement("bullet-entry");
+		newBullet.entry = entry;
 
-        // append new bullet entries to main-text element
-        const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
-        BULLETLIST.appendChild(newBullet);
+		// append new bullet entries to main-text element
+		const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+		BULLETLIST.appendChild(newBullet);
 
-        // clear INPUT value after enter
-        BULLETINPUT.value = '';
+		// clear INPUT value after enter
+		BULLETINPUT.value = "";
 
-        editableEntry(newBullet);
-        prioritizeEntry(newBullet);
-        completeTask(newBullet);
-        deleteEntry(newBullet);
-    }
+		editableEntry(newBullet);
+		prioritizeEntry(newBullet);
+		completeTask(newBullet);
+		deleteEntry(newBullet);
+	}
 });
 
 
@@ -75,22 +70,22 @@ INPUT.addEventListener('keyup', function(event) {
 *     editableEntry();
 */
 function editableEntry(entry) {
-    let bulletEntryRoot = entry.shadowRoot;
-    const inputted = bulletEntryRoot.getElementById('bullet-inputted');
-    if (inputted) {
-        // all to edit on double click
-        inputted.addEventListener('dblclick', function() {
-            console.log("HERE");
-            inputted.readOnly = false;
-        });
-        // after 'Enter' return to 'readOnly' mode
-        inputted.addEventListener('keyup', function(event) {
-            if (event.key === 'Enter') {
-                inputted.readOnly = true;
-            }
-        });
-        // TODO: after click away from entry, return to 'readyOnly' mode
-        /*
+	let bulletEntryRoot = entry.shadowRoot;
+	const inputted = bulletEntryRoot.getElementById("bullet-inputted");
+	if (inputted) {
+		// all to edit on double click
+		inputted.addEventListener("dblclick", function() {
+			console.log("HERE");
+			inputted.readOnly = false;
+		});
+		// after 'Enter' return to 'readOnly' mode
+		inputted.addEventListener("keyup", function(event) {
+			if (event.key === "Enter") {
+				inputted.readOnly = true;
+			}
+		});
+		// TODO: after click away from entry, return to 'readyOnly' mode
+		/*
         document.addEventListener('click', function(event) {
             var isClickInside = inputted.contains(event.target);
             if (!isClickInside) {
@@ -98,7 +93,7 @@ function editableEntry(entry) {
             }
         });
         */
-    }
+	}
 } /* editableEntry */
 
 /*
@@ -110,11 +105,11 @@ function editableEntry(entry) {
 *     deleteEntry();
 */
 function deleteEntry(entry) {
-    let bulletEntryRoot = entry.shadowRoot;
-    const toDelete = bulletEntryRoot.getElementById('delete-bullet');
-    toDelete.addEventListener('click', function() {
-        entry.remove();
-    });
+	let bulletEntryRoot = entry.shadowRoot;
+	const toDelete = bulletEntryRoot.getElementById("delete-bullet");
+	toDelete.addEventListener("click", function() {
+		entry.remove();
+	});
 } /* deleteEntry */
 
 /*
@@ -126,18 +121,18 @@ function deleteEntry(entry) {
 *     prioritizeEntry(entry);
 */
 function prioritizeEntry(newEntry) {
-    let bulletEntryRoot = newEntry.shadowRoot;
-    const toPrioritize = bulletEntryRoot.getElementById('prioritize-bullet');
-    toPrioritize.addEventListener("click", function() {
-        if (toPrioritize.innerHTML === PRIORITY) {
-            toPrioritize.innerHTML = NOTPRIORITY;
-            toPrioritize.style.color = "transparent";
-        }
-        else {
-            toPrioritize.innerHTML = PRIORITY;
-            toPrioritize.style.color = "black";
-        }
-    });
+	let bulletEntryRoot = newEntry.shadowRoot;
+	const toPrioritize = bulletEntryRoot.getElementById("prioritize-bullet");
+	toPrioritize.addEventListener("click", function() {
+		if (toPrioritize.innerHTML === PRIORITY) {
+			toPrioritize.innerHTML = NOTPRIORITY;
+			toPrioritize.style.color = "transparent";
+		}
+		else {
+			toPrioritize.innerHTML = PRIORITY;
+			toPrioritize.style.color = "black";
+		}
+	});
 }  /* prioritizeEntry */
 
 /*
@@ -149,42 +144,42 @@ function prioritizeEntry(newEntry) {
 *     completeTask(entry);
 */
 function completeTask(newEntry) {
-    let bulletEntryRoot = newEntry.shadowRoot;
-    const toComplete = bulletEntryRoot.getElementById("bullet-type");
-    const content = bulletEntryRoot.getElementById("bullet-inputted");
-    toComplete.addEventListener("click", function() {
-        if (toComplete.innerHTML === TASKBULLET) {
-            toComplete.innerHTML = TASKCOMPLETE;
-            content.style.textDecoration = "line-through";
-        }
-        else if (toComplete.innerHTML === TASKCOMPLETE) {
-            toComplete.innerHTML = TASKBULLET;
-            content.style.textDecoration = "none";
-        }
-    });
+	let bulletEntryRoot = newEntry.shadowRoot;
+	const toComplete = bulletEntryRoot.getElementById("bullet-type");
+	const content = bulletEntryRoot.getElementById("bullet-inputted");
+	toComplete.addEventListener("click", function() {
+		if (toComplete.innerHTML === TASKBULLET) {
+			toComplete.innerHTML = TASKCOMPLETE;
+			content.style.textDecoration = "line-through";
+		}
+		else if (toComplete.innerHTML === TASKCOMPLETE) {
+			toComplete.innerHTML = TASKBULLET;
+			content.style.textDecoration = "none";
+		}
+	});
 } /* completeTask */
 
 // Create Nested Bullets
 INPUT.addEventListener("keydown", function(event) {
-    // FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
-    // Unnest by one level on backspace
-    if ((event.shiftKey && event.key === "Tab")) {
-        event.preventDefault();
-        if (bulletStack.length > 1) {
-            bulletStack.pop(bulletStack[bulletStack.length - 1]);
-            // unindent the input text
-            BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
-        }
-    }
-    // Nest by one level on tab
-    else if (event.key === "Tab") {
-        // prevent tab key from moving to next button
-        this.focus();
-        event.preventDefault();
-        const newSublist = document.createElement("bullet-list");
-        bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
-        bulletStack.push(newSublist);
-        // indent the input text
-        BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
-    }
+	// FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
+	// Unnest by one level on backspace
+	if ((event.shiftKey && event.key === "Tab")) {
+		event.preventDefault();
+		if (bulletStack.length > 1) {
+			bulletStack.pop(bulletStack[bulletStack.length - 1]);
+			// unindent the input text
+			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+		}
+	}
+	// Nest by one level on tab
+	else if (event.key === "Tab") {
+		// prevent tab key from moving to next button
+		this.focus();
+		event.preventDefault();
+		const newSublist = document.createElement("bullet-list");
+		bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
+		bulletStack.push(newSublist);
+		// indent the input text
+		BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+	}
 });
