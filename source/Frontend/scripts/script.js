@@ -60,10 +60,10 @@ INPUT.addEventListener('keyup', function(event) {
         // clear INPUT value after enter
         BULLETINPUT.value = '';
 
-        editableEntry();
+        editableEntry(newBullet);
         prioritizeEntry(newBullet);
         completeTask(newBullet);
-        deleteEntry();
+        deleteEntry(newBullet);
     }
 });
 
@@ -71,39 +71,36 @@ INPUT.addEventListener('keyup', function(event) {
 /*
 * editableEntry
 * Allow each bullet entry to be edited on a double click.
-* @param {}
+* @param {object} - A bullet-entry element
 *
 * @example
 *     editableEntry();
 */
-// TODO: when user clicks away, make the bullet readOnly
-function editableEntry() {
-    let bulletEntry = document.querySelectorAll('bullet-entry');
-    bulletEntry.forEach((entry) => {
-        let bulletEntryRoot = entry.shadowRoot;
-        const inputted = bulletEntryRoot.getElementById('bullet-inputted');
-        if (inputted) {
-            // all to edit on double click
-            inputted.addEventListener('dblclick', function() {
-                inputted.readOnly = false;
-            });
-            // after 'Enter' return to 'readOnly' mode
-            inputted.addEventListener('keyup', function(event) {
-                if (event.key === 'Enter') {
-                    inputted.readOnly = true;
-                }
-            });
-            // TODO: after click away from entry, return to 'readyOnly' mode
-            /*
-            document.addEventListener('click', function(event) {
-                var isClickInside = inputted.contains(event.target);
-                if (!isClickInside) {
-                    inputted.readOnly = true;
-                }
-            });
-            */
-        }
-    });
+function editableEntry(entry) {
+    let bulletEntryRoot = entry.shadowRoot;
+    const inputted = bulletEntryRoot.getElementById('bullet-inputted');
+    if (inputted) {
+        // all to edit on double click
+        inputted.addEventListener('dblclick', function() {
+            console.log("HERE");
+            inputted.readOnly = false;
+        });
+        // after 'Enter' return to 'readOnly' mode
+        inputted.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                inputted.readOnly = true;
+            }
+        });
+        // TODO: after click away from entry, return to 'readyOnly' mode
+        /*
+        document.addEventListener('click', function(event) {
+            var isClickInside = inputted.contains(event.target);
+            if (!isClickInside) {
+                inputted.readOnly = true;
+            }
+        });
+        */
+    }
 } /* editableEntry */
 
 /*
@@ -114,14 +111,11 @@ function editableEntry() {
 * @example
 *     deleteEntry();
 */
-function deleteEntry() {
-    let bulletEntry = document.querySelectorAll('bullet-entry');
-    bulletEntry.forEach((entry) => {
-        let bulletEntryRoot = entry.shadowRoot;
-        const toDelete = bulletEntryRoot.getElementById('delete-bullet');
-        toDelete.addEventListener('click', function() {
-            entry.remove();
-        });
+function deleteEntry(entry) {
+    let bulletEntryRoot = entry.shadowRoot;
+    const toDelete = bulletEntryRoot.getElementById('delete-bullet');
+    toDelete.addEventListener('click', function() {
+        entry.remove();
     });
 } /* deleteEntry */
 
