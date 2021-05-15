@@ -1,20 +1,26 @@
 body {
     //max-width: 1280px;
-    width: 80%;
     margin: auto;
-
+    padding: 0 3rem;
 
     .container {
         display: grid;
-        border: 5px solid black;
-        grid-template-columns: 40% 60%;
+        grid-template-columns: 30% 70%;
         .weekly-nav-container {
             grid-column-start: 1;
-            border: 5px solid black; // get rid of later
         }
         .daily-log {
             grid-column-start: 2;
-            border: 5px solid black; // get rid of later
+
+            &-title {
+                text-align: center;
+                padding: 1rem;
+            }
         }
+    }
+
+    .side-nav-container {
+        display: grid;
+        grid-template-rows: 20% 80%;
     }
 }

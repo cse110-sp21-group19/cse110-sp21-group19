@@ -1,8 +1,13 @@
 /* Weekly Nav - Cory */
-.weekly-container{
-    background-color: aquamarine ;
+.week-container{
+    margin-top: 80px; // fix later
+    background: aquamarine ;
+    border-radius: 1rem;
+    padding: 2rem;
     display: grid;
     grid-template-rows: auto auto auto auto auto auto auto;
+    height: 80vh;
+
     .wn-item{
         display: grid;
         grid-template-columns: auto auto auto;

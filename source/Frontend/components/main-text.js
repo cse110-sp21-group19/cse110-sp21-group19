@@ -235,5 +235,6 @@ customElements.define('bullet-entry', BulletEntry);
  *   content: "foo",
  *   priority: false, // default
  *   completed: false // default
+ *   children: [] // json objects (bullet-entries)
  * }
  */
