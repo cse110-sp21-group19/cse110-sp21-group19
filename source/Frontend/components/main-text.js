@@ -2,7 +2,7 @@
 
 // Constants for different bullet types
 //  Note Bullets:
-const NOTEBULLET = "-"
+const NOTEBULLET = "-";
 //  Task Bullets:
 const TASKBULLET = "□";
 const TASKCOMPLETE = "☑";
@@ -19,236 +19,236 @@ const PRIORITY = "★";
 // <bullet-select> custom web component
 /*
 class BulletSelect extends HTMLElement {
-    constructor() {
-        super();
+	constructor() {
+		super();
 
-        // templated HTML content
-        const template = document.createElement("template");
+		// templated HTML content
+		const template = document.createElement("template");
 
-        template.innerHTML = `
-            <div id="bullet-selector">
-                <select id="bullet-type">
-                    <option value="note" selected>  New Note <h5> - </h5></option> <!-- default is a note bullet-->
-                    <option value="task"> New Task <h5>&#8226;</h5></option>
-                    <option value="event"> New Event <h5>&#9900;</h5></option>
-                </select>
-            </div>
-            `;
+		template.innerHTML = `
+			<div id="bullet-selector">
+				<select id="bullet-type">
+					<option value="note" selected>  New Note <h5> - </h5></option> <!-- default is a note bullet-->
+					<option value="task"> New Task <h5>&#8226;</h5></option>
+					<option value="event"> New Event <h5>&#9900;</h5></option>
+				</select>
+			</div>
+			`;
 
-        // create a shadow root for this web component
-        const shadow = this.attachShadow({ mode: "open" });
-        // attach cloned content of template to shadow DOM 
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
+		// create a shadow root for this web component
+		const shadow = this.attachShadow({ mode: "open" });
+		// attach cloned content of template to shadow DOM 
+		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        // Apply external styles to the shadow dom
-        /*
-        const bulletInputStyle = document.createElement('link');
-        bulletInputStyle.setAttribute("rel", "stylesheet");
-        bulletInputStyle.setAttribute("href", "style/css/bulletinput.css");
+		// Apply external styles to the shadow dom
+		/*
+		const bulletInputStyle = document.createElement('link');
+		bulletInputStyle.setAttribute("rel", "stylesheet");
+		bulletInputStyle.setAttribute("href", "style/css/bulletinput.css");
 
-        // Attach the created elements to the shadow dom
-        shadow.appendChild(bulletInputStyle);
-        
-    }
-    // getter
-    get entry() {
-        return this.getAttribute("value");
-    }
+		// Attach the created elements to the shadow dom
+		shadow.appendChild(bulletInputStyle);
+		
+	}
+	// getter
+	get entry() {
+		return this.getAttribute("value");
+	}
   
-    // setter
-    set entry(value) {
-        this.setAttribute("value", value);
-    }
+	// setter
+	set entry(value) {
+		this.setAttribute("value", value);
+	}
 }
-    
+	
 // Define a custom element for the bullet-entry web component   
 customElements.define('bullet-select', BulletSelect);
 */
 
 // <bullet-input> custom web component
 class BulletInput extends HTMLElement {
-    constructor() {
-        super();
+	constructor() {
+		super();
 
-        // templated HTML content
-        const template = document.createElement("template");
+		// templated HTML content
+		const template = document.createElement("template");
 
-        template.innerHTML = `
-            <div class="new-bullet" id="new-bullet">
-                <select id="bullet-type">
-                    <option value="note" selected>Note <h5> - </h5></option> <!-- default is a note bullet-->
-                    <option value="task">Task <h5>&#9633;</h5></option>
-                    <option value="event">Event <h5>&#9675;</h5></option>
-                </select>
-                <input type="text" id="bullet-input" placeholder="New note...">
-            </div>
-            `;
-        // create bullet selector
-        const BULLETSELECT = document.createElement("bullet-select");
+		template.innerHTML = `
+			<div class="new-bullet" id="new-bullet">
+				<select id="bullet-type">
+					<option value="note" selected>Note <h5> - </h5></option> <!-- default is a note bullet-->
+					<option value="task">Task <h5>&#9633;</h5></option>
+					<option value="event">Event <h5>&#9675;</h5></option>
+				</select>
+				<input type="text" id="bullet-input" placeholder="New note...">
+			</div>
+			`;
+		// create bullet selector
+		const BULLETSELECT = document.createElement("bullet-select");
  
-        // create a shadow root for this web component
-        const shadow = this.attachShadow({ mode: "open" });
-        // attach cloned content of template to shadow DOM 
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
+		// create a shadow root for this web component
+		const shadow = this.attachShadow({ mode: "open" });
+		// attach cloned content of template to shadow DOM 
+		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        // Apply external styles to the shadow dom
-        const bulletInputStyle = document.createElement('link');
-        bulletInputStyle.setAttribute("rel", "stylesheet");
-        bulletInputStyle.setAttribute("href", "style/css/bulletinput.css");
+		// Apply external styles to the shadow dom
+		const bulletInputStyle = document.createElement("link");
+		bulletInputStyle.setAttribute("rel", "stylesheet");
+		bulletInputStyle.setAttribute("href", "style/css/bulletinput.css");
 
-        // Attach the created elements to the shadow dom
-        shadow.appendChild(bulletInputStyle);
-        shadow.appendChild(BULLETSELECT);
-    }
+		// Attach the created elements to the shadow dom
+		shadow.appendChild(bulletInputStyle);
+		shadow.appendChild(BULLETSELECT);
+	}
 }
-    
+	
 // Define a custom element for the bullet-input web component   
-customElements.define('bullet-input', BulletInput);
+customElements.define("bullet-input", BulletInput);
 
 
 // <bullet-list> custom web component
 class BulletList extends HTMLElement {
-    constructor() {
-        super();
+	constructor() {
+		super();
 
-        // templated HTML content
-        const template = document.createElement("template");
+		// templated HTML content
+		const template = document.createElement("template");
 
-        template.innerHTML = `
-        <style>
-            ul {margin: 0}
-        </style>
-        <ul class="bullet-list" id="bullet-list"></ul>`;
+		template.innerHTML = `
+		<style>
+			ul {margin: 0}
+		</style>
+		<ul class="bullet-list" id="bullet-list"></ul>`;
  
-        // create a shadow root for this web component
-        const shadow = this.attachShadow({ mode: "open" });
-        // attach cloned content of template to shadow DOM 
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
-    }
+		// create a shadow root for this web component
+		this.attachShadow({ mode: "open" });
+		// attach cloned content of template to shadow DOM 
+		this.shadowRoot.appendChild(template.content.cloneNode(true));
+	}
 }
 
 // Define a custom element for the bullet-list web component   
-customElements.define('bullet-list', BulletList);
+customElements.define("bullet-list", BulletList);
 
 
 // <bullet-entry> custom web component
 class BulletEntry extends HTMLElement {
-    constructor() {
-        super();
+	constructor() {
+		super();
 
-        // templated HTML content
-        const template = document.createElement('template');
+		// templated HTML content
+		const template = document.createElement("template");
   
-        template.innerHTML = `
-            <div class="entry">
-                <div class="bullet-entry">
-                    <button id="prioritize-bullet" type="button"></button>
-                    <span id="bullet-type"></span>
-                    <input id="bullet-inputted" type="text" readonly>
-                    <button id="delete-bullet" type="button">X</button>
-                </div>
-                <p class="edit-msg"><i>Double click to edit note</i></p>
-            </div>
-            `;
+		template.innerHTML = `
+			<div class="entry">
+				<div class="bullet-entry">
+					<button id="prioritize-bullet" type="button"></button>
+					<span id="bullet-type"></span>
+					<input id="bullet-inputted" type="text" readonly>
+					<button id="delete-bullet" type="button">X</button>
+				</div>
+				<p class="edit-msg"><i>Double click to edit note</i></p>
+			</div>
+			`;
   
-        // create a shadow root for this web component
-        const shadow = this.attachShadow({ mode: 'open' });
+		// create a shadow root for this web component
+		const shadow = this.attachShadow({ mode: "open" });
 
-        // attach cloned content of template to shadow DOM 
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
+		// attach cloned content of template to shadow DOM 
+		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        // Apply external styles to the shadow dom
-        const bulletEntryStyle = document.createElement('link');
-        bulletEntryStyle.setAttribute('rel', 'stylesheet');
-        bulletEntryStyle.setAttribute('href', 'style/css/bulletentry.css');
+		// Apply external styles to the shadow dom
+		const bulletEntryStyle = document.createElement("link");
+		bulletEntryStyle.setAttribute("rel", "stylesheet");
+		bulletEntryStyle.setAttribute("href", "style/css/bulletentry.css");
 
-        // Attach the created elements to the shadow dom
-        shadow.appendChild(bulletEntryStyle);
+		// Attach the created elements to the shadow dom
+		shadow.appendChild(bulletEntryStyle);
 
-        this.shadowRoot.getElementById("prioritize-bullet").innerHTML = NOTPRIORITY;
-        this.shadowRoot.getElementById("bullet-type").innerHTML = NOTEBULLET;
-    }
+		this.shadowRoot.getElementById("prioritize-bullet").innerHTML = NOTPRIORITY;
+		this.shadowRoot.getElementById("bullet-type").innerHTML = NOTEBULLET;
+	}
   
-    /*
-     * `get` binds a property to a function that will be called when that property is looked up
-     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
-     */
-    get entry() {
-        const BULLETTYPEELEM = this.shadowRoot.getElementById("bullet-type").innerHTML;
-        let entryObj = {
-            "type": BULLETTYPEELEM,
-            "date": "", // FIXME
-            "content": this.shadowRoot.getElementById("bullet-inputted").value,
-            "priority": false,
-            "completed": false
-        };
+	/*
+	 * `get` binds a property to a function that will be called when that property is looked up
+	 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
+	 */
+	get entry() {
+		const BULLETTYPEELEM = this.shadowRoot.getElementById("bullet-type").innerHTML;
+		let entryObj = {
+			"type": BULLETTYPEELEM,
+			"date": "", // FIXME
+			"content": this.shadowRoot.getElementById("bullet-inputted").value,
+			"priority": false,
+			"completed": false
+		};
 
-        // set priority value
-        if (this.shadowRoot.getElementById("prioritize-bullet").innerHTML === PRIORITY) {
-            entryObj.priority = true;
-        }
+		// set priority value
+		if (this.shadowRoot.getElementById("prioritize-bullet").innerHTML === PRIORITY) {
+			entryObj.priority = true;
+		}
 
-        // set completed value
-        if (entryObj.type === "task"
-            && BULLETTYPEELEM === TASKCOMPLETE) {
-            entryObj.completed = true;
-        }
+		// set completed value
+		if (entryObj.type === "task"
+			&& BULLETTYPEELEM === TASKCOMPLETE) {
+			entryObj.completed = true;
+		}
 
-        return entryObj;
-    }
+		return entryObj;
+	}
 
-    /*
-     * `set` binds an object property to a function to be called when there is an attempt to set that property
-     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set
-     */
-    set entry(entry) {
-        
-        const BULLETTYPEELEM = this.shadowRoot.getElementById("bullet-type");
-        let bulletHTML;
-        if (entry.type === "note") {
-            bulletHTML = NOTEBULLET;
-        }
-        else if (entry.type === "event") {
-                bulletHTML = EVENTBULLET;
-        }
-        // event
-        else {
-            if (entry.completed) {
-                bulletHTML = TASKCOMPLETE;
-            }
-            else {
-                bulletHTML = TASKBULLET;
-            }
+	/*
+	 * `set` binds an object property to a function to be called when there is an attempt to set that property
+	 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set
+	 */
+	set entry(entry) {
+		
+		const BULLETTYPEELEM = this.shadowRoot.getElementById("bullet-type");
+		let bulletHTML;
+		if (entry.type === "note") {
+			bulletHTML = NOTEBULLET;
+		}
+		else if (entry.type === "event") {
+			bulletHTML = EVENTBULLET;
+		}
+		// event
+		else {
+			if (entry.completed) {
+				bulletHTML = TASKCOMPLETE;
+			}
+			else {
+				bulletHTML = TASKBULLET;
+			}
 
-        }
+		}
 
-        BULLETTYPEELEM.innerHTML = bulletHTML;
-        // TODO: do something with entry.date
-        this.shadowRoot.getElementById("bullet-inputted").value = entry.content;
+		BULLETTYPEELEM.innerHTML = bulletHTML;
+		// TODO: do something with entry.date
+		this.shadowRoot.getElementById("bullet-inputted").value = entry.content;
 
-        // set priority value
-        if (entry.priority === true) {
-            this.shadowRoot.getElementById("prioritize-bullet").innerHTML = PRIORITY;
-        }
-        else {
-            this.shadowRoot.getElementById("prioritize-bullet").innerHTML = NOTPRIORITY;
-        }
+		// set priority value
+		if (entry.priority === true) {
+			this.shadowRoot.getElementById("prioritize-bullet").innerHTML = PRIORITY;
+		}
+		else {
+			this.shadowRoot.getElementById("prioritize-bullet").innerHTML = NOTPRIORITY;
+		}
 
-        // set completed value
-        /*
-        if (entry.type === TASKCOMPLETE && entry.completed === true) {
-            BULLETTYPEELEM.options[BULLETTYPEELEM.selectedIndex].innerHTML = TASKCOMPLETE;
-        }
-        else {
-            BULLETTYPEELEM.options[BULLETTYPEELEM.selectedIndex].innerHTML = TASKBULLET;
-        }
-        */
-    }
+		// set completed value
+		/*
+		if (entry.type === TASKCOMPLETE && entry.completed === true) {
+			BULLETTYPEELEM.options[BULLETTYPEELEM.selectedIndex].innerHTML = TASKCOMPLETE;
+		}
+		else {
+			BULLETTYPEELEM.options[BULLETTYPEELEM.selectedIndex].innerHTML = TASKBULLET;
+		}
+		*/
+	}
 
 }
-    
+	
 // Define a custom element for the bullet-entry web component   
-customElements.define('bullet-entry', BulletEntry);
+customElements.define("bullet-entry", BulletEntry);
 
 /**
  * JSON Format:
