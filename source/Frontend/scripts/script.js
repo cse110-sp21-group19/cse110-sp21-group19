@@ -7,6 +7,8 @@ document.getElementById("side-nav-container").appendChild(SIDENAV);
 let week = createDaysOfWeekArray();
 const WEEKLYNAV = document.createElement("weekly-nav");
 WEEKLYNAV.daysOfWeek = week;
+let today = new Date();
+WEEKLYNAV.selectedDay = today.getDay() + 1;
 document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
 
 //Onclick listener for the items inside the weekly nav
@@ -18,8 +20,8 @@ weeklyNavContainer.addEventListener("click", (event)=>{
         WEEKLYNAV.selectedDay = index;
 
         //change title on top of main text ... LATER will change what is on maintext
-        let selectedDay = WEEKLYNAV.selectedInfo;
-        let dailyLogTitle = selectedDay.day + ", " + MONTHS[selectedDay.month] + " " + selectedDay.date;
+        let selectedInfo = WEEKLYNAV.selectedInfo;
+        let dailyLogTitle = selectedInfo.day + ", " + MONTHS[selectedInfo.month] + " " + selectedInfo.date;
         document.getElementsByClassName("daily-log-title")[0].querySelector("h1").innerHTML = dailyLogTitle;
     }
 
