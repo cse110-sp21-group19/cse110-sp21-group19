@@ -184,7 +184,10 @@ weeklyNavContainer.addEventListener("click", (event)=>{
 });
 
 /*
- * createDaysofWeekyArray creates an array of days of the week for the current week
+ * createDaysofWeekyArray 
+ * creates an array of days of the week for the current week
+ * 
+ * @param {}
  * 
  * @returns An array of date objects (As is, if we attatch important bullets, this will change)
  * for the days of the current week
