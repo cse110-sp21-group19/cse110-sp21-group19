@@ -9,8 +9,12 @@
     display: grid;
     padding-left: 10px;
     padding-top: 10px;
+    width: 60%;
+    border-radius: 1rem;
+    margin-left: 20%;
+    min-width: 200px;
     #btn-text{
-        font-size: large;
+        font-size: 3vh;
         font-weight: bold;
         text-align: center;
         grid-column-start: 6;
