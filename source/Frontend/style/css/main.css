@@ -99,6 +99,7 @@ body {
 }
 
 body .container {
+  margin-top: 1.1rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 30% 70%;
@@ -107,6 +108,7 @@ body .container {
 }
 
 body .container .weekly-nav-container {
+  height: 80vh;
   -ms-grid-column: 1;
       grid-column-start: 1;
 }

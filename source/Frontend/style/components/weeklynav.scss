@@ -1,26 +1,53 @@
 /* Weekly Nav - Cory */
 @import '../abstracts/mixins', '../abstracts/variables';
 
+.weekly-nav-title{
+    margin-top: 55px; //FIX LATER
+    margin-bottom: 0.5rem;
+    position: relative;
+
+}
 .week-container{
-    margin-top: 80px; // fix later
     background: $accent;
     border-radius: 1rem;
-    padding: 2rem;
+    padding: 0.5rem;
     display: grid;
     grid-template-rows: auto auto auto auto auto auto auto;
-    height: 80vh;
+    height: 70vh; //MAY HAVE TO CHANGE THIS look at layout file weekly nav container height
 
     .wn-item{
+        //border-left: 0.4rem solid blue;
+        margin: 0.4rem;
         display: grid;
-        grid-template-columns: auto auto auto;
+        background: white;
+        border-radius: 0.5rem;
+        grid-template-rows: 1;
+        grid-template-columns: 10% [date-column] auto auto;
+        &:hover{
+            filter: brightness(90%);
+        }
         .wn-day-of-week{
-            font-size: 30px;
+            pointer-events: none;
+            grid-row-start: 1;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            grid-column-start: 2;
+            font-size: 20px;
         }
         .wn-date{
+            pointer-events: none;
+            grid-column-start: 1;
+            margin-left: 0.3rem;
             font-size: 20px;
         }
         .wn-bullets{
+            grid-column-start: 3;
             font-size: 10px;
+        }
+
+        p {
+            visibility:hidden;
+
         }
     }
 }
