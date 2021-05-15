@@ -11,14 +11,13 @@
   display: grid;
   padding-left: 10px;
   padding-top: 10px;
-  width: 60%;
+  width: 85%;
+  margin-left: 6%;
   border-radius: 1rem;
-  margin-left: 20%;
-  min-width: 200px;
 }
 
 .addl-entries-btn #btn-text {
-  font-size: 3vh;
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
   -ms-grid-column: 6;
