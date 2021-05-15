@@ -1,5 +1,7 @@
+@import '../abstracts/mixins', '../abstracts/variables';
+
 .new-bullet {
-    background-color: #d0ecfd;
+    background-color: $light;
     border-radius: 0.25rem;
 }
 

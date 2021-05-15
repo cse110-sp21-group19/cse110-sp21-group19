@@ -1,6 +1,6 @@
 body {
-    background: $accent;
     //max-width: 1280px;
+    background: $light;
     margin: auto;
     padding: 0 3rem;
 
@@ -14,7 +14,6 @@ body {
             grid-column-start: 2;
 
             &-title {
-                text-align: center;
                 padding: 1rem;
             }
         }

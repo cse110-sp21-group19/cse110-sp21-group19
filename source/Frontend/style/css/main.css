@@ -1,5 +1,6 @@
 /* Tools, Helpers, Variables, Config, etc. */
 /* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
 /* Base Styles */
@@ -58,7 +59,7 @@ table {
 }
 
 html {
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   color: #181A18;
 }
 
@@ -92,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Layout */
 body {
-  background: #a1b3a1;
+  background: #EDEBE6;
   margin: auto;
   padding: 0 3rem;
 }
@@ -115,7 +116,6 @@ body .container .daily-log {
 }
 
 body .container .daily-log-title {
-  text-align: center;
   padding: 1rem;
 }
 
@@ -131,7 +131,7 @@ body .side-nav-container {
 .main-text {
   height: 65vh;
   border-radius: 1rem;
-  background: #a1b3a1;
+  background: white;
   padding: 2rem;
   margin: 1rem;
 }

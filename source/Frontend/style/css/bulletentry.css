@@ -1,3 +1,7 @@
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* colors */
+/* spacing */
 .bullet-entry {
   width: 100%;
   margin: 4px 0;
@@ -5,7 +9,7 @@
 }
 
 .bullet-entry:hover {
-  background-color: #d0ecfd;
+  background-color: #EDEBE6;
 }
 
 .bullet-entry:hover > button:hover {
