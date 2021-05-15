@@ -212,7 +212,8 @@
 /*End styling upload media modal*/
 /*Begin styling saved entries*/
 .saved_entries {
-  padding-left: 10rem;
+  width: 74%;
+  margin-left: 9rem;
   white-space: nowrap;
   position: relative;
   overflow-x: auto;
