@@ -103,6 +103,7 @@ body .container {
   display: grid;
   -ms-grid-columns: 30% 70%;
       grid-template-columns: 30% 70%;
+  margin-top: 4rem;
 }
 
 body .container .weekly-nav-container {

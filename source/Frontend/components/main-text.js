@@ -1,4 +1,6 @@
-// Constant for different bullet types
+// TODO: FIGURE OUT HOW TO DECLARE GLOBAL VARIABLES
+
+// Constants for different bullet types
 //  Note Bullets:
 const NOTEBULLET = "-"
 //  Task Bullets:
@@ -7,11 +9,8 @@ const TASKCOMPLETE = "☑";
 //const TASKBULLET = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"/></svg>`;
 //const TASKCOMPLETE = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zm0 400H48V80h352v352zm-35.864-241.724L191.547 361.48c-4.705 4.667-12.303 4.637-16.97-.068l-90.781-91.516c-4.667-4.705-4.637-12.303.069-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l59.792 60.277 141.352-140.216c4.705-4.667 12.303-4.637 16.97.068l22.536 22.718c4.667 4.706 4.637 12.304-.068 16.971z"/></svg>`;
 
-const TASKMIGRATE = "<i class=\"fas fa-chevron-right\"></i>";
-const TASKFUTURE = "<i class=\"fas fa-chevron-left\"></i>";
-const TASKIRR = "";
 //  Event Bullets:
-const EVENTBULLET = "&#9675;";
+const EVENTBULLET = "<i class=\"far fa-circle\"></i>";
 
 // Priority Markers:
 const NOTPRIORITY = "&#9734;";
@@ -77,9 +76,9 @@ class BulletInput extends HTMLElement {
         template.innerHTML = `
             <div class="new-bullet" id="new-bullet">
                 <select id="bullet-type">
-                    <option value="note" selected>  New Note <h5> - </h5></option> <!-- default is a note bullet-->
-                    <option value="task"> New Task <h5>&#9633;</h5></option>
-                    <option value="event"> New Event <h5>&#9675;</h5></option>
+                    <option value="note" selected>Note <h5> - </h5></option> <!-- default is a note bullet-->
+                    <option value="task">Task <h5>&#9633;</h5></option>
+                    <option value="event">Event <h5>&#9675;</h5></option>
                 </select>
                 <input type="text" id="bullet-input" placeholder="New note...">
             </div>
@@ -103,8 +102,33 @@ class BulletInput extends HTMLElement {
     }
 }
     
-// Define a custom element for the bullet-entry web component   
+// Define a custom element for the bullet-input web component   
 customElements.define('bullet-input', BulletInput);
+
+
+// <bullet-list> custom web component
+class BulletList extends HTMLElement {
+    constructor() {
+        super();
+
+        // templated HTML content
+        const template = document.createElement("template");
+
+        template.innerHTML = `
+        <style>
+            ul {margin: 0}
+        </style>
+        <ul class="bullet-list" id="bullet-list"></ul>`;
+ 
+        // create a shadow root for this web component
+        const shadow = this.attachShadow({ mode: "open" });
+        // attach cloned content of template to shadow DOM 
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+}
+
+// Define a custom element for the bullet-list web component   
+customElements.define('bullet-list', BulletList);
 
 
 // <bullet-entry> custom web component
@@ -123,6 +147,7 @@ class BulletEntry extends HTMLElement {
                     <input id="bullet-inputted" type="text" readonly>
                     <button id="delete-bullet" type="button">X</button>
                 </div>
+                <p class="edit-msg"><i>Double click to edit note</i></p>
             </div>
             `;
   
@@ -234,7 +259,7 @@ customElements.define('bullet-entry', BulletEntry);
  *   date: "foo",
  *   content: "foo",
  *   priority: false, // default
- *   completed: false // default
+ *   completed: false, // default
  *   children: [] // json objects (bullet-entries)
  * }
  */
