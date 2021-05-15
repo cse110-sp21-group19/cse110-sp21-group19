@@ -22,7 +22,7 @@ const PRIORITY = "★";
 // DOM Elements
 const MAINTEXT = document.getElementById("main-text");
 
-const BULLETS = document.createElement("div");
+const BULLETS = document.createElement("bullet-list");
 BULLETS.id = "bullets";
 
 const INPUT = document.createElement("bullet-input");
@@ -30,6 +30,10 @@ const INPUTROOT = INPUT.shadowRoot;
 const BULLETINPUT = INPUTROOT.getElementById("bullet-input");
 
 const BULLETTYPE = INPUTROOT.getElementById("bullet-type");
+
+// Bullet Nesting Stack
+let bulletStack = [];
+bulletStack.push(BULLETS);
 
 MAINTEXT.appendChild(BULLETS);
 MAINTEXT.appendChild(INPUT);
@@ -50,7 +54,8 @@ INPUT.addEventListener('keyup', function(event) {
         newBullet.entry = entry;
 
         // append new bullet entries to main-text element
-        BULLETS.appendChild(newBullet);
+        const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+        BULLETLIST.appendChild(newBullet);
 
         // clear INPUT value after enter
         BULLETINPUT.value = '';
@@ -88,6 +93,15 @@ function editableEntry() {
                     inputted.readOnly = true;
                 }
             });
+            // TODO: after click away from entry, return to 'readyOnly' mode
+            /*
+            document.addEventListener('click', function(event) {
+                var isClickInside = inputted.contains(event.target);
+                if (!isClickInside) {
+                    inputted.readOnly = true;
+                }
+            });
+            */
         }
     });
 } /* editableEntry */
@@ -157,6 +171,28 @@ function completeTask(newEntry) {
         }
     });
 } /* completeTask */
+
+// Create Nested Bullets
+INPUT.addEventListener("keydown", function(event) {
+    // FIXME: Shift + Tab doesn't work yet
+    // Unnest by one level on backspace
+    if ((event.key === "Shift" && event.key === "Tab") || event.key === "Backspace") {
+        event.preventDefault();
+        console.log("HERE");
+        if (bulletStack.length > 1) {
+            bulletStack.pop(bulletStack[bulletStack.length - 1]);
+        }
+    }
+    // Nest by one level on tab
+    else if (event.key === "Tab") {
+        // prevent tab key from moving to next button
+        this.focus();
+        event.preventDefault();
+        const newSublist = document.createElement("bullet-list");
+        bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
+        bulletStack.push(newSublist);
+    }
+});
 
 // SIDEBAR
 document.addEventListener("DOMContentLoaded", () => {

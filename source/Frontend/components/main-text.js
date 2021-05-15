@@ -103,8 +103,33 @@ class BulletInput extends HTMLElement {
     }
 }
     
-// Define a custom element for the bullet-entry web component   
+// Define a custom element for the bullet-input web component   
 customElements.define('bullet-input', BulletInput);
+
+
+// <bullet-list> custom web component
+class BulletList extends HTMLElement {
+    constructor() {
+        super();
+
+        // templated HTML content
+        const template = document.createElement("template");
+
+        template.innerHTML = `
+        <style>
+            ul {margin: 0}
+        </style>
+        <ul class="bullet-list" id="bullet-list"></ul>`;
+ 
+        // create a shadow root for this web component
+        const shadow = this.attachShadow({ mode: "open" });
+        // attach cloned content of template to shadow DOM 
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+}
+
+// Define a custom element for the bullet-list web component   
+customElements.define('bullet-list', BulletList);
 
 
 // <bullet-entry> custom web component
@@ -123,6 +148,7 @@ class BulletEntry extends HTMLElement {
                     <input id="bullet-inputted" type="text" readonly>
                     <button id="delete-bullet" type="button">X</button>
                 </div>
+                <p class="edit-msg"><i>Double click to edit note</i></p>
             </div>
             `;
   

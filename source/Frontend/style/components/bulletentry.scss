@@ -1,4 +1,18 @@
-@import '../abstracts/mixins', '../abstracts/variables';
+@import '../abstracts/mixins', '../abstracts/variables', '../base/reset', '../base/typography';
+
+// style the "double click to edit" message
+.edit-msg {
+    position: absolute;
+    right: 6rem;
+    font-size: 0.6rem;
+    color: grey;
+    margin-top: -3.2rem;
+    display: none;
+}
+
+.bullet-entry:hover + .edit-msg {
+    display: inline-block;
+}
 
 .bullet-entry {
     width: 100%;
@@ -31,7 +45,7 @@ select, button {
 }
 
 input[type=text] {
-    width: 70%;
+    width: calc(100% - 5rem);
 }
 
 select {
