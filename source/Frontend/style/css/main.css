@@ -92,12 +92,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Layout */
 body {
-  background: #a1b3a1;
+  background: #EDEBE6;
   margin: auto;
   padding: 0 3rem;
 }
 
 body .container {
+  margin-top: 1.1rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 30% 70%;
@@ -105,6 +106,7 @@ body .container {
 }
 
 body .container .weekly-nav-container {
+  height: 80vh;
   -ms-grid-column: 1;
       grid-column-start: 1;
 }
@@ -131,7 +133,7 @@ body .side-nav-container {
 .main-text {
   height: 65vh;
   border-radius: 1rem;
-  background: #a1b3a1;
+  background: white;
   padding: 2rem;
   margin: 1rem;
 }

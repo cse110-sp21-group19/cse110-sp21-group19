@@ -2,34 +2,66 @@
 /* fonts */
 /* colors */
 /* spacing */
+.weekly-nav-title {
+  margin-top: 55px;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
 .week-container {
-  margin-top: 80px;
   background: #a1b3a1;
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 0.5rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: auto auto auto auto auto auto auto;
       grid-template-rows: auto auto auto auto auto auto auto;
-  height: 80vh;
+  height: 70vh;
 }
 
 .week-container .wn-item {
+  margin: 0.4rem;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto auto auto;
-      grid-template-columns: auto auto auto;
+  background: white;
+  border-radius: 0.5rem;
+  -ms-grid-rows: 1;
+      grid-template-rows: 1;
+  -ms-grid-columns: 10% [date-column] auto auto;
+      grid-template-columns: 10% [date-column] auto auto;
+}
+
+.week-container .wn-item:hover {
+  -webkit-filter: brightness(90%);
+          filter: brightness(90%);
 }
 
 .week-container .wn-item .wn-day-of-week {
-  font-size: 30px;
+  pointer-events: none;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  font-size: 20px;
 }
 
 .week-container .wn-item .wn-date {
+  pointer-events: none;
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  margin-left: 0.3rem;
   font-size: 20px;
 }
 
 .week-container .wn-item .wn-bullets {
+  -ms-grid-column: 3;
+      grid-column-start: 3;
   font-size: 10px;
+}
+
+.week-container .wn-item p {
+  visibility: hidden;
 }
 /*# sourceMappingURL=weeklynav.css.map */

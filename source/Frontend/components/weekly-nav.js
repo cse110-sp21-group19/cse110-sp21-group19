@@ -6,16 +6,20 @@ class WeeklyNav extends HTMLElement{
 
         //TODO: Fix the styling
         template.innerHTML = `
+            <h2 class="weekly-nav-title"></h2>
             <div class="week-container">
-                <div class="wn-item">
-                    <h2 class="wn-day-of-week"></h2>
-                    <h3 class="wn-date"></h3>
-                    <ul class="wn-bullets"></ul>
-                </div>
             </div>
         `;
 
+        //Week Item format
+        // <div class="wn-item-mask">
+        // <div class="wn-item">
+        //     <h2 class="wn-day-of-week"></h2>
+        //     <h3 class="wn-date"></h3>
+        //     <ul class="wn-bullets"></ul>
+        // </div>
         // create a shadow root for this web component
+
         const shadow = this.attachShadow({ mode: 'open' });
         // attach cloned content of template to shadow DOM 
         this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -32,14 +36,16 @@ class WeeklyNav extends HTMLElement{
 
 
     set daysOfWeek(week){
+        //set the weekly-nav title
+        const navTitle = this.shadowRoot.querySelector("[class='weekly-nav-title']");
+        navTitle.innerHTML = getWeeklyNavTitle(week[0], week[6]);
         const navContainer = this.shadowRoot.querySelector("[class='week-container']");
-
         //Add each day to the nav menu
         week.forEach(element => {
             let day = getDateString(element.getDay());
             //convert month and date to string of form M/D
-            let date = (element.getMonth() + 1) + "/" + element.getDate();
-
+            let date = element.getDate();
+            let month = element.getMonth();
             let navItem = document.createElement("div");
             navItem.className = "wn-item";
             let navDay = document.createElement("h2");
@@ -48,12 +54,55 @@ class WeeklyNav extends HTMLElement{
             let navDate = document.createElement("h3");
             navDate.className = "wn-date";
             navDate.textContent = date;
+            let hiddenMonth = document.createElement("p");
+            hiddenMonth.textContent = month;
 
             navItem.appendChild(navDay);
             navItem.appendChild(navDate);
+            navItem.appendChild(hiddenMonth);
+
+
             navContainer.appendChild(navItem);
         });
     
+    }
+
+    get selectedInfo (){
+        const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+
+
+        for(let i = 1; i < navContainer.childNodes.length; i++){
+            if(navContainer.childNodes[i].style.borderLeft == "0.4rem solid blue"){
+                let dateObj = {
+                    "day": navContainer.childNodes[i].querySelector("[class='wn-day-of-week']").textContent,
+                    "date": navContainer.childNodes[i].querySelector("[class='wn-date']").textContent,
+                    "month": navContainer.childNodes[i].querySelector("p").textContent
+                };
+                
+                return dateObj;
+            }
+        }
+    }
+    // get selectedDay(){
+    //     const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+    //     for(let i = 1; i < navContainer.childNodes.length; i++){
+    //         if(!navContainer.childNodes[i].style.borderLeft){
+    //             return i;
+    //         }
+    //     }
+    // }
+
+    set selectedDay(day){
+        const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+        for(let i = 1; i < navContainer.childNodes.length; i++){
+            if(i == day){
+                //REPLACE STYLE TO CONST AT TOP
+                navContainer.childNodes[i].style.borderLeft = "0.4rem solid blue";
+            }
+            else{
+                navContainer.childNodes[i].style.borderLeft = null;
+            }
+        }
     }
 }
 
@@ -61,7 +110,7 @@ class WeeklyNav extends HTMLElement{
 /**
  * getDateString - converts integer day of week to its related string
  * 
- * @param {*} day - An integer of the day of the week (0-6)
+ * @param {number} day - An integer of the day of the week (0-6)
  * 
  * @returns A string of the related day of the week of the parameter
  */
@@ -85,5 +134,35 @@ function getDateString(day){
             return "Sunday";
     }
 }/* getDateString */
+
+/**
+ * getWeeklyNavTitle - Formats the title on top of the weekly nav menu,
+ * Also address edge case if week is between two months and/or two years
+ * 
+ * @param {Date} first - A date object referring to the first day of the week
+ * @param {Date} last - A date object referring to the last day of the week
+ * 
+ * @returns A string of the correct title in the format "Month, Year" or "Month1/Month2, Year" or "Month1/Month2, Year1/Year2"
+ */
+function getWeeklyNavTitle(first, last){
+    let title = "";
+    const months= ["January","February","March","April","May","June","July",
+            "August","September","October","November","December"];
+    if(first.getMonth() == last.getMonth()){
+        title += months[first.getMonth()];
+    }
+    else{
+        title +=  months[first.getMonth()] + "/" + months[last.getMonth()];
+    }
+
+    if(first.getFullYear() == last.getFullYear()){
+        title += ", " + first.getFullYear();
+    }
+    else{
+        title += ", " + first.getFullYear() + "/" + last.getFullYear();
+    }
+
+    return title;
+}
 
 customElements.define('weekly-nav', WeeklyNav);

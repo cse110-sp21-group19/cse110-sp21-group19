@@ -158,27 +158,39 @@ function completeTask(newEntry) {
     });
 } /* completeTask */
 
-// SIDEBAR
-document.addEventListener("DOMContentLoaded", () => {
+//Adding the side nav menu web component 
+const SIDENAV  = document.createElement("side-nav");
+document.getElementById("side-nav-container").appendChild(SIDENAV);
 
-    //adding side navigation web component
-    let newSideNav  = document.createElement("side-nav");
-    document.getElementById("side-nav-container").appendChild(newSideNav);
+//adding weekly navigation web component
+let week = createDaysOfWeekArray();
+const WEEKLYNAV = document.createElement("weekly-nav");
+WEEKLYNAV.daysOfWeek = week;
+document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
 
-    //adding weekly navigation web component
-    let week = createDaysOfWeekArray();
-    let newWeeklyNavMenu = document.createElement("weekly-nav");
-    newWeeklyNavMenu.daysOfWeek = week;
-    document.getElementById("weekly-nav-container").appendChild(newWeeklyNavMenu);
-    
-    
+//Onclick listener for the items inside the weekly nav
+const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
+weeklyNavContainer.addEventListener("click", (event)=>{
+    if(event.target.className == "wn-item"){
+        //which day was selected
+        let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
+        WEEKLYNAV.selectedDay = index;
+
+        //change title on top of main text ... LATER will change what is on maintext
+        let selectedDay = WEEKLYNAV.selectedInfo;
+        let dailyLogTitle = selectedDay.day + ", " + months[selectedDay.month] + " " + selectedDay.date;
+        document.getElementsByClassName("daily-log-title")[0].querySelector("h1").innerHTML = dailyLogTitle;
+    }
 });
 
-/**
+/*
  * createDaysofWeekyArray creates an array of days of the week for the current week
  * 
  * @returns An array of date objects (As is, if we attatch important bullets, this will change)
  * for the days of the current week
+ * 
+ * @example 
+ *      createDaysOfWeekArray()
  */
  function createDaysOfWeekArray(){
     //NOTE: if we want to pass data into the weekly nav like important bullets we can attach to this array
@@ -193,3 +205,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return daysOfWeek;
 } /* createDaysofWeekArray */
+
+const months= ["January","February","March","April","May","June","July",
+"August","September","October","November","December"];
