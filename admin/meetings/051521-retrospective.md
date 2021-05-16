@@ -14,6 +14,7 @@ Everyone
 
 ### What We Did
 - On Retrium - with meeting recording
+- [See here](admin/../../Review_Retrospective/51521-Sprint-1.md)
 
 Glad
 - Willing to take on a challenge
