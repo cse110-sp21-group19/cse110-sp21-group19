@@ -1,5 +1,8 @@
 # 5/10/21 - Google Login
 
+**Updated 5/13/21 - This decision has been removed as we have moved to a Local APP**
+
+
 Our team is concerned with the security of login and how to support multiple users. 
 
 ## Options Considered
