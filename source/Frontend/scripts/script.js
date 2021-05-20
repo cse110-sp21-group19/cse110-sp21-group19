@@ -1,8 +1,4 @@
 
-//Adding the side nav menu web component 
-const SIDENAV  = document.createElement("side-nav");
-document.getElementById("side-nav-container").appendChild(SIDENAV);
-
 //adding weekly navigation web component
 let week = createDaysOfWeekArray();
 const WEEKLYNAV = document.createElement("weekly-nav");
@@ -19,11 +15,11 @@ weeklyNavContainer.addEventListener("click", (event)=>{
 		let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
 		WEEKLYNAV.selectedDay = index;
 
-        //change title on top of main text ... LATER will change what is on maintext
-        let selectedInfo = WEEKLYNAV.selectedInfo;
-        let dailyLogTitle = selectedInfo.day + ", " + MONTHS[selectedInfo.month] + " " + selectedInfo.date;
-        document.getElementsByClassName("daily-log-title")[0].querySelector("h1").innerHTML = dailyLogTitle;
-    }
+		//change title on top of main text ... LATER will change what is on maintext
+		let selectedInfo = WEEKLYNAV.selectedInfo;
+		let dailyLogTitle = selectedInfo.day + ", " + MONTHS[selectedInfo.month] + " " + selectedInfo.date;
+		document.getElementsByClassName("daily-log-title")[0].querySelector("h1").innerHTML = dailyLogTitle;
+	}
 
 });
 

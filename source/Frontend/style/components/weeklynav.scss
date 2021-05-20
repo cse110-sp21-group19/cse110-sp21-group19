@@ -2,18 +2,19 @@
 @import '../abstracts/mixins', '../abstracts/variables';
 
 .weekly-nav-title{
-    margin-top: 55px; //FIX LATER
+    margin-top: 50px; //Fix this later
     margin-bottom: 0.5rem;
-    position: relative;
+    margin-left: 0.9rem;
 
 }
 .week-container{
     background: $accent;
+
     border-radius: 1rem;
     padding: 0.5rem;
     display: grid;
     grid-template-rows: auto auto auto auto auto auto auto;
-    height: 70vh; //MAY HAVE TO CHANGE THIS look at layout file weekly nav container height
+    height: 80vh; //MAY HAVE TO CHANGE THIS -- look at layout file weekly nav container height
 
     .wn-item{
         //border-left: 0.4rem solid blue;
@@ -22,23 +23,32 @@
         background: white;
         border-radius: 0.5rem;
         grid-template-rows: 1;
-        grid-template-columns: 10% [date-column] auto auto;
+        grid-template-columns: auto auto;
         &:hover{
             filter: brightness(90%);
         }
-        .wn-day-of-week{
-            pointer-events: none;
-            grid-row-start: 1;
-            margin-bottom: 0;
-            padding-bottom: 0;
-            grid-column-start: 2;
-            font-size: 20px;
-        }
+        // .wn-day-of-week{
+        //     font-family: $sans-serif;
+        //     font-weight: lighter;
+        //     pointer-events: none;
+        //     // margin-left: 2rem;
+        //     grid-row-start: 1;
+        //     margin-bottom: 0;
+        //     padding-bottom: 0;
+        //     grid-column-start: 1;
+        //     font-size: 1em;
+        // }
         .wn-date{
             pointer-events: none;
             grid-column-start: 1;
-            margin-left: 0.3rem;
-            font-size: 20px;
+            margin-left: 0.5rem;
+            font-size: 0.95em;
+            #day-of-week{
+                padding: 0 0.35em;
+                font-family: $sans-serif;
+                font-weight: lighter;
+                font-size: 1.05em;
+            }
         }
         .wn-bullets{
             grid-column-start: 3;
@@ -47,7 +57,6 @@
 
         p {
             visibility:hidden;
-
         }
     }
 }

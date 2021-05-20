@@ -1,3 +1,7 @@
+const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
+const SELECTEDRADIUS = "0.2rem";
+const DEFAULTBORDERLEFT = null;
+const DEFAULTRADIUS = null;
 
 class WeeklyNav extends HTMLElement{
 	constructor() {
@@ -14,8 +18,7 @@ class WeeklyNav extends HTMLElement{
 		//Week Item format
 		// <div class="wn-item-mask">
 		// <div class="wn-item">
-		//     <h2 class="wn-day-of-week"></h2>
-		//     <h3 class="wn-date"></h3>
+		//     <h2 class="wn-date"><span id="day-of-month"></span><span id="day-of-week"></span> </h2>
 		//     <ul class="wn-bullets"></ul>
 		// </div>
 		// create a shadow root for this web component
@@ -58,17 +61,23 @@ class WeeklyNav extends HTMLElement{
 
 			let navItem = document.createElement("div");
 			navItem.className = "wn-item";
-			let navDay = document.createElement("h2");
-			navDay.className = "wn-day-of-week";
-			navDay.textContent = day;
-			let navDate = document.createElement("h3");
+
+			let navDate = document.createElement("h2");
 			navDate.className = "wn-date";
-			navDate.textContent = date;
+			let dayOfWeek = document.createElement("span");
+			dayOfWeek.id = "day-of-week";
+			dayOfWeek.textContent = day;
+			let dayOfMonth = document.createElement("span");
+			dayOfMonth.id = "day-of-month";
+			dayOfMonth.textContent = date;
+
 			//create hidden month object in order to retrieve it later on click
 			let hiddenMonth = document.createElement("p");
 			hiddenMonth.textContent = month;
 
-			navItem.appendChild(navDay);
+			navDate.appendChild(dayOfMonth);
+			navDate.appendChild(dayOfWeek);
+
 			navItem.appendChild(navDate);
 			navItem.appendChild(hiddenMonth);
 
@@ -95,11 +104,12 @@ class WeeklyNav extends HTMLElement{
 		//(the one with a border is the selected one) 
 		let dateObj;
 		for(let i = 1; i < navContainer.childNodes.length; i++){
-			if(navContainer.childNodes[i].style.borderLeft == "0.4rem solid blue"){
+			let currItem = navContainer.childNodes[i];
+			if(currItem.style.borderLeft == SELECTEDBORDERLEFT){
 				dateObj = {
-					"day": navContainer.childNodes[i].querySelector("[class='wn-day-of-week']").textContent,
-					"date": navContainer.childNodes[i].querySelector("[class='wn-date']").textContent,
-					"month": navContainer.childNodes[i].querySelector("p").textContent
+					"day": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-week']").textContent,
+					"date": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-month']").textContent,
+					"month": currItem.querySelector("p").textContent
 				};
 			}
 		}
@@ -120,11 +130,15 @@ class WeeklyNav extends HTMLElement{
 
 		for(let i = 1; i < navContainer.childNodes.length; i++){
 			if(i == day){
-				//REPLACE STYLE TO CONST AT TOP
-				navContainer.childNodes[i].style.borderLeft = "0.4rem solid blue";
+				navContainer.childNodes[i].style.borderTopLeftRadius = SELECTEDRADIUS;
+				navContainer.childNodes[i].style.borderBottomLeftRadius = SELECTEDRADIUS;
+				// navContainer.childNodes[i].style.border = "0.2rem solid darkgreen";
+				navContainer.childNodes[i].style.borderLeft = SELECTEDBORDERLEFT;
 			}
 			else{
-				navContainer.childNodes[i].style.borderLeft = null;
+				navContainer.childNodes[i].style.borderTopLeftRadius = DEFAULTRADIUS;
+				navContainer.childNodes[i].style.borderBottomLeftRadius = DEFAULTRADIUS;
+				navContainer.childNodes[i].style.borderLeft = DEFAULTBORDERLEFT;
 			}
 		}
 	} /* set seletedDay */

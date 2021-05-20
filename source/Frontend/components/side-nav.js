@@ -8,21 +8,36 @@ class SideNav extends HTMLElement{
 
 		const template = document.createElement("template");
 		//            <button id="sn-expand">&#9776;</button>
-		template.innerHTML = `
-            <div id="side-nav" class="side-nav">
-                <input type="checkbox"> </input>
-        
-                <span></span>
-                <span></span>
-                <span></span>
+		//					// <h1 id="side-nav-log-title" class="side-nav-log-title">${DAILY}</h1>
+		// template.innerHTML = `
+        //     <div id="side-nav" class="side-nav">
+		// 		<div id="burger-and-title" class="burger-and-title">
+        //         	<input type="checkbox"> </input>
 
-                <ul id="side-nav-menu">
-                    <a id="sn-future-log" class="sn-link" href="#"><li>${FUTURE}</li></a>
-                    <a id="sn-daily-log" class="sn-link" href="#"><li>${DAILY}</li></a>
-                    <a id="sn-monthly-log" class="sn-link" href="#"><li>${MONTHLY}</li></a>
-                </ul>
-            </div>
-        `;
+        //         	<span></span>
+        //         	<span></span>
+        //         	<span></span>
+		// 		</div>
+
+        //         <ul id="side-nav-menu">
+        //             <a id="sn-future-log" class="sn-link" href="#"><li>${FUTURE}</li></a>
+        //             <a id="sn-daily-log" class="sn-link" href="#"><li>${DAILY}</li></a>
+        //             <a id="sn-monthly-log" class="sn-link" href="#"><li>${MONTHLY}</li></a>
+        //         </ul>
+        //     </div>
+        // `;
+		template.innerHTML = `
+			<div id="burger-and-title" class="burger-and-title">
+				<div class="burger" id="side-nav-burger">
+					<div class="x" id="x"></div>
+					<div class="y" id="y"></div>
+					<div class="z" id="z"></div>
+				</div>   
+				<h1 class="side-nav-title">Daily Log</h1>
+			</div>
+
+			
+		`;
 
 		// create a shadow root for this web component
 		const shadow = this.attachShadow({ mode: "open" });
@@ -39,16 +54,21 @@ class SideNav extends HTMLElement{
         
 	}
 
-	connectedCallback(){
-		// const expand = this.shadowRoot.getElementById("sn-expand");
-		// expand.addEventListener("click", ()=>{
-		//     let sideNav = this.shadowRoot.getElementById("side-nav");
-		//     sideNav.style.width = "250px";
-		// });
-	}
+	// connectedCallback(){
+	// 	const expand = this.shadowRoot.getElementById("side-nav-burger");
+	// 	expand.addEventListener("click", ()=>{
+	// 		if(expand.classList.contains("open")){
+
+	// 		}
+	// 		else{
+	// 			openMenu();
+	// 		}
+	// 	});
+	// }
+
 
 }
-
+ 
 
 
 customElements.define("side-nav", SideNav);
