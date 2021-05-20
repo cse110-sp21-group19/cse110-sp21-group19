@@ -58,14 +58,14 @@ request.onupgradeneeded = function(event) {
 Object Stores:
 BulletDB:
 {
-	Log: (‘daily’, ‘monthly’, ‘future’)
-	Type: (‘note’, ‘event’, ‘type’)
-	Month:
-	Day:
-	Year:
-	Important: (true or false)
-	Text: 
-	Parent/Indent: (will either be id of parent or how many times to indent)
+    Log: (‘daily’, ‘monthly’, ‘future’)
+    Type: (‘note’, ‘event’, ‘type’)
+    Month:
+    Day:
+    Year:
+    Important: (true or false)
+    Text: 
+    Parent/Indent: (will either be id of parent or how many times to indent)
 }
 
 EntriesDB:
