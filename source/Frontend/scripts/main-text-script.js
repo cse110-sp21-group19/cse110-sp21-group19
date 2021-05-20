@@ -69,7 +69,6 @@ INPUT.addEventListener("keyup", function(event) {
 */
 function editableEntry(entry) {
 	let bulletEntryRoot = entry.shadowRoot;
-	console.log(bulletEntryRoot);
 	const bulletEntry = bulletEntryRoot.querySelector(".bullet-entry");
 	const inputted = bulletEntryRoot.getElementById("bullet-inputted");
 	if (inputted) {
