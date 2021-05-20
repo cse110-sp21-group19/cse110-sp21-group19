@@ -12,22 +12,14 @@
 		// change inner html of template to the correct format
 		template.innerHTML = `
 			<link rel="stylesheet" href="style/css/entrybar.css">
-			<!-- Begin Additional entries-->
-			<div id="additional" class="additional">
-				<div class="saved_entries">
-				</div>
-				<div class="inactive-bar">
-					<button id="btn"></button>
-				</div>
-
-				<div class="active-bar">
-					<span class="close">&times;</span>
-					<div class="content">
-					</div>
-				</div> 
+			<div class="inactive-bar">
+				<button id="btn"></button>
 			</div>
-			<!-- End Additional entries-->
-            
+			<div class="active-bar">
+				<span class="close">&times;</span>
+				<div class="content">
+				</div>
+			</div> 
 			`;
 	
 		// create a shadow root for this web component
