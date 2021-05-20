@@ -1,0 +1,91 @@
+/* Additional Entries - Malhar */
+
+@import '../abstracts/mixins', '../abstracts/variables';
+
+/* Begin styling addl button */
+
+.additional{
+    .active-bar{
+        background: $accent;
+        height: 20vh;
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 2rem 0 2rem;
+        border-radius: 1rem;
+    
+        .close{
+            text-align: left;
+            font-size: 30px;
+            color: black;
+        }
+        .close:hover{
+            cursor: pointer;
+        }
+        .content{
+            height: 15vh;
+            width: 70%;
+            min-width: 55%;
+            background: white;
+            border-radius: 1rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0;
+            display: flex;
+            justify-content: space-evenly;
+        }
+    
+    }
+    .inactive-bar{
+        width: 3vw;
+        height: 3vw;
+        min-width: 3vw;
+        min-height: 3vw;
+        margin: 0 1rem 2rem;
+        background: transparent;
+        border-radius: 1vw;
+        padding: 0.2rem;
+        float: right;
+        display: grid;
+        justify-content: center;
+        white-space: nowrap;   
+    }
+    .inactive-bar:hover{
+        cursor: pointer;
+    }
+    #btn{
+        height: 55px;
+        width: 55px;
+        border: 2px solid black;
+        background: $accent; // #E5E5E5;
+        border-radius: 50%;
+        grid-column-start: 2;
+        grid-column-end: 5;
+    }
+    #btn:hover{
+        cursor: pointer;
+    }
+    #btn::before {
+    content: " ";
+    display: block;
+    background-color: black;
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    margin-left: 13px;
+    }
+    #btn::after {
+        content: " ";
+        display: block;
+        background-color: black;
+        position: absolute;
+        width: 15px;
+        height: 2px;
+        margin-left: 13px;
+        transform: rotate(90deg);
+        margin-top: 0px;
+    }
+    
+}
+
+/* End styling addl button */
