@@ -58,5 +58,5 @@ let noteText = document.getElementById('note_content');
 let submit = document.getElementById('submit');
 submit.addEventListener('click', (event) => {
     event.preventDefault();
-    add(noteTitle, noteText);
+    add(noteTitle.value, noteText.value);
 });

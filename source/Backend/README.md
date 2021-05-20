@@ -21,6 +21,9 @@ transaction = db.transaction([list of objectStores], mode);
 
 ![image](https://user-images.githubusercontent.com/21044142/118936816-bc49ef80-b901-11eb-9fc3-ca6e110ce1a2.png)
 
+BETTER OPEN REQUEST WORKFLOW CHART:
+![image](https://user-images.githubusercontent.com/21044142/118943960-f7035600-b908-11eb-8485-05bd4417fa99.png)
+
 All intereactions with the database must begin with an **open** request. When opening a database, you pass in a name and a version.
 ~~~
 // opening databse
@@ -49,3 +52,5 @@ request.onupgradeneeded = function(event) {
 
 - **Database version is less than requested version**: FAIL to open database (**onerror** event fired?)
   - opening a database has a third event **onerror** that handles any errors.
+
+# Database design
