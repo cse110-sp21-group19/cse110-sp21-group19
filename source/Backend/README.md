@@ -53,4 +53,33 @@ request.onupgradeneeded = function(event) {
 - **Database version is less than requested version**: FAIL to open database (**onerror** event fired?)
   - opening a database has a third event **onerror** that handles any errors.
 
-# Database design
+# Database design (object stores)
+~~~
+Object Stores:
+BulletDB:
+{
+	Log: (‘daily’, ‘monthly’, ‘future’)
+	Type: (‘note’, ‘event’, ‘type’)
+	Month:
+	Day:
+	Year:
+	Important: (true or false)
+	Text: 
+	Parent/Indent: (will either be id of parent or how many times to indent)
+}
+
+EntriesDB:
+{
+    Date: ‘05/20/2021’,
+    Order:
+    Media:
+    Type: 
+}
+~~~
+
+# Other Resources:
+IndexedDB demo: https://github.com/craigshoemaker/webstorage-indexeddb
+
+Storing media: https://hacks.mozilla.org/2012/02/storing-images-and-files-in-indexeddb/
+
+Compound indexes: https://stackoverflow.com/questions/16501459/javascript-searching-indexeddb-using-multiple-indexes
