@@ -16,5 +16,36 @@ Transactions use up a lot of resources, so when we are not chaging any of the da
 transaction = db.transaction([list of objectStores], mode);
 ~~~
 
-## Request-Based
- "Each operation against the database is described as involving a request to open the database, access an object store, and so on."
+## Requests and lifecycle:
+"Each operation against the database is described as involving a request to open the database, access an object store, and so on."
+
+![image](https://user-images.githubusercontent.com/21044142/118936816-bc49ef80-b901-11eb-9fc3-ca6e110ce1a2.png)
+
+All intereactions with the database must begin with an **open** request. When opening a database, you pass in a name and a version.
+~~~
+// opening databse
+let request = window.indexedDB.open("name", versionNum);
+~~~
+
+During the **open** request, the version number is checked.
+
+- **Database doesn't exist, or current version is greater than requested**: the **upgradeneeded** event is fired.
+  - "During the upgrade needed event, you have an opportunity to manipulate object stores by adding or removing stores, keys, and indices."
+
+~~~
+//example
+request.onupgradeneeded = function(event) {
+    // Save the IDBDatabase interface
+    let db = request.result;
+
+    // Create an objectStore for this database
+    let store = db.createObjectStore("NoteStore", {
+        autoIncrement: true
+    });
+};
+~~~
+
+- **Database version is equal to the current version**: **upgradeneeded** event not fired and successful (**onsuccess** event is fired).
+
+- **Database version is less than requested version**: FAIL to open database (**onerror** event fired?)
+  - opening a database has a third event **onerror** that handles any errors.
