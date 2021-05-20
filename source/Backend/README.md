@@ -83,3 +83,5 @@ IndexedDB demo: https://github.com/craigshoemaker/webstorage-indexeddb
 Storing media: https://hacks.mozilla.org/2012/02/storing-images-and-files-in-indexeddb/
 
 Compound indexes: https://stackoverflow.com/questions/16501459/javascript-searching-indexeddb-using-multiple-indexes
+
+Intro to indexeddb: https://www.codemag.com/Article/1411041/Introduction-to-IndexedDB-The-In-Browser-Database
