@@ -58,13 +58,12 @@ request.onupgradeneeded = function(event) {
 Object Stores:
 BulletDB:
 {
-    Log: (‘daily’, ‘monthly’, ‘future’)
-    Type: (‘note’, ‘event’, ‘type’)
-    Month:
-    Day:
-    Year:
-    Important: (true or false)
-    Text: 
+    log: (‘daily’, ‘monthly’, ‘future’)
+    type: (‘note’, ‘event’, ‘type’)
+    date:
+    priority: (true or false)
+    content: 
+    completed:
     Parent/Indent: (will either be id of parent or how many times to indent)
 }
 
@@ -75,6 +74,15 @@ EntriesDB:
     Media:
     Type: 
 }
+
+FRONTEND BULLET ENTRY ATTRIBUTES:
+let entry = {
+    "type": BULLETTYPE.value,
+    "date": new Date(Date.now()),
+    "content": BULLETINPUT.value,
+    "priority": false,
+    "completed": false
+};
 ~~~
 
 # Other Resources:

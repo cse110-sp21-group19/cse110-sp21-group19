@@ -6,7 +6,7 @@
 } */
 
 //making sure indexeddb is supported in multiple browsers
-
+console.log(new Date(Date.now()))
 function add(title, text) {
     window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 
