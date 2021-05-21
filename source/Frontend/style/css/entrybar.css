@@ -7,14 +7,16 @@
 .active-bar {
   background: #a1b3a1;
   height: 20vh;
+  width: 85%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 1rem 2rem 0 2rem;
+  padding: 1rem 2rem 1rem 2rem;
   border-radius: 1rem;
+  margin-left: 1.8rem;
 }
 
 .active-bar .close {
@@ -28,12 +30,12 @@
 }
 
 .active-bar .content {
-  height: 15vh;
-  width: 70%;
+  height: 20vh;
+  width: 75%;
   min-width: 55%;
   background: white;
   border-radius: 1rem;
-  margin-top: 1rem;
+  margin-top: 0;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0;
