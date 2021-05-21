@@ -7,17 +7,6 @@ class SideNav extends HTMLElement{
 		super();
 
 		const template = document.createElement("template");
-		//            <button id="sn-expand">&#9776;</button>
-		//					// <h1 id="side-nav-log-title" class="side-nav-log-title">${DAILY}</h1>
-		// template.innerHTML = `
-        //     <div id="side-nav" class="side-nav">
-		// 		<div id="burger-and-title" class="burger-and-title">
-        //         	<input type="checkbox"> </input>
-
-        //         	<span></span>
-        //         	<span></span>
-        //         	<span></span>
-		// 		</div>
 
         //         <ul id="side-nav-menu">
         //             <a id="sn-future-log" class="sn-link" href="#"><li>${FUTURE}</li></a>
@@ -25,7 +14,6 @@ class SideNav extends HTMLElement{
         //             <a id="sn-monthly-log" class="sn-link" href="#"><li>${MONTHLY}</li></a>
         //         </ul>
         //     </div>
-        // `;
 		template.innerHTML = `
 			<div id="burger-and-title" class="burger-and-title">
 				<div class="burger" id="side-nav-burger">
@@ -34,9 +22,7 @@ class SideNav extends HTMLElement{
 					<div class="z" id="z"></div>
 				</div>   
 				<h1 class="side-nav-title">Daily Log</h1>
-			</div>
-
-			
+			</div>			
 		`;
 
 		// create a shadow root for this web component
@@ -53,19 +39,6 @@ class SideNav extends HTMLElement{
 		shadow.appendChild(linkElem);
         
 	}
-
-	// connectedCallback(){
-	// 	const expand = this.shadowRoot.getElementById("side-nav-burger");
-	// 	expand.addEventListener("click", ()=>{
-	// 		if(expand.classList.contains("open")){
-
-	// 		}
-	// 		else{
-	// 			openMenu();
-	// 		}
-	// 	});
-	// }
-
 
 }
  

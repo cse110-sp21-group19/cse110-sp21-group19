@@ -162,20 +162,7 @@
         .x,.y{
             margin-bottom: 6px;
         }
-        .originx{
-            transform: rotate(-45deg) translate(-3px, 1px);
-            background: $light;
-        }
-        .originy{
-            opacity: 1;
-        }
-        .originz{
-            transform: rotate(45deg) translate(0, 1px);
-            background: $light;
-        }
-        .origin{
-            transform: none;
-        }
+
         .transformx{
             opacity: 1;
             transform: rotate(45deg) translate(3px, -1px);
