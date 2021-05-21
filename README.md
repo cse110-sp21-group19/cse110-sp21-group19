@@ -52,4 +52,7 @@ This quarter, we will be working on making a [Bullet Journal](https://en.wikiped
 - Here are the main scripts for working with our project:
   - ```npm run lint``` - Runs eslint to give styling feedback
   - ```npm run lint:fix``` - Fixes minor linting errors
+  - ```npm run test``` - Runs our testing suite framework
+  - - ```npm run docs -- destinationfile.file sourcefile.file``` - Runs our testing suite framework
+
 
