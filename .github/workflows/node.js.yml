@@ -48,8 +48,9 @@ jobs:
 
   test:
     runs-on: 
-      matrix:
-        [ubuntu-latest,windows-latest]
+      strategy:
+        matrix:
+          [ubuntu-latest,windows-latest]
     
     strategy:
       matrix:
