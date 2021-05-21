@@ -1,0 +1,109 @@
+/* Additional Entries - Malhar */
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* colors */
+/* spacing */
+/* Begin styling addl button */
+.active-bar {
+  background: #a1b3a1;
+  height: 20vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem 2rem 0 2rem;
+  border-radius: 1rem;
+}
+
+.active-bar .close {
+  text-align: left;
+  font-size: 30px;
+  color: black;
+}
+
+.active-bar .close:hover {
+  cursor: pointer;
+}
+
+.active-bar .content {
+  height: 15vh;
+  width: 70%;
+  min-width: 55%;
+  background: white;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.inactive-bar {
+  width: 3vw;
+  height: 3vw;
+  min-width: 3vw;
+  min-height: 3vw;
+  margin: 0 1rem 2rem;
+  background: transparent;
+  border-radius: 1vw;
+  padding: 0.2rem;
+  float: right;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  white-space: nowrap;
+}
+
+.inactive-bar:hover {
+  cursor: pointer;
+}
+
+#btn {
+  height: 55px;
+  width: 55px;
+  border: 2px solid black;
+  background: #a1b3a1;
+  border-radius: 50%;
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  grid-column-end: 5;
+}
+
+#btn:hover {
+  cursor: pointer;
+}
+
+#btn::before {
+  content: " ";
+  display: block;
+  background-color: black;
+  position: absolute;
+  width: 15px;
+  height: 2px;
+  margin-left: 13px;
+}
+
+#btn::after {
+  content: " ";
+  display: block;
+  background-color: black;
+  position: absolute;
+  width: 15px;
+  height: 2px;
+  margin-left: 13px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  margin-top: 0px;
+}
+
+/* End styling addl button */
+/*# sourceMappingURL=entrybar.css.map */

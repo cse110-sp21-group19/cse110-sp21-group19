@@ -48,27 +48,6 @@
   margin-bottom: 6px;
 }
 
-.burger-and-title .burger .originx {
-  -webkit-transform: rotate(-45deg) translate(-3px, 1px);
-          transform: rotate(-45deg) translate(-3px, 1px);
-  background: #EDEBE6;
-}
-
-.burger-and-title .burger .originy {
-  opacity: 1;
-}
-
-.burger-and-title .burger .originz {
-  -webkit-transform: rotate(45deg) translate(0, 1px);
-          transform: rotate(45deg) translate(0, 1px);
-  background: #EDEBE6;
-}
-
-.burger-and-title .burger .origin {
-  -webkit-transform: none;
-          transform: none;
-}
-
 .burger-and-title .burger .transformx {
   opacity: 1;
   -webkit-transform: rotate(45deg) translate(3px, -1px);

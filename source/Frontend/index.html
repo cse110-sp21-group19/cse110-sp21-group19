@@ -10,9 +10,6 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style/css/main.css">
-  <!-- Additional entries stylesheet-->
-  <link rel="stylesheet" href="style/css/addlEntryBtn.css">
-  <link rel="stylesheet" href="style/css/modals.css">
 </head>
 <body>
   <main>
@@ -22,15 +19,17 @@
         <div id="weekly-nav-container" class="weekly-nav-container">           
         </div>
         <div id="daily-log" class="daily-log">
-            <div id="date" class="daily-log-title"><h1>DATE HERE</h1></div>
+            <div id="date" class="daily-log-title">
+              <i class="prev-log fas fa-chevron-left"></i>
+              <h1>DATE HERE</h1>
+              <i class="next-log fas fa-chevron-right"></i>
+            </div>
             <div id="main-text" class="main-text">
             </div>
 
             <!-- Begin Additional entries-->
             <div id="additional" class="additional">
-              <div class="saved_entries">
-              </div>
-                <addl-entrybtn></addl-entrybtn> 
+              <entry-bar></entry-bar>
             </div>
             <!-- End Additional entries-->
   </main>
@@ -46,8 +45,7 @@
   <script src="./components/side-nav.js" type="module"></script>
   <script src="./components/weekly-nav.js" type="module"></script>
 
-  <script src="./components/addl_entries/addlEntryBtn.js" type="module"></script>
-  <script src="./components/addl_entries/modals.js" type="module"></script>
+  <script src="./components/addl_entries/entry-bar.js" type="module"></script>
   
   <!-- Main Script -->
   <script src="./scripts/main-text-script.js" type="module"></script>

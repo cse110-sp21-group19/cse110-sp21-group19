@@ -16,7 +16,20 @@ body {
             grid-column-start: 2;
 
             &-title {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
                 padding: 1rem;
+
+                i {
+                    font-size: 1.5rem;
+                    padding: 0 1rem;
+
+                    &:hover {
+                        color: grey;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }
