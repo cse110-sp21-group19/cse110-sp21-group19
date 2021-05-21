@@ -23,6 +23,10 @@
         background-color: $light;
     }
 
+    .task-bullet:hover {
+        cursor: pointer;
+    }
+
 }
 
 .bullet-entry:hover > button:hover {

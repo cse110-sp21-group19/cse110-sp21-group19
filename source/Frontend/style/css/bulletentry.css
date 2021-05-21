@@ -112,6 +112,10 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #EDEBE6;
 }
 
+.bullet-entry .task-bullet:hover {
+  cursor: pointer;
+}
+
 .bullet-entry:hover > button:hover {
   color: black !important;
 }
