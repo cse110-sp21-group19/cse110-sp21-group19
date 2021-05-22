@@ -22,7 +22,16 @@ class SideNav extends HTMLElement{
 					<div class="z" id="z"></div>
 				</div>   
 				<h1 class="side-nav-title">Daily Log</h1>
-			</div>			
+			</div>
+			<div class="side-nav-menu-container">
+			<div class="side-nav-menu" id="side-nav-menu">
+				<ul>
+					<li><a id="sn-daily-log" class="sn-link" href="#">${DAILY}</a></li>
+					<li><a id="sn-monthly-log" class="sn-link" href="#">${MONTHLY}</a></li>
+                    <li><a id="sn-future-log" class="sn-link" href="#">${FUTURE}</a></li>
+                </ul>
+			</div>
+			</div>
 		`;
 
 		// create a shadow root for this web component

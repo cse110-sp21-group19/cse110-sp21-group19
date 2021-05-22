@@ -2,14 +2,14 @@
 @import '../abstracts/mixins', '../abstracts/variables';
 
 .weekly-nav-title{
-    margin-top: 50px; //Fix this later
+    margin-top: 1.4rem; //Fix this later
     margin-bottom: 0.5rem;
     margin-left: 0.9rem;
 
 }
 .week-container{
     background: $accent;
-
+    z-index: -1;
     border-radius: 1rem;
     padding: 0.5rem;
     display: grid;
@@ -17,7 +17,6 @@
     height: 80vh; //MAY HAVE TO CHANGE THIS -- look at layout file weekly nav container height
 
     .wn-item{
-        //border-left: 0.4rem solid blue;
         margin: 0.4rem;
         display: grid;
         background: white;
@@ -27,17 +26,6 @@
         &:hover{
             filter: brightness(90%);
         }
-        // .wn-day-of-week{
-        //     font-family: $sans-serif;
-        //     font-weight: lighter;
-        //     pointer-events: none;
-        //     // margin-left: 2rem;
-        //     grid-row-start: 1;
-        //     margin-bottom: 0;
-        //     padding-bottom: 0;
-        //     grid-column-start: 1;
-        //     font-size: 1em;
-        // }
         .wn-date{
             pointer-events: none;
             grid-column-start: 1;

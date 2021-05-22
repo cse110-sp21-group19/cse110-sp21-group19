@@ -4,13 +4,14 @@
 /* colors */
 /* spacing */
 .weekly-nav-title {
-  margin-top: 50px;
+  margin-top: 1.4rem;
   margin-bottom: 0.5rem;
   margin-left: 0.9rem;
 }
 
 .week-container {
   background: #a1b3a1;
+  z-index: -1;
   border-radius: 1rem;
   padding: 0.5rem;
   display: -ms-grid;

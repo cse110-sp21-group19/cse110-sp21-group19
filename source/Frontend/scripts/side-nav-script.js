@@ -25,12 +25,19 @@ function openMenu(){
     let y = SIDENAVROOT.getElementById("y");
     let z = SIDENAVROOT.getElementById("z");
 
+    let menu = SIDENAVROOT.getElementById("side-nav-menu");
+    let title = SIDENAVROOT.getElementById("burger-and-title");
     expand.classList.remove("closed");
 	expand.classList.add("opened");
 
     x.classList.add("transformx");
     y.classList.add("transformy");
     z.classList.add("transformz");
+
+
+    menu.style.maxHeight = "89vh";
+    title.style.borderBottomLeftRadius = "0"
+    title.style.borderBottomRightRadius = "0";
 }/* openMenu */
 
 
@@ -46,6 +53,14 @@ function closeMenu(){
     let y = SIDENAVROOT.getElementById("y");
     let z = SIDENAVROOT.getElementById("z");
 
+    let menu = SIDENAVROOT.getElementById("side-nav-menu");
+    let title = SIDENAVROOT.getElementById("burger-and-title");
+    menu.style.maxHeight = null;
+    
+    setTimeout(function() {
+        title.style.borderBottomLeftRadius = "0.8em"
+        title.style.borderBottomRightRadius = "0.8em";
+      }, 100);
 
     expand.classList.remove("opened");
 	expand.classList.add("closed");
@@ -53,4 +68,6 @@ function closeMenu(){
     x.classList.remove("transformx");
     y.classList.remove("transformy");
     z.classList.remove("transformz");
+
+
 }/* closeMenu */
