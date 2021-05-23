@@ -4,16 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --passWithNoTests \"./source/Testing/index.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"source/**\" --ext .js",
-    "lint:fix": "npm run lint -- --fix",
-    "docs": "\"./node_modules/.bin/jsdoc\" -d"
+    "lint:fix": "npm run lint -- --fix"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^7.25.0",
-    "jest": "^26.6.3",
-    "jsdoc": "^3.6.7"
+    "eslint": "^7.25.0"
   }
 }
