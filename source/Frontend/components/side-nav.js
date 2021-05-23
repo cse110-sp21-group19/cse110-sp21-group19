@@ -2,6 +2,9 @@
 const FUTURE = "Future Log";
 const DAILY = "Daily Log";
 const MONTHLY = "Monthly Log";
+const DHASH = "#daily-log";
+const MHASH = "#monthly-log";
+const FHASH = "#future-log";
 class SideNav extends HTMLElement{
 	constructor() {
 		super();
@@ -26,9 +29,9 @@ class SideNav extends HTMLElement{
 			<div class="side-nav-menu-container">
 			<div class="side-nav-menu" id="side-nav-menu">
 				<ul>
-					<li><a id="sn-daily-log" class="sn-link" href="#">${DAILY}</a></li>
-					<li><a id="sn-monthly-log" class="sn-link" href="#">${MONTHLY}</a></li>
-                    <li><a id="sn-future-log" class="sn-link" href="#">${FUTURE}</a></li>
+					<li><a id="sn-daily-log" class="sn-link" href=${DHASH}>${DAILY}</a></li>
+					<li><a id="sn-monthly-log" class="sn-link" href=${MHASH}>${MONTHLY}</a></li>
+                    <li><a id="sn-future-log" class="sn-link" href=${FHASH}>${FUTURE}</a></li>
                 </ul>
 			</div>
 			</div>

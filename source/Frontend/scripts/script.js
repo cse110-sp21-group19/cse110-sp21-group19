@@ -1,53 +1,26 @@
+// script.js
 
-//adding weekly navigation web component
-let week = createDaysOfWeekArray();
-const WEEKLYNAV = document.createElement("weekly-nav");
-WEEKLYNAV.daysOfWeek = week;
-let today = new Date();
-WEEKLYNAV.selectedDay = today.getDay() + 1;
-document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
+import { router } from './router.js';
 
-//Onclick listener for the items inside the weekly nav
-const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
-weeklyNavContainer.addEventListener("click", (event)=>{
-	if(event.target.className == "wn-item"){
-		//which day was selected
-		let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
-		WEEKLYNAV.selectedDay = index;
+const DHASH = "#daily-log";
+const MHASH = "#monthly-log";
+const FHASH = "#future-log";
 
-		//change title on top of main text ... LATER will change what is on maintext
-		let selectedInfo = WEEKLYNAV.selectedInfo;
-		let dailyLogTitle = selectedInfo.day + ", " + MONTHS[selectedInfo.month] + " " + selectedInfo.date;
-		document.getElementsByClassName("daily-log-title")[0].querySelector("h1").innerHTML = dailyLogTitle;
+//hash change listener for side nav menu links
+function locationHashChanged() {
+	if(location.hash == DHASH){
+		router.setState("daily-log", false, 0);
+	}
+	else if(location.hash == MHASH){
+		router.setState("monthly-log", false, 0);
+	}
+	else if(location.hash == FHASH){
+		router.setState("future-log", false, 0);
 	}
 
-});
-
-/*
- * createDaysofWeekyArray 
- * creates an array of days of the week for the current week
- * 
- * @param {}
- * 
- * @returns An array of date objects (As is, if we attatch important bullets, this will change)
- * for the days of the current week
- * 
- * @example 
- *      createDaysOfWeekArray()
- */
-function createDaysOfWeekArray(){
-	//NOTE: if we want to pass data into the weekly nav like important bullets we can attach to this array
-	let daysOfWeek = [];
-	let currDate = new Date();
-	//start on Sunday
-	currDate.setDate((currDate.getDate() - currDate.getDay()));
-	for(let i = 0; i < 7; i++){
-		daysOfWeek.push(new Date(currDate));
-		currDate.setDate(currDate.getDate() + 1);
-	}
-
-	return daysOfWeek;
-} /* createDaysofWeekArray */
+}
+  
+window.onhashchange = locationHashChanged;
 
 // Add Date to the top of the daily log
 const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];

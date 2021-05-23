@@ -96,7 +96,27 @@
   transition: max-height 0.1s ease-out;
 }
 
+.side-nav-menu-container .side-nav-menu ul a {
+  color: black;
+}
+
+.side-nav-menu-container .side-nav-menu ul a:visited {
+  color: black;
+}
+
+.side-nav-menu-container .side-nav-menu ul a:active {
+  color: black;
+}
+
+.side-nav-menu-container .side-nav-menu ul a:hover {
+  color: #EDEBE6;
+}
+
 .side-nav-menu-container .side-nav-menu ul li {
+  margin: 1.4rem 0 1.4rem 0;
+  padding: 0.5rem 0 0.5rem 0;
   list-style: none;
+  font-size: 2em;
+  cursor: pointer;
 }
 /*# sourceMappingURL=sidenav.css.map */

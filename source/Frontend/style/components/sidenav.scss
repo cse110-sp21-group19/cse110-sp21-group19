@@ -72,8 +72,24 @@
         transition: max-height 0.22s ease-in;
         transition: max-height 0.1s ease-out;
         ul{
+            a{
+                color:black;
+                &:visited{
+                    color: black;
+                }
+                &:active{
+                    color:black;
+                }
+                &:hover{
+                    color: $light;
+                }
+            }
             li{
+                margin: 1.4rem 0 1.4rem 0;
+                padding: 0.5rem 0 0.5rem 0;
                 list-style: none;
+                font-size: 2em;
+                cursor: pointer; 
             }
         
         }

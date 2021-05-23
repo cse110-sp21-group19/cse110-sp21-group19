@@ -13,6 +13,14 @@ expand.addEventListener("click", ()=>{
     }
 });
 
+// const sideNavList = SIDENAVROOT.getElementById("side-nav-list");
+// sideNavList.addEventListener("click", (event)=>{
+//     if(event.target.className = "sn-list-item"){
+//         let index = [].indexOf.call(sideNavList.childNodes, event.target);
+//         console.log(index);
+//     }
+// })
+
 /*
  * openMenu
  * function to open the side nav menu, adds classes to perform animations/transformations
