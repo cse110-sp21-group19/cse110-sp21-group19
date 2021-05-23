@@ -98,6 +98,7 @@ Sasya Q&A
 - What does 1-click build actually look like?
 - What is deployment? Pages / Heroku / other?
 - How should docs be presented?
+- Does Codacy need all those permissions?
 
 ## Ended at
 1:18pm PDT
