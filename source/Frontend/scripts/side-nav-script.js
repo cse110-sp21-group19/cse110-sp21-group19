@@ -1,7 +1,10 @@
+//side-nav-script.js
+const MENUHEIGHT = "89vh";
+const BORDERADIUS = "0.8em";
 //Adding the side nav menu web component 
 const SIDENAV  = document.createElement("side-nav");
 document.getElementById("side-nav-container").appendChild(SIDENAV);
-const SIDENAVROOT = SIDENAV.shadowRoot;
+export const SIDENAVROOT = SIDENAV.shadowRoot;
 //onclick listener for the side nav menu button
 const expand = SIDENAVROOT.querySelector("[class='burger']");
 expand.addEventListener("click", ()=>{
@@ -12,14 +15,6 @@ expand.addEventListener("click", ()=>{
         openMenu();
     }
 });
-
-// const sideNavList = SIDENAVROOT.getElementById("side-nav-list");
-// sideNavList.addEventListener("click", (event)=>{
-//     if(event.target.className = "sn-list-item"){
-//         let index = [].indexOf.call(sideNavList.childNodes, event.target);
-//         console.log(index);
-//     }
-// })
 
 /*
  * openMenu
@@ -35,6 +30,7 @@ function openMenu(){
 
     let menu = SIDENAVROOT.getElementById("side-nav-menu");
     let title = SIDENAVROOT.getElementById("burger-and-title");
+
     expand.classList.remove("closed");
 	expand.classList.add("opened");
 
@@ -43,7 +39,7 @@ function openMenu(){
     z.classList.add("transformz");
 
 
-    menu.style.maxHeight = "89vh";
+    menu.style.maxHeight = MENUHEIGHT;
     title.style.borderBottomLeftRadius = "0"
     title.style.borderBottomRightRadius = "0";
 }/* openMenu */
@@ -56,7 +52,7 @@ function openMenu(){
  * @example
  * 	closeMenu()
  */
-function closeMenu(){
+export function closeMenu(){
     let x = SIDENAVROOT.getElementById("x");
     let y = SIDENAVROOT.getElementById("y");
     let z = SIDENAVROOT.getElementById("z");
@@ -66,8 +62,8 @@ function closeMenu(){
     menu.style.maxHeight = null;
     
     setTimeout(function() {
-        title.style.borderBottomLeftRadius = "0.8em"
-        title.style.borderBottomRightRadius = "0.8em";
+        title.style.borderBottomLeftRadius = BORDERADIUS;
+        title.style.borderBottomRightRadius = BORDERADIUS;
       }, 100);
 
     expand.classList.remove("opened");

@@ -39,10 +39,10 @@
   z-index: 1;
   -webkit-transform-origin: 4px 0px;
           transform-origin: 4px 0px;
-  -webkit-transition: background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-  transition: background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  -webkit-transition: background 0.4s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
+  transition: background 0.4s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
+  transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.4s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+  transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.4s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease, -webkit-transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 
 .burger-and-title .burger .x, .burger-and-title .burger .y {
@@ -92,8 +92,8 @@
   border-bottom-right-radius: 0.8em;
   -webkit-transition: max-height 0.22s ease-in;
   transition: max-height 0.22s ease-in;
-  -webkit-transition: max-height 0.1s ease-out;
-  transition: max-height 0.1s ease-out;
+  -webkit-transition: max-height 0.14s ease-out;
+  transition: max-height 0.14s ease-out;
 }
 
 .side-nav-menu-container .side-nav-menu ul a {
@@ -109,6 +109,8 @@
 }
 
 .side-nav-menu-container .side-nav-menu ul a:hover {
+  -webkit-transition: color 0.25s linear;
+  transition: color 0.25s linear;
   color: #EDEBE6;
 }
 

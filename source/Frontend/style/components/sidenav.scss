@@ -1,7 +1,7 @@
 /* Sidebar - Cory */
 
 @import '../abstracts/mixins', '../abstracts/variables';
-
+//TODO: Replace menu colors with variables
 .burger-and-title{
     display: flex;
     align-items: center;
@@ -28,8 +28,8 @@
 
             transform-origin: 4px 0px;
             
-            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-                        background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+            transition: transform 0.4s cubic-bezier(0.77,0.2,0.05,1.0),
+                        background 0.4s cubic-bezier(0.77,0.2,0.05,1.0),
                         opacity 0.55s ease;
         }
         .x,.y{
@@ -70,7 +70,7 @@
         border-bottom-left-radius: 0.8em;
         border-bottom-right-radius: 0.8em;
         transition: max-height 0.22s ease-in;
-        transition: max-height 0.1s ease-out;
+        transition: max-height 0.14s ease-out;
         ul{
             a{
                 color:black;
@@ -81,6 +81,7 @@
                     color:black;
                 }
                 &:hover{
+                    transition: color 0.25s linear;
                     color: $light;
                 }
             }

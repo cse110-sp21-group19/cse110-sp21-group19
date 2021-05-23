@@ -1,13 +1,13 @@
 /* Weekly Nav - Cory */
 @import '../abstracts/mixins', '../abstracts/variables';
 
-.weekly-nav-title{
+.todo-title{
     margin-top: 1.4rem; //Fix this later
     margin-bottom: 0.5rem;
     margin-left: 0.9rem;
 
 }
-.week-container{
+.todo-container{
     background: $accent;
     z-index: -1;
     border-radius: 1rem;
@@ -20,7 +20,7 @@
         margin: 0.4rem;
         display: grid;
         background: white;
-        border-radius: 0.4rem;
+        border-radius: 0.5rem;
         grid-template-rows: 1;
         grid-template-columns: auto auto;
         &:hover{

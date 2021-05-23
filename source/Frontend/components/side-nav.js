@@ -24,7 +24,7 @@ class SideNav extends HTMLElement{
 					<div class="y" id="y"></div>
 					<div class="z" id="z"></div>
 				</div>   
-				<h1 class="side-nav-title">Daily Log</h1>
+				<h1 id="side-nav-title" class="side-nav-title">Daily Log</h1>
 			</div>
 			<div class="side-nav-menu-container">
 			<div class="side-nav-menu" id="side-nav-menu">
