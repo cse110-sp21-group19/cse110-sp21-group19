@@ -24,7 +24,8 @@
         grid-template-rows: 1;
         grid-template-columns: auto auto;
         &:hover{
-            filter: brightness(90%);
+            transition: filter 0.15s linear;
+            filter: brightness(85%);
         }
         .wn-date{
             pointer-events: none;

@@ -34,8 +34,12 @@
 }
 
 .week-container .wn-item:hover {
-  -webkit-filter: brightness(90%);
-          filter: brightness(90%);
+  -webkit-transition: -webkit-filter 0.15s linear;
+  transition: -webkit-filter 0.15s linear;
+  transition: filter 0.15s linear;
+  transition: filter 0.15s linear, -webkit-filter 0.15s linear;
+  -webkit-filter: brightness(85%);
+          filter: brightness(85%);
 }
 
 .week-container .wn-item .wn-date {
