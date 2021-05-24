@@ -56,3 +56,9 @@ const MONTHS = ["January", "February", "March", "April", "May", "June", "July", 
 let d = new Date();
 document.getElementById("date").querySelector("h1").innerHTML = DAYS[d.getDay()] + ", " + MONTHS[d.getMonth()] + " " + d.getDate();
 
+//add additional entries bar web component
+const addlEntryBar = document.createElement("entry-bar");
+addlEntryBar.type = "initial";
+const addlEntries = document.querySelector(".additional")
+addlEntries.appendChild(addlEntryBar);
+

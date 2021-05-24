@@ -30,21 +30,33 @@
 }
 
 .active-bar .content {
-  height: 20vh;
-  width: 75%;
+  height: 15vh;
+  width: 65%;
   min-width: 55%;
   background: white;
   border-radius: 1rem;
   margin-top: 0;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 0 1rem 2rem 1rem;
+}
+
+.active-bar .new-entry {
+  overflow: visible;
+  width: 4rem;
+  height: 5rem;
+  margin-top: 1rem;
+}
+
+.active-bar .new-entry:hover {
+  cursor: pointer;
 }
 
 .inactive-bar {
@@ -105,6 +117,93 @@
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
   margin-top: 0px;
+}
+
+*:focus {
+  outline: none;
+}
+
+.editing {
+  display: none;
+  padding: 2rem;
+  height: 85vh;
+  width: 90%;
+  margin-left: 3rem;
+  background: #a1b3a1;
+  border-radius: 1rem;
+}
+
+.editing h1 {
+  text-align: center;
+}
+
+.editing .close {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.editing .close:hover {
+  cursor: pointer;
+}
+
+.editing .close-edit {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.editing .close-edit:hover {
+  cursor: pointer;
+}
+
+.editing .text-content {
+  margin-top: 1rem;
+  width: 98.5%;
+  height: 70%;
+  background: white;
+  border-radius: 1rem;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  overflow-y: auto;
+}
+
+.editing .save-btn {
+  width: 5%;
+  float: right;
+}
+
+.editing .save-btn:hover {
+  cursor: pointer;
+}
+
+.note {
+  overflow: visible;
+  width: 4rem;
+  height: 5rem;
+  margin-right: 7rem;
+  padding-top: 1.5rem;
+}
+
+.note:hover {
+  cursor: pointer;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltiptext {
+  position: absolute;
+  top: 10px;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #616161;
+  border-radius: 10px;
 }
 
 /* End styling addl button */
