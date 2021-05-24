@@ -1,16 +1,25 @@
+// router.js
+
 import {SIDENAVROOT, closeMenu} from "./side-nav-script.js";
-
-
+import {createWeeklyNav} from "./weekly-nav-script.js";
 export const router = {};
 
 const PREVLOG = document.getElementById("prev-log");
 const NEXTLOG = document.getElementById("next-log");
 
-router.setState = (state, statePopped, entryId) => {
+
+//FIX LATER:router copied from lab to get things going
+/**
+ * Set the state for the new page
+ * @param {string} state The new page to set the state of
+ * @param {boolean} statePopped If the request came from a popstate event
+ * @param {number} entryNum if state is 'entry', then entryNum is the num
+ */
+ router.setState = (state, statePopped, date) => {
     switch (state) {
         case "daily-log":
-            dailyLog(entryId);
-            console.log("daily " + entryId);
+            dailyLog();
+            console.log("daily");
             break;
         case "monthly-log":
             monthlyLog();
@@ -23,8 +32,12 @@ router.setState = (state, statePopped, entryId) => {
         default:
             console.log("default");
     }
+    // if(!statePopped && window.location.hash != `#${state}`) {
+    //   pushToHistory(state, entryNum);
+    // }
 }
 
+//TODO ADD DATE IMPLEMENTATION HERE
 function dailyLog(id){
     if (id) {
         document.querySelector(".daily-log-title > h1").innerHTML = "hi";
@@ -42,6 +55,9 @@ function dailyLog(id){
     }
 }
 
+  
+
+//functions to complete 
 function monthlyLog(){
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
     sideNavTitle.textContent = "Monthly Log";
@@ -55,6 +71,7 @@ function monthlyLog(){
 
     //Complete page transformation here
 }
+
 
 function futureLog(){
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
