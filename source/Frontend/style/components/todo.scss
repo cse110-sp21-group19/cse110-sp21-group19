@@ -1,31 +1,32 @@
 /* Weekly Nav - Cory */
 @import '../abstracts/mixins', '../abstracts/variables';
 
-.weekly-nav-title{
+.todo-title{
     margin-top: 1.4rem; //Fix this later
     margin-bottom: 0.5rem;
     margin-left: 0.9rem;
 
 }
-.week-container{
+.todo-container{
     background: $accent;
     z-index: -1;
     border-radius: 1rem;
     padding: 0.5rem;
+    //This will differ from weekly nav
     display: grid;
     grid-template-rows: auto auto auto auto auto auto auto;
+    //Will also add overflow
     height: 80vh; //MAY HAVE TO CHANGE THIS -- look at layout file weekly nav container height
 
     .wn-item{
         margin: 0.4rem;
         display: grid;
         background: white;
-        border-radius: 0.4rem;
+        border-radius: 0.5rem;
         grid-template-rows: 1;
         grid-template-columns: auto auto;
         &:hover{
-            transition: filter 0.15s linear;
-            filter: brightness(85%);
+            filter: brightness(90%);
         }
         .wn-date{
             pointer-events: none;
