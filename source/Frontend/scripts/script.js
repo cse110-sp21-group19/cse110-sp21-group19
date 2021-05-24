@@ -19,7 +19,7 @@ function locationHashChanged() {
 	}
 
 }
-  
+
 window.onhashchange = locationHashChanged;
 
 // Add Date to the top of the daily log

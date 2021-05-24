@@ -58,6 +58,7 @@ class WeeklyNav extends HTMLElement{
 			let day = getDateString(element.getDay());
 			let date = element.getDate();
 			let month = element.getMonth();
+			let year = element.getFullYear();
 
 			let navItem = document.createElement("div");
 			navItem.className = "wn-item";
@@ -73,13 +74,19 @@ class WeeklyNav extends HTMLElement{
 
 			//create hidden month object in order to retrieve it later on click
 			let hiddenMonth = document.createElement("p");
+			hiddenMonth.className = "wn-month";
 			hiddenMonth.textContent = month;
+
+			let hiddenYear = document.createElement("p");
+			hiddenYear.className = "wn-year";
+			hiddenYear.textContent = year;
 
 			navDate.appendChild(dayOfMonth);
 			navDate.appendChild(dayOfWeek);
 
 			navItem.appendChild(navDate);
 			navItem.appendChild(hiddenMonth);
+			navItem.appendChild(hiddenYear);
 
 			navContainer.appendChild(navItem);
 		}); 
@@ -109,7 +116,8 @@ class WeeklyNav extends HTMLElement{
 				dateObj = {
 					"day": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-week']").textContent,
 					"date": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-month']").textContent,
-					"month": currItem.querySelector("p").textContent
+					"month": currItem.querySelector("[class='wn-month']").textContent,
+					"year": currItem.querySelector("[class='wn-year']").textContent
 				};
 			}
 		}

@@ -12,8 +12,10 @@
     z-index: -1;
     border-radius: 1rem;
     padding: 0.5rem;
+    //This will differ from weekly nav
     display: grid;
     grid-template-rows: auto auto auto auto auto auto auto;
+    //Will also add overflow
     height: 80vh; //MAY HAVE TO CHANGE THIS -- look at layout file weekly nav container height
 
     .wn-item{

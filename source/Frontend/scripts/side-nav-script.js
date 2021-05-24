@@ -64,7 +64,7 @@ export function closeMenu(){
     setTimeout(function() {
         title.style.borderBottomLeftRadius = BORDERADIUS;
         title.style.borderBottomRightRadius = BORDERADIUS;
-      }, 100);
+      }, 400);
 
     expand.classList.remove("opened");
 	expand.classList.add("closed");

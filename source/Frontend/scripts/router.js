@@ -12,7 +12,7 @@ export const router = {};
  * @param {boolean} statePopped If the request came from a popstate event
  * @param {number} entryNum if state is 'entry', then entryNum is the num
  */
- router.setState = (state, statePopped, entryNum) => {
+ router.setState = (state, statePopped, date) => {
     switch (state) {
         case "daily-log":
             dailyLog();
@@ -52,6 +52,7 @@ function monthlyLog(){
     //Complete page transformation here
 }
 
+//TODO ADD DATE IMPLEMENTATION HERE
 function dailyLog(){
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
     sideNavTitle.textContent = "Daily Log";

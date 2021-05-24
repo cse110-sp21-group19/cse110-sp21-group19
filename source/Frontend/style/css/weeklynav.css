@@ -31,6 +31,8 @@
       grid-template-rows: 1;
   -ms-grid-columns: auto auto;
       grid-template-columns: auto auto;
+  -webkit-transition: border-left 0.5s ease-in;
+  transition: border-left 0.5s ease-in;
 }
 
 .week-container .wn-item:hover {

@@ -90,10 +90,8 @@
   overflow: hidden;
   border-bottom-left-radius: 0.8em;
   border-bottom-right-radius: 0.8em;
-  -webkit-transition: max-height 0.22s ease-in;
-  transition: max-height 0.22s ease-in;
-  -webkit-transition: max-height 0.14s ease-out;
-  transition: max-height 0.14s ease-out;
+  -webkit-transition: max-height 0.4s ease-in-out;
+  transition: max-height 0.4s ease-in-out;
 }
 
 .side-nav-menu-container .side-nav-menu ul a {
