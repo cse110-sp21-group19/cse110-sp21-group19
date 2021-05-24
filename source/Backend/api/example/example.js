@@ -1,62 +1,195 @@
-// title, text, id?
+/*
+BulletDB:
+        { 
+            Id: (autoincrement),
+            log: (‘daily’, ‘monthly’, ‘future’),
+            type: (‘note’, ‘event’, ‘task’),
+            Date: (MM/DD/YEAR) 05*,
+            priority: (true or false),
+            content: (text content of bullet),
+            Completed: (true or false),
+            Parent/Indent: (will either be id of parent or how many times to indent)
+        }
 
-//checks if it supports indexeddb
-/* if (('indexedDB' in window)) {
-    console.log('This browser supports IndexedDB');
-} */
+EntriesDB:  
+        {
+            Date: ‘05/20/2021’,
+            Order: (auto increment),
+            Type: image or text,
+            Bullets: [“text1”, “text2”],
+            Media: (blob representation)
+        }
+*/
+//CONSTANTS
+const DATABASENAME = "BuJoDatabase";
+const BULLETDB = "bulletDB"
+const ERR_DB_NOT_CREATED = "ERROR: Database hasn't been created!";
 
 //making sure indexeddb is supported in multiple browsers
-console.log(new Date(Date.now()))
-function add(title, text) {
-    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+// let db, tx, store /* index */ ;
 
-    //opening database globally
-    let request = window.indexedDB.open("NotesDatabase", 1);
-    let db, tx, store /* index */ ;
-
-    /* 3 types of handlers */
-    request.onerror = function (event) {
-        console.log(`Error: ${event}`);
-    };
-
-    request.onupgradeneeded = function (event) {
-        // Save the IDBDatabase interface
+/*
+ * createDB
+ * Creates an indexedDB database with the name "BuJoDatabase" and version 1.
+ * BuJoDatabase contains the object stores "bulletStore" and "entryStore"
+ * 
+ * @example createDB();
+ */
+function createDB() {
+    let request = window.indexedDB.open(DATABASENAME, 1);
+    request.onupgradeneeded = function () {
         let db = request.result;
-
-        // Create an objectStore for this database
-        let store = db.createObjectStore("NoteStore", {
-            autoIncrement: true
-        });
-    };
-
-    request.onsuccess = function (event) {
-        db = request.result;
-        tx = db.transaction("NoteStore", 'readwrite');
-        store = tx.objectStore("NoteStore");
-
+        //error opening database
         db.onerror = function (event) {
-            // Generic error handler for all errors targeted at this database's
-            // requests!
             console.error("Database error: " + event.target.errorCode);
         };
 
-        store.put({
-            title: title,
-            text: text
-        });
+        //creating BulletStore(BulletsDB)
+        let bulletStore = db.createObjectStore(BULLETDB, { autoIncrement: true }); 
+        
+        // defining columns in BulletStore
+        //orderId, log, type, date, priority, content, completed
+        bulletStore.createIndex("log", "log", { unique: false });
+        bulletStore.createIndex("type", "type", { unique: false });
+        bulletStore.createIndex("date", "date", { unique: false });
+        bulletStore.createIndex("priority", "priority", { unique: false });
+        bulletStore.createIndex("content", "content", { unique: false });
+        bulletStore.createIndex("completed", "completed", { unique: false });
+        bulletStore.createIndex("orderId", "orderId", { unique: false });
 
-        tx.oncomplete = function () {
-            db.close();
-        }
-
-    };
+        //creating EntriesStore (EntriesDB For additional entries)
+    }
 }
 
-let noteTitle = document.getElementById('note_title');
-let noteText = document.getElementById('note_content'); 
+/* 
+ * createBullet
+ * stores bullet into bulletDB (bulletStore)
+ * 
+ * @param bullet object
+ * let bulletExample = {
+ *      "log": "daily",
+ *      "date": "05/23/2021",
+ *      "priority": true,
+ *      "content": "example text hello this is a test",
+ *      "completed": false,
+ *      "type": note, task, event
+ *       "children": []
+ *   };
+ * 
+ * @return The key of the newly added bullet, or -1 if unsuccessful
+ * 
+ * @example
+ */
+function createBullet(bullet) {
+    
+    //opening database
+    let request = window.indexedDB.open(DATABASENAME);
 
-let submit = document.getElementById('submit');
-submit.addEventListener('click', (event) => {
-    event.preventDefault();
-    add(noteTitle.value, noteText.value);
-});
+    request.onsuccess = function () {
+        let db = request.result;
+        let transaction = db.transaction([BULLETDB], "readwrite");
+        let store = transaction.objectStore(BULLETDB);
+
+        let storeRequest = store.put(bullet);
+
+        //return the key on newly added bullet
+        storeRequest.onsuccess = function (event) {
+            return callback(event.target.result);
+        }
+        
+        //unable to add bullet, returns -1
+        storeRequest.onerror = function() {
+            return -1;
+        }
+
+        transaction.oncomplete = function () {
+            db.close();
+        }
+    }
+    
+    //unable to open database
+    request.onerror = function () {
+        console.log.error(ERR_DB_NOT_CREATED);
+    }
+}
+
+/*
+ * updateBullet
+ * Updates the specified bullet to be equal to the new bullet object
+ * 
+ * @param key - The key of the bullet to update
+ * 
+ * @param bullet - The new bullet object to set the old bullet equal to
+ * 
+ * @return true if successful, false if not
+ * 
+ * @example 
+ *  let bulletExample = {
+ *      "log": "daily",
+ *      "date": "05/23/2021",
+ *      "priority": true,
+ *      "content": "example text hello this is a test",
+ *      "completed": false,
+ *      "type": note, task, event
+ *      "children": []
+ *  };
+ *  updateBullet(1, bulletExample);
+ */
+function updateBullet(key, bullet){
+    let 
+    //opening database
+    let request = window.indexedDB.open(DATABASENAME);
+
+    request.onsuccess
+    //unable to open database
+    request.onerror = function () {
+        console.log.error(ERR_DB_NOT_CREATED);
+    }
+}
+
+/*
+ * getBullet
+ * Returns the specified bullet object from the database
+ * 
+ * @param key - The key of the bullet to get
+ * 
+ * @return The bullet object
+ * 
+ * @example getBullet(1);
+ */
+function getBullet(key){
+
+    //opening database
+    let request = window.indexedDB.open(DATABASENAME);
+
+    request.onsuccess = function(event){
+
+    }
+
+    //unable to open database
+    request.onerror = function(event){
+        
+    }
+}
+
+/*
+ * deleteBullet
+ * Deletes the specified bullet object from the database
+ * 
+ * @param key - The key of the bullet to delete
+ * 
+ * @return true if successful, false if not
+ * 
+ * @example deleteBullet(1);
+ */
+function deleteBullet(key){
+
+    //opening database
+    let request = window.indexedDB.open(DATABASENAME);
+}
+
+let create = document.getElementById("create");
+create.addEventListener("click", createDB);
+
+document.getElementById("add").addEventListener("click", addTest);

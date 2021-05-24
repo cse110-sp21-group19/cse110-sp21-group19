@@ -85,6 +85,11 @@ let entry = {
 };
 ~~~
 
+# API Functions:
+
+- createDB(): creates the Databse with 2 stores, bulletStore entriesStore
+- createBUllet():
+
 # Other Resources:
 IndexedDB demo: https://github.com/craigshoemaker/webstorage-indexeddb
 
