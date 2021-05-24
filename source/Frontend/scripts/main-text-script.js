@@ -1,5 +1,7 @@
 // TODO: FIGURE OUT HOW TO DECLARE GLOBAL VARIABLES
 
+import { router } from './router.js';
+
 // Constants for different bullet types
 //  Task Bullets:
 const TASKBULLET = `<svg class="task-bullet" id="incomplete" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"/></svg>`;
@@ -28,6 +30,21 @@ bulletStack.push(BULLETS);
 
 MAINTEXT.appendChild(BULLETS);
 MAINTEXT.appendChild(INPUT);
+
+// Router Functionality
+const PREVLOG = document.getElementById("prev-log");
+const NEXTLOG = document.getElementById("next-log");
+
+const MAINTEXTHEADER = document.querySelector("#date > h1");
+
+PREVLOG.addEventListener("click", () => {
+	router.setState('daily-log', true, MAINTEXTHEADER.innerHTML);
+});
+
+NEXTLOG.addEventListener("click", () => {
+	router.setState('daily-log', true, MAINTEXTHEADER.innerHTML);
+});
+
 
 INPUT.addEventListener("keyup", function(event) {
 	if (event.key === "Enter") {
@@ -71,15 +88,18 @@ function editableEntry(entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const bulletEntry = bulletEntryRoot.querySelector(".bullet-entry");
 	const inputted = bulletEntryRoot.getElementById("bullet-inputted");
+	const hoverMsg = bulletEntryRoot.getElementById("edit-msg");
 	if (inputted) {
 		// all to edit on double click
 		bulletEntry.addEventListener("dblclick", function() {
 			inputted.readOnly = false;
+			hoverMsg.innerHTML = "Enter to save note";
 		});
 		// after 'Enter' return to 'readOnly' mode
 		inputted.addEventListener("keyup", function(event) {
 			if (event.key === "Enter") {
 				inputted.readOnly = true;
+				hoverMsg.innerHTML = "Double click to edit note";
 			}
 		});
 		// TODO: after click away from entry, return to 'readyOnly' mode

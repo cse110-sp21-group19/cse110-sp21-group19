@@ -1,7 +1,9 @@
 //Adding the side nav menu web component 
+
+
 const SIDENAV  = document.createElement("side-nav");
 document.getElementById("side-nav-container").appendChild(SIDENAV);
-const SIDENAVROOT = SIDENAV.shadowRoot;
+export const SIDENAVROOT = SIDENAV.shadowRoot;
 //onclick listener for the side nav menu button
 const expand = SIDENAVROOT.querySelector("[class='burger']");
 expand.addEventListener("click", ()=>{
@@ -41,7 +43,7 @@ function openMenu(){
  * @example
  * 	closeMenu()
  */
-function closeMenu(){
+export function closeMenu(){
     let x = SIDENAVROOT.getElementById("x");
     let y = SIDENAVROOT.getElementById("y");
     let z = SIDENAVROOT.getElementById("z");

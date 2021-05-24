@@ -152,7 +152,7 @@ class BulletEntry extends HTMLElement {
 					<input id="bullet-inputted" type="text" readonly>
 					<button id="delete-bullet" type="button">X</button>
 				</div>
-				<p class="edit-msg"><i>Double click to edit note</i></p>
+				<p id="edit-msg" class="edit-msg"><i>Double click to edit note</i></p>
 			</div>
 			`;
   
