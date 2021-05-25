@@ -26,15 +26,15 @@ window.onhashchange = locationHashChanged;
 export const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 export const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-//let d = new Date();
-//document.getElementById("date").querySelector("h1").innerHTML = DAYS[d.getDay()] + ", " + MONTHS[d.getMonth()] + " " + d.getDate();
+let d = new Date();
+document.getElementById("date").querySelector("h1").innerHTML = DAYS[d.getDay()] + ", " + MONTHS[d.getMonth()] + " " + d.getDate();
 //const log = document.createElement("log-type");
 //document.getElementById("prev-log").appendChild(log);
 
-let tempLog = document.createElement("log-type");
-console.log(tempLog.readLog);
-document.getElementById("date").appendChild(tempLog);
+// let tempLog = document.createElement("log-type");
+// console.log(tempLog.readLog);
+// document.getElementById("date").appendChild(tempLog);
 
-tempLog.updateType = "monthly";
-let info = tempLog.readLog;
-console.log(info);
+// tempLog.updateType = "monthly";
+// let info = tempLog.readLog;
+// console.log(info);

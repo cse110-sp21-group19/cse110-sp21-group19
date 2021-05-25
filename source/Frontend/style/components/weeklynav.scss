@@ -12,24 +12,31 @@
     z-index: -1;
     border-radius: 1rem;
     padding: 0.5rem;
-    display: grid;
-    grid-template-rows: auto auto auto auto auto auto auto;
-    height: 80vh; //MAY HAVE TO CHANGE THIS -- look at layout file weekly nav container height
+    display: flex;
+    height: 80vh;
+    flex-direction: column;
+    //grid-template-rows: auto auto auto auto auto auto auto;
+     //MAY HAVE TO CHANGE THIS -- look at layout file weekly nav container height
 
     .wn-item{
+        min-height: 0;
+
         margin: 0.4rem;
-        display: grid;
+        //flex-grow: 1;
+        //flex-shrink: 1;
+        flex: 1 1 0;
+        //display: grid;
         background: white;
         border-radius: 0.4rem;
-        grid-template-rows: 1;
-        grid-template-columns: auto auto;
+        //grid-template-rows: 1;
+        //grid-template-columns: auto auto;
         &:hover{
             transition: filter 0.15s linear;
             filter: brightness(85%);
         }
         .wn-date{
             pointer-events: none;
-            grid-column-start: 1;
+            //grid-column-start: 1;
             margin-left: 0.5rem;
             font-size: 0.95em;
             #day-of-week{
@@ -40,12 +47,12 @@
             }
         }
         .wn-bullets{
-            grid-column-start: 3;
+            //grid-column-start: 3;
             font-size: 10px;
         }
 
         p {
-            visibility:hidden;
+            visibility:collapse;
         }
     }
 }

@@ -3,11 +3,9 @@
 import {SIDENAVROOT, closeMenu} from "./side-nav-script.js";
 import { createToDoList } from "./todo-script.js";
 import {createWeeklyNav} from "./weekly-nav-script.js";
-<<<<<<< HEAD
 
-=======
 import {DAYS, MONTHS} from './script.js';
->>>>>>> e0f8e6424779a4ba1d55099ecc2caba840aa24c3
+
 export const router = {};
 
 // main-text header elements
@@ -81,13 +79,6 @@ function dailyLog(date){
     }
 } /* dailyLog */
 
-<<<<<<< HEAD
-    createToDoList();
-    //Complete page transformation here
-}
-=======
-  
->>>>>>> e0f8e6424779a4ba1d55099ecc2caba840aa24c3
 
 /**
  * monthlyLog

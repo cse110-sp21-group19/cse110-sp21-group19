@@ -1,20 +1,15 @@
 //weekly nav script
 import {DAYS, MONTHS} from './script.js';
 
-createWeeklyNav();
+let today = new Date();
+createWeeklyNav(today);
 
 export function createWeeklyNav(date){
     //adding weekly navigation web component
-    let week = createDaysOfWeekArray();
+    let week = createDaysOfWeekArray(date);
     const WEEKLYNAV = document.createElement("weekly-nav");
     WEEKLYNAV.daysOfWeek = week;
-    if (date) {
-        WEEKLYNAV.selectedDay = date;
-    }
-    else {
-        let today = new Date();
-        WEEKLYNAV.selectedDay = today.getDay() + 1;
-    }
+    WEEKLYNAV.selectedDay = date.getDay() + 1;
     document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
 
     //Onclick listener for the items inside the weekly nav
@@ -50,7 +45,7 @@ export function createWeeklyNav(date){
 function createDaysOfWeekArray(date){
 	//NOTE: if we want to pass data into the weekly nav like important bullets we can attach to this array
 	let daysOfWeek = [];
-	let currDate = new Date();
+	let currDate = new Date(date);
 	//start on Sunday
 	currDate.setDate((currDate.getDate() - currDate.getDay()));
 	for(let i = 0; i < 7; i++){
