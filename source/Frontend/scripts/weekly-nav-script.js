@@ -4,7 +4,7 @@ import {router} from './router.js';
 let today = new Date();
 createWeeklyNav(today);
 
-/*
+/**
  * createWeeklyNav
  * Takes in a date and creates a weekly nav component from that date and appends it to the screen
  * 
@@ -39,7 +39,7 @@ export function createWeeklyNav(date){
 } /* createWeeklyNav */
 
 
-/*
+/**
  * createDaysofWeekyArray 
  * creates an array of days of the week for a given week
  * 

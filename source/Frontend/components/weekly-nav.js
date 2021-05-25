@@ -38,7 +38,7 @@ class WeeklyNav extends HTMLElement{
 	}
 
 
-	/*
+	/**
 	 * set daysOfWeek takes in an array of objects which contains date objects of a week 
 	 * and fills the weekly nav menu with objects corresponding to those days. Those date
 	 * objects could also contain important bullet info to fill menu.
@@ -93,7 +93,7 @@ class WeeklyNav extends HTMLElement{
 	
 	}/* set daysOfWeek */
 
-	/*
+	/**
 	 * get selectedInfo
 	 * get the date info of the item selected
 	 * @param {}
@@ -127,7 +127,7 @@ class WeeklyNav extends HTMLElement{
 		return dateObj;
 	}/* get selectedInfo */
 
-	/*
+	/**
 	 * set selectedDay 
 	 * set an item in the list as selected
 	 * 
@@ -156,7 +156,7 @@ class WeeklyNav extends HTMLElement{
 }
 
 
-/*
+/**
  * getDateString 
  * converts integer day of week to its related string
  * 
@@ -188,7 +188,7 @@ function getDateString(day){
 	}
 }/* getDateString */
 
-/*
+/**
  * getWeeklyNavTitle 
  * Formats the title on top of the weekly nav menu,
  * Also address edge case if week is between two months and/or two years
