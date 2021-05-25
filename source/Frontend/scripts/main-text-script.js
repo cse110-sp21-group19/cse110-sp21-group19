@@ -37,12 +37,24 @@ const NEXTLOG = document.getElementById("next-log");
 
 const MAINTEXTHEADER = document.querySelector("#date > h1");
 
+// weekly-nav elements
+const WEEKLYNAV = document.querySelector("weekly-nav");
+const DATE = WEEKLYNAV.selectedInfo;
+const MILLISECSPERDAY = 86400000;
+
+// Go to the previous main-text log when the '<' button is hit, set the state
 PREVLOG.addEventListener("click", () => {
-	router.setState('daily-log', true, MAINTEXTHEADER.innerHTML);
+	// decrement the current date
+	let currDate = new Date(DATE.year, DATE.month, DATE.date);
+	router.setState('daily-log', true, new Date(currDate - MILLISECSPERDAY));
+	// updated selected day on the weekly-nav
 });
 
+// Go to the next main-text log when the '>' button is hit, set the state
 NEXTLOG.addEventListener("click", () => {
-	router.setState('daily-log', true, MAINTEXTHEADER.innerHTML);
+	// increment the current date
+	let currDate = new Date(DATE.year, DATE.month, DATE.date);
+	router.setState('daily-log', true, new Date(currDate + MILLISECSPERDAY));
 });
 
 

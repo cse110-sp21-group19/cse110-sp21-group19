@@ -1,4 +1,5 @@
 //weekly nav script
+import {DAYS, MONTHS} from './script.js';
 
 createWeeklyNav();
 
@@ -54,7 +55,3 @@ function createDaysOfWeekArray(){
 
 	return daysOfWeek;
 } /* createDaysofWeekArray */
-
-// Add Date to the top of the daily log
-const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
