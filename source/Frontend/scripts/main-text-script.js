@@ -35,7 +35,6 @@ MAINTEXT.appendChild(INPUT);
 
 const MAINTEXTHEADER = document.querySelector("#date > h1");
 
-
 INPUT.addEventListener("keyup", function(event) {
 	if (event.key === "Enter") {
 		event.preventDefault();
@@ -66,7 +65,7 @@ INPUT.addEventListener("keyup", function(event) {
 });
 
 
-/*
+/** 
 * editableEntry
 * Allow each bullet entry to be edited on a double click.
 * @param {object} - A bullet-entry element

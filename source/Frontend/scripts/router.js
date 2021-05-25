@@ -1,8 +1,9 @@
 // router.js
 
-//import {SIDENAVROOT, closeMenu} from "./side-nav-script.js";
-import {createWeeklyNav} from "./weekly-nav-script.js";
-import {DAYS, MONTHS} from '../components/log-type.js';
+import { createWeeklyNav } from "./weekly-nav-script.js";
+import { DAYS, MONTHS } from '../components/log-type.js';
+import { closeMenu } from "./side-nav-script.js";
+import { createToDoList } from "./todo-script.js";
 
 export const router = {};
 
@@ -56,6 +57,9 @@ const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-cont
  *      dailyLog("5-24-2021");
  */
 function dailyLog(date){
+    const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
+    let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+    sideNavTitle.textContent = "Daily Log";
     // behavior if clicked the '<' or '>' button from the main-text header
     if (date) {
         const LOGTYPE = document.querySelector("log-type");
@@ -74,7 +78,7 @@ function dailyLog(date){
     else {
         //let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
         //sideNavTitle.textContent = "Daily Log";
-        //closeMenu();
+        closeMenu();
 
         //add back in the weekly nav menu
         //createWeeklyNav();
@@ -84,7 +88,6 @@ function dailyLog(date){
     }
 } /* dailyLog */
 
-  
 
 /**
  * monthlyLog
@@ -98,6 +101,9 @@ function dailyLog(date){
  */
 //functions to complete 
 function monthlyLog(date){
+    const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
+    let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+    sideNavTitle.textContent = "Monthly Log";
     // behavior if clicked the '<' or '>' button from the main-text header
     if (date) {
         const LOGTYPE = document.querySelector("log-type");
@@ -114,18 +120,10 @@ function monthlyLog(date){
         // TODO: change the weekly-nav indicator to the appropriate date
     }
     // default behavior from side nav
-    else {
-        //let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
-        //sideNavTitle.textContent = "Monthly Log";
-        //closeMenu();
-
-        //remove the weekly nav menu
-        //let weeklyNav = document.querySelector("weekly-nav");
-        //if(weeklyNav){
-       //     weeklyNav.remove();
-       // }
-        console.log("monthlyLog else block");
-    }
+    //let todoList = document.querySelector("todo-list");
+    //if(todoList){
+    //    todoList.remove();
+    //}
 
     //Complete page transformation here
 } /* monthlyLog */
@@ -142,6 +140,10 @@ function monthlyLog(date){
  *      futureLog();
  */
 function futureLog(){
+    const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
+    let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+    sideNavTitle.textContent = "Future Log";
+
     // defaults to current year
     // FIXME: new behavior
     const LOGTYPE = document.querySelector("log-type");
@@ -154,9 +156,6 @@ function futureLog(){
         "header": headerText
     }
     LOGTYPE.updateLog = FUTUREINFO;
-    //let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
-    //sideNavTitle.textContent = "Future Log";
-    //closeMenu();
 
     //remove the weekly nav menu
     let weeklyNav = document.querySelector("weekly-nav");

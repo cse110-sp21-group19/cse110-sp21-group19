@@ -143,8 +143,6 @@ body .container .daily-log-title i:hover {
 body .side-nav-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 30% 70%;
-      grid-template-columns: 30% 70%;
 }
 
 /* Components */

@@ -20,8 +20,7 @@ expand.addEventListener("click", () => {
     }
 });
 
-
-/*
+/** 
  * openMenu
  * function to open the side nav menu, adds classes to perform animations/transformations
  * 
@@ -50,7 +49,7 @@ function openMenu(){
 }/* openMenu */
 
 
-/*
+/**
  * closeMenu
  * function to close the side nav menu, removes classes to perform animations/transformations
  * 

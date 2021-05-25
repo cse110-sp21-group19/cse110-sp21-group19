@@ -1,20 +1,24 @@
 //weekly nav script
 import {DAYS, MONTHS} from '../components/log-type.js';
+import {router} from './router.js';
+let today = new Date();
+createWeeklyNav(today);
 
-createWeeklyNav();
-
+/**
+ * createWeeklyNav
+ * Takes in a date and creates a weekly nav component from that date and appends it to the screen
+ * 
+ * @param {*} date - date object to make the weekly nav menu around
+ * 
+ * @example
+ *  createWeeklyNav(date)
+ */
 export function createWeeklyNav(date){
     //adding weekly navigation web component
-    let week = createDaysOfWeekArray();
+    let week = createDaysOfWeekArray(date);
     const WEEKLYNAV = document.createElement("weekly-nav");
     WEEKLYNAV.daysOfWeek = week;
-    if (date) {
-        WEEKLYNAV.selectedDay = date;
-    }
-    else {
-        let today = new Date();
-        WEEKLYNAV.selectedDay = today.getDay() + 1;
-    }
+    WEEKLYNAV.selectedDay = date.getDay() + 1;
     document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
 
     //Onclick listener for the items inside the weekly nav
@@ -25,21 +29,21 @@ export function createWeeklyNav(date){
             let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
             WEEKLYNAV.selectedDay = index;
 
-            //change title on top of main text ... LATER will change what is on maintext
-            let selectedInfo = WEEKLYNAV.selectedInfo;
-            let dailyLogTitle = selectedInfo.day + ", " + MONTHS[selectedInfo.month] + " " + selectedInfo.date;
-            document.getElementsByClassName("daily-log-title")[0].querySelector("h1").innerHTML = dailyLogTitle;
+            //get the newly selected date and update router
+            let selectedDate = WEEKLYNAV.selectedInfo;
+            router.setState("daily-log", true, selectedDate);
+           
         }
 
     });
-}
+} /* createWeeklyNav */
 
 
-/*
+/**
  * createDaysofWeekyArray 
- * creates an array of days of the week for the current week
+ * creates an array of days of the week for a given week
  * 
- * @param {}
+ * @param {*} date - A date object of a day in the week that will be created
  * 
  * @returns An array of date objects (As is, if we attatch important bullets, this will change)
  * for the days of the current week
@@ -47,10 +51,10 @@ export function createWeeklyNav(date){
  * @example 
  *      createDaysOfWeekArray()
  */
-function createDaysOfWeekArray(){
+function createDaysOfWeekArray(date){
 	//NOTE: if we want to pass data into the weekly nav like important bullets we can attach to this array
 	let daysOfWeek = [];
-	let currDate = new Date();
+	let currDate = new Date(date);
 	//start on Sunday
 	currDate.setDate((currDate.getDate() - currDate.getDay()));
 	for(let i = 0; i < 7; i++){
