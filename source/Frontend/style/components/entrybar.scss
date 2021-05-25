@@ -38,9 +38,9 @@
     }
     .new-entry{
         overflow: visible;
-        width: 4rem;
+        width: 8rem;
         height: 5rem;
-        margin-top: 1rem;
+        margin-top: 2rem;
     }
     .new-entry:hover{
         cursor: pointer;
@@ -146,10 +146,10 @@ margin-left: 13px;
 
 .note{
     overflow: visible;
-    width: 4rem;
+    width: 8rem;
     height: 5rem;
     margin-right: 7rem;
-    padding-top: 1.5rem;
+    padding-top: 2rem;
 
 }
 .note:hover{
@@ -161,6 +161,8 @@ margin-left: 13px;
     .tooltiptext{
         position: absolute;
         top: 10px;
+        left: 2rem;
+        font-weight: bold;
     }
 }
 ::-webkit-scrollbar {

@@ -65,14 +65,15 @@ const setState = router.setState;
 			let entryTitle = title.innerText;
 			let entryContent = content.innerText;
 			let newNote = document.createElement("text-entry");
-			newNote.title = entryTitle;
+			let entry = createEntry(entryTitle, entryContent);
+			newNote.entry = entry;
 			
 			newNote.addEventListener("click", function(){
 				mainText.style.display="none"
 				initial.style.display="none";
 				editing.style.display="block";
-				title.innerText = entryTitle;
-				content.innerText = entryContent;
+				title.innerText = newNote.entry.title;
+				content.innerText = newNote.entry.content;
 			
 			});
 			innerBar.appendChild(newNote);
@@ -159,3 +160,15 @@ customElements.define("entry-bar", entryBar);
 window.addEventListener('popstate', () => {
 	setState();
 });
+
+/** helper function to create a new entry
+ * 
+ * @param {string} title 
+ * @param {string} content 
+ * @returns Object: {title: title, content: content} 
+ * 
+ * @example myEntry = createEntry(title, content);
+ */
+function createEntry(title, content){
+	return {title: title, content: content};
+}

@@ -2,7 +2,7 @@
 /**
  * @class {textEntry} 
  *
- * This class represents an additional text entry
+ * This class represents a single additional text entry
  */
  class textEntry extends HTMLElement{
 	constructor() {
@@ -22,6 +22,10 @@
 					<path d="M82.3333 102.042H28.6667" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 					<path d="M42.0833 48.375H35.375H28.6667" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
+			</div>
+			<div class="entry-data">
+				<span class="entry-title">Title</span>
+				<span class="entry-content">Enter note...</span>
 			</div>		
 			`;
 	
@@ -30,15 +34,28 @@
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
 	}
-	get title(){
-		let currTitle = this.shadowRoot.querySelector(".tooltiptext");
-		return currTitle;
+	connectedCallback(){
+		this.shadowRoot.querySelector(".entry-data").style.display="none";
 	}
-	set title(title){
-		let currTitle = this.shadowRoot.querySelector(".tooltiptext");
-		currTitle.innerText = title;
+	get entry(){
+		let currTitle = this.shadowRoot.querySelector(".entry-title").innerText;
+		let currContent = this.shadowRoot.querySelector(".entry-content").innerText;
+		let toReturn = {title: currTitle, content: currContent};
+
+		return toReturn;
+	}
+	set entry(entry){
+		let currTitle = this.shadowRoot.querySelector(".entry-title");
+		let currContent = this.shadowRoot.querySelector(".entry-content");
+		let toDisplay = this.shadowRoot.querySelector(".tooltiptext");
+		//update the title being displayed
+		toDisplay.innerText = entry.title;
+		//save entry contents
+		currTitle.innerHTML = entry.title;
+		currContent.innerHTML = entry.content;
+
 	}	
 }/*entryBar*/
-//define the custom web component "entry-bar" and associate it to the class "entryBar"
+//define the custom web component "text-entry" and associate it to the class "textEntry"
 customElements.define("text-entry", textEntry);
 
