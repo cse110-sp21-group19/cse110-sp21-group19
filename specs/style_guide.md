@@ -81,7 +81,7 @@ Naming Conventions
 Commenting for functions
 - Follow conventions for [JSDOC](https://devhints.io/jsdoc)
 - Include a header and footer comment for functions
-> /* \
+> /** \
 > \* This is a function \
 > \* \
 > \* @param {string} x - A string param \
