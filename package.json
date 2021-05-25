@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"source/**\" --ext .js",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "docs": "npm run docsFront && npm run DocsBack",
+    "docsFront": "jsdoc -c jsdocFront.conf.json",
+    "docsBack": "jsdoc -c jsdocBack.conf.json"
   },
   "author": "",
   "license": "ISC",
