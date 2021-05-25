@@ -58,7 +58,7 @@ function dailyLog(date){
     // behavior if clicked the '<' or '>' button from the main-text header
     if (date) {
         // TODO: change the main-text header to the appropriate date
-        console.log(date);
+        console.log("dailyLog Function: " + date);
         HEADER.innerHTML = DAYS[date.getDay()] + ", " + MONTHS[date.getMonth()] + " " + date.getDate();
         // TODO: update the main-text data
         // TODO: change the weekly-nav indicator to the appropriate date

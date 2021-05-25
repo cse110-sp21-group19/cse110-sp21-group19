@@ -1,6 +1,8 @@
 // TODO: FIGURE OUT HOW TO DECLARE GLOBAL VARIABLES
 
 import { router } from './router.js';
+import { createWeeklyNav } from "./weekly-nav-script.js";
+import {DAYS, MONTHS} from './script.js';
 
 // Constants for different bullet types
 //  Task Bullets:
@@ -39,22 +41,44 @@ const MAINTEXTHEADER = document.querySelector("#date > h1");
 
 // weekly-nav elements
 const WEEKLYNAV = document.querySelector("weekly-nav");
-const DATE = WEEKLYNAV.selectedInfo;
 const MILLISECSPERDAY = 86400000;
 
 // Go to the previous main-text log when the '<' button is hit, set the state
 PREVLOG.addEventListener("click", () => {
+	const DATE = WEEKLYNAV.selectedInfo;
 	// decrement the current date
 	let currDate = new Date(DATE.year, DATE.month, DATE.date);
-	router.setState('daily-log', true, new Date(currDate - MILLISECSPERDAY));
+	let prevDate = new Date(currDate - MILLISECSPERDAY);
+	router.setState("daily-log", true, prevDate);
 	// updated selected day on the weekly-nav
+	//WEEKLYNAV.remove();
+	//createWeeklyNav(prevDate);
+	let date = WEEKLYNAV.selectedInfo;
+	console.log(date.day);
+	let index = [].indexOf.call(DAYS, date.day);
+	console.log(index);
+	WEEKLYNAV.selectedDay = index;
+	
+
+	//WEEKLYNAV.selectedDay = prevDate;
+	//console.log("updated: " + WEEKLYNAV.selectedInfo);
+	//console.log(WEEKLYNAV.selectedInfo);
 });
 
 // Go to the next main-text log when the '>' button is hit, set the state
 NEXTLOG.addEventListener("click", () => {
+	const DATE = WEEKLYNAV.selectedInfo;
 	// increment the current date
-	let currDate = new Date(DATE.year, DATE.month, DATE.date);
-	router.setState('daily-log', true, new Date(currDate + MILLISECSPERDAY));
+	const currDate = new Date(DATE.year, DATE.month, DATE.date)
+	const nextDate = new Date(currDate)
+	nextDate.setDate(nextDate.getDate() + 1)
+
+	router.setState("daily-log", true, nextDate);
+	//WEEKLYNAV.selectedDay = nextDate;
+
+	let date = WEEKLYNAV.selectedInfo;
+	let index = [].indexOf.call(DAYS, date.day);
+	WEEKLYNAV.selectedDay = index+2;
 });
 
 
