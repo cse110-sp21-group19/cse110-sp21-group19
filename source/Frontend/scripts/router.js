@@ -74,18 +74,6 @@ function dailyLog(date){
         // TODO: update the main-text data
         // TODO: change the weekly-nav indicator to the appropriate date
     }
-    // default behavior from side nav
-    else {
-        //let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
-        //sideNavTitle.textContent = "Daily Log";
-        closeMenu();
-
-        //add back in the weekly nav menu
-        //createWeeklyNav();
-
-        //Complete page transformation here
-        console.log("dailyLog else block");
-    }
 } /* dailyLog */
 
 
@@ -107,25 +95,17 @@ function monthlyLog(date){
     // behavior if clicked the '<' or '>' button from the main-text header
     if (date) {
         const LOGTYPE = document.querySelector("log-type");
-        let d = new Date();
         // update the header text above main-text area
-        let headerText = MONTHS[d.getMonth()] + " " + d.getFullYear();
+        let headerText = MONTHS[date.getMonth()] + " " + date.getFullYear();
         const MONTHLYINFO = {
             "type": "monthly",
-            "date": d,
+            "date": date,
             "header": headerText
         }
         LOGTYPE.updateLog = MONTHLYINFO;
         // TODO: update the main-text data
         // TODO: change the weekly-nav indicator to the appropriate date
     }
-    // default behavior from side nav
-    //let todoList = document.querySelector("todo-list");
-    //if(todoList){
-    //    todoList.remove();
-    //}
-
-    //Complete page transformation here
 } /* monthlyLog */
 
 

@@ -1,8 +1,5 @@
 // TODO: FIGURE OUT HOW TO DECLARE GLOBAL VARIABLES
 
-import { router } from './router.js';
-import {DAYS, MONTHS} from '../components/log-type.js';
-
 // Constants for different bullet types
 //  Task Bullets:
 const TASKBULLET = `<svg class="task-bullet" id="incomplete" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"/></svg>`;
@@ -66,13 +63,13 @@ INPUT.addEventListener("keyup", function(event) {
 
 
 /** 
-* editableEntry
-* Allow each bullet entry to be edited on a double click.
-* @param {object} - A bullet-entry element
-*
-* @example
-*     editableEntry();
-*/
+ * editableEntry
+ * Allow each bullet entry to be edited on a double click.
+ * @param {object} - A bullet-entry element
+ *
+ * @example
+ *     editableEntry();
+ */
 function editableEntry(entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const bulletEntry = bulletEntryRoot.querySelector(".bullet-entry");
@@ -103,14 +100,14 @@ function editableEntry(entry) {
 	}
 } /* editableEntry */
 
-/*
-* deleteEntry
-* Delete bullet when the 'X' button is clicked.
-* @param {}
-*
-* @example
-*     deleteEntry();
-*/
+/**
+ * deleteEntry
+ * Delete bullet when the 'X' button is clicked.
+ * @param {}
+ *
+ * @example
+ *     deleteEntry();
+ */
 function deleteEntry(entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toDelete = bulletEntryRoot.getElementById("delete-bullet");
@@ -119,14 +116,14 @@ function deleteEntry(entry) {
 	});
 } /* deleteEntry */
 
-/*
-* prioritizeEntry
-* Prioritize and deprioritize bullet by toggling the star icon.
-* @param {object} - a bullet-type element
-*
-* @example
-*     prioritizeEntry(entry);
-*/
+/**
+ * prioritizeEntry
+ * Prioritize and deprioritize bullet by toggling the star icon.
+ * @param {object} - a bullet-type element
+ *
+ * @example
+ *     prioritizeEntry(entry);
+ */
 function prioritizeEntry(newEntry) {
 	let bulletEntryRoot = newEntry.shadowRoot;
 	const toPrioritize = bulletEntryRoot.getElementById("prioritize-bullet");
@@ -142,14 +139,14 @@ function prioritizeEntry(newEntry) {
 	});
 }  /* prioritizeEntry */
 
-/*
-* completeTask
-* Check and uncheck task bullet. Adds strikethrough to checked tasks.
-* @param {object} - a bullet-type element
-*
-* @example
-*     completeTask(entry);
-*/
+/**
+ * completeTask
+ * Check and uncheck task bullet. Adds strikethrough to checked tasks.
+ * @param {object} - a bullet-type element
+ *
+ * @example
+ *     completeTask(entry);
+ */
 function completeTask(newEntry) {
 	let bulletEntryRoot = newEntry.shadowRoot;
 	const toComplete = bulletEntryRoot.getElementById("bullet-type");
