@@ -3,7 +3,7 @@ const SELECTEDRADIUS = "0.2rem";
 const DEFAULTBORDERLEFT = null;
 const DEFAULTRADIUS = null;
 
-class ToDo extends HTMLElement{
+class TodoList extends HTMLElement{
 	constructor() {
 		super();
 		const template = document.createElement("template");
@@ -134,4 +134,4 @@ function getDateString(day){
 	}
 }/* getDateString */
 
-customElements.define("todo", ToDo);
+customElements.define("todo-list", TodoList);

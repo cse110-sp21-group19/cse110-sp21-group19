@@ -1,7 +1,9 @@
 // router.js
 
 import {SIDENAVROOT, closeMenu} from "./side-nav-script.js";
+import { createToDoList } from "./todo-script.js";
 import {createWeeklyNav} from "./weekly-nav-script.js";
+
 export const router = {};
 
 
@@ -49,6 +51,7 @@ function monthlyLog(){
         weeklyNav.remove();
     }
 
+    createToDoList();
     //Complete page transformation here
 }
 
@@ -60,6 +63,11 @@ function dailyLog(){
 
     //add back in the weekly nav menu
     createWeeklyNav();
+
+    let todoList = document.querySelector("todo-list");
+    if(todoList){
+        todoList.remove();
+    }
 
     //Complete page transformation here
 }

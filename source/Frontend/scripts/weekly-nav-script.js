@@ -41,7 +41,7 @@ export function createWeeklyNav(){
  * @example 
  *      createDaysOfWeekArray()
  */
-function createDaysOfWeekArray(){
+function createDaysOfWeekArray(date){
 	//NOTE: if we want to pass data into the weekly nav like important bullets we can attach to this array
 	let daysOfWeek = [];
 	let currDate = new Date();
