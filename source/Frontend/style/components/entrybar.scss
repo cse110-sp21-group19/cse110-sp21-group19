@@ -24,7 +24,7 @@
     }
 
     .content{
-        height: 15vh;
+        height: 13vh;
         width: 65%;
         min-width: 55%;
         background: white;
@@ -34,7 +34,7 @@
         overflow-y: hidden;
         display: flex;
         flex-direction: row;
-        padding: 0 1rem 2rem 1rem;
+        padding: 0 1rem 3rem 1rem;
     }
     .new-entry{
         overflow: visible;
@@ -150,6 +150,7 @@ margin-left: 13px;
     height: 5rem;
     margin-right: 7rem;
     padding-top: 1.5rem;
+
 }
 .note:hover{
     cursor: pointer;
