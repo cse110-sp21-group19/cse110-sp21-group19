@@ -98,3 +98,11 @@ Storing media: https://hacks.mozilla.org/2012/02/storing-images-and-files-in-ind
 Compound indexes: https://stackoverflow.com/questions/16501459/javascript-searching-indexeddb-using-multiple-indexes
 
 Intro to indexeddb: https://www.codemag.com/Article/1411041/Introduction-to-IndexedDB-The-In-Browser-Database
+
+# Updates:
+
+- Completed:
+  - createBullet working, createDB, 
+- Stuck on:
+  - updateBullet: getting the bullet from key gave us undefined, so we moved onto getBullet
+  - getBullet: return value shows up as undefined, but when we log it right before we return it is object, something todo with async

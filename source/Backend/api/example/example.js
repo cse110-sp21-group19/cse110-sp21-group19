@@ -24,6 +24,8 @@ EntriesDB:
 const DATABASENAME = "BuJoDatabase";
 const BULLETDB = "bulletDB"
 const ERR_DB_NOT_CREATED = "ERROR: Database hasn't been created!";
+const ERR_CANT_GET_BULLET = "ERROR: Unable to access bullet with key: ";
+const ERR_CANT_DELETE_BULLET = "ERROR: Unable to delete bullet with key: ";
 
 //making sure indexeddb is supported in multiple browsers
 window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -82,7 +84,6 @@ function createDB() {
  * @example
  */
 function createBullet(bullet) {
-    
     //opening database
     let request = window.indexedDB.open(DATABASENAME);
 
@@ -91,11 +92,11 @@ function createBullet(bullet) {
         let transaction = db.transaction([BULLETDB], "readwrite");
         let store = transaction.objectStore(BULLETDB);
 
-        let storeRequest = store.put(bullet);
+        let storeRequest = store.add(bullet);
 
         //return the key on newly added bullet
-        storeRequest.onsuccess = function (event) {
-            return callback(event.target.result);
+        storeRequest.onsuccess = function () {
+            return storeRequest.result;
         }
         
         //unable to add bullet, returns -1
@@ -111,6 +112,7 @@ function createBullet(bullet) {
     //unable to open database
     request.onerror = function () {
         console.log.error(ERR_DB_NOT_CREATED);
+        return -1;
     }
 }
 
@@ -122,7 +124,7 @@ function createBullet(bullet) {
  * 
  * @param bullet - The new bullet object to set the old bullet equal to
  * 
- * @return true if successful, false if not
+ * @return true if successfully updated, false if not updated
  * 
  * @example 
  *  let bulletExample = {
@@ -135,13 +137,56 @@ function createBullet(bullet) {
  *      "children": []
  *  };
  *  updateBullet(1, bulletExample);
+ *  When we update bullets, we usually update: 
+ *      priority, content, completed, type, children
  */
 function updateBullet(key, bullet){
-    let 
+    let priority = bullet.priority;
+    let content = bullet.content;
+    let completed = bullet.completed;
+    let type = bullet.type;
+    let children = bullet.children;
+
     //opening database
     let request = window.indexedDB.open(DATABASENAME);
+    //successfully opened database
+    request.onsuccess = function () {
+        let db = request.result;
+        let transaction = db.transaction([BULLETDB], "readwrite");
+        let store = transaction.objectStore(BULLETDB);
 
-    request.onsuccess
+        //indexing bullet
+        let getRequest = store.get(key);
+
+        getRequest.onsuccess = function (event) {
+            let currBullet = event.target.result;
+            
+            if (currBullet !== undefined) {
+                currBullet.priority = priority;
+                currBullet.content = content;
+                currBullet.completed = completed;
+                currBullet.type = type;
+                currBullet.children = children;
+
+                let putRequest = store.put(currBullet, key);
+                
+                //successfully updated bullet
+                putRequest.onsuccess = function () { return true; };
+                
+                //unable to uppdate bullet
+                putRequest.onerror = function () { return false; };
+
+            }
+        }
+        
+        getRequest.onerror = function () {
+            console.log.eror(ERR_CANT_GET_BULLET + key);
+        }
+
+        transaction.oncomplete = function () {
+            db.close();
+        }
+    }
     //unable to open database
     request.onerror = function () {
         console.log.error(ERR_DB_NOT_CREATED);
@@ -154,22 +199,41 @@ function updateBullet(key, bullet){
  * 
  * @param key - The key of the bullet to get
  * 
- * @return The bullet object
+ * @return The associated bullet object, or {} if unable to get bullet
  * 
  * @example getBullet(1);
  */
 function getBullet(key){
-
     //opening database
     let request = window.indexedDB.open(DATABASENAME);
 
+    //db opens successfully
     request.onsuccess = function(event){
+        let db = request.result;
+        let transaction = db.transaction([BULLETDB], "readonly");
+        let objStore = transaction.objectStore(BULLETDB);
+        let objStoreRequest = objStore.get(key);
 
+        //Bullet object successfully accessed
+        objStoreRequest.onsuccess = function (e){
+/*             console.log(e.target);*/
+            console.log(e.target.result);
+            return e.target.result;
+        }
+        //Unable to access bullet object
+        objStoreRequest.onerror = function(event){
+            console.log.error(ERR_CANT_GET_BULLET + key);
+            return {};
+        }
+
+        transaction.oncomplete = function () {
+            db.close();
+        }
     }
-
     //unable to open database
     request.onerror = function(event){
-        
+        console.log.error(ERR_DB_NOT_CREATED);
+        return {};
     }
 }
 
@@ -187,9 +251,91 @@ function deleteBullet(key){
 
     //opening database
     let request = window.indexedDB.open(DATABASENAME);
+
+    //db opens successfully
+    request.onsuccess = function(event){
+        let db = request.result;
+        let transaction = db.transaction([BULLETDB], "readwrite");
+        let objStore = transaction.objectStore(BULLETDB);
+        let objStoreRequest = objStore.delete(key);
+
+        //Bullet object successfully deleted
+        objStoreRequest.onsuccess = function(event){
+            return true;
+        }
+        //Unable to delete bullet object
+        objStoreRequest.onerror = function(event){
+            console.log.error(ERR_CANT_DELETE_BULLET + key);
+            return false;
+        }
+
+        transaction.oncomplete = function () {
+            db.close();
+        }
+    }
+    //unable to open database
+    request.onerror = function(event){
+        console.log.error(ERR_DB_NOT_CREATED);
+        return false;
+    }
 }
 
-let create = document.getElementById("create");
-create.addEventListener("click", createDB);
+let submit = document.getElementById("submit");
 
-document.getElementById("add").addEventListener("click", addTest);
+
+
+let key;
+// document.getElementById("add").addEventListener("click", addTest);
+submit.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    let log = document.getElementById("log").value;
+    let type = document.getElementById("type").value;
+    let date = document.getElementById("date").value;
+    let priority = document.getElementById("priority").value;
+    let content = document.getElementById("content").value;
+    let completed = document.getElementById("completed").value;
+    let children = document.getElementById("children").value;
+
+    let bulletExample = {
+        "log": log,
+        "type": type,
+        "date": date,
+        "priority": priority,
+        "content": content,
+        "completed": completed,
+        "children": children
+    };
+
+    key = createBullet(bulletExample);
+});
+
+let update = document.getElementById("update");
+update.addEventListener("click", (event) => {
+    let log = document.getElementById("log").value;
+    let type = document.getElementById("type").value;
+    let date = document.getElementById("date").value;
+    let priority = document.getElementById("priority").value;
+    let content = document.getElementById("content").value;
+    let completed = document.getElementById("completed").value;
+    let children = document.getElementById("children").value;
+
+    let bulletExample = {
+        "log": log,
+        "type": type,
+        "date": date,
+        "priority": priority,
+        "content": content,
+        "completed": completed,
+        "children": children
+    };
+
+    let key = document.getElementById("key").value;
+    let result = getBullet(Number(key));
+    console.log(result);
+});
+
+let create = document.getElementById("create", createDB);
+create.addEventListener("click", (event) => {
+    createDB();
+});
