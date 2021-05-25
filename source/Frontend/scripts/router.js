@@ -1,8 +1,9 @@
 // router.js
 
-import {SIDENAVROOT, closeMenu} from "./side-nav-script.js";
+//import {SIDENAVROOT, closeMenu} from "./side-nav-script.js";
 import {createWeeklyNav} from "./weekly-nav-script.js";
-import {DAYS, MONTHS} from './script.js';
+import {DAYS, MONTHS} from '../components/log-type.js';
+
 export const router = {};
 
 // main-text header elements
@@ -57,22 +58,29 @@ const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-cont
 function dailyLog(date){
     // behavior if clicked the '<' or '>' button from the main-text header
     if (date) {
-        // TODO: change the main-text header to the appropriate date
-        console.log("dailyLog Function: " + date);
-        HEADER.innerHTML = DAYS[date.getDay()] + ", " + MONTHS[date.getMonth()] + " " + date.getDate();
+        const LOGTYPE = document.querySelector("log-type");
+        // update the header text above main-text area
+        let headerText = DAYS[date.getDay()] + ", " + MONTHS[date.getMonth()] + " " + date.getDate();
+        const DAILYINFO = {
+            "type": "daily",
+            "date": date,
+            "header": headerText
+        }
+        LOGTYPE.updateLog = DAILYINFO;
         // TODO: update the main-text data
         // TODO: change the weekly-nav indicator to the appropriate date
     }
     // default behavior from side nav
     else {
-        let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
-        sideNavTitle.textContent = "Daily Log";
-        closeMenu();
+        //let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+        //sideNavTitle.textContent = "Daily Log";
+        //closeMenu();
 
         //add back in the weekly nav menu
-        createWeeklyNav();
+        //createWeeklyNav();
 
         //Complete page transformation here
+        console.log("dailyLog else block");
     }
 } /* dailyLog */
 
@@ -92,22 +100,31 @@ function dailyLog(date){
 function monthlyLog(date){
     // behavior if clicked the '<' or '>' button from the main-text header
     if (date) {
-        // TODO: change the main-text header to the appropriate date
-        HEADER.innerHTML = "hi";
+        const LOGTYPE = document.querySelector("log-type");
+        let d = new Date();
+        // update the header text above main-text area
+        let headerText = MONTHS[d.getMonth()] + " " + d.getFullYear();
+        const MONTHLYINFO = {
+            "type": "monthly",
+            "date": d,
+            "header": headerText
+        }
+        LOGTYPE.updateLog = MONTHLYINFO;
         // TODO: update the main-text data
         // TODO: change the weekly-nav indicator to the appropriate date
     }
     // default behavior from side nav
     else {
-        let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
-        sideNavTitle.textContent = "Monthly Log";
-        closeMenu();
+        //let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+        //sideNavTitle.textContent = "Monthly Log";
+        //closeMenu();
 
         //remove the weekly nav menu
-        let weeklyNav = document.querySelector("weekly-nav");
-        if(weeklyNav){
-            weeklyNav.remove();
-        }
+        //let weeklyNav = document.querySelector("weekly-nav");
+        //if(weeklyNav){
+       //     weeklyNav.remove();
+       // }
+        console.log("monthlyLog else block");
     }
 
     //Complete page transformation here
@@ -125,9 +142,21 @@ function monthlyLog(date){
  *      futureLog();
  */
 function futureLog(){
-    let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
-    sideNavTitle.textContent = "Future Log";
-    closeMenu();
+    // defaults to current year
+    // FIXME: new behavior
+    const LOGTYPE = document.querySelector("log-type");
+    let d = new Date();
+    // update the header text above main-text area
+    let headerText = d.getFullYear();
+    const FUTUREINFO = {
+        "type": "future",
+        "date": d,
+        "header": headerText
+    }
+    LOGTYPE.updateLog = FUTUREINFO;
+    //let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+    //sideNavTitle.textContent = "Future Log";
+    //closeMenu();
 
     //remove the weekly nav menu
     let weeklyNav = document.querySelector("weekly-nav");

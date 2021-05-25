@@ -1,5 +1,5 @@
 //weekly nav script
-import {DAYS, MONTHS} from './script.js';
+import {DAYS, MONTHS} from '../components/log-type.js';
 
 createWeeklyNav();
 

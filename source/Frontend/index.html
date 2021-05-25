@@ -15,38 +15,39 @@
   <main>
     <div id="side-nav-container" class="side-nav-container">
     </div>
-      <div id="container" class="container">
-        <div id="weekly-nav-container" class="weekly-nav-container">           
-        </div>
-        <div id="daily-log" class="daily-log">
-            <div id="date" class="daily-log-title">
-              <i id="prev-log" class="fas fa-chevron-left"></i>
-              <log-type></log-type>
-              <i id="next-log" class="fas fa-chevron-right"></i>
-            </div>
-            <div id="main-text" class="main-text">
-            </div>
+    <div id="container" class="container">
+      <div id="weekly-nav-container" class="weekly-nav-container">           
+      </div>
+      <div id="daily-log" class="daily-log">
+          <div id="date" class="daily-log-title">
+            <i id="prev-log" class="fas fa-chevron-left"></i>
+            <log-type></log-type>
+            <i id="next-log" class="fas fa-chevron-right"></i>
+          </div>
+          <div id="main-text" class="main-text">
+          </div>
 
-            <!-- Begin Additional entries-->
-            <div id="additional" class="additional">
-              <entry-bar></entry-bar>
-            </div>
-            <!-- End Additional entries-->
+          <!-- Begin Additional entries-->
+          <div id="additional" class="additional">
+            <entry-bar></entry-bar>
+          </div>
+          <!-- End Additional entries-->
+        </div>
+      </div>
   </main>
 
   <!-- Font Awesome Kit -->
   <script src="https://kit.fontawesome.com/ca3c87a23a.js" crossorigin="anonymous"></script>
 
   <!-- add web component here -->
-  <!--
-  <script src="./components/example.js" type="module"></script>
-  -->
-  <script src="./components/main-text.js" type="module"></script>
-  <script src="./components/side-nav.js" type="module"></script>
-  <script src="./components/weekly-nav.js" type="module"></script>
   <script src="./components/log-type.js" type="module"></script>
-
+  <script src="./components/side-nav.js" type="module"></script>
+  <script src="./components/main-text.js" type="module"></script>
+  <script src="./components/weekly-nav.js" type="module"></script>
   <script src="./components/addl_entries/entry-bar.js" type="module"></script>
+
+  <!-- Router Script -->
+  <script src="./scripts/router.js" type="module"></script>
   
   <!-- Main Script -->
   <script src="./scripts/main-text-script.js" type="module"></script>

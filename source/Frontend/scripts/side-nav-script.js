@@ -1,15 +1,17 @@
 //side-nav-script.js
+import {DAYS, MONTHS} from '../components/log-type.js';
+
 const MENUHEIGHT = "89vh";
 const BORDERADIUS = "0.8em";
-//Adding the side nav menu web component 
 
+//Adding the side nav menu web component 
 
 const SIDENAV  = document.createElement("side-nav");
 document.getElementById("side-nav-container").appendChild(SIDENAV);
-export const SIDENAVROOT = SIDENAV.shadowRoot;
 //onclick listener for the side nav menu button
+const SIDENAVROOT = SIDENAV.shadowRoot;
 const expand = SIDENAVROOT.querySelector("[class='burger']");
-expand.addEventListener("click", ()=>{
+expand.addEventListener("click", () => {
     if(expand.classList.contains("opened")){
         closeMenu();
     }
@@ -17,6 +19,7 @@ expand.addEventListener("click", ()=>{
         openMenu();
     }
 });
+
 
 /*
  * openMenu
