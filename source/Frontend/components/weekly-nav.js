@@ -97,7 +97,7 @@ class WeeklyNav extends HTMLElement{
 	 * get selectedInfo
 	 * get the date info of the item selected
 	 * @param {}
-	 * @returns an object containing the date info of the current selected item in the 
+	 * @returns a date object containing the date info of the current selected item in the 
 	 * weekly nav menu
 	 * 
 	 * @example
@@ -109,16 +109,19 @@ class WeeklyNav extends HTMLElement{
 
 		//iterate over weekly nav items and return info of item with border
 		//(the one with a border is the selected one) 
+		let dateInfo;
 		let dateObj;
 		for(let i = 1; i < navContainer.childNodes.length; i++){
 			let currItem = navContainer.childNodes[i];
 			if(currItem.style.borderLeft == SELECTEDBORDERLEFT){
-				dateObj = {
+				dateInfo = {
 					"day": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-week']").textContent,
 					"date": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-month']").textContent,
 					"month": currItem.querySelector("[class='wn-month']").textContent,
 					"year": currItem.querySelector("[class='wn-year']").textContent
 				};
+
+				dateObj = new Date(dateInfo.year, dateInfo.month, dateInfo.date);
 			}
 		}
 		return dateObj;

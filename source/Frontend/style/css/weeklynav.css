@@ -4,12 +4,16 @@
 /* colors */
 /* spacing */
 .weekly-nav-title {
+  -webkit-transition: opacity 200ms linear;
+  transition: opacity 200ms linear;
   margin-top: 1.4rem;
   margin-bottom: 0.5rem;
   margin-left: 0.9rem;
 }
 
 .week-container {
+  -webkit-transition: opacity 200ms linear;
+  transition: opacity 200ms linear;
   background: #a1b3a1;
   z-index: -1;
   border-radius: 1rem;
@@ -32,6 +36,8 @@
           flex: 1 1 0;
   background: white;
   border-radius: 0.4rem;
+  -webkit-transition: border-left 0.15s linear;
+  transition: border-left 0.15s linear;
 }
 
 .week-container .wn-item:hover {

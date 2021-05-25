@@ -40,45 +40,53 @@ const NEXTLOG = document.getElementById("next-log");
 const MAINTEXTHEADER = document.querySelector("#date > h1");
 
 // weekly-nav elements
-const WEEKLYNAV = document.querySelector("weekly-nav");
-const MILLISECSPERDAY = 86400000;
+// const WEEKLYNAV = document.querySelector("weekly-nav");
+// const MILLISECSPERDAY = 86400000;
 
 // Go to the previous main-text log when the '<' button is hit, set the state
 PREVLOG.addEventListener("click", () => {
-	const DATE = WEEKLYNAV.selectedInfo;
-	// decrement the current date
-	let currDate = new Date(DATE.year, DATE.month, DATE.date);
-	let prevDate = new Date(currDate - MILLISECSPERDAY);
-	router.setState("daily-log", true, prevDate);
-	// updated selected day on the weekly-nav
-	//WEEKLYNAV.remove();
-	//createWeeklyNav(prevDate);
-	let date = WEEKLYNAV.selectedInfo;
-	console.log(date.day);
-	let index = [].indexOf.call(DAYS, date.day);
-	console.log(index);
-	WEEKLYNAV.selectedDay = index;
-	
+	const WEEKLYNAV = document.querySelector("weekly-nav");
+	//get the current selected day of the week from the weekly nav
+	let selectedDate = WEEKLYNAV.selectedInfo;
+	//get the previous day of the week
+	let prevDate = new Date(selectedDate);
+	prevDate.setDate(prevDate.getDate() - 1);
+	//If we are currently on a sunday, replace weekly nav menu with prev week
+	if(selectedDate.getDay() == 0){
+		// WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = '0';
+		// setTimeout(function() {
+		// 	WEEKLYNAV.remove();
+		// 	createWeeklyNav(prevDate);
+		//   }, 200);
 
-	//WEEKLYNAV.selectedDay = prevDate;
-	//console.log("updated: " + WEEKLYNAV.selectedInfo);
-	//console.log(WEEKLYNAV.selectedInfo);
+		WEEKLYNAV.remove();
+		createWeeklyNav(prevDate);
+	}
+	else{
+		WEEKLYNAV.selectedDay = prevDate.getDay() + 1;
+	}
+	router.setState("daily-log", true, prevDate);
+
 });
 
 // Go to the next main-text log when the '>' button is hit, set the state
 NEXTLOG.addEventListener("click", () => {
-	const DATE = WEEKLYNAV.selectedInfo;
-	// increment the current date
-	const currDate = new Date(DATE.year, DATE.month, DATE.date)
-	const nextDate = new Date(currDate)
-	nextDate.setDate(nextDate.getDate() + 1)
 
+	const WEEKLYNAV = document.querySelector("weekly-nav");
+	//get the current selected day of the week from the weekly nav
+	let selectedDate = WEEKLYNAV.selectedInfo;
+	//get the next day of the week
+	let nextDate = new Date(selectedDate);
+	nextDate.setDate(nextDate.getDate() + 1);
+	//If we are currently on a saturday, replace weekly nav menu with next week
+	if(selectedDate.getDay() == 6){
+		WEEKLYNAV.remove();
+		createWeeklyNav(nextDate);
+	}
+	else{
+		WEEKLYNAV.selectedDay = nextDate.getDay() + 1;
+	}
 	router.setState("daily-log", true, nextDate);
-	//WEEKLYNAV.selectedDay = nextDate;
-
-	let date = WEEKLYNAV.selectedInfo;
-	let index = [].indexOf.call(DAYS, date.day);
-	WEEKLYNAV.selectedDay = index+2;
 });
 
 
