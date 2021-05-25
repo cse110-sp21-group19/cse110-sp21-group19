@@ -1,14 +1,20 @@
 //weekly nav script
+import {DAYS, MONTHS} from './script.js';
 
 createWeeklyNav();
 
-export function createWeeklyNav(){
+export function createWeeklyNav(date){
     //adding weekly navigation web component
     let week = createDaysOfWeekArray();
     const WEEKLYNAV = document.createElement("weekly-nav");
     WEEKLYNAV.daysOfWeek = week;
-    let today = new Date();
-    WEEKLYNAV.selectedDay = today.getDay() + 1;
+    if (date) {
+        WEEKLYNAV.selectedDay = date;
+    }
+    else {
+        let today = new Date();
+        WEEKLYNAV.selectedDay = today.getDay() + 1;
+    }
     document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
 
     //Onclick listener for the items inside the weekly nav
@@ -54,7 +60,3 @@ function createDaysOfWeekArray(date){
 
 	return daysOfWeek;
 } /* createDaysofWeekArray */
-
-// Add Date to the top of the daily log
-const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

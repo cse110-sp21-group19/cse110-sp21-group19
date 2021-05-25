@@ -1,5 +1,9 @@
 // TODO: FIGURE OUT HOW TO DECLARE GLOBAL VARIABLES
 
+import { router } from './router.js';
+import { createWeeklyNav } from "./weekly-nav-script.js";
+import {DAYS, MONTHS} from './script.js';
+
 // Constants for different bullet types
 //  Task Bullets:
 const TASKBULLET = `<svg class="task-bullet" id="incomplete" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"/></svg>`;
@@ -28,6 +32,55 @@ bulletStack.push(BULLETS);
 
 MAINTEXT.appendChild(BULLETS);
 MAINTEXT.appendChild(INPUT);
+
+// Router Functionality
+const PREVLOG = document.getElementById("prev-log");
+const NEXTLOG = document.getElementById("next-log");
+
+const MAINTEXTHEADER = document.querySelector("#date > h1");
+
+// weekly-nav elements
+const WEEKLYNAV = document.querySelector("weekly-nav");
+const MILLISECSPERDAY = 86400000;
+
+// Go to the previous main-text log when the '<' button is hit, set the state
+PREVLOG.addEventListener("click", () => {
+	const DATE = WEEKLYNAV.selectedInfo;
+	// decrement the current date
+	let currDate = new Date(DATE.year, DATE.month, DATE.date);
+	let prevDate = new Date(currDate - MILLISECSPERDAY);
+	router.setState("daily-log", true, prevDate);
+	// updated selected day on the weekly-nav
+	//WEEKLYNAV.remove();
+	//createWeeklyNav(prevDate);
+	let date = WEEKLYNAV.selectedInfo;
+	console.log(date.day);
+	let index = [].indexOf.call(DAYS, date.day);
+	console.log(index);
+	WEEKLYNAV.selectedDay = index;
+	
+
+	//WEEKLYNAV.selectedDay = prevDate;
+	//console.log("updated: " + WEEKLYNAV.selectedInfo);
+	//console.log(WEEKLYNAV.selectedInfo);
+});
+
+// Go to the next main-text log when the '>' button is hit, set the state
+NEXTLOG.addEventListener("click", () => {
+	const DATE = WEEKLYNAV.selectedInfo;
+	// increment the current date
+	const currDate = new Date(DATE.year, DATE.month, DATE.date)
+	const nextDate = new Date(currDate)
+	nextDate.setDate(nextDate.getDate() + 1)
+
+	router.setState("daily-log", true, nextDate);
+	//WEEKLYNAV.selectedDay = nextDate;
+
+	let date = WEEKLYNAV.selectedInfo;
+	let index = [].indexOf.call(DAYS, date.day);
+	WEEKLYNAV.selectedDay = index+2;
+});
+
 
 INPUT.addEventListener("keyup", function(event) {
 	if (event.key === "Enter") {
@@ -71,15 +124,18 @@ function editableEntry(entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const bulletEntry = bulletEntryRoot.querySelector(".bullet-entry");
 	const inputted = bulletEntryRoot.getElementById("bullet-inputted");
+	const hoverMsg = bulletEntryRoot.getElementById("edit-msg");
 	if (inputted) {
 		// all to edit on double click
 		bulletEntry.addEventListener("dblclick", function() {
 			inputted.readOnly = false;
+			hoverMsg.innerHTML = "Enter to save note";
 		});
 		// after 'Enter' return to 'readOnly' mode
 		inputted.addEventListener("keyup", function(event) {
 			if (event.key === "Enter") {
 				inputted.readOnly = true;
+				hoverMsg.innerHTML = "Double click to edit note";
 			}
 		});
 		// TODO: after click away from entry, return to 'readyOnly' mode

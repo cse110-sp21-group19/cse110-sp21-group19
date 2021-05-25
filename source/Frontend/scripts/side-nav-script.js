@@ -2,6 +2,8 @@
 const MENUHEIGHT = "89vh";
 const BORDERADIUS = "0.8em";
 //Adding the side nav menu web component 
+
+
 const SIDENAV  = document.createElement("side-nav");
 document.getElementById("side-nav-container").appendChild(SIDENAV);
 export const SIDENAVROOT = SIDENAV.shadowRoot;
