@@ -30,7 +30,7 @@
 }
 
 .active-bar .content {
-  height: 15vh;
+  height: 13vh;
   width: 65%;
   min-width: 55%;
   background: white;
@@ -45,14 +45,14 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  padding: 0 1rem 2rem 1rem;
+  padding: 0 1rem 3rem 1rem;
 }
 
 .active-bar .new-entry {
   overflow: visible;
-  width: 4rem;
+  width: 8rem;
   height: 5rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .active-bar .new-entry:hover {
@@ -82,11 +82,8 @@
 }
 
 #btn {
-  height: 55px;
-  width: 55px;
-  border: 2px solid black;
-  background: #a1b3a1;
-  border-radius: 50%;
+  height: 7vh;
+  width: 7vh;
   -ms-grid-column: 2;
       grid-column-start: 2;
   grid-column-end: 5;
@@ -94,29 +91,6 @@
 
 #btn:hover {
   cursor: pointer;
-}
-
-#btn::before {
-  content: " ";
-  display: block;
-  background-color: black;
-  position: absolute;
-  width: 15px;
-  height: 2px;
-  margin-left: 13px;
-}
-
-#btn::after {
-  content: " ";
-  display: block;
-  background-color: black;
-  position: absolute;
-  width: 15px;
-  height: 2px;
-  margin-left: 13px;
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-  margin-top: 0px;
 }
 
 *:focus {
@@ -175,35 +149,56 @@
   cursor: pointer;
 }
 
-.note {
-  overflow: visible;
-  width: 4rem;
-  height: 5rem;
-  margin-right: 7rem;
-  padding-top: 1.5rem;
+.viewing {
+  display: none;
+  padding: 2rem;
+  height: 85vh;
+  width: 90%;
+  margin-left: 3rem;
+  background: #a1b3a1;
+  border-radius: 1rem;
 }
 
-.note:hover {
+.viewing h1 {
+  text-align: center;
+}
+
+.viewing .close {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.viewing .close:hover {
   cursor: pointer;
 }
 
-.tooltip {
-  position: relative;
+.viewing .close-edit {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-.tooltip .tooltiptext {
-  position: absolute;
-  top: 10px;
+.viewing .close-edit:hover {
+  cursor: pointer;
 }
 
-::-webkit-scrollbar {
-  height: 10px;
+.viewing .text-content {
+  margin-top: 1rem;
+  width: 98.5%;
+  height: 70%;
+  background: white;
+  border-radius: 1rem;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  overflow-y: auto;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #616161;
-  border-radius: 10px;
+.viewing .save-btn {
+  width: 5%;
+  float: right;
+}
+
+.viewing .save-btn:hover {
+  cursor: pointer;
 }
 
 /* End styling addl button */

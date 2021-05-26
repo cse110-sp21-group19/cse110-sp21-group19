@@ -12,7 +12,7 @@
 		const template = document.createElement("template");
 		// change inner html of template to the correct format
 		template.innerHTML = `
-			<link rel="stylesheet" href="style/css/entrybar.css">
+			<link rel="stylesheet" href="style/css/textentry.css">
 			<div class="tooltip">
 				<span class="tooltiptext">Tooltip text</span>
 				<svg class="note" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,16 +34,32 @@
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
 	}
+	//connectedCallback fires every time the custom component is created
 	connectedCallback(){
+		//entry-data only stores the contents of each entry, and is not to be displayed
 		this.shadowRoot.querySelector(".entry-data").style.display="none";
 	}
+	/** Gets the entry attribute of the text-entry component
+	 * 
+	 * @returns {Object} Gets an object of the form {title: ..., content: ...}
+	 * 
+	 * @example let entryContents = myEntry.entry;
+	 */
 	get entry(){
 		let currTitle = this.shadowRoot.querySelector(".entry-title").innerText;
 		let currContent = this.shadowRoot.querySelector(".entry-content").innerText;
 		let toReturn = {title: currTitle, content: currContent};
 
 		return toReturn;
-	}
+	} /*get entry*/
+
+	/** Sets the entry attribute of the text-entry component
+	 * 
+	 * @param Object
+	 * 
+	 * 
+	 * @example newEntry.entry = {title: "myTitle", content: "myContents"};
+	 */
 	set entry(entry){
 		let currTitle = this.shadowRoot.querySelector(".entry-title");
 		let currContent = this.shadowRoot.querySelector(".entry-content");
@@ -54,7 +70,7 @@
 		currTitle.innerHTML = entry.title;
 		currContent.innerHTML = entry.content;
 
-	}	
+	}/*set entry*/	
 }/*entryBar*/
 //define the custom web component "text-entry" and associate it to the class "textEntry"
 customElements.define("text-entry", textEntry);
