@@ -91,6 +91,7 @@ Tester
 - Keep testing
 - Keeping track of bugs / unexpected behaviour
   - prioritize
+- Checking out an experimental branch
 
 Builder
 - continue working
@@ -102,3 +103,4 @@ Docs
 ## Ended at
 Design: 6:10pm PDT
 Frontend/Backend: 6:37pm PDT
+Testing/Builder/Docs: 6:5pm PDT
