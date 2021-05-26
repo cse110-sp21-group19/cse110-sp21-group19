@@ -1,5 +1,9 @@
 Our CI/CD build system will be implemented in stages as our code base is built - in this way, our pipeline can better accomodate the codebase decisions of our developers (i.e. build and test scripting will aim to match and accomodate the growing needs backend's and frontend's decisions/needs). Some exceptions include Documentation automation as this is something that helps the project as a whole and is best implemented ahead fo time.
 
+Here is our current planned pipline (includes merged items, and implemented in-progress items):
+![pipeline](pipelineV3.png)
+
+
 ## Merged/Implemented
 - lint - Merged in Master; we used eslint since it's reports are easy to inpterpret, our developers can use a built in fix script, and it's wide array of tools allow for fine tuning the rules
 
