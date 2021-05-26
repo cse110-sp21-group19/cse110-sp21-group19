@@ -1,6 +1,14 @@
 export const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 export const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+/**
+ * @typedef {Object} LogTypeObj
+ * @property {string} type - The type of log of the current page.
+ * @property {Date} date - The date of the current page.
+ * @property {string} header - The header that will appear over the 
+ * main-text area.
+ */
+
 // <log-type> custom web component
 class LogType extends HTMLElement {
 	constructor() {
@@ -19,6 +27,7 @@ class LogType extends HTMLElement {
 				<div id="js-date-obj"></div>
 			</div>
 			`;
+
 		// default: set the header to the current date
         const headerEl = document.createElement("h1");
         let d = new Date();
@@ -29,20 +38,21 @@ class LogType extends HTMLElement {
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-		// Apply external styles to the shadow dom
-		// const bulletInputStyle = document.createElement("link");
-		// bulletInputStyle.setAttribute("rel", "stylesheet");
-		// bulletInputStyle.setAttribute("href", "style/css/bulletinput.css");
 		// Attach the created elements to the shadow dom
-		//shadow.appendChild(bulletInputStyle);
-
 		shadow.getElementById("header").appendChild(headerEl);
 		shadow.getElementById("js-date-obj").innerText = d;
 	}
 
-    /*
-	 * `get` binds a property to a function that will be called when that property is looked up
-	 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
+
+	/**
+	 * get readLog
+	 * Get the log type information for the current page.
+	 * @param {}
+	 * @return {LogTypeObj} A js object containing the type, date, and header 
+	 * info of the current page.
+	 * 
+	 * @example
+	 *      this.readLog
 	 */
 	get readLog() {
         const TYPE = this.shadowRoot.getElementById("header").className;
@@ -58,11 +68,20 @@ class LogType extends HTMLElement {
 		return logObj;
 	}
 
-	/*
-	 * `set` binds an object property to a function to be called when there is an attempt to set that property
-	 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set
+	/**
+	 * set updateLog
+	 * Set the log type information on the page. Updates the header above the 
+	 * main-text area, the date, and the class name #header to the new type of 
+	 * page.
+	 * @param {LogTypeObj} logObj - Updated log type object.
+	 * 
+	 * @example
+	 *      this.updateLog = {
+	 *							type: "daily",
+	 *   						date: Tue May 25 2021 10:28:06 GMT-0700 (Pacific Daylight Time)
+	 *   						header: "Monday, May 24"
+	 * 							}
 	 */
-	
     set updateLog(logObj) {
         // update class name
         let logType = this.shadowRoot.getElementById("header").className;

@@ -43,12 +43,12 @@ class TodoList extends HTMLElement{
         //TODO
 	}
 
-	/*
+	/**
 	 * get selectedInfo
-	 * get the date info of the item selected
+	 * Get the date info of the item selected.
 	 * @param {}
-	 * @returns an object containing the date info of the current selected item in the 
-	 * weekly nav menu
+	 * @returns An object containing the date info of the current selected item in
+	 * the weekly nav menu.
 	 * 
 	 * @example
 	 *      this.selectedInfo
@@ -73,11 +73,12 @@ class TodoList extends HTMLElement{
 		return dateObj;
 	}/* get selectedInfo */
 
-	/*
+	/**
 	 * set selectedDay 
-	 * set an item in the list as selected
+	 * Set an item in the list as selected.
 	 * 
-	 * @param {number} day - the day of the week of the item that is to be styled as selected
+	 * @param {number} day - The day of the week of the item that is to be styled 
+	 * as selected.
 	 * 
 	 * @example
 	 *      this.selectedDay = day
@@ -102,13 +103,13 @@ class TodoList extends HTMLElement{
 }
 
 
-/*
+/**
  * getDateString 
- * converts integer day of week to its related string
+ * Converts integer day of week to its related string.
  * 
- * @param {number} day - An integer of the day of the week (0-6)
+ * @param {number} day - An integer of the day of the week (0-6).
  * 
- * @returns A string of the related day of the week of the parameter
+ * @returns A string of the related day of the week of the parameter.
  * 
  * @example
  *      getDateString(day)

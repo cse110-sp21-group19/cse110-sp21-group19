@@ -6,9 +6,10 @@ createWeeklyNav(today);
 
 /**
  * createWeeklyNav
- * Takes in a date and creates a weekly nav component from that date and appends it to the screen
+ * Takes in a date and creates a weekly nav component from that date and 
+ * appends it to the screen.
  * 
- * @param {*} date - date object to make the weekly nav menu around
+ * @param {Date} date - Date object to make the weekly nav menu around.
  * 
  * @example
  *  createWeeklyNav(date)
@@ -41,12 +42,12 @@ export function createWeeklyNav(date){
 
 /**
  * createDaysofWeekyArray 
- * creates an array of days of the week for a given week
+ * Creates an array of days of the week for a given week.
  * 
- * @param {*} date - A date object of a day in the week that will be created
+ * @param {*} date - A date object of a day in the week that will be created.
  * 
  * @returns An array of date objects (As is, if we attatch important bullets, this will change)
- * for the days of the current week
+ * for the days of the current week.
  * 
  * @example 
  *      createDaysOfWeekArray()

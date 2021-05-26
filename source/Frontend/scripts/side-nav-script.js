@@ -22,7 +22,7 @@ expand.addEventListener("click", () => {
 
 /** 
  * openMenu
- * function to open the side nav menu, adds classes to perform animations/transformations
+ * Function to open the side nav menu, adds classes to perform animations/transformations.
  * 
  * @example
  * 	openMenu()
@@ -51,7 +51,7 @@ function openMenu(){
 
 /**
  * closeMenu
- * function to close the side nav menu, removes classes to perform animations/transformations
+ * Function to close the side nav menu, removes classes to perform animations/transformations.
  * 
  * @example
  * 	closeMenu()

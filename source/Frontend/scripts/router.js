@@ -18,10 +18,11 @@ const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-cont
 
 //FIX LATER:router copied from lab to get things going
 /**
- * Set the state for the new page
- * @param {string} state The new page to set the state of
- * @param {boolean} statePopped If the request came from a popstate event
- * @param {number} date The date of the current log
+ * setState
+ * Set the state for the new page.
+ * @param {string} state The new page to set the state.
+ * @param {boolean} statePopped If the request came from a popstate event.
+ * @param {number} date The date of the current log.
  */
  router.setState = (state, statePopped, date) => {
     switch (state) {
@@ -48,10 +49,8 @@ const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-cont
 //TODO ADD DATE IMPLEMENTATION HERE
 /**
  * dailyLog
- * Set the state for the a new daily-log page
- * @param {string} state The new page to set the state of
- * @param {boolean} statePopped If the request came from a popstate event
- * @param {Date} date The date object of the current log
+ * Set the state for the a new daily-log page.
+ * @param {Date} date The date to associate the page with.
  * 
  * @example
  *      dailyLog("5-24-2021");
@@ -79,10 +78,8 @@ function dailyLog(date){
 
 /**
  * monthlyLog
- * Set the state for the a new monthly-log page
- * @param {string} state The new page to set the state of
- * @param {boolean} statePopped If the request came from a popstate event
- * @param {number} date The date of the current log
+ * Set the state for the a new monthly-log page.
+ * @param {Date} date The date to associate the page with.
  * 
  * @example
  *      monthlyLog("5-24-2021");
@@ -111,10 +108,8 @@ function monthlyLog(date){
 
 /**
  * futureLog
- * Set the state for the a new future-log page
- * @param {string} state The new page to set the state of
- * @param {boolean} statePopped If the request came from a popstate event
- * @param {number} date The date of the current log
+ * Set the state for the a new future-log page.
+ * @param {Date} date The date to associate the page with.
  * 
  * @example
  *      futureLog();

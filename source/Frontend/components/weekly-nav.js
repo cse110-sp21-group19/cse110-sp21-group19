@@ -103,7 +103,7 @@ class WeeklyNav extends HTMLElement{
 	 * @example
 	 *      this.selectedInfo
 	 */
-	get selectedInfo (){
+	get selectedInfo() {
 
 		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
 
@@ -129,9 +129,9 @@ class WeeklyNav extends HTMLElement{
 
 	/**
 	 * set selectedDay 
-	 * set an item in the list as selected
+	 * Set an item in the list as selected.
 	 * 
-	 * @param {number} day - the day of the week of the item that is to be styled as selected
+	 * @param {number} day - The day of the week of the item that is to be styled as selected.
 	 * 
 	 * @example
 	 *      this.selectedDay = day
@@ -158,11 +158,11 @@ class WeeklyNav extends HTMLElement{
 
 /**
  * getDateString 
- * converts integer day of week to its related string
+ * Converts integer day of week to its related string.
  * 
- * @param {number} day - An integer of the day of the week (0-6)
+ * @param {number} day - An integer of the day of the week (0-6).
  * 
- * @returns A string of the related day of the week of the parameter
+ * @returns A string of the related day of the week of the parameter.
  * 
  * @example
  *      getDateString(day)
@@ -190,14 +190,14 @@ function getDateString(day){
 
 /**
  * getWeeklyNavTitle 
- * Formats the title on top of the weekly nav menu,
- * Also address edge case if week is between two months and/or two years
+ * Formats the title on top of the weekly nav menu.
+ * Also address edge case if week is between two months and/or two years.
  * 
- * @param {Date} first - A date object referring to the first day of the week
- * @param {Date} last - A date object referring to the last day of the week
+ * @param {Date} first - A date object referring to the first day of the week.
+ * @param {Date} last - A date object referring to the last day of the week.
  * 
  * @returns A string of the correct title in the format "Month, Year" or 
- * "Month1/Month2, Year" or "Month1/Month2, Year1/Year2"
+ * "Month1/Month2, Year" or "Month1/Month2, Year1/Year2".
  * 
  * @example
  *      getWeekyNavTitle(first, last)
