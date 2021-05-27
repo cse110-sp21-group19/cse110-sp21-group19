@@ -204,37 +204,37 @@ function updateBullet(key, bullet){
  * @example getBullet(1);
  */
 function getBullet(key){
-    //opening database
-    let request = window.indexedDB.open(DATABASENAME);
+    return new Promise((resolve, reject) => {
+        //opening database
+        let request = window.indexedDB.open(DATABASENAME);
 
-    //db opens successfully
-    request.onsuccess = function(event){
-        let db = request.result;
-        let transaction = db.transaction([BULLETDB], "readonly");
-        let objStore = transaction.objectStore(BULLETDB);
-        let objStoreRequest = objStore.get(key);
+        //db opens successfully
+        request.onsuccess = function(event){
+            let db = request.result;
+            let transaction = db.transaction([BULLETDB], "readonly");
+            let objStore = transaction.objectStore(BULLETDB);
+            let objStoreRequest = objStore.get(key);
 
-        //Bullet object successfully accessed
-        objStoreRequest.onsuccess = function (e){
-/*             console.log(e.target);*/
-            console.log(e.target.result);
-            return e.target.result;
+            //Bullet object successfully accessed
+            objStoreRequest.onsuccess = function (e){
+                resolve(e.target.result);
+            }
+            //Unable to access bullet object
+            objStoreRequest.onerror = function(event){
+                console.log.error(ERR_CANT_GET_BULLET + key);
+
+            }
+
+            transaction.oncomplete = function () {
+                db.close();
+            }
         }
-        //Unable to access bullet object
-        objStoreRequest.onerror = function(event){
-            console.log.error(ERR_CANT_GET_BULLET + key);
+        //unable to open database
+        request.onerror = function(event){
+            console.log.error(ERR_DB_NOT_CREATED);
             return {};
         }
-
-        transaction.oncomplete = function () {
-            db.close();
-        }
-    }
-    //unable to open database
-    request.onerror = function(event){
-        console.log.error(ERR_DB_NOT_CREATED);
-        return {};
-    }
+    });
 }
 
 /*
@@ -248,36 +248,37 @@ function getBullet(key){
  * @example deleteBullet(1);
  */
 function deleteBullet(key){
+    return new Promise((resolve, reject) => {
+        //opening database
+        let request = window.indexedDB.open(DATABASENAME);
 
-    //opening database
-    let request = window.indexedDB.open(DATABASENAME);
+        //db opens successfully
+        request.onsuccess = function(event){
+            let db = request.result;
+            let transaction = db.transaction([BULLETDB], "readwrite");
+            let objStore = transaction.objectStore(BULLETDB);
+            let objStoreRequest = objStore.delete(key);
 
-    //db opens successfully
-    request.onsuccess = function(event){
-        let db = request.result;
-        let transaction = db.transaction([BULLETDB], "readwrite");
-        let objStore = transaction.objectStore(BULLETDB);
-        let objStoreRequest = objStore.delete(key);
+            //Bullet object successfully deleted
+            objStoreRequest.onsuccess = function(event){
+                resolve(true);
+            }
+            //Unable to delete bullet object
+            objStoreRequest.onerror = function(event){
+                console.log.error(ERR_CANT_DELETE_BULLET + key);
+                resolve(false);
+            }
 
-        //Bullet object successfully deleted
-        objStoreRequest.onsuccess = function(event){
-            return true;
+            transaction.oncomplete = function () {
+                db.close();
+            }
         }
-        //Unable to delete bullet object
-        objStoreRequest.onerror = function(event){
-            console.log.error(ERR_CANT_DELETE_BULLET + key);
+        //unable to open database
+        request.onerror = function(event){
+            console.log.error(ERR_DB_NOT_CREATED);
             return false;
         }
-
-        transaction.oncomplete = function () {
-            db.close();
-        }
-    }
-    //unable to open database
-    request.onerror = function(event){
-        console.log.error(ERR_DB_NOT_CREATED);
-        return false;
-    }
+    });    
 }
 
 let submit = document.getElementById("submit");
