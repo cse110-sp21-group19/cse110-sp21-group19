@@ -30,21 +30,33 @@
 }
 
 .active-bar .content {
-  height: 20vh;
-  width: 75%;
+  height: 13vh;
+  width: 65%;
   min-width: 55%;
   background: white;
   border-radius: 1rem;
   margin-top: 0;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 0 1rem 3rem 1rem;
+}
+
+.active-bar .new-entry {
+  overflow: visible;
+  width: 8rem;
+  height: 5rem;
+  margin-top: 2rem;
+}
+
+.active-bar .new-entry:hover {
+  cursor: pointer;
 }
 
 .inactive-bar {
@@ -70,11 +82,8 @@
 }
 
 #btn {
-  height: 55px;
-  width: 55px;
-  border: 2px solid black;
-  background: #a1b3a1;
-  border-radius: 50%;
+  height: 7vh;
+  width: 7vh;
   -ms-grid-column: 2;
       grid-column-start: 2;
   grid-column-end: 5;
@@ -84,27 +93,76 @@
   cursor: pointer;
 }
 
-#btn::before {
-  content: " ";
-  display: block;
-  background-color: black;
-  position: absolute;
-  width: 15px;
-  height: 2px;
-  margin-left: 13px;
+*:focus {
+  outline: none;
 }
 
-#btn::after {
-  content: " ";
-  display: block;
-  background-color: black;
+.editing {
+  display: none;
+  padding: 2rem;
+  height: 85vh;
+  width: 90%;
+  margin-left: 3rem;
+  background: #a1b3a1;
+  border-radius: 1rem;
+}
+
+.editing .close {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.editing .close:hover {
+  cursor: pointer;
+}
+
+.editing .close-edit {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.editing .close-edit:hover {
+  cursor: pointer;
+}
+
+.editing .text-content {
+  margin-top: 1rem;
+  width: 98.5%;
+  height: 70%;
+  background: white;
+  border-radius: 1rem;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  overflow-y: auto;
+}
+
+.editing .save-btn-wrapper {
+  float: right;
+}
+
+.editing .save-btn {
+  height: 7vh;
+  width: 7vh;
+}
+
+.editing .save-btn:hover {
+  cursor: pointer;
+}
+
+.editing h1 {
+  text-align: center;
+}
+
+.editing .delete-btn {
+  height: 7vh;
+  width: 7vh;
   position: absolute;
-  width: 15px;
-  height: 2px;
-  margin-left: 13px;
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-  margin-top: 0px;
+  left: 91%;
+  top: 22%;
+}
+
+.editing .delete-btn:hover {
+  cursor: pointer;
 }
 
 /* End styling addl button */

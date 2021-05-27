@@ -22,18 +22,28 @@
     .close:hover{
         cursor: pointer;
     }
+
     .content{
-        height: 20vh;
-        width: 75%;
+        height: 13vh;
+        width: 65%;
         min-width: 55%;
         background: white;
         border-radius: 1rem;
         margin-top: 0;
         overflow-x: auto;
         overflow-y: hidden;
-        padding: 0;
         display: flex;
-        justify-content: space-evenly;
+        flex-direction: row;
+        padding: 0 1rem 3rem 1rem;
+    }
+    .new-entry{
+        overflow: visible;
+        width: 8rem;
+        height: 5rem;
+        margin-top: 2rem;
+    }
+    .new-entry:hover{
+        cursor: pointer;
     }
 
 }
@@ -55,37 +65,78 @@
     cursor: pointer;
 }
 #btn{
-    height: 55px;
-    width: 55px;
-    border: 2px solid black;
-    background: $accent; // #E5E5E5;
-    border-radius: 50%;
+    height: 7vh;
+    width: 7vh;
     grid-column-start: 2;
     grid-column-end: 5;
 }
 #btn:hover{
     cursor: pointer;
 }
-#btn::before {
-content: " ";
-display: block;
-background-color: black;
-position: absolute;
-width: 15px;
-height: 2px;
-margin-left: 13px;
-}
-#btn::after {
-    content: " ";
-    display: block;
-    background-color: black;
-    position: absolute;
-    width: 15px;
-    height: 2px;
-    margin-left: 13px;
-    transform: rotate(90deg);
-    margin-top: 0px;
-}
 
+*:focus{
+    outline: none;
+}
+.editing{
+    display: none;
+    padding: 2rem;
+    height: 85vh;
+    width: 90%;
+    margin-left: 3rem;
+    background: $accent;
+    border-radius: 1rem;
+    
+    .close{
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .close:hover{
+        cursor: pointer;
+    }
+    .close-edit{
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .close-edit:hover{
+        cursor: pointer;
+    }
+    .text-content{
+        margin-top: 1rem;
+        width: 98.5%;
+        height: 70%;
+        background: white;
+        border-radius: 1rem;
+        padding-top: 1rem;
+        padding-left: 0.5rem;
+        overflow-y: auto;
+        
+    }
+    .save-btn-wrapper{
+        float: right;
+    }
+    .save-btn{
+        height: 7vh;
+        width: 7vh;
+    
+    }
+    .save-btn:hover{
+        cursor: pointer;
+    }
+
+    h1{text-align: center;
+    }
+
+    .delete-btn{
+        height: 7vh;
+        width: 7vh;
+        position: absolute;
+        left: 91%;
+        top: 22%;
+    }
+    .delete-btn:hover{
+        cursor: pointer;
+    }
+
+}
 
 /* End styling addl button */

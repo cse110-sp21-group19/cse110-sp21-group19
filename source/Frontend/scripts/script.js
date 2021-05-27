@@ -51,10 +51,6 @@ SNFUTURELOG.addEventListener("click", () => {
 	closeMenu();
 });
 
-
-
-
-
 // weekly-nav elements
 
 const PREVLOG = document.getElementById("prev-log");
@@ -79,3 +75,10 @@ NEXTLOG.addEventListener("click", () => {
 
 	router.setState("daily-log", false, nextDate);
 });
+
+// Add additional entries bar web component
+const addlEntryBar = document.createElement("entry-bar");
+addlEntryBar.type = "initial";
+const addlEntries = document.querySelector(".additional")
+addlEntries.appendChild(addlEntryBar);
+
