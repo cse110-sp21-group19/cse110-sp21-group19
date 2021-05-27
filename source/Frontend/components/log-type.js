@@ -63,8 +63,6 @@ class LogType extends HTMLElement {
 			"date": new Date(DATE),
             "header": HEADER // string with the appropriate title
 		};
-		console.log("in getter");
-		console.log(logObj);
 		return logObj;
 	}
 

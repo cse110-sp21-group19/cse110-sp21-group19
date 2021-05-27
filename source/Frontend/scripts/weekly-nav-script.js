@@ -14,7 +14,7 @@ createWeeklyNav(today);
  * @example
  *  createWeeklyNav(date)
  */
-export function createWeeklyNav(date){
+export function createWeeklyNav(date) {
     //adding weekly navigation web component
     let week = createDaysOfWeekArray(date);
     const WEEKLYNAV = document.createElement("weekly-nav");
@@ -32,7 +32,7 @@ export function createWeeklyNav(date){
 
             //get the newly selected date and update router
             let selectedDate = WEEKLYNAV.selectedInfo;
-            router.setState("daily-log", true, selectedDate);
+            router.setState("daily-log", false, selectedDate);
            
         }
 
@@ -44,7 +44,7 @@ export function createWeeklyNav(date){
  * createDaysofWeekyArray 
  * Creates an array of days of the week for a given week.
  * 
- * @param {*} date - A date object of a day in the week that will be created.
+ * @param {Date} date - A date object of a day in the week that will be created.
  * 
  * @returns An array of date objects (As is, if we attatch important bullets, this will change)
  * for the days of the current week.
@@ -52,7 +52,7 @@ export function createWeeklyNav(date){
  * @example 
  *      createDaysOfWeekArray()
  */
-function createDaysOfWeekArray(date){
+function createDaysOfWeekArray(date) {
 	//NOTE: if we want to pass data into the weekly nav like important bullets we can attach to this array
 	let daysOfWeek = [];
 	let currDate = new Date(date);

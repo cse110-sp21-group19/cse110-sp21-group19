@@ -41,9 +41,10 @@ const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-cont
         default:
             console.log("default");
     }
-    // if(!statePopped && window.location.hash != `#${state}`) {
-    //   pushToHistory(state, entryNum);
-    // }
+
+    if(!statePopped) { //&& window.location.hash != `#${state}`) {
+        pushToHistory(state, date);
+    }
 }
 
 //TODO ADD DATE IMPLEMENTATION HERE
@@ -70,8 +71,24 @@ function dailyLog(date){
             "header": headerText
         }
         LOGTYPE.updateLog = DAILYINFO;
+
+        //get the current selected day of the week from the weekly nav
+        const WEEKLYNAV = document.querySelector("weekly-nav");
+        //If we are currently on a sunday, replace weekly nav menu with prev week
+        if (date.getDay() == 0) {
+            WEEKLYNAV.remove();
+            createWeeklyNav(date);
+        }
+        //If we are currently on a saturday, replace weekly nav menu with next week
+        else if (date.getDay() == 6) {
+            WEEKLYNAV.remove();
+            createWeeklyNav(date);
+        }
+        else {
+            WEEKLYNAV.selectedDay = date.getDay() + 1;
+        }
+
         // TODO: update the main-text data
-        // TODO: change the weekly-nav indicator to the appropriate date
     }
 } /* dailyLog */
 
@@ -138,3 +155,26 @@ function futureLog(){
         weeklyNav.remove();
     }
 } /* futureLog */
+
+/**
+ * pushToHistory
+ * Push a new state to the history stack.
+ * @param {string} state The new page to set the state of.
+ * @param {number} date Date.
+*/
+function pushToHistory(state, date) {
+    switch (state) {
+        case "daily-log":
+            history.pushState({ page: "daily-log", date: date }, "", `./#daily${date}`);
+            break;
+        case "monthly-log":
+            history.pushState({ page: "monthly-log", date: date }, "", `./#monthly${date}`);
+            break;
+        case "future-log":
+            history.pushState({ page: "future-log", date: date }, "", `./#future${date}`);
+            break;
+        default:
+            history.pushState({}, '', './');
+    }
+    return history;
+  }

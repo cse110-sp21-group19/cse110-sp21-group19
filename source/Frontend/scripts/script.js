@@ -6,12 +6,18 @@ import { closeMenu } from "./side-nav-script.js";
 const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
 
+// When the back button is hit, set the state with the new page
+window.addEventListener('popstate', e => {
+	console.log("in popstate");
+	router.setState(e.state?.page, true, e.state?.date);
+});
+
 // on click listener for daily log button in side nav
 const SNDAILYLOG = SIDENAVROOT.getElementById("sn-daily-log");
 SNDAILYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current date
     let d = new Date();
-	router.setState("daily-log", true, d);
+	router.setState("daily-log", false, d);
 
     // TODO: update the side bar to weekly-nav
     // TODO: update main-text area
@@ -24,7 +30,7 @@ const SNMONTHLYLOG = SIDENAVROOT.getElementById("sn-monthly-log");
 SNMONTHLYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current month
     let d = new Date();
-	router.setState("monthly-log", true, d);
+	router.setState("monthly-log", false, d);
 
     // TODO: update the side bar to task list
     // TODO: update main-text area
@@ -37,7 +43,7 @@ const SNFUTURELOG = SIDENAVROOT.getElementById("sn-future-log");
 SNFUTURELOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current year
     let d = new Date();
-	router.setState("future-log", true, d);
+	router.setState("future-log", false, d);
 
     // TODO: update the side bar to task list
     // TODO: update main-text area
@@ -61,18 +67,7 @@ PREVLOG.addEventListener("click", () => {
 	const prevDate = new Date(DATE)
 	prevDate.setDate(prevDate.getDate() - 1)
 
-	const WEEKLYNAV = document.querySelector("weekly-nav");
-
-	//If we are currently on a sunday, replace weekly nav menu with prev week
-	if(DATE.getDay() == 0){
-		WEEKLYNAV.remove();
-		createWeeklyNav(prevDate);
-	}
-	else{
-		WEEKLYNAV.selectedDay = prevDate.getDay() + 1;
-	}
-
-	router.setState("daily-log", true, prevDate);
+	router.setState("daily-log", false, prevDate);
 });
 
 // Go to the next main-text log when the '>' button is hit, set the state
@@ -82,17 +77,5 @@ NEXTLOG.addEventListener("click", () => {
 	const nextDate = new Date(DATE)
 	nextDate.setDate(nextDate.getDate() + 1)
 
-	const WEEKLYNAV = document.querySelector("weekly-nav");
-	//get the current selected day of the week from the weekly nav
-
-	//If we are currently on a saturday, replace weekly nav menu with next week
-	if(DATE.getDay() == 6){
-		WEEKLYNAV.remove();
-		createWeeklyNav(nextDate);
-	}
-	else{
-		WEEKLYNAV.selectedDay = nextDate.getDay() + 1;
-	}
-
-	router.setState("daily-log", true, nextDate);
+	router.setState("daily-log", false, nextDate);
 });
