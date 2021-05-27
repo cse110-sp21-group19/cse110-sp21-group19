@@ -16,12 +16,17 @@ class LogType extends HTMLElement {
 
 		// templated HTML content
 		const template = document.createElement("template");
-
+		// Wednesday, September 30 --> 23 characters
 		template.innerHTML = `
 			<style>
 				#js-date-obj {
 					display: none;
 				}
+				h1 {
+					width: 29rem;
+					text-align: center;
+				}
+
 			</style>
 			<div class="daily" id="header">
 				<div id="js-date-obj"></div>
