@@ -85,9 +85,7 @@
     margin-left: 3rem;
     background: $accent;
     border-radius: 1rem;
-    h1{
-        text-align: center;
-    }
+    
     .close{
         font-size: 2rem;
         font-weight: bold;
@@ -113,56 +111,32 @@
         overflow-y: auto;
         
     }
-    .save-btn{
-        width: 5%;
+    .save-btn-wrapper{
         float: right;
+    }
+    .save-btn{
+        height: 7vh;
+        width: 7vh;
+    
     }
     .save-btn:hover{
         cursor: pointer;
     }
+
+    h1{text-align: center;
+    }
+
+    .delete-btn{
+        height: 7vh;
+        width: 7vh;
+        position: absolute;
+        left: 91%;
+        top: 22%;
+    }
+    .delete-btn:hover{
+        cursor: pointer;
+    }
+
 }
-.viewing{
-    display: none;
-    padding: 2rem;
-    height: 85vh;
-    width: 90%;
-    margin-left: 3rem;
-    background: $accent;
-    border-radius: 1rem;
-    h1{
-        text-align: center;
-    }
-    .close{
-        font-size: 2rem;
-        font-weight: bold;
-    }
-    .close:hover{
-        cursor: pointer;
-    }
-    .close-edit{
-        font-size: 2rem;
-        font-weight: bold;
-    }
-    .close-edit:hover{
-        cursor: pointer;
-    }
-    .text-content{
-        margin-top: 1rem;
-        width: 98.5%;
-        height: 70%;
-        background: white;
-        border-radius: 1rem;
-        padding-top: 1rem;
-        padding-left: 0.5rem;
-        overflow-y: auto;
-        
-    }
-    .save-btn{
-        width: 5%;
-        float: right;
-    }
-    .save-btn:hover{
-        cursor: pointer;
-    }
-}
+
 /* End styling addl button */

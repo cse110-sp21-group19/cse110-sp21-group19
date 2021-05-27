@@ -107,10 +107,6 @@
   border-radius: 1rem;
 }
 
-.editing h1 {
-  text-align: center;
-}
-
 .editing .close {
   font-size: 2rem;
   font-weight: bold;
@@ -140,64 +136,32 @@
   overflow-y: auto;
 }
 
-.editing .save-btn {
-  width: 5%;
+.editing .save-btn-wrapper {
   float: right;
+}
+
+.editing .save-btn {
+  height: 7vh;
+  width: 7vh;
 }
 
 .editing .save-btn:hover {
   cursor: pointer;
 }
 
-.viewing {
-  display: none;
-  padding: 2rem;
-  height: 85vh;
-  width: 90%;
-  margin-left: 3rem;
-  background: #a1b3a1;
-  border-radius: 1rem;
-}
-
-.viewing h1 {
+.editing h1 {
   text-align: center;
 }
 
-.viewing .close {
-  font-size: 2rem;
-  font-weight: bold;
+.editing .delete-btn {
+  height: 7vh;
+  width: 7vh;
+  position: absolute;
+  left: 91%;
+  top: 22%;
 }
 
-.viewing .close:hover {
-  cursor: pointer;
-}
-
-.viewing .close-edit {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.viewing .close-edit:hover {
-  cursor: pointer;
-}
-
-.viewing .text-content {
-  margin-top: 1rem;
-  width: 98.5%;
-  height: 70%;
-  background: white;
-  border-radius: 1rem;
-  padding-top: 1rem;
-  padding-left: 0.5rem;
-  overflow-y: auto;
-}
-
-.viewing .save-btn {
-  width: 5%;
-  float: right;
-}
-
-.viewing .save-btn:hover {
+.editing .delete-btn:hover {
   cursor: pointer;
 }
 
