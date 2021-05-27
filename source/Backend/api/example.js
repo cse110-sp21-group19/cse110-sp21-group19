@@ -117,6 +117,49 @@ function createBullet(bullet) {
 }
 
 /*
+ * getBullet
+ * Returns the specified bullet object from the database
+ * 
+ * @param key - The key of the bullet to get
+ * 
+ * @return The associated bullet object, or {} if unable to get bullet
+ * 
+ * @example getBullet(1);
+ */
+function getBullet(key){
+    //opening database
+    let request = window.indexedDB.open(DATABASENAME);
+
+    //db opens successfully
+    request.onsuccess = function(event){
+        let db = request.result;
+        let transaction = db.transaction([BULLETDB], "readonly");
+        let objStore = transaction.objectStore(BULLETDB);
+        let objStoreRequest = objStore.get(key);
+
+        //Bullet object successfully accessed
+        objStoreRequest.onsuccess = function (e){
+            console.log(e.target.result);
+            return e.target.result;
+        }
+        //Unable to access bullet object
+        objStoreRequest.onerror = function(event){
+            console.log.error(ERR_CANT_GET_BULLET + key);
+            return {};
+        }
+
+        transaction.oncomplete = function () {
+            db.close();
+        }
+    }
+    //unable to open database
+    request.onerror = function(event){
+        console.log.error(ERR_DB_NOT_CREATED);
+        return {};
+    }
+}
+
+/*
  * updateBullet
  * Updates the specified bullet to be equal to the new bullet object
  * 
@@ -190,50 +233,6 @@ function updateBullet(key, bullet){
     //unable to open database
     request.onerror = function () {
         console.log.error(ERR_DB_NOT_CREATED);
-    }
-}
-
-/*
- * getBullet
- * Returns the specified bullet object from the database
- * 
- * @param key - The key of the bullet to get
- * 
- * @return The associated bullet object, or {} if unable to get bullet
- * 
- * @example getBullet(1);
- */
-function getBullet(key){
-    //opening database
-    let request = window.indexedDB.open(DATABASENAME);
-
-    //db opens successfully
-    request.onsuccess = function(event){
-        let db = request.result;
-        let transaction = db.transaction([BULLETDB], "readonly");
-        let objStore = transaction.objectStore(BULLETDB);
-        let objStoreRequest = objStore.get(key);
-
-        //Bullet object successfully accessed
-        objStoreRequest.onsuccess = function (e){
-/*             console.log(e.target);*/
-            console.log(e.target.result);
-            return e.target.result;
-        }
-        //Unable to access bullet object
-        objStoreRequest.onerror = function(event){
-            console.log.error(ERR_CANT_GET_BULLET + key);
-            return {};
-        }
-
-        transaction.oncomplete = function () {
-            db.close();
-        }
-    }
-    //unable to open database
-    request.onerror = function(event){
-        console.log.error(ERR_DB_NOT_CREATED);
-        return {};
     }
 }
 
