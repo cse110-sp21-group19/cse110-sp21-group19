@@ -1,3 +1,8 @@
+/**
+ * @typedef {Object} entry
+ * @property {string} title - The title of the entry object
+ * @property {string} content - The contents of the entry object
+ */
 
 /**
  * @class {textEntry} 
@@ -7,7 +12,6 @@
  class textEntry extends HTMLElement{
 	constructor() {
 		super();
-	
 		// templated HTML content
 		const template = document.createElement("template");
 		// change inner html of template to the correct format
@@ -40,8 +44,9 @@
 		this.shadowRoot.querySelector(".entry-data").style.display="none";
 	}
 	/** Gets the entry attribute of the text-entry component
-	 * 
-	 * @returns {Object} Gets an object of the form {title: ..., content: ...}
+	 * @param {}
+	 *  
+	 * @returns {entry} Returns entry object of the form {title: ..., content: ...}
 	 * 
 	 * @example let entryContents = myEntry.entry;
 	 */
@@ -49,13 +54,12 @@
 		let currTitle = this.shadowRoot.querySelector(".entry-title").innerText;
 		let currContent = this.shadowRoot.querySelector(".entry-content").innerText;
 		let toReturn = {title: currTitle, content: currContent};
-
 		return toReturn;
 	} /*get entry*/
 
 	/** Sets the entry attribute of the text-entry component
 	 * 
-	 * @param Object
+	 * @param entry
 	 * 
 	 * 
 	 * @example newEntry.entry = {title: "myTitle", content: "myContents"};

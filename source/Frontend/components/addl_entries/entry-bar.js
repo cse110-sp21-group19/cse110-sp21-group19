@@ -1,6 +1,7 @@
+//import additional entries router
 import { router } from '../../scripts/addl-router.js';
 const setState = router.setState;
-
+//global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
 
 /**
@@ -64,35 +65,45 @@ var isViewing = false;
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
 	}
+	/** connectedCallback runs everytime a new entry-bar component is created
+	 * @param {}
+	 */
 	connectedCallback(){
-		let saveBtn = this.shadowRoot.querySelector(".save-btn");
 		let innerBar = this.shadowRoot.querySelector(".content");
 		let mainText = document.querySelector(".main-text");
 		let title = this.shadowRoot.querySelector(".entry-title");
 		let content = this.shadowRoot.querySelector(".text-content");
+		//different states of entryBar
 		let initial = this.shadowRoot.querySelector(".initial");
 		let editing = this.shadowRoot.querySelector(".editing");
+		//buttons
+		let saveBtn = this.shadowRoot.querySelector(".save-btn");
 		let deleteButton = this.shadowRoot.querySelector(".delete-btn");
+		//variable that tracks the index of the entry currently being viewed
 		let entryIndex = 0;
-
+		//hide the delete button by default
 		deleteButton.style.display="none";
-
+		//event listener that fires everytime the save button is clicked
 		saveBtn.addEventListener("click", function(){
 			let entryTitle = title.innerText;
 			let entryContent = content.innerText;
 			let newNote = document.createElement("text-entry");
+			//create a new text-entry component with the saved title and contents
 			let entry = createEntry(entryTitle, entryContent);
 			newNote.entry = entry;
-			
+			//fires everytime the new entry is clicked
 			newNote.addEventListener("click", function(){
+				//change the mode to is viewing
 				isViewing = true;
+				//hide and display relevant components
 				mainText.style.display="none"
 				initial.style.display="none";
 				editing.style.display="block";
 				deleteButton.style.display="block";
+				//display the title and contents of the current entry to the screen
 				title.innerText = newNote.entry.title;
 				content.innerText = newNote.entry.content;
-
+				//get the index of the current entry
 				for(let i = 0; i < innerBar.childElementCount; ++i){
 					if(innerBar.children[i].entry.title == newNote.entry.title && innerBar.children[i].entry.content == newNote.entry.content){
 						entryIndex = i;
@@ -100,38 +111,46 @@ var isViewing = false;
 					}
 				}
 			});
-
+			//if we are not viewing an existing entry
 			if(!isViewing){
+				//adjust the margin between subsequent entries
 				if(innerBar.childElementCount > 0){
 					newNote.style.marginLeft = "7rem";
 				}
+				//append the newly created entry
 				innerBar.appendChild(newNote);
+				//set the state to redirect back to homepage
 				history.pushState(null, null, "#hasentries");
 				setState();	
 				title.innerText="Title";
 				content.innerText="Add note here...";
 			}
+			//if we are viewing an existing entry
 			else{
-				console.log(entryIndex);
-				console.log(innerBar);
+				//find the current entry in the document	
 				let currEntry = innerBar.children[entryIndex];
-				console.log(currEntry);
+				//update its title and content
 				currEntry.entry = {title: entryTitle, content: entryContent};
 				window.alert("Changes saved!");
 			}
 		
 		});
 		deleteButton.addEventListener("click", function(){
+			//find the current entry in the document
 			let toDelete = innerBar.children[entryIndex];
 			let response = confirm("Delete this entry?");
+			//if user wants to delete the entry
 			if(response){
+				//delete it
 				innerBar.removeChild(toDelete);
+				//adjust the margin of the first entry
 				if(innerBar.children[0]){
 					innerBar.children[0].style.marginLeft = "1rem";
 				}
-				
+				//set the state and redirect to homepage
 				history.pushState(null, null, "#hasentries");
 				setState();
+				//hide the delete button and reset the content to display in the editing panel
 				deleteButton.style.display="none";
 				title.innerText="Title";
 				content.innerText="Add note here...";
@@ -139,19 +158,32 @@ var isViewing = false;
 			
 		});
 	}
+	/**
+	 * @param {}
+	 * 
+	 * @returns {string}
+	 * 
+	 * @example let type = entryBar.type;
+	 */
 	get type(){
 		let initial = this.shadowRoot.querySelector(".initial");
 		let activeBar = this.shadowRoot.querySelector(".active-bar");
+
 		if (initial.style.display == "block" && activeBar.style.display == "none"){
 			return "initial";
 		}
-		if(editing.style.display == block){
+		if(editing.style.display == "block"){
 			return "editing";
 		}
 		else{
 			return "openbar";
 		}
 	}
+	/**	Set the 'type' attribute of the entry bar which determines what content to hide/display
+	 * @param {string}
+	 * 
+	 * @example entryBar.type = "initial";
+	 */
 	set type(type){
 		let initial = this.shadowRoot.querySelector(".initial");
 		let editing = this.shadowRoot.querySelector(".editing");
@@ -160,23 +192,25 @@ var isViewing = false;
 		let closeBtn = this.shadowRoot.querySelector(".close");
 		let newEntry = this.shadowRoot.querySelector(".new-entry");
 		
-
 		if(type == "initial"){
 			initial.style.display="block";
 			editing.style.display="none";
 			
 			activeBar.style.display = "none";
 			inactiveBar.style.display = "block";
-
+			//fires when user clicks on collapsed version of the entry bar
 			inactiveBar.addEventListener("click", function(){
 				inactiveBar.style.display = "none";
 				activeBar.style.display="flex";
 			});
+			//fires when user clicks on the close button to collapse the entry bar
 			closeBtn.addEventListener("click", function(){
 				activeBar.style.display = "none";
 				inactiveBar.style.display = "grid";
 			});
+			//fires when user clicks the button to add a new entry
 			newEntry.addEventListener("click", function(){
+				//since we are adding a new entry, set the is viewing mode to false
 				isViewing = false;
 				history.pushState(null, null, "#editing");
 				setState();
@@ -184,6 +218,7 @@ var isViewing = false;
 
 		}
 		else if(type == "editing"){
+			//toggle the relevant elements
 			initial.style.display="none";
 			editing.style.display="block";
 			let title = this.shadowRoot.querySelector(".entry-title");
@@ -194,8 +229,9 @@ var isViewing = false;
 			if(isViewing){
 				this.shadowRoot.querySelector(".delete-btn").style.display="block";
 			}
-			
+			//fires when user clicks the exit button in the editing panel
 			exitBtn.addEventListener("click", function(){
+				//discard changes made to the content displayed in the editing panel
 				title.innerText="Title";
 				content.innerText="Enter note here..."
 				window.location.hash = "";
@@ -204,6 +240,7 @@ var isViewing = false;
 			});
 
 		}
+		//openbar mode - after user finishes creating/editing an entry, keep the bar open so they can see the changes
 		else{
 			initial.style.display="block";
 			editing.style.display="none";
@@ -216,15 +253,11 @@ var isViewing = false;
 //define the custom web component "entry-bar" and associate it to the class "entryBar"
 customElements.define("entry-bar", entryBar);
 
-window.addEventListener('popstate', () => {
-	setState();
-});
-
-/** helper function to create a new entry
+/** Helper function to create a new entry obejct
  * 
  * @param {string} title 
  * @param {string} content 
- * @returns Object: {title: title, content: content} 
+ * @return {Object} - Return an object of the form: {title: title, content: content} 
  * 
  * @example myEntry = createEntry(title, content);
  */
