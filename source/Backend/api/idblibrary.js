@@ -1,4 +1,4 @@
-import { openDB/* , deleteDB, wrap, unwrap  */} from 'https://unpkg.com/idb?module';
+import { openDB/* , deleteDB, wrap, unwrap  */} from 'idb';
 
 //CONSTANTS
 const DATABASENAME = "BuJoDatabase";
