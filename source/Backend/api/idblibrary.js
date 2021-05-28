@@ -194,7 +194,9 @@ deleteBtn.addEventListener("click", () => {
 /* ----BULLET GETTERS----- */
 let importantBtn = document.getElementById("important");
 importantBtn.addEventListener("click", ()=> {
-    getAllPriority();
+    getAllPriority().then((result) => {
+        console.log(result);
+    })
 })
 
 let dailyBtn = document.getElementById("daily");
@@ -210,6 +212,4 @@ dailyBtn.addEventListener("click", () => {
     getDailyBullets(formattedDate).then((result) => {
         console.log(result);
     });
-    
-    
 });
