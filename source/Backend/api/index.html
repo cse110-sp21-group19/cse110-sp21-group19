@@ -6,9 +6,9 @@
 </head>
 
 <body>
-    <h1>IndexedDB test</h1>
+   <h1>IndexedDB test</h1>
     <button id="create">CreateDB</button><br><br>
-    <button id="add">Add</button><br><br>
+ <!--    <button id="add">Add</button><br><br> -->
     <form>
         <label for="log">Log:</label>
         <input type="text" id="log" name="log"><br><br>
@@ -31,13 +31,26 @@
         <label for="children">Children:</label>
         <input type="text" id="children" name="children"><br><br>
 
-        <input id="submit" type="submit" value="Submit">
+        <button id="add">Add Bullet</button>
+        
     </form><br><br>
 
     <label for="key">key:</label>
     <input type="text" id="key" name="key"><br><br>
-    <button id="update">Update Bullet</button><br><br>
+    <button id="get">Get Bullet</button>
+    <button id="update">Update Bullet</button>
+    <button id="delete">Delete Bullet</button>
 
-    <script src="example.js"></script>
+    <br><br>
+    <button id="important">Get All Important Bullets</button>
+    <br><br>
+
+    <label for="dateget">Date:</label>
+    <input type="date" id="dateget" name="dateget"><br><br>
+
+    <button id="daily">Get Bullets for day</button>
+
+    <script src="bullet_api.js"></script>
+    <script src="entries_api.js"></script>
 </body>
 </html>

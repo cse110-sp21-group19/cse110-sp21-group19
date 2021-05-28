@@ -106,3 +106,10 @@ Intro to indexeddb: https://www.codemag.com/Article/1411041/Introduction-to-Inde
 - Stuck on:
   - updateBullet: getting the bullet from key gave us undefined, so we moved onto getBullet
   - getBullet: return value shows up as undefined, but when we log it right before we return it is object, something todo with async
+
+### Thursday TODO:
+- [ ] Finish function headers
+- [ ] Figure out children, think about that
+- [ ] GetbyDate functions
+- [ ] Finish the rest of the entries_api
+- [ ] export to testing file
