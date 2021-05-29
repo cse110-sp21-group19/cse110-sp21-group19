@@ -100,8 +100,10 @@
 .editing {
   display: none;
   padding: 2rem;
-  height: 85vh;
+  height: 75vh;
   width: 90%;
+  min-height: 550px;
+  min-width: 300px;
   margin-left: 3rem;
   background: #a1b3a1;
   border-radius: 1rem;
@@ -154,11 +156,12 @@
 }
 
 .editing .delete-btn {
-  height: 7vh;
+  height: 100px;
   width: 7vh;
+  min-width: 50px;
   position: absolute;
-  left: 91%;
-  top: 18%;
+  right: 6rem;
+  top: 10rem;
 }
 
 .editing .delete-btn:hover {
