@@ -5,7 +5,7 @@
 /* spacing */
 /* Begin styling addl button */
 .active-bar {
-  background: #a1b3a1;
+  background: #FFA33F;
   height: 20vh;
   width: 85%;
   display: -webkit-box;
@@ -105,7 +105,7 @@
   min-height: 550px;
   min-width: 300px;
   margin-left: 3rem;
-  background: #a1b3a1;
+  background: #71B637;
   border-radius: 1rem;
 }
 

@@ -2,14 +2,15 @@
 @import '../abstracts/mixins', '../abstracts/variables';
 
 .weekly-nav-title{
-    transition: opacity 200ms linear;
+    transition: opacity 0.15s linear;
     margin-top: 1.4rem; //Fix this later
     margin-bottom: 0.5rem;
     margin-left: 0.9rem;
-
+    font-weight: 500;
+    font-size: 1.5em;
 }               		
 .week-container{
-    transition: opacity 200ms linear;
+    transition: opacity 0.15s linear;
     background: $accent;
     z-index: -1;
     border-radius: 1rem;
@@ -36,7 +37,7 @@
             pointer-events: none;
             //grid-column-start: 1;
             margin-left: 0.5rem;
-            font-size: 0.95em;
+            font-size: 1.05em;
             #day-of-week{
                 padding: 0 0.35em;
                 font-family: $sans-serif;
@@ -45,8 +46,8 @@
             }
         }
         .wn-bullets{
-            //grid-column-start: 3;
-            font-size: 10px;
+            // //grid-column-start: 3;
+            // font-size: 10px;
         }
 
         p {

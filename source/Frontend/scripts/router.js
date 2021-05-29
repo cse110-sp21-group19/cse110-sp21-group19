@@ -23,13 +23,15 @@ const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-cont
  * @param {string} state The new page to set the state.
  * @param {boolean} statePopped If the request came from a popstate event.
  * @param {number} date The date of the current log.
+ * @param {string} from Where the setState came from
  */
- router.setState = (state, statePopped, date) => {
+
+ router.setState = (state, statePopped, date, from) => {
     let mainText = document.querySelector(".main-text");
-	let entriesBar = document.querySelector("entry-bar");
+    let entriesBar = document.querySelector("entry-bar");
     switch (state) {
         case "daily-log":
-            dailyLog(date);
+            dailyLog(date, from);
             console.log("daily " + date);
             break;
         case "monthly-log":
@@ -58,10 +60,11 @@ const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-cont
     }
 
     if(!statePopped) { //&& window.location.hash != `#${state}`) {
-        pushToHistory(state, date);
+        pushToHistory(state, date, from);
     }
 }
 
+router.currentState = null;
 //TODO ADD DATE IMPLEMENTATION HERE
 /**
  * dailyLog
@@ -71,7 +74,7 @@ const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-cont
  * @example
  *      dailyLog("5-24-2021");
  */
-function dailyLog(date){
+function dailyLog(date, from){
     const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
     sideNavTitle.textContent = "Daily Log";
@@ -88,20 +91,26 @@ function dailyLog(date){
         LOGTYPE.updateLog = DAILYINFO;
 
         //get the current selected day of the week from the weekly nav
-        const WEEKLYNAV = document.querySelector("weekly-nav");
+        let WEEKLYNAV = document.querySelector("weekly-nav");
         //If we are currently on a sunday, replace weekly nav menu with prev week
-        if (date.getDay() == 0) {
-            WEEKLYNAV.remove();
-            createWeeklyNav(date);
+        if((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
+            console.log("HELLO")
+            WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "0";
+            WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
+            setTimeout(function() {
+                WEEKLYNAV.remove();
+                createWeeklyNav(date);
+              }, 150);
+            setTimeout(function() {
+                WEEKLYNAV = document.querySelector("weekly-nav");
+                WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "1";
+                WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "1";
+              }, 300);
         }
-        //If we are currently on a saturday, replace weekly nav menu with next week
-        else if (date.getDay() == 6) {
-            WEEKLYNAV.remove();
-            createWeeklyNav(date);
-        }
-        else {
+        else{
             WEEKLYNAV.selectedDay = date.getDay() + 1;
         }
+        
 
         // TODO: update the main-text data
     }
@@ -177,16 +186,20 @@ function futureLog(){
  * @param {string} state The new page to set the state of.
  * @param {number} date Date.
 */
-function pushToHistory(state, date) {
+function pushToHistory(state, date, from) {
+    console.log("push from: " + from)
+    router.currentState = {
+        page: "daily-log", date: date, from:from
+    };
     switch (state) {
         case "daily-log":
-            history.pushState({ page: "daily-log", date: date }, "", `./#daily${date}`);
+            history.pushState({ page: "daily-log", date: date, from:from}, "", `./#daily${date}`);
             break;
         case "monthly-log":
-            history.pushState({ page: "monthly-log", date: date }, "", `./#monthly${date}`);
+            history.pushState({ page: "monthly-log", date: date, from:from}, "", `./#monthly${date}`);
             break;
         case "future-log":
-            history.pushState({ page: "future-log", date: date }, "", `./#future${date}`);
+            history.pushState({ page: "future-log", date: date, from:from}, "", `./#future${date}`);
             break;
         case "new-addl-entry":
             history.pushState(null, null, `./#new-addl-entry${date}`);

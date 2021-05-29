@@ -11,7 +11,7 @@
     grid-column-start: 1;
     max-width: 100%;
     border-radius: 0.8em;
-    background: $accent;
+    background: $accent2;
     .burger{
         z-index: 100;
         order:1;
@@ -22,7 +22,7 @@
         .x,.y,.z{
             width: 36px;
             height: 5px;
-            background: $light;
+            background: white;
             border-radius: 3px;
             z-index: 1;
 
@@ -39,20 +39,21 @@
         .transformx{
             opacity: 1;
             transform: rotate(45deg) translate(3px, -1px);
-            background: #232323;
+            background: white;
         }
         .transformy{
             opacity: 0;
         }
         .transformz{
             transform: rotate(-45deg) translate(0, -1px);
-            background: #232323;
+            background: white;
         }
     }
     .side-nav-title{
         order: 2;
         margin-left: 2rem;
         font-weight: 600;
+        color:white;
     }
 
 }
@@ -63,7 +64,7 @@
     max-width: 100%;
     grid-column-start: 1;
     .side-nav-menu{
-        background: $accent;
+        background: $accent2;
         position: absolute;
         max-height: 0;
         height: 100vh;
@@ -74,16 +75,16 @@
         transition: max-height 0.4s ease-in-out;
         ul{
             a{
-                color:black;
+                color:white;
                 &:visited{
-                    color: black;
+                    color: white;
                 }
                 &:active{
-                    color:black;
+                    color:white;
                 }
                 &:hover{
                     transition: color 0.25s linear;
-                    color: $light;
+                    color: black;
                 }
             }
             li{

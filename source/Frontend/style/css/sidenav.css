@@ -16,7 +16,7 @@
       grid-column-start: 1;
   max-width: 100%;
   border-radius: 0.8em;
-  background: #a1b3a1;
+  background: #FFA33F;
 }
 
 .burger-and-title .burger {
@@ -33,7 +33,7 @@
 .burger-and-title .burger .x, .burger-and-title .burger .y, .burger-and-title .burger .z {
   width: 36px;
   height: 5px;
-  background: #EDEBE6;
+  background: white;
   border-radius: 3px;
   z-index: 1;
   -webkit-transform-origin: 4px 0px;
@@ -52,7 +52,7 @@
   opacity: 1;
   -webkit-transform: rotate(45deg) translate(3px, -1px);
           transform: rotate(45deg) translate(3px, -1px);
-  background: #232323;
+  background: white;
 }
 
 .burger-and-title .burger .transformy {
@@ -62,7 +62,7 @@
 .burger-and-title .burger .transformz {
   -webkit-transform: rotate(-45deg) translate(0, -1px);
           transform: rotate(-45deg) translate(0, -1px);
-  background: #232323;
+  background: white;
 }
 
 .burger-and-title .side-nav-title {
@@ -71,6 +71,7 @@
           order: 2;
   margin-left: 2rem;
   font-weight: 600;
+  color: white;
 }
 
 .side-nav-menu-container {
@@ -81,7 +82,7 @@
 }
 
 .side-nav-menu-container .side-nav-menu {
-  background: #a1b3a1;
+  background: #FFA33F;
   position: absolute;
   max-height: 0;
   height: 100vh;
@@ -94,21 +95,21 @@
 }
 
 .side-nav-menu-container .side-nav-menu ul a {
-  color: black;
+  color: white;
 }
 
 .side-nav-menu-container .side-nav-menu ul a:visited {
-  color: black;
+  color: white;
 }
 
 .side-nav-menu-container .side-nav-menu ul a:active {
-  color: black;
+  color: white;
 }
 
 .side-nav-menu-container .side-nav-menu ul a:hover {
   -webkit-transition: color 0.25s linear;
   transition: color 0.25s linear;
-  color: #EDEBE6;
+  color: black;
 }
 
 .side-nav-menu-container .side-nav-menu ul li {
