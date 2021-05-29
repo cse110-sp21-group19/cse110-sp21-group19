@@ -1,5 +1,5 @@
 //import additional entries router
-import { router } from '../../scripts/addl-router.js';
+import { router } from '../../scripts/router.js';
 const setState = router.setState;
 //global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
@@ -120,8 +120,8 @@ var isViewing = false;
 				//append the newly created entry
 				innerBar.appendChild(newNote);
 				//set the state to redirect back to homepage
-				history.pushState(null, null, "#hasentries");
-				setState();	
+				const DATE = document.querySelector("log-type").readLog.date;
+				setState("viewing-addl-entries", false, DATE);	
 				title.innerText="Title";
 				content.innerText="Add note here...";
 			}
@@ -148,8 +148,8 @@ var isViewing = false;
 					innerBar.children[0].style.marginLeft = "1rem";
 				}
 				//set the state and redirect to homepage
-				history.pushState(null, null, "#hasentries");
-				setState();
+				const DATE = document.querySelector("log-type").readLog.date;
+				setState("viewing-addl-entries", false, DATE);
 				//hide the delete button and reset the content to display in the editing panel
 				deleteButton.style.display="none";
 				title.innerText="Title";
@@ -212,8 +212,8 @@ var isViewing = false;
 			newEntry.addEventListener("click", function(){
 				//since we are adding a new entry, set the is viewing mode to false
 				isViewing = false;
-				history.pushState(null, null, "#editing");
-				setState();
+				const DATE = document.querySelector("log-type").readLog.date;
+				setState("new-addl-entry", false, DATE);
 			});
 
 		}
@@ -235,8 +235,8 @@ var isViewing = false;
 				title.innerText="Title";
 				content.innerText="Enter note here..."
 				window.location.hash = "";
-				history.pushState(null, null, "#hasentries");
-				setState();
+				const DATE = document.querySelector("log-type").readLog.date;
+				setState("viewing-addl-entries", false, DATE);
 			});
 
 		}
