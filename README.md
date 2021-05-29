@@ -16,6 +16,8 @@ Repo for CSE 110 Sp21 Group 19
 This quarter, we will be working on making a [Bullet Journal](https://en.wikipedia.org/wiki/Bullet_journal)
 
 # Meeting Notes
+- [5/29/21 - Sprint 2 Retrospective](admin/meetings/052921-Sprint-2-Retrospective.md)
+- [5/29/21 - Sprint 2 Review](admin/meetings/052921-Sprint-2-Review.md)
 - [5/27/21 - Week 9 Thursday](admin/meetings/052721-Week-9-Thursday.md)
 - [5/25/21 - Week 9 Tuesday](admin/meetings/052521-Week-9-Tuesday.md)
 - [5/20/21 - Week 8 Debrief](admin/meetings/052021-Week-8-Debrief.md)
@@ -56,6 +58,6 @@ This quarter, we will be working on making a [Bullet Journal](https://en.wikiped
   - ```npm run lint``` - Runs eslint to give styling feedback
   - ```npm run lint:fix``` - Fixes minor linting errors
   - ```npm run test``` - Runs our testing suite framework
-  - - ```npm run docs -- destinationfile.file sourcefile.file``` - Runs our testing suite framework
+  - ```npm run docs -- destinationfile.file sourcefile.file``` - Runs our testing suite framework
 
 
