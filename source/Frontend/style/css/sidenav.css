@@ -17,6 +17,8 @@
   max-width: 100%;
   border-radius: 0.8em;
   background: #FFA33F;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .burger-and-title .burger {
