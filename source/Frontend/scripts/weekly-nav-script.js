@@ -3,7 +3,9 @@ import {DAYS, MONTHS} from '../components/log-type.js';
 import {router} from './router.js';
 let today = new Date();
 createWeeklyNav(today);
-
+let WEEKLYNAV = document.querySelector("weekly-nav");
+WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "1";
+WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "1";
 /**
  * createWeeklyNav
  * Takes in a date and creates a weekly nav component from that date and 
@@ -21,8 +23,9 @@ export function createWeeklyNav(date) {
     WEEKLYNAV.daysOfWeek = week;
     WEEKLYNAV.selectedDay = date.getDay() + 1;
     document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
-
     //Onclick listener for the items inside the weekly nav
+    WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "0";
+    WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
     const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
     weeklyNavContainer.addEventListener("click", (event)=>{
         if(event.target.className == "wn-item"){
@@ -32,7 +35,7 @@ export function createWeeklyNav(date) {
 
             //get the newly selected date and update router
             let selectedDate = WEEKLYNAV.selectedInfo;
-            router.setState("daily-log", false, selectedDate);
+            router.setState("daily-log", false, selectedDate, "weekly-nav");
            
         }
 

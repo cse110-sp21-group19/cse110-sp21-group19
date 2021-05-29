@@ -4,17 +4,19 @@
 /* colors */
 /* spacing */
 .weekly-nav-title {
-  -webkit-transition: opacity 200ms linear;
-  transition: opacity 200ms linear;
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
   margin-top: 1.4rem;
   margin-bottom: 0.5rem;
   margin-left: 0.9rem;
+  font-weight: 500;
+  font-size: 1.5em;
 }
 
 .week-container {
-  -webkit-transition: opacity 200ms linear;
-  transition: opacity 200ms linear;
-  background: #a1b3a1;
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+  background: #71B637;
   z-index: -1;
   border-radius: 1rem;
   padding: 0.5rem;
@@ -52,7 +54,7 @@
 .week-container .wn-item .wn-date {
   pointer-events: none;
   margin-left: 0.5rem;
-  font-size: 0.95em;
+  font-size: 1.05em;
 }
 
 .week-container .wn-item .wn-date #day-of-week {
@@ -60,10 +62,6 @@
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   font-weight: lighter;
   font-size: 1.05em;
-}
-
-.week-container .wn-item .wn-bullets {
-  font-size: 10px;
 }
 
 .week-container .wn-item p {

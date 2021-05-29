@@ -11,7 +11,7 @@
     grid-column-start: 1;
     max-width: 100%;
     border-radius: 0.8em;
-    background: $accent;
+    background: $accent2;
     .burger{
         z-index: 100;
         order:1;
@@ -53,6 +53,7 @@
         order: 2;
         margin-left: 2rem;
         font-weight: 600;
+        color:white;
     }
 
 }
@@ -63,7 +64,7 @@
     max-width: 100%;
     grid-column-start: 1;
     .side-nav-menu{
-        background: $accent;
+        background: $accent2;
         position: absolute;
         max-height: 0;
         height: 100vh;

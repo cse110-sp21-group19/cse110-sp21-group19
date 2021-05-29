@@ -9,7 +9,17 @@ const SIDENAVROOT  = SIDENAV.shadowRoot;
 // When the back button is hit, set the state with the new page
 window.addEventListener('popstate', e => {
 	console.log("in popstate");
-	router.setState(e.state?.page, true, e.state?.date);
+	console.log(router.currentState.from);
+	const DATE = document.querySelector("log-type").readLog.date;
+	if(DATE.getDay() == 0 && e.state?.date.getDay() == 6 && router.currentState.from == "next"){
+		router.setState(e.state?.page, true, e.state?.date, "prev");
+	}
+	else if(DATE.getDay() == 6 && e.state?.date.getDay() == 0 && router.currentState.from == "prev"){
+		router.setState(e.state?.page, true, e.state?.date, "next");
+	}
+	else{
+		router.setState(e.state?.page, true, e.state?.date, e.state?.from);
+	}
 });
 
 // on click listener for daily log button in side nav
@@ -17,7 +27,7 @@ const SNDAILYLOG = SIDENAVROOT.getElementById("sn-daily-log");
 SNDAILYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current date
     let d = new Date();
-	router.setState("daily-log", false, d);
+	router.setState("daily-log", false, d, "side-nav");
 
     // TODO: update the side bar to weekly-nav
     // TODO: update main-text area
@@ -30,7 +40,7 @@ const SNMONTHLYLOG = SIDENAVROOT.getElementById("sn-monthly-log");
 SNMONTHLYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current month
     let d = new Date();
-	router.setState("monthly-log", false, d);
+	router.setState("monthly-log", false, d, "side-nav");
 
     // TODO: update the side bar to task list
     // TODO: update main-text area
@@ -43,7 +53,7 @@ const SNFUTURELOG = SIDENAVROOT.getElementById("sn-future-log");
 SNFUTURELOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current year
     let d = new Date();
-	router.setState("future-log", false, d);
+	router.setState("future-log", false, d, "side-nav");
 
     // TODO: update the side bar to task list
     // TODO: update main-text area
@@ -60,10 +70,15 @@ const NEXTLOG = document.getElementById("next-log");
 PREVLOG.addEventListener("click", () => {
 	const DATE = document.querySelector("log-type").readLog.date;
 	// decrement the current date
-	const prevDate = new Date(DATE)
-	prevDate.setDate(prevDate.getDate() - 1)
+	const prevDate = new Date(DATE);
+	prevDate.setDate(prevDate.getDate() - 1);
 
-	router.setState("daily-log", false, prevDate);
+	// let create = false;
+	// if(DATE.getDay() == 0){
+	// 	create = true;
+	// }
+
+	router.setState("daily-log", false, prevDate, "prev");
 });
 
 // Go to the next main-text log when the '>' button is hit, set the state
@@ -73,7 +88,7 @@ NEXTLOG.addEventListener("click", () => {
 	const nextDate = new Date(DATE)
 	nextDate.setDate(nextDate.getDate() + 1)
 
-	router.setState("daily-log", false, nextDate);
+	router.setState("daily-log", false, nextDate, "next");
 });
 
 // Add additional entries bar web component
