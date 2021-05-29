@@ -11,15 +11,20 @@ body {
         //margin-top: 4rem;
         .weekly-nav-container {
             grid-column-start: 1;
+            display: grid;
+            grid-template-rows: 10% 90%;
         }
         .daily-log {
             grid-column-start: 2;
+            //display: grid;
+            //grid-template-rows: 10% 90%;
+            padding-top: 4rem;
 
             &-title {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                padding: 1rem;
+                padding: 0 1rem;
 
                 i {
                     font-size: 1.5rem;

@@ -52,6 +52,8 @@ INPUT.addEventListener("keyup", function(event) {
 		prioritizeEntry(newBullet);
 		completeTask(newBullet);
 		deleteEntry(newBullet);
+
+		// TODO: add new bullet to DB
 	}
 });
 
@@ -91,6 +93,8 @@ function editableEntry(entry) {
             }
         });
         */
+
+		// TODO: update edited bullet to DB
 	}
 } /* editableEntry */
 
