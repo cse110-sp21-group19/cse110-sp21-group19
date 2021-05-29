@@ -85,7 +85,7 @@ function dailyLog(date, from){
         }
         LOGTYPE.updateLog = DAILYINFO;
 
-<<<<<<< HEAD
+
         //get the current selected day of the week from the weekly nav
         let WEEKLYNAV = document.querySelector("weekly-nav");
         //If we are currently on a sunday, replace weekly nav menu with prev week
@@ -102,20 +102,7 @@ function dailyLog(date, from){
                 WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "1";
                 WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "1";
               }, 300);
-=======
-        // get the current selected day of the week from the weekly nav
-        const WEEKLYNAV = document.querySelector("weekly-nav");
-        // If we are currently on a sunday, replace weekly nav menu with prev week
-        if (date.getDay() == 0) {
-            WEEKLYNAV.remove();
-            createWeeklyNav(date);
-        }
-        // If we are currently on a saturday, replace weekly nav menu with next week
-        else if (date.getDay() == 6) {
-            WEEKLYNAV.remove();
-            createWeeklyNav(date);
->>>>>>> 769663f01046e8ccd6f1f6ea2c04dbc447a54ae8
-        }
+            }
         else{
             WEEKLYNAV.selectedDay = date.getDay() + 1;
         }
@@ -195,17 +182,13 @@ function futureLog(){
  * Push a new state to the history stack.
  * @param {string} state The new page to set the state of.
  * @param {number} date Date.
+ * @param {string} from where the setState was called from
 */
-<<<<<<< HEAD
 function pushToHistory(state, date, from) {
     console.log("push from: " + from)
     router.currentState = {
         page: "daily-log", date: date, from:from
     };
-=======
-// TODO: Decide the hash for each state
-function pushToHistory(state, date) {
->>>>>>> 769663f01046e8ccd6f1f6ea2c04dbc447a54ae8
     switch (state) {
         case "daily-log":
             history.pushState({ page: "daily-log", date: date, from:from}, "", `./#daily${date}`);
