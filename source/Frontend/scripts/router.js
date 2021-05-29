@@ -7,11 +7,6 @@ import { createToDoList } from "./todo-script.js";
 
 export const router = {};
 
-// main-text header elements
-const PREVLOG = document.getElementById("prev-log");
-const NEXTLOG = document.getElementById("next-log");
-const HEADER = document.querySelector(".daily-log-title > h1");
-
 // weekly-nav elements
 const WEEKLYNAV = document.querySelector("weekly-nav");
 const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
@@ -87,14 +82,14 @@ function dailyLog(date){
         }
         LOGTYPE.updateLog = DAILYINFO;
 
-        //get the current selected day of the week from the weekly nav
+        // get the current selected day of the week from the weekly nav
         const WEEKLYNAV = document.querySelector("weekly-nav");
-        //If we are currently on a sunday, replace weekly nav menu with prev week
+        // If we are currently on a sunday, replace weekly nav menu with prev week
         if (date.getDay() == 0) {
             WEEKLYNAV.remove();
             createWeeklyNav(date);
         }
-        //If we are currently on a saturday, replace weekly nav menu with next week
+        // If we are currently on a saturday, replace weekly nav menu with next week
         else if (date.getDay() == 6) {
             WEEKLYNAV.remove();
             createWeeklyNav(date);
@@ -103,7 +98,8 @@ function dailyLog(date){
             WEEKLYNAV.selectedDay = date.getDay() + 1;
         }
 
-        // TODO: update the main-text data
+        // TODO: update the main-text data with getter
+
     }
 } /* dailyLog */
 
@@ -116,7 +112,6 @@ function dailyLog(date){
  * @example
  *      monthlyLog("5-24-2021");
  */
-//functions to complete 
 function monthlyLog(date){
     const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
@@ -132,8 +127,9 @@ function monthlyLog(date){
             "header": headerText
         }
         LOGTYPE.updateLog = MONTHLYINFO;
-        // TODO: update the main-text data
-        // TODO: change the weekly-nav indicator to the appropriate date
+
+        // TODO: update the main-text data with getter
+
     }
 } /* monthlyLog */
 
@@ -177,6 +173,7 @@ function futureLog(){
  * @param {string} state The new page to set the state of.
  * @param {number} date Date.
 */
+// TODO: Decide the hash for each state
 function pushToHistory(state, date) {
     switch (state) {
         case "daily-log":
