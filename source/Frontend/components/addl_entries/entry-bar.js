@@ -122,7 +122,7 @@ var isViewing = false;
 				//set the state to redirect back to homepage
 				const DATE = document.querySelector("log-type").readLog.date;
 				setState("viewing-addl-entries", false, DATE);	
-				title.innerText="Title";
+				title.innerText="Add Title";
 				content.innerText="Add note here...";
 			}
 			//if we are viewing an existing entry
@@ -152,7 +152,7 @@ var isViewing = false;
 				setState("viewing-addl-entries", false, DATE);
 				//hide the delete button and reset the content to display in the editing panel
 				deleteButton.style.display="none";
-				title.innerText="Title";
+				title.innerText=" Add Title";
 				content.innerText="Add note here...";
 			}
 			
@@ -232,8 +232,8 @@ var isViewing = false;
 			//fires when user clicks the exit button in the editing panel
 			exitBtn.addEventListener("click", function(){
 				//discard changes made to the content displayed in the editing panel
-				title.innerText="Title";
-				content.innerText="Enter note here..."
+				title.innerText="Add Title";
+				content.innerText="Add note here..."
 				window.location.hash = "";
 				const DATE = document.querySelector("log-type").readLog.date;
 				setState("viewing-addl-entries", false, DATE);
