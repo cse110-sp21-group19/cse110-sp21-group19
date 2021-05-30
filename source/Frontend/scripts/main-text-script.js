@@ -24,19 +24,15 @@ bulletStack.push(BULLETS);
 MAINTEXT.appendChild(BULLETS);
 MAINTEXT.appendChild(INPUT);
 
-
-const MAINTEXTHEADER = document.querySelector("#date > h1");
-
 INPUT.addEventListener("keyup", async function(event) {
 	if (event.key === "Enter") {
 		event.preventDefault();
 
 		let entry = {
-			"type": BULLETTYPE.value,
-			"date": new Date(Date.now()),
-			"content": BULLETINPUT.value,
 			"priority": false,
-			"completed": false
+			"content": BULLETINPUT.value,
+			"completed": false,
+			"type": BULLETTYPE.value,
 		};
 
 		let newBullet = document.createElement("bullet-entry");
@@ -49,15 +45,13 @@ INPUT.addEventListener("keyup", async function(event) {
 		// clear INPUT value after enter
 		BULLETINPUT.value = "";
 
-		// TODO: add new bullet to DB
+		// add new bullet to DB
 		let bulletKey = await createBullet(newBullet.entry);
 
 		editableEntry(bulletKey, newBullet);
-		prioritizeEntry(newBullet);
-		completeTask(newBullet);
+		prioritizeEntry(bulletKey, newBullet);
+		completeTask(bulletKey, newBullet);
 		deleteEntry(newBullet);
-
-		
 	}
 });
 
@@ -69,7 +63,7 @@ INPUT.addEventListener("keyup", async function(event) {
  * @param {object} entry - A bullet-entry element.
  *
  * @example
- *     editableEntry();
+ *     editableEntry(key, entry);
  */
 function editableEntry(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
@@ -82,26 +76,15 @@ function editableEntry(key, entry) {
 			inputted.readOnly = false;
 			hoverMsg.innerHTML = "Enter to save note";
 		});
-		// after 'Enter' return to 'readOnly' mode
+		// after 'Enter' to save the bullet and return to 'readOnly' mode
 		inputted.addEventListener("keyup", function(event) {
 			if (event.key === "Enter") {
 				inputted.readOnly = true;
 				hoverMsg.innerHTML = "Double click to edit note";
+				// update edited bullet to DB
 				updateBullet(key, entry.entry);
 			}
 		});
-		// TODO: after click away from entry, return to 'readyOnly' mode
-		/*
-        document.addEventListener('click', function(event) {
-            var isClickInside = inputted.contains(event.target);
-            if (!isClickInside) {
-                inputted.readOnly = true;
-            }
-        });
-        */
-
-		// TODO: update edited bullet to DB
-		//console.log(entry);
 	}
 } /* editableEntry */
 
@@ -124,13 +107,14 @@ function deleteEntry(entry) {
 /**
  * prioritizeEntry
  * Prioritize and deprioritize bullet by toggling the star icon.
- * @param {object} newEntry - A bullet-type element.
+ * @param {Number} key - The bullet key returned by the database.
+ * @param {object} entry - A bullet-type element.
  *
  * @example
- *     prioritizeEntry(entry);
+ *     prioritizeEntry(key, entry);
  */
-function prioritizeEntry(newEntry) {
-	let bulletEntryRoot = newEntry.shadowRoot;
+function prioritizeEntry(key, entry) {
+	let bulletEntryRoot = entry.shadowRoot;
 	const toPrioritize = bulletEntryRoot.getElementById("prioritize-bullet");
 	toPrioritize.addEventListener("click", function() {
 		if (toPrioritize.innerHTML.includes("priority")) {
@@ -141,6 +125,9 @@ function prioritizeEntry(newEntry) {
 			toPrioritize.innerHTML = PRIORITY;
 			toPrioritize.style.color = "black";
 		}
+		console.log(entry.entry);
+		// update prioritized/deprioritized bullet to DB
+		updateBullet(key, entry.entry);
 	});
 }  /* prioritizeEntry */
 
@@ -150,13 +137,14 @@ function prioritizeEntry(newEntry) {
  * change the task to completed and add a strikethrought to the completed 
  * bullet content. If the task is completed, uncheck the bullet and remove the 
  * strikethrough from the bullet content.
- * @param {object} newEntry - a bullet-type element
+ * @param {Number} key - The bullet key returned by the database.
+ * @param {object} entry - a bullet-type element
  *
  * @example
- *     completeTask(entry);
+ *     completeTask(key, entry);
  */
-function completeTask(newEntry) {
-	let bulletEntryRoot = newEntry.shadowRoot;
+function completeTask(key, entry) {
+	let bulletEntryRoot = entry.shadowRoot;
 	const toComplete = bulletEntryRoot.getElementById("bullet-type");
 	const content = bulletEntryRoot.getElementById("bullet-inputted");
 	toComplete.addEventListener("click", function() {
@@ -168,6 +156,8 @@ function completeTask(newEntry) {
 			toComplete.innerHTML = TASKBULLET;
 			content.style.textDecoration = "none";
 		}
+		// update completed/incomplete task bullet to DB
+		updateBullet(key, entry.entry);
 	});
 } /* completeTask */
 
