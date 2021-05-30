@@ -1,0 +1,36 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Get Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Configure Node.js
+      run: npm ci
+
+    - name: update documentation
+      run: npm run docs
+
+    - name: add docs to PR
+      uses: EndBug/add-and-commit@v7
+      with:
+        default_author: github_actions
+        message: 'Automatic Documentation Update'
+        add: '.'
