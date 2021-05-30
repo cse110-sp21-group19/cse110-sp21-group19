@@ -24,8 +24,6 @@ const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-cont
  */
 
  router.setState = (state, statePopped, date, from) => {
-    let mainText = document.querySelector(".main-text");
-    let entriesBar = document.querySelector("entry-bar");
     switch (state) {
         case "daily-log":
             dailyLog(date, from);
@@ -39,21 +37,8 @@ const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-cont
             futureLog();
             console.log("future");
             break;
-
-        case "new-addl-entry":
-            mainText.style.display = "none";
-            entriesBar.type = "editing";
-            break;
-
-        case "viewing-addl-entries":
-            mainText.style.display = "block";
-            entriesBar.type = "openbar";
-            break;
-        
         default:
             console.log("default");
-            mainText.style.display = "block";
-            entriesBar.type = "initial";
     }
 
     if(!statePopped) { //&& window.location.hash != `#${state}`) {
@@ -200,12 +185,6 @@ function pushToHistory(state, date, from) {
             break;
         case "future-log":
             history.pushState({ page: "future-log", date: date, from:from}, "", `./#future${date}`);
-            break;
-        case "new-addl-entry":
-            history.pushState(null, null, `./#new-addl-entry${date}`);
-            break;
-        case "viewing-addl-entries":
-            history.pushState(null, null, `./#viewing-addl-entries${date}`);
             break;
         default:
             history.pushState({}, '', './');

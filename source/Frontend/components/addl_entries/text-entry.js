@@ -30,6 +30,7 @@
 			<div class="entry-data">
 				<span class="entry-title">Title</span>
 				<span class="entry-content">Enter note...</span>
+				<span class="key"></span>
 			</div>		
 			`;
 	
@@ -53,7 +54,8 @@
 	get entry(){
 		let currTitle = this.shadowRoot.querySelector(".entry-title").innerText;
 		let currContent = this.shadowRoot.querySelector(".entry-content").innerText;
-		let toReturn = {title: currTitle, content: currContent};
+		let key = this.shadowRoot.querySelector(".entry-content").innerText;
+		let toReturn = {title: currTitle, content: currContent, key: parseInt(key)};
 		return toReturn;
 	} /*get entry*/
 
@@ -68,12 +70,13 @@
 		let currTitle = this.shadowRoot.querySelector(".entry-title");
 		let currContent = this.shadowRoot.querySelector(".entry-content");
 		let toDisplay = this.shadowRoot.querySelector(".tooltiptext");
+		let key = this.shadowRoot.querySelector(".key");
 		//update the title being displayed
 		toDisplay.innerText = entry.title;
 		//save entry contents
 		currTitle.innerHTML = entry.title;
 		currContent.innerHTML = entry.content;
-
+		key.innerHTML = entry.key;
 	}/*set entry*/	
 }/*entryBar*/
 //define the custom web component "text-entry" and associate it to the class "textEntry"

@@ -97,9 +97,4 @@ NEXTLOG.addEventListener("click", () => {
 	router.setState("daily-log", false, nextDate, "next");
 });
 
-// Add additional entries bar web component
-const addlEntryBar = document.createElement("entry-bar");
-addlEntryBar.type = "initial";
-const addlEntries = document.querySelector(".additional")
-addlEntries.appendChild(addlEntryBar);
 

@@ -1,9 +1,9 @@
 .note {
   overflow: visible;
   width: 8rem;
-  height: 5rem;
+  height: 10vh;
+  margin-top: 3vh;
   margin-right: 1rem;
-  padding-top: 2rem;
 }
 
 .note:hover {
@@ -16,9 +16,10 @@
 
 .tooltip .tooltiptext {
   position: absolute;
-  top: 10px;
-  left: 2rem;
+  bottom: 10.5vh;
+  left: 1vw;
   font-weight: bold;
+  font-size: 1rem;
 }
 
 ::-webkit-scrollbar {
