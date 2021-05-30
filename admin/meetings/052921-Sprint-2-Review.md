@@ -21,7 +21,7 @@ Everyone
 
 ### What We Did
 Design
-- Finalizing designs 
+- Finalizing designs
 - Logo, Color Scheme
   - white outline
 - Working on MObile View --> toggle button
