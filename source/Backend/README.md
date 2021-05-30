@@ -56,24 +56,25 @@ request.onupgradeneeded = function(event) {
 # Database design (object stores)
 ~~~
 Object Stores:
-BulletDB:
-{
-    log: (‘daily’, ‘monthly’, ‘future’)
-    type: (‘note’, ‘event’, ‘type’)
-    date:
-    priority: (true or false)
-    content: 
-    completed:
-    Parent/Indent: (will either be id of parent or how many times to indent)
-}
+bullet object:
+        { 
+            Id: (autoincrement),
+            log: (‘daily’, ‘monthly’, ‘future’),
+            type: (‘note’, ‘event’, ‘task’),
+            date: (MM/DD/YEAR) 05*,
+            priority: (true or false),
+            content: (text content of bullet),
+            completed: (true or false),
+            children:
+        }
 
-EntriesDB:
-{
-    Date: ‘05/20/2021’,
-    Order:
-    Media:
-    Type: 
-}
+entry object:  
+        {
+            id: stores the way they're ordered
+            date: ‘05/20/2021’,
+            title:
+            content: 
+        }
 
 FRONTEND BULLET ENTRY ATTRIBUTES:
 let entry = {

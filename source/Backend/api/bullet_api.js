@@ -1,23 +1,3 @@
-/*
-bullet object:
-        { 
-            Id: (autoincrement),
-            log: (‘daily’, ‘monthly’, ‘future’),
-            type: (‘note’, ‘event’, ‘task’),
-            Date: (MM/DD/YEAR) 05*,
-            priority: (true or false),
-            content: (text content of bullet),
-            Completed: (true or false),
-            Parent/Indent: (will either be id of parent or how many times to indent)
-        }
-
-entry object:  
-        {
-            Date: ‘05/20/2021’,
-            Order: (auto increment),
-            Bullets: [“text1”, “text2”],
-        }
-*/
 //CONSTANTS
 const DATABASENAME = "BuJoDatabase";
 const BULLETDB = "bulletDB";
@@ -29,7 +9,9 @@ const ERR_CANT_DELETE_BULLET = "ERROR: Unable to delete bullet with key: ";
 const ERR_CANT_DELETE_ENTRY = "ERROR: Unable to delete entry with key: ";
 
 //making sure indexeddb is supported in multiple browsers
-window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+Object.defineProperty(window, 'indexedDB', {
+    value: window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB
+});
 
 /** 
  * createDB
@@ -38,7 +20,7 @@ window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndex
  * 
  * @example createDB();
  */
-function createDB() {
+export function createDB() {
     let request = window.indexedDB.open(DATABASENAME, 1);
     request.onupgradeneeded = function () {
         let db = request.result;
@@ -55,8 +37,8 @@ function createDB() {
         bulletStore.createIndex("log", "log", { unique: false });
         bulletStore.createIndex("type", "type", { unique: false });
         bulletStore.createIndex("date", "date", { unique: false });
-        bulletStore.createIndex("priority", "priority", { unique: false });
         bulletStore.createIndex("content", "content", { unique: false });
+        bulletStore.createIndex("priority", "priority", { unique: false });
         bulletStore.createIndex("completed", "completed", { unique: false });
         bulletStore.createIndex("orderId", "orderId", { unique: false });
 
@@ -86,12 +68,12 @@ function createDB() {
  *  };
  * 
  * @return {Promise Object} A promise that resolves to the key of the newly added bullet, 
- *                      or -1 if unsuccessful
+ *                          or -1 if unsuccessful
  * 
  * @example 
  *  createBullet(bulletExample);
  */
-function createBullet(bullet) {
+export function createBullet(bullet) {
     return new Promise((resolve, reject) => {
         //opening database
         let request = window.indexedDB.open(DATABASENAME);
@@ -130,11 +112,11 @@ function createBullet(bullet) {
  * updateBullet
  * Updates the specified bullet to be equal to the new bullet object
  * 
- * @param key - The key of the bullet to update
+ * @param {(string | number)} key - The key of the bullet to update
  * 
- * @param bullet - The new bullet object to set the old bullet equal to
+ * @param {Object} bullet - The new bullet object to set the old bullet equal to
  * 
- * @return true if successfully updated, false if not updated
+ * @return {Boolean} true if successfully updated, false if not updated
  * 
  * @example 
  *  let bulletExample = {
@@ -149,8 +131,9 @@ function createBullet(bullet) {
  *  updateBullet(1, bulletExample);
  *  When we update bullets, we usually update: 
  *      priority, content, completed, type, children
+ *  (log and date not needed most likely)
  */
-function updateBullet(key, bullet){
+export function updateBullet(key, bullet){
     return new Promise((resolve, reject) => {
         let priority = bullet.priority;
         let content = bullet.content;
@@ -212,13 +195,13 @@ function updateBullet(key, bullet){
  * getBullet
  * Returns the specified bullet object from the database
  * 
- * @param key - The key of the bullet to get
+ * @param {(string | number)} key - The key of the bullet to get
  * 
- * @return The associated bullet object, or {} if unable to get bullet
+ * @return {Object} The associated bullet, or {} if unable to get bullet
  * 
  * @example getBullet(1);
  */
-function getBullet(key){
+export function getBullet(key){
     return new Promise((resolve, reject) => {
         //opening database
         let request = window.indexedDB.open(DATABASENAME);
@@ -256,13 +239,13 @@ function getBullet(key){
  * deleteBullet
  * Deletes the specified bullet object from the database
  * 
- * @param key - The key of the bullet to delete
+ * @param {(string | number)} key - The key of the bullet to delete
  * 
- * @return true if successful, false if not
+ * @return {Boolean} true if successful, false if not
  * 
  * @example deleteBullet(1);
  */
-function deleteBullet(key){
+export function deleteBullet(key){
     return new Promise((resolve, reject) => {
         //opening database
         let request = window.indexedDB.open(DATABASENAME);
@@ -298,8 +281,16 @@ function deleteBullet(key){
     });    
 }
 
-//gettting all priority/important bullets
-function getAllPriority() {
+/**
+ * getAllPriority
+ * Returns an array of all bullets that have the priority property marked
+ * as true
+ * 
+ * @return {Array} an array important bullets
+ * 
+ * @example getAllPriority()
+ */
+export function getAllPriority() {
     return new Promise((resolve, reject) => {
         //opening database
         let request = window.indexedDB.open(DATABASENAME);
@@ -316,7 +307,7 @@ function getAllPriority() {
                 
                 let cursor = e.target.result;
                 if(cursor != null) {
-                    if(cursor.value.priority == true) {
+                    if(cursor.value.priority == true || cursor.value.priority == "true") {
                         matchingBullets.push(cursor.value);
                     }
                     cursor.continue();
@@ -342,7 +333,16 @@ function getAllPriority() {
     });
 }
 
-function getDailyBullets(date) {
+/**
+ * getDailyBullets
+ * Returns an array of all bullets for given date
+ * 
+ * @param {string} date - string of date in the format "MM/DD/YEAR"
+ * @return {Array} an array bullets for the given date
+ * 
+ * @example getDailyBullets
+ */
+export function getDailyBullets(date) {
     return new Promise((resolve, reject) => {
         //opening database
         let request = window.indexedDB.open(DATABASENAME);
@@ -384,10 +384,3 @@ function getDailyBullets(date) {
         }
     });
 }
-
-//Call createDB when the page loads to make sure db is created
-window.addEventListener("DOMContentLoaded", () => {
-    createDB();
-});
-
-//export { createDB };
