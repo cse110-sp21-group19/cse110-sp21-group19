@@ -86,12 +86,18 @@
   overflow-y: hidden;
 }
 
+.week-container .wn-item .wn-bullets-container svg {
+  height: 1em;
+  width: 1em;
+  padding-right: 0.5rem;
+}
+
 .week-container .wn-item .wn-bullets-container:hover {
   overflow-y: auto;
 }
 
 .week-container .wn-item .wn-bullets-container .wn-bullet {
-  margin: 0.2rem;
+  margin: 0.3rem;
 }
 
 .week-container .wn-item p {

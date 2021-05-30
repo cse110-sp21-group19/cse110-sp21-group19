@@ -6,12 +6,19 @@ import { closeMenu } from "./side-nav-script.js";
 import { createDB } from "../../Backend/api/bullet_api.js";
 const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
-const today = new Date();
-router.setState("daily-log", false, today, "first-load");
+// const today = new Date();
+// router.setState("daily-log", false, today, "first-load");
 // create database
-document.addEventListener("DOMContentLoaded", () => {
-	createDB();
 
+//FIX LATER: Decide where to put all first time functions
+document.addEventListener("DOMContentLoaded", async function(){
+	
+	createDB();
+	const today = new Date();
+	await createWeeklyNav(today);
+	let WEEKLYNAV = document.querySelector("weekly-nav");
+	WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "1";
+	WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "1";
 })
 
 // When the back button is hit, set the state with the new page

@@ -59,11 +59,16 @@
             flex-grow: 2;
             margin: 0.4rem;
             overflow-y: hidden;
+            svg {
+                height: 1em;
+                width: 1em;
+                padding-right: 0.5rem;
+            }
             &:hover{
               overflow-y: auto;
             }
             .wn-bullet{
-              margin:0.2rem;
+              margin:0.3rem;
             }
         }
 

@@ -1,3 +1,6 @@
+//weekly-nav.js
+import { NOTEBULLET, TASKBULLET, TASKCOMPLETE, EVENTBULLET} from "./main-text.js";
+
 const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
 const SELECTEDRADIUS = "0.2rem";
 const DEFAULTBORDERLEFT = null;
@@ -70,10 +73,32 @@ class WeeklyNav extends HTMLElement{
 			priorityBullets.className = "wn-bullets-container";
 
 			bullets.forEach(bullet =>{
-
 				let bulletElem = document.createElement("div");
+				let bulletType = document.createElement("span");
+				bulletType.id = "bullet-type";
+				console.log(bullet.type);
+				switch (bullet.type){
+					case "note":
+						bulletType.innerHTML = NOTEBULLET;
+						break;
+					case "event":
+						bulletType.innerHTML = EVENTBULLET;
+						break;
+					case "task":
+						if(bullet.completed){
+							bulletType.innerHTML = TASKCOMPLETE;
+						}
+						else{
+							bulletType.innerHTML = TASKBULLET;
+						}
+						break;
+					default:
+						bulletType.innerHTML = NOTEBULLET;
+
+				}
 				bulletElem.className = "wn-bullet";
-				bulletElem.innerHTML = bullet.content;
+				bulletElem.appendChild(bulletType);
+				bulletElem.innerHTML += bullet.content;
 				priorityBullets.appendChild(bulletElem);
 			})
 
