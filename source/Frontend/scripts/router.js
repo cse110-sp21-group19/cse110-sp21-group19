@@ -1,6 +1,7 @@
 // router.js
 
 import { createWeeklyNav } from "./weekly-nav-script.js";
+import { createCalendar } from "./calendar-script.js";
 import { DAYS, MONTHS } from '../components/log-type.js';
 import { closeMenu } from "./side-nav-script.js";
 import { createToDoList } from "./todo-script.js";
@@ -138,6 +139,12 @@ function monthlyLog(date){
         }
         LOGTYPE.updateLog = MONTHLYINFO;
 
+        let WEEKLYNAV = document.querySelector("weekly-nav");
+        if(WEEKLYNAV){
+            WEEKLYNAV.remove();
+        }
+        let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        createCalendar(firstDay);
         // TODO: update the main-text data with getter
 
     }
@@ -191,7 +198,9 @@ function pushToHistory(state, date, from) {
     };
     switch (state) {
         case "daily-log":
+            console.log("here")
             history.pushState({ page: "daily-log", date: date, from:from}, "", `./#daily${date}`);
+            console.log("here")
             break;
         case "monthly-log":
             history.pushState({ page: "monthly-log", date: date, from:from}, "", `./#monthly${date}`);

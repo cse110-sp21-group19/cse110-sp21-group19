@@ -1,4 +1,5 @@
 //calendar.js
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 class Calendar extends HTMLElement{
 	constructor() {
 		super();
@@ -30,15 +31,34 @@ class Calendar extends HTMLElement{
 		const linkElem = document.createElement("link");
 		linkElem.setAttribute("rel", "stylesheet");
 		// NOTE: it's important that you do NOT include the slash before "style/css/..."
-		linkElem.setAttribute("href", "style/css/sidenav.css");
+		linkElem.setAttribute("href", "style/css/calendar.css");
 
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(linkElem);
         
 	}
 
+	set month(date){
+		let month = date.getMonth();
+		let firstDay = date.getDay();
+		const shadow = this.shadowRoot;
+		//shadow.querySelector(".month").textContent(MONTHS[month]);
+		for(let i = 0; i < firstDay; i++){
+			let emptyDay = document.createElement("li");
+			emptyDay.className = "empty-day";
+			shadow.querySelector(".days").appendChild(emptyDay);
+		}
+
+		while (date.getMonth() === month){
+			let newDay = document.createElement("li");
+			newDay.className = "day";
+			shadow.querySelector(".days").appendChild(newDay);
+			date.setDate(date.getDate() + 1);
+		}
+	}
+
 }
  
 
 
-customElements.define("side-nav", SideNav);
+customElements.define("calendar-component", Calendar);

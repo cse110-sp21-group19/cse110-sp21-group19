@@ -7,7 +7,8 @@ const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
 
 // When the back button is hit, set the state with the new page
-window.addEventListener('popstate', e => {
+window.addEventListener("popstate", e => {
+	console.trace();
 	console.log("in popstate");
 	console.log(router.currentState.from);
 	const DATE = document.querySelector("log-type").readLog.date;
