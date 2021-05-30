@@ -1,3 +1,7 @@
+const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
+const SELECTEDRADIUS = "0.2rem";
+const DEFAULTBORDERLEFT = null;
+const DEFAULTRADIUS = null;
 
 class WeeklyNav extends HTMLElement{
 	constructor() {
@@ -14,8 +18,7 @@ class WeeklyNav extends HTMLElement{
 		//Week Item format
 		// <div class="wn-item-mask">
 		// <div class="wn-item">
-		//     <h2 class="wn-day-of-week"></h2>
-		//     <h3 class="wn-date"></h3>
+		//     <h2 class="wn-date"><span id="day-of-month"></span><span id="day-of-week"></span> </h2>
 		//     <ul class="wn-bullets"></ul>
 		// </div>
 		// create a shadow root for this web component
@@ -35,7 +38,7 @@ class WeeklyNav extends HTMLElement{
 	}
 
 
-	/*
+	/**
 	 * set daysOfWeek takes in an array of objects which contains date objects of a week 
 	 * and fills the weekly nav menu with objects corresponding to those days. Those date
 	 * objects could also contain important bullet info to fill menu.
@@ -55,62 +58,80 @@ class WeeklyNav extends HTMLElement{
 			let day = getDateString(element.getDay());
 			let date = element.getDate();
 			let month = element.getMonth();
+			let year = element.getFullYear();
 
 			let navItem = document.createElement("div");
 			navItem.className = "wn-item";
-			let navDay = document.createElement("h2");
-			navDay.className = "wn-day-of-week";
-			navDay.textContent = day;
-			let navDate = document.createElement("h3");
+
+			let navDate = document.createElement("h2");
 			navDate.className = "wn-date";
-			navDate.textContent = date;
+			let dayOfWeek = document.createElement("span");
+			dayOfWeek.id = "day-of-week";
+			dayOfWeek.textContent = day;
+			let dayOfMonth = document.createElement("span");
+			dayOfMonth.id = "day-of-month";
+			dayOfMonth.textContent = date;
+
 			//create hidden month object in order to retrieve it later on click
 			let hiddenMonth = document.createElement("p");
+			hiddenMonth.className = "wn-month";
 			hiddenMonth.textContent = month;
 
-			navItem.appendChild(navDay);
+			let hiddenYear = document.createElement("p");
+			hiddenYear.className = "wn-year";
+			hiddenYear.textContent = year;
+
+			navDate.appendChild(dayOfMonth);
+			navDate.appendChild(dayOfWeek);
+
 			navItem.appendChild(navDate);
 			navItem.appendChild(hiddenMonth);
+			navItem.appendChild(hiddenYear);
 
 			navContainer.appendChild(navItem);
 		}); 
 	
 	}/* set daysOfWeek */
 
-	/*
+	/**
 	 * get selectedInfo
 	 * get the date info of the item selected
 	 * @param {}
-	 * @returns an object containing the date info of the current selected item in the 
+	 * @returns a date object containing the date info of the current selected item in the 
 	 * weekly nav menu
 	 * 
 	 * @example
 	 *      this.selectedInfo
 	 */
-	get selectedInfo (){
+	get selectedInfo() {
 
 		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
 
 		//iterate over weekly nav items and return info of item with border
 		//(the one with a border is the selected one) 
+		let dateInfo;
 		let dateObj;
 		for(let i = 1; i < navContainer.childNodes.length; i++){
-			if(navContainer.childNodes[i].style.borderLeft == "0.4rem solid blue"){
-				dateObj = {
-					"day": navContainer.childNodes[i].querySelector("[class='wn-day-of-week']").textContent,
-					"date": navContainer.childNodes[i].querySelector("[class='wn-date']").textContent,
-					"month": navContainer.childNodes[i].querySelector("p").textContent
+			let currItem = navContainer.childNodes[i];
+			if(currItem.style.borderLeft == SELECTEDBORDERLEFT){
+				dateInfo = {
+					"day": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-week']").textContent,
+					"date": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-month']").textContent,
+					"month": currItem.querySelector("[class='wn-month']").textContent,
+					"year": currItem.querySelector("[class='wn-year']").textContent
 				};
+
+				dateObj = new Date(dateInfo.year, dateInfo.month, dateInfo.date);
 			}
 		}
 		return dateObj;
 	}/* get selectedInfo */
 
-	/*
+	/**
 	 * set selectedDay 
-	 * set an item in the list as selected
+	 * Set an item in the list as selected.
 	 * 
-	 * @param {number} day - the day of the week of the item that is to be styled as selected
+	 * @param {number} day - The day of the week of the item that is to be styled as selected.
 	 * 
 	 * @example
 	 *      this.selectedDay = day
@@ -120,24 +141,28 @@ class WeeklyNav extends HTMLElement{
 
 		for(let i = 1; i < navContainer.childNodes.length; i++){
 			if(i == day){
-				//REPLACE STYLE TO CONST AT TOP
-				navContainer.childNodes[i].style.borderLeft = "0.4rem solid blue";
+				navContainer.childNodes[i].style.borderTopLeftRadius = SELECTEDRADIUS;
+				navContainer.childNodes[i].style.borderBottomLeftRadius = SELECTEDRADIUS;
+				//navContainer.childNodes[i].style.border = "0.2rem solid darkgreen";
+				navContainer.childNodes[i].style.borderLeft = SELECTEDBORDERLEFT;
 			}
 			else{
-				navContainer.childNodes[i].style.borderLeft = null;
+				navContainer.childNodes[i].style.borderTopLeftRadius = DEFAULTRADIUS;
+				navContainer.childNodes[i].style.borderBottomLeftRadius = DEFAULTRADIUS;
+				navContainer.childNodes[i].style.borderLeft = DEFAULTBORDERLEFT;
 			}
 		}
 	} /* set seletedDay */
 }
 
 
-/*
+/**
  * getDateString 
- * converts integer day of week to its related string
+ * Converts integer day of week to its related string.
  * 
- * @param {number} day - An integer of the day of the week (0-6)
+ * @param {number} day - An integer of the day of the week (0-6).
  * 
- * @returns A string of the related day of the week of the parameter
+ * @returns A string of the related day of the week of the parameter.
  * 
  * @example
  *      getDateString(day)
@@ -163,16 +188,16 @@ function getDateString(day){
 	}
 }/* getDateString */
 
-/*
+/**
  * getWeeklyNavTitle 
- * Formats the title on top of the weekly nav menu,
- * Also address edge case if week is between two months and/or two years
+ * Formats the title on top of the weekly nav menu.
+ * Also address edge case if week is between two months and/or two years.
  * 
- * @param {Date} first - A date object referring to the first day of the week
- * @param {Date} last - A date object referring to the last day of the week
+ * @param {Date} first - A date object referring to the first day of the week.
+ * @param {Date} last - A date object referring to the last day of the week.
  * 
  * @returns A string of the correct title in the format "Month, Year" or 
- * "Month1/Month2, Year" or "Month1/Month2, Year1/Year2"
+ * "Month1/Month2, Year" or "Month1/Month2, Year1/Year2".
  * 
  * @example
  *      getWeekyNavTitle(first, last)

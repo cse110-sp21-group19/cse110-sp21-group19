@@ -1,15 +1,8 @@
-// TODO: FIGURE OUT HOW TO DECLARE GLOBAL VARIABLES
+// main-text-script.js
 
 // Constants for different bullet types
-//  Task Bullets:
-const TASKBULLET = "□";
-const TASKCOMPLETE = "☑";
-//const TASKBULLET = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"/></svg>`;
-//const TASKCOMPLETE = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zm0 400H48V80h352v352zm-35.864-241.724L191.547 361.48c-4.705 4.667-12.303 4.637-16.97-.068l-90.781-91.516c-4.667-4.705-4.637-12.303.069-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l59.792 60.277 141.352-140.216c4.705-4.667 12.303-4.637 16.97.068l22.536 22.718c4.667 4.706 4.637 12.304-.068 16.971z"/></svg>`;
-
-// Priority Markers:
-const NOTPRIORITY = "&#9734;";
-const PRIORITY = "★";
+import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
+import { createBullet, updateBullet } from "../../Backend/api/bullet_api.js";
 
 // BULLET STUFF
 // DOM Elements
@@ -31,7 +24,10 @@ bulletStack.push(BULLETS);
 MAINTEXT.appendChild(BULLETS);
 MAINTEXT.appendChild(INPUT);
 
-INPUT.addEventListener("keyup", function(event) {
+
+const MAINTEXTHEADER = document.querySelector("#date > h1");
+
+INPUT.addEventListener("keyup", async function(event) {
 	if (event.key === "Enter") {
 		event.preventDefault();
 
@@ -53,35 +49,45 @@ INPUT.addEventListener("keyup", function(event) {
 		// clear INPUT value after enter
 		BULLETINPUT.value = "";
 
-		editableEntry(newBullet);
+		// TODO: add new bullet to DB
+		let bulletKey = await createBullet(newBullet.entry);
+
+		editableEntry(bulletKey, newBullet);
 		prioritizeEntry(newBullet);
 		completeTask(newBullet);
 		deleteEntry(newBullet);
+
+		
 	}
 });
 
 
-/*
-* editableEntry
-* Allow each bullet entry to be edited on a double click.
-* @param {object} - A bullet-entry element
-*
-* @example
-*     editableEntry();
-*/
-function editableEntry(entry) {
+/** 
+ * editableEntry
+ * Allow each bullet entry to be edited on a double click.
+ * @param {Number} key - The bullet key returned by the database.
+ * @param {object} entry - A bullet-entry element.
+ *
+ * @example
+ *     editableEntry();
+ */
+function editableEntry(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
+	const bulletEntry = bulletEntryRoot.querySelector(".bullet-entry");
 	const inputted = bulletEntryRoot.getElementById("bullet-inputted");
+	const hoverMsg = bulletEntryRoot.getElementById("edit-msg");
 	if (inputted) {
 		// all to edit on double click
-		inputted.addEventListener("dblclick", function() {
-			console.log("HERE");
+		bulletEntry.addEventListener("dblclick", function() {
 			inputted.readOnly = false;
+			hoverMsg.innerHTML = "Enter to save note";
 		});
 		// after 'Enter' return to 'readOnly' mode
 		inputted.addEventListener("keyup", function(event) {
 			if (event.key === "Enter") {
 				inputted.readOnly = true;
+				hoverMsg.innerHTML = "Double click to edit note";
+				updateBullet(key, entry.entry);
 			}
 		});
 		// TODO: after click away from entry, return to 'readyOnly' mode
@@ -93,17 +99,20 @@ function editableEntry(entry) {
             }
         });
         */
+
+		// TODO: update edited bullet to DB
+		//console.log(entry);
 	}
 } /* editableEntry */
 
-/*
-* deleteEntry
-* Delete bullet when the 'X' button is clicked.
-* @param {}
-*
-* @example
-*     deleteEntry();
-*/
+/**
+ * deleteEntry
+ * Delete bullet when the 'X' button is clicked.
+ * @param {object} entry - The bullet entry to be deleted
+ *
+ * @example
+ *     deleteEntry(entry);
+ */
 function deleteEntry(entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toDelete = bulletEntryRoot.getElementById("delete-bullet");
@@ -112,19 +121,19 @@ function deleteEntry(entry) {
 	});
 } /* deleteEntry */
 
-/*
-* prioritizeEntry
-* Prioritize and deprioritize bullet by toggling the star icon.
-* @param {object} - a bullet-type element
-*
-* @example
-*     prioritizeEntry(entry);
-*/
+/**
+ * prioritizeEntry
+ * Prioritize and deprioritize bullet by toggling the star icon.
+ * @param {object} newEntry - A bullet-type element.
+ *
+ * @example
+ *     prioritizeEntry(entry);
+ */
 function prioritizeEntry(newEntry) {
 	let bulletEntryRoot = newEntry.shadowRoot;
 	const toPrioritize = bulletEntryRoot.getElementById("prioritize-bullet");
 	toPrioritize.addEventListener("click", function() {
-		if (toPrioritize.innerHTML === PRIORITY) {
+		if (toPrioritize.innerHTML.includes("priority")) {
 			toPrioritize.innerHTML = NOTPRIORITY;
 			toPrioritize.style.color = "transparent";
 		}
@@ -135,24 +144,27 @@ function prioritizeEntry(newEntry) {
 	});
 }  /* prioritizeEntry */
 
-/*
-* completeTask
-* Check and uncheck task bullet. Adds strikethrough to checked tasks.
-* @param {object} - a bullet-type element
-*
-* @example
-*     completeTask(entry);
-*/
+/**
+ * completeTask
+ * If the bullet is a task bullet, then if the task is not completed, then 
+ * change the task to completed and add a strikethrought to the completed 
+ * bullet content. If the task is completed, uncheck the bullet and remove the 
+ * strikethrough from the bullet content.
+ * @param {object} newEntry - a bullet-type element
+ *
+ * @example
+ *     completeTask(entry);
+ */
 function completeTask(newEntry) {
 	let bulletEntryRoot = newEntry.shadowRoot;
 	const toComplete = bulletEntryRoot.getElementById("bullet-type");
 	const content = bulletEntryRoot.getElementById("bullet-inputted");
 	toComplete.addEventListener("click", function() {
-		if (toComplete.innerHTML === TASKBULLET) {
+		if (toComplete.innerHTML.includes("incomplete")) {
 			toComplete.innerHTML = TASKCOMPLETE;
 			content.style.textDecoration = "line-through";
 		}
-		else if (toComplete.innerHTML === TASKCOMPLETE) {
+		else if (toComplete.innerHTML.includes("complete")) {
 			toComplete.innerHTML = TASKBULLET;
 			content.style.textDecoration = "none";
 		}
@@ -162,7 +174,7 @@ function completeTask(newEntry) {
 // Create Nested Bullets
 INPUT.addEventListener("keydown", function(event) {
 	// FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
-	// Unnest by one level on backspace
+	// Unnest by one level on shift + tab
 	if ((event.shiftKey && event.key === "Tab")) {
 		event.preventDefault();
 		if (bulletStack.length > 1) {

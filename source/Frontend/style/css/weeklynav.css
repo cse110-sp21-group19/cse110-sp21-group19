@@ -4,65 +4,67 @@
 /* colors */
 /* spacing */
 .weekly-nav-title {
-  margin-top: 55px;
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+  margin-top: 1.4rem;
   margin-bottom: 0.5rem;
-  position: relative;
+  margin-left: 0.9rem;
+  font-weight: 500;
+  font-size: 1.5em;
 }
 
 .week-container {
-  background: #a1b3a1;
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+  background: #71B637;
+  z-index: -1;
   border-radius: 1rem;
   padding: 0.5rem;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: auto auto auto auto auto auto auto;
-      grid-template-rows: auto auto auto auto auto auto auto;
-  height: 70vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .week-container .wn-item {
+  min-height: 0;
   margin: 0.4rem;
-  display: -ms-grid;
-  display: grid;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
   background: white;
-  border-radius: 0.5rem;
-  -ms-grid-rows: 1;
-      grid-template-rows: 1;
-  -ms-grid-columns: 10% [date-column] auto auto;
-      grid-template-columns: 10% [date-column] auto auto;
+  border-radius: 0.4rem;
+  -webkit-transition: border-left 0.15s linear;
+  transition: border-left 0.15s linear;
 }
 
 .week-container .wn-item:hover {
-  -webkit-filter: brightness(90%);
-          filter: brightness(90%);
-}
-
-.week-container .wn-item .wn-day-of-week {
-  pointer-events: none;
-  -ms-grid-row: 1;
-      grid-row-start: 1;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  -ms-grid-column: 2;
-      grid-column-start: 2;
-  font-size: 20px;
+  -webkit-transition: -webkit-filter 0.15s linear;
+  transition: -webkit-filter 0.15s linear;
+  transition: filter 0.15s linear;
+  transition: filter 0.15s linear, -webkit-filter 0.15s linear;
+  -webkit-filter: brightness(85%);
+          filter: brightness(85%);
 }
 
 .week-container .wn-item .wn-date {
   pointer-events: none;
-  -ms-grid-column: 1;
-      grid-column-start: 1;
-  margin-left: 0.3rem;
-  font-size: 20px;
+  margin-left: 0.5rem;
+  font-size: 1.05em;
 }
 
-.week-container .wn-item .wn-bullets {
-  -ms-grid-column: 3;
-      grid-column-start: 3;
-  font-size: 10px;
+.week-container .wn-item .wn-date #day-of-week {
+  padding: 0 0.35em;
+  font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
+  font-weight: lighter;
+  font-size: 1.05em;
 }
 
 .week-container .wn-item p {
-  visibility: hidden;
+  visibility: collapse;
 }
 /*# sourceMappingURL=weeklynav.css.map */

@@ -58,13 +58,15 @@ export function createDB() {
  *                         (log, date, priority, content, completed, type, children).
  *                         Example below:
  * let bulletExample = {
- *      "log": "daily",
- *      "date": "05/23/2021",
- *      "priority": true,
- *      "content": "example text hello this is a test",
- *      "completed": false,
- *      "type": note, task, event
- *      "children": []
+ *      "log": "daily",                 string
+ *      "date": "05/23/2021",           a string containing a JS Date object
+ *      "priority": true,               boolean
+ *      "content": "example text hello this is a test", string
+ *      "completed": false,             boolean
+ *      "type": note, task, event       string
+ *      "children": []                  array bulletObject (ideally), 
+ *                                      if not ints representing indentation level
+ *                                      or key of parent object
  *  };
  * 
  * @return {Promise Object} A promise that resolves to the key of the newly added bullet, 
