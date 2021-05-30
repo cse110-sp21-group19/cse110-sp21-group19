@@ -2,7 +2,7 @@
 
 // Constants for different bullet types
 import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
-import { createBullet, updateBullet } from "../../Backend/api/bullet_api.js";
+import { createBullet, deleteBullet, updateBullet } from "../../Backend/api/bullet_api.js";
 
 // BULLET STUFF
 // DOM Elements
@@ -51,7 +51,7 @@ INPUT.addEventListener("keyup", async function(event) {
 		editableEntry(bulletKey, newBullet);
 		prioritizeEntry(bulletKey, newBullet);
 		completeTask(bulletKey, newBullet);
-		deleteEntry(newBullet);
+		deleteEntry(bulletKey, newBullet);
 	}
 });
 
@@ -91,16 +91,20 @@ function editableEntry(key, entry) {
 /**
  * deleteEntry
  * Delete bullet when the 'X' button is clicked.
+ * @param {Number} key - The bullet key returned by the database.
  * @param {object} entry - The bullet entry to be deleted
  *
  * @example
  *     deleteEntry(entry);
  */
-function deleteEntry(entry) {
+function deleteEntry(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toDelete = bulletEntryRoot.getElementById("delete-bullet");
 	toDelete.addEventListener("click", function() {
+		// remove bullet from main-text area
 		entry.remove();
+		// remove bullet from database
+		deleteBullet(key);
 	});
 } /* deleteEntry */
 
@@ -125,7 +129,6 @@ function prioritizeEntry(key, entry) {
 			toPrioritize.innerHTML = PRIORITY;
 			toPrioritize.style.color = "black";
 		}
-		console.log(entry.entry);
 		// update prioritized/deprioritized bullet to DB
 		updateBullet(key, entry.entry);
 	});
