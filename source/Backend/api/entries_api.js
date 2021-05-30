@@ -228,10 +228,11 @@ export function deleteEntry(key){
  * Returns an array of all entries for given date, in the order that they
  * are added.
  * 
- * @param {string} date - string of date in the format "MM/DD/YEAR"
+ * @param {Object} date - a JS Date object
  * @return {Array} an array entries for the given date
  * 
- * @example getDailyEntries("05/29/2021")
+ * @example getDailyEntries(new Date())
+ * 
  */
 export function getDailyEntries(date) {
     return new Promise((resolve, reject) => {
@@ -249,9 +250,9 @@ export function getDailyEntries(date) {
             objStoreRequest.onsuccess = function (e){
                 let cursor = e.target.result;
                 if(cursor != null) {
-                    if(cursor.value.date == date) {
+                    let currDate = cursor.value.date;
+                    if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
                         matchingEntries.push(cursor.value);
-                        //console.log(cursor.key);
                     }
                     cursor.continue();
                 } else {
