@@ -1,5 +1,5 @@
 {
-  "name": "source",
+  "name": "eucalyptus",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,9 @@
     "test": "jest --coverage --passWithNoTests \"./source/Testing/index.js\"",
     "lint": "eslint \"source/**\" --ext .js",
     "lint:fix": "npm run lint -- --fix",
-    "docs": "\"./node_modules/.bin/jsdoc\" -d"
+    "docs": "npm run docsFront && npm run docsBack",
+    "docsFront": "jsdoc -c jsdocFront.conf.json",
+    "docsBack": "jsdoc -c jsdocBack.conf.json"
   },
   "author": "",
   "license": "ISC",
