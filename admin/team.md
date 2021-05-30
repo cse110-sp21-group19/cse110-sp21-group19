@@ -27,8 +27,8 @@ In our project, we aim to bring a minimalist approach where we prioritize user a
 - I a big fan of Sci-fi, Robots, games and Books!
 - See [here](https://github.com/michl1001) for some of my oher work!
 
-### [Malhar Nerurkar - Front End Developer](https://github.com/malhar715)
-- Hello, I'm Malhar! I'm a 4th-year Math-CS major at Sixth College.
+### [Malhar Sarang - Front End Developer](https://github.com/malhar715)
+- Hello, I'm Malhar! I'm a 4th-year Math-CS major at UCSD's Sixth College.
 
 ### [Garvin Mo Zhen - Back End Developer](https://github.com/garvingit/)
 - Hey, I'm Garvin Mo Zhen. I'm a 3rd year Cognitive Science-ML Major with a CS minor in Warren. I like to play volleyball, and league.
