@@ -1,7 +1,8 @@
 import { createEntry, deleteEntry, updateEntry } from "../../../Backend/api/entries_api.js";
+
 //global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
-var keys = [];
+
 
 /**
  * @class {entryBar} 
@@ -72,14 +73,18 @@ var keys = [];
 		let innerBar = this.shadowRoot.querySelector(".content");
 		let title = this.shadowRoot.querySelector(".entry-title");
 		let content = this.shadowRoot.querySelector(".text-content");
+
 		//different states of entryBar
 		let initial = this.shadowRoot.querySelector(".initial");
 		let editing = this.shadowRoot.querySelector(".editing");
+
 		//buttons
 		let saveBtn = this.shadowRoot.querySelector(".save-btn");
 		let deleteButton = this.shadowRoot.querySelector(".delete-btn");
+
 		//variable that tracks the key of the entry currently being viewed
 		let currKey = 0;
+
 		//hide the delete button by default
 		deleteButton.style.display="none";
 		//event listener that fires everytime the save button is clicked
@@ -156,6 +161,7 @@ var keys = [];
 		
 		});
 
+		//event listener for deleting an entry
 		deleteButton.addEventListener("click", function(){
 			//find the current entry in the document
 			let response = confirm("Delete this entry?");
@@ -189,6 +195,7 @@ var keys = [];
 			}
 		});
 	}
+
 	/**
 	 * @param {}
 	 * 
@@ -210,6 +217,7 @@ var keys = [];
 			return "openbar";
 		}
 	}
+
 	/**	Set the 'type' attribute of the entry bar which determines what content to hide/display
 	 * @param {string}
 	 * 
@@ -247,8 +255,8 @@ var keys = [];
 				mainText.style.display = "none";
             	document.querySelector("entry-bar").type="editing";
 			});
-
 		}
+
 		else if(type == "editing"){
 			//toggle the relevant elements
 			initial.style.display="none";
@@ -283,6 +291,7 @@ var keys = [];
 		}
 	}	
 }/*entryBar*/
+
 //define the custom web component "entry-bar" and associate it to the class "entryBar"
 customElements.define("entry-bar", entryBar);
 
