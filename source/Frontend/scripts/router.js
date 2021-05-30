@@ -9,10 +9,6 @@ import { createToDoList } from "./todo-script.js";
 
 export const router = {};
 
-// weekly-nav elements
-const WEEKLYNAV = document.querySelector("weekly-nav");
-const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
-
 //FIX LATER:router copied from lab to get things going
 /**
  * setState
@@ -67,6 +63,7 @@ router.currentState = null;
  * dailyLog
  * Set the state for the a new daily-log page.
  * @param {Date} date The date to associate the page with.
+ * @param {string} from Where the setState came from
  * 
  * @example
  *      dailyLog("5-24-2021");
@@ -90,19 +87,20 @@ function dailyLog(date, from){
 
         //get the current selected day of the week from the weekly nav
         let WEEKLYNAV = document.querySelector("weekly-nav");
+
         //If we are currently on a sunday, replace weekly nav menu with prev week
         if((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
             console.log("HELLO")
-            WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "0";
-            WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
+            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "0";
+            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "0";
             setTimeout(function() {
                 WEEKLYNAV.remove();
                 createWeeklyNav(date);
               }, 150);
             setTimeout(function() {
                 WEEKLYNAV = document.querySelector("weekly-nav");
-                WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "1";
-                WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "1";
+                WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
+                WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
               }, 300);
             }
         else{
@@ -189,7 +187,7 @@ function futureLog(){
 function pushToHistory(state, date, from) {
     console.log("push from: " + from)
     router.currentState = {
-        page: "daily-log", date: date, from:from
+        page: state, date: date, from:from
     };
     switch (state) {
         case "daily-log":
@@ -210,5 +208,6 @@ function pushToHistory(state, date, from) {
         default:
             history.pushState({}, '', './');
     }
+    console.log(history)
     return history;
   }

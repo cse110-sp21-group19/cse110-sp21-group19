@@ -6,10 +6,12 @@ import { closeMenu } from "./side-nav-script.js";
 import { createDB } from "../../Backend/api/bullet_api.js";
 const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
-
+const today = new Date();
+router.setState("daily-log", false, today, "first-load");
 // create database
 document.addEventListener("DOMContentLoaded", () => {
 	createDB();
+
 })
 
 // When the back button is hit, set the state with the new page
@@ -32,7 +34,7 @@ window.addEventListener('popstate', e => {
 const SNDAILYLOG = SIDENAVROOT.getElementById("sn-daily-log");
 SNDAILYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current date
-    let d = new Date();
+    const d = new Date();
 	router.setState("daily-log", false, d, "side-nav");
 
     // TODO: update the side bar to weekly-nav
@@ -45,7 +47,7 @@ SNDAILYLOG.addEventListener("click", () => {
 const SNMONTHLYLOG = SIDENAVROOT.getElementById("sn-monthly-log");
 SNMONTHLYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current month
-    let d = new Date();
+    const d = new Date();
 	router.setState("monthly-log", false, d, "side-nav");
 
     // TODO: update the side bar to task list
@@ -58,7 +60,7 @@ SNMONTHLYLOG.addEventListener("click", () => {
 const SNFUTURELOG = SIDENAVROOT.getElementById("sn-future-log");
 SNFUTURELOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current year
-    let d = new Date();
+    const d = new Date();
 	router.setState("future-log", false, d, "side-nav");
 
     // TODO: update the side bar to task list
