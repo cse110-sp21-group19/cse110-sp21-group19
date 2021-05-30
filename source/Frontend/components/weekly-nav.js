@@ -44,24 +44,42 @@ class WeeklyNav extends HTMLElement{
 	 * objects could also contain important bullet info to fill menu.
 	 * 
 	 * @param {Array} week - an array of objects corresponding to one week
-	 * 
+	 * example object
+	 * dayObj = {
+	 * 		date: date;
+	 * 		bullets: [];
+	 * }
 	 * @example
 	 *      this.daysOfWeek = week
 	 */
 	set daysOfWeek(week){
+		console.log(week);
 		//set the weekly-nav title
 		const navTitle = this.shadowRoot.querySelector("[class='weekly-nav-title']");
-		navTitle.innerHTML = getWeeklyNavTitle(week[0], week[6]);
+		navTitle.innerHTML = getWeeklyNavTitle(week[0].date, week[6].date);
 		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
 		//Add each day to the nav menu
 		week.forEach(element => {
-			let day = getDateString(element.getDay());
-			let date = element.getDate();
-			let month = element.getMonth();
-			let year = element.getFullYear();
+			let day = getDateString(element.date.getDay());
+			let date = element.date.getDate();
+			let month = element.date.getMonth();
+			let year = element.date.getFullYear();
+			let bullets = element.bullets;
+
+			let priorityBullets = document.createElement("div");
+			priorityBullets.className = "wn-bullets-container";
+
+			bullets.forEach(bullet =>{
+
+				let bulletElem = document.createElement("div");
+				bulletElem.className = "wn-bullet";
+				bulletElem.innerHTML = bullet.content;
+				priorityBullets.appendChild(bulletElem);
+			})
 
 			let navItem = document.createElement("div");
 			navItem.className = "wn-item";
+
 
 			let navDate = document.createElement("h2");
 			navDate.className = "wn-date";
@@ -87,8 +105,11 @@ class WeeklyNav extends HTMLElement{
 			navItem.appendChild(navDate);
 			navItem.appendChild(hiddenMonth);
 			navItem.appendChild(hiddenYear);
+			navItem.appendChild(priorityBullets);
+
 
 			navContainer.appendChild(navItem);
+
 		}); 
 	
 	}/* set daysOfWeek */
@@ -153,6 +174,26 @@ class WeeklyNav extends HTMLElement{
 			}
 		}
 	} /* set seletedDay */
+
+	set updatePriorityBullets(bullets){
+		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+		for(let i = 1; i < navContainer.childNodes.length; i++){
+			let currItem = navContainer.childNodes[i];
+			if(currItem.style.borderLeft == SELECTEDBORDERLEFT){
+				let priorityBullets = navContainer.childNodes[i].querySelector(".wn-bullets-container");
+				while (priorityBullets.firstChild) {
+					priorityBullets.removeChild(priorityBullets.firstChild);
+				}
+				bullets.forEach(bullet =>{
+					let bulletElem = document.createElement("div");
+					bulletElem.className = "wn-bullet";
+					bulletElem.innerHTML = bullet.content;
+					priorityBullets.appendChild(bulletElem);
+				})
+			}
+		
+	}
+}
 }
 
 

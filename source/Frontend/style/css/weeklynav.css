@@ -36,6 +36,9 @@
   -webkit-box-flex: 1;
       -ms-flex: 1 1 0px;
           flex: 1 1 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background: white;
   border-radius: 0.4rem;
   -webkit-transition: border-left 0.15s linear;
@@ -55,6 +58,7 @@
   pointer-events: none;
   margin-left: 0.5rem;
   font-size: 1.05em;
+  width: 28%;
 }
 
 .week-container .wn-item .wn-date #day-of-week {
@@ -64,7 +68,16 @@
   font-size: 1.05em;
 }
 
+.week-container .wn-item .wn-bullets-container {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  margin: 0.4rem;
+  overflow-y: auto;
+}
+
 .week-container .wn-item p {
-  visibility: collapse;
+  position: absolute;
+  visibility: hidden;
 }
 /*# sourceMappingURL=weeklynav.css.map */

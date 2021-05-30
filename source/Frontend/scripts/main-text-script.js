@@ -2,7 +2,7 @@
 
 // Constants for different bullet types
 import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
-import { createBullet, updateBullet } from "../../Backend/api/bullet_api.js";
+import { createBullet, updateBullet, getDailyPriority } from "../../Backend/api/bullet_api.js";
 
 // BULLET STUFF
 // DOM Elements
@@ -53,7 +53,7 @@ INPUT.addEventListener("keyup", async function(event) {
 		let bulletKey = await createBullet(newBullet.entry);
 
 		editableEntry(bulletKey, newBullet);
-		prioritizeEntry(newBullet);
+		prioritizeEntry(bulletKey, newBullet);
 		completeTask(newBullet);
 		deleteEntry(newBullet);
 
@@ -124,15 +124,16 @@ function deleteEntry(entry) {
 /**
  * prioritizeEntry
  * Prioritize and deprioritize bullet by toggling the star icon.
+ * @param {Number} key - The bullet key returned by the database.
  * @param {object} newEntry - A bullet-type element.
  *
  * @example
  *     prioritizeEntry(entry);
  */
-function prioritizeEntry(newEntry) {
+function prioritizeEntry(key, newEntry) {
 	let bulletEntryRoot = newEntry.shadowRoot;
 	const toPrioritize = bulletEntryRoot.getElementById("prioritize-bullet");
-	toPrioritize.addEventListener("click", function() {
+	toPrioritize.addEventListener("click", async function() {
 		if (toPrioritize.innerHTML.includes("priority")) {
 			toPrioritize.innerHTML = NOTPRIORITY;
 			toPrioritize.style.color = "transparent";
@@ -141,6 +142,11 @@ function prioritizeEntry(newEntry) {
 			toPrioritize.innerHTML = PRIORITY;
 			toPrioritize.style.color = "black";
 		}
+		updateBullet(key, newEntry.entry);
+		const WEEKLYNAV = document.querySelector("weekly-nav");
+		const currDate = document.querySelector("log-type").readLog.date;
+		let bullets =  await getDailyPriority(currDate);
+		WEEKLYNAV.updatePriorityBullets = bullets;
 	});
 }  /* prioritizeEntry */
 
