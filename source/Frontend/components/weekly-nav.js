@@ -175,25 +175,25 @@ class WeeklyNav extends HTMLElement{
 		}
 	} /* set seletedDay */
 
-	set updatePriorityBullets(bullets){
+	set updatePriorityBullets(bullets) {
 		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
-		for(let i = 1; i < navContainer.childNodes.length; i++){
+		for (let i = 1; i < navContainer.childNodes.length; i++) {
 			let currItem = navContainer.childNodes[i];
-			if(currItem.style.borderLeft == SELECTEDBORDERLEFT){
+			if (currItem.style.borderLeft == SELECTEDBORDERLEFT) {
 				let priorityBullets = navContainer.childNodes[i].querySelector(".wn-bullets-container");
 				while (priorityBullets.firstChild) {
 					priorityBullets.removeChild(priorityBullets.firstChild);
 				}
-				bullets.forEach(bullet =>{
+				bullets.forEach(bullet => {
 					let bulletElem = document.createElement("div");
 					bulletElem.className = "wn-bullet";
 					bulletElem.innerHTML = bullet.content;
 					priorityBullets.appendChild(bulletElem);
 				})
 			}
-		
+
+		}
 	}
-}
 }
 
 

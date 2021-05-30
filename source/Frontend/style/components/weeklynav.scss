@@ -27,10 +27,12 @@
         background: white;
         border-radius: 0.4rem;
         transition: border-left 0.15s linear;
-        //display: grid;
-        //grid-template-rows: 1;
-        //grid-template-columns: auto auto;
-        &:hover{
+
+        //Ideas for hover/onclick behavior
+        //Hover whole item highlights clickable part
+        //only hover clickable part
+        //click date
+        &:hover {
             transition: filter 0.15s linear;
             filter: brightness(85%);
         }
@@ -39,7 +41,8 @@
             //grid-column-start: 1;
             margin-left: 0.5rem;
             font-size: 1.05em;
-            width:28%;
+            width: 30%;
+            height: 100%;
             #day-of-week{
                 padding: 0 0.35em;
                 font-family: $sans-serif;
@@ -57,5 +60,25 @@
             position: absolute;
             visibility:hidden;
         }
+        /* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(182, 182, 182);
+    border-radius: 6px; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $accent
+  }
     }
 }

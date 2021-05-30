@@ -43,6 +43,10 @@
   border-radius: 0.4rem;
   -webkit-transition: border-left 0.15s linear;
   transition: border-left 0.15s linear;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 
 .week-container .wn-item:hover {
@@ -58,7 +62,8 @@
   pointer-events: none;
   margin-left: 0.5rem;
   font-size: 1.05em;
-  width: 28%;
+  width: 30%;
+  height: 100%;
 }
 
 .week-container .wn-item .wn-date #day-of-week {
@@ -79,5 +84,22 @@
 .week-container .wn-item p {
   position: absolute;
   visibility: hidden;
+}
+
+.week-container .wn-item ::-webkit-scrollbar {
+  width: 10px;
+}
+
+.week-container .wn-item ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.week-container .wn-item ::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+  border-radius: 6px;
+}
+
+.week-container .wn-item ::-webkit-scrollbar-thumb:hover {
+  background: #71B637;
 }
 /*# sourceMappingURL=weeklynav.css.map */
