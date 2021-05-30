@@ -80,8 +80,7 @@ class WeeklyNav extends HTMLElement{
 			let navItem = document.createElement("div");
 			navItem.className = "wn-item";
 
-
-			let navDate = document.createElement("h2");
+			let navDate = document.createElement("div");
 			navDate.className = "wn-date";
 			let dayOfWeek = document.createElement("span");
 			dayOfWeek.id = "day-of-week";

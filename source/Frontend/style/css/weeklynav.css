@@ -60,17 +60,22 @@
 
 .week-container .wn-item .wn-date {
   pointer-events: none;
-  margin-left: 0.5rem;
-  font-size: 1.05em;
+  margin-top: 0.6rem;
+  margin-left: 0.6rem;
   width: 30%;
   height: 100%;
+}
+
+.week-container .wn-item .wn-date #day-of-month {
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 .week-container .wn-item .wn-date #day-of-week {
   padding: 0 0.35em;
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   font-weight: lighter;
-  font-size: 1.05em;
+  font-size: 1.1em;
 }
 
 .week-container .wn-item .wn-bullets-container {
@@ -78,7 +83,15 @@
       -ms-flex-positive: 2;
           flex-grow: 2;
   margin: 0.4rem;
+  overflow-y: hidden;
+}
+
+.week-container .wn-item .wn-bullets-container:hover {
   overflow-y: auto;
+}
+
+.week-container .wn-item .wn-bullets-container .wn-bullet {
+  margin: 0.2rem;
 }
 
 .week-container .wn-item p {
@@ -87,7 +100,7 @@
 }
 
 .week-container .wn-item ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 .week-container .wn-item ::-webkit-scrollbar-track {

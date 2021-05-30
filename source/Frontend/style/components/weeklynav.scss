@@ -32,28 +32,39 @@
         //Hover whole item highlights clickable part
         //only hover clickable part
         //click date
-        &:hover {
+        &:hover{
             transition: filter 0.15s linear;
             filter: brightness(85%);
         }
         .wn-date{
+            
             pointer-events: none;
-            //grid-column-start: 1;
-            margin-left: 0.5rem;
-            font-size: 1.05em;
+            margin-top: 0.6rem;
+            margin-left: 0.6rem;
             width: 30%;
             height: 100%;
+            //grid-column-start: 1;
+            #day-of-month{
+              font-size: 1.1em;
+              font-weight: bold;
+            }
             #day-of-week{
                 padding: 0 0.35em;
                 font-family: $sans-serif;
                 font-weight: lighter;
-                font-size: 1.05em;
+                font-size: 1.1em;
             }
         }
         .wn-bullets-container{
             flex-grow: 2;
             margin: 0.4rem;
-            overflow-y: auto;
+            overflow-y: hidden;
+            &:hover{
+              overflow-y: auto;
+            }
+            .wn-bullet{
+              margin:0.2rem;
+            }
         }
 
         p {
