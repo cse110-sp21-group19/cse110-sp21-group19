@@ -41,6 +41,7 @@ const SNMONTHLYLOG = SIDENAVROOT.getElementById("sn-monthly-log");
 SNMONTHLYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current month
     let d = new Date();
+	console.log("YOOOO");
 	router.setState("monthly-log", false, d, "side-nav");
 
     // TODO: update the side bar to task list

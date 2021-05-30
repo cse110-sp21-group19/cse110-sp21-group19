@@ -1,0 +1,34 @@
+.cal-container {
+  background: white;
+  border-radius: 1rem;
+}
+
+.cal-container .month {
+  margin: 1rem;
+}
+
+.cal-container .weekdays {
+  padding: 0;
+}
+
+.cal-container .weekdays li {
+  display: inline-block;
+  width: 13.2%;
+  color: #666;
+  text-align: center;
+}
+
+.cal-container .days {
+  padding: 0.5rem;
+}
+
+.cal-container .days li {
+  font-size: 1.2em;
+  list-style-type: none;
+  display: inline-block;
+  width: 13.9%;
+  max-width: 14.2%;
+  text-align: center;
+  color: #777;
+}
+/*# sourceMappingURL=calendar.css.map */

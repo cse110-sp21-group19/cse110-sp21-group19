@@ -7,20 +7,22 @@ class Calendar extends HTMLElement{
 		const template = document.createElement("template");
 
 		template.innerHTML = `
-			<div class="month"></div>
+			<div class="cal-container">
+				<div class="month"></div>
 
-	  		<ul class="weekdays">
-				<li>Mo</li>
-				<li>Tu</li>
-				<li>We</li>
-				<li>Th</li>
-				<li>Fr</li>
-				<li>Sa</li>
-				<li>Su</li>
-	  		</ul>
+				<ul class="weekdays">
+					<li>Su</li>
+					<li>Mo</li>
+					<li>Tu</li>
+					<li>We</li>
+					<li>Th</li>
+					<li>Fr</li>
+					<li>Sa</li>
+				</ul>
 
-	  		<ul class="days">
-			</ul>
+				<ul class="days">
+				</ul>
+			</div>
 		`;
 
 		// create a shadow root for this web component
@@ -42,7 +44,7 @@ class Calendar extends HTMLElement{
 		let month = date.getMonth();
 		let firstDay = date.getDay();
 		const shadow = this.shadowRoot;
-		//shadow.querySelector(".month").textContent(MONTHS[month]);
+		shadow.querySelector(".month").textContent= MONTHS[month];
 		for(let i = 0; i < firstDay; i++){
 			let emptyDay = document.createElement("li");
 			emptyDay.className = "empty-day";
@@ -52,6 +54,7 @@ class Calendar extends HTMLElement{
 		while (date.getMonth() === month){
 			let newDay = document.createElement("li");
 			newDay.className = "day";
+			newDay.textContent = date.getDate();
 			shadow.querySelector(".days").appendChild(newDay);
 			date.setDate(date.getDate() + 1);
 		}

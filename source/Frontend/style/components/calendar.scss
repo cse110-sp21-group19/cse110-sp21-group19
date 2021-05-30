@@ -1,0 +1,35 @@
+
+
+.cal-container{
+	background: white;
+	border-radius: 1rem;
+	.month{
+		margin: 1rem;
+	}
+	.weekdays {
+		padding: 0;
+		li {
+			display: inline-block;
+			width: 13.2%;
+			color: #666;
+			text-align: center;
+		}
+	  }
+	
+
+	.days{
+
+		padding:0.5rem;
+		  li{
+			font-size: 1.2em;
+			list-style-type: none;
+			display: inline-block;
+			width: 13.9%;
+			max-width: 14.2%;
+			text-align: center;
+			color: #777;
+		  }
+	}
+}
+
+

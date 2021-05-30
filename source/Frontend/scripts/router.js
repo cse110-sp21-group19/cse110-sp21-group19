@@ -194,7 +194,7 @@ function futureLog(){
 function pushToHistory(state, date, from) {
     console.log("push from: " + from)
     router.currentState = {
-        page: "daily-log", date: date, from:from
+        page: state, date: date, from:from
     };
     switch (state) {
         case "daily-log":
