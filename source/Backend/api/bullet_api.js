@@ -4,9 +4,7 @@ const BULLETDB = "bulletDB";
 const ENTRYDB = "entryDB";
 const ERR_DB_NOT_CREATED = "ERROR: Database hasn't been created!";
 const ERR_CANT_GET_BULLET = "ERROR: Unable to access bullet with key: ";
-const ERR_CANT_GET_ENTRY = "ERROR: Unable to access entry with key: ";
 const ERR_CANT_DELETE_BULLET = "ERROR: Unable to delete bullet with key: ";
-const ERR_CANT_DELETE_ENTRY = "ERROR: Unable to delete entry with key: ";
 
 //making sure indexeddb is supported in multiple browsers
 Object.defineProperty(window, 'indexedDB', {
@@ -47,6 +45,8 @@ export function createDB() {
 
         //defining columns in entryStore
         entryStore.createIndex("date", "date", {unique: false});
+        entryStore.createIndex("title", "title", {unique: false});
+        entryStore.createIndex("content", "content", {unique: false});
     }
 }
 
@@ -116,7 +116,7 @@ export function createBullet(bullet) {
  * 
  * @param {Object} bullet - The new bullet object to set the old bullet equal to
  * 
- * @return {Boolean} true if successfully updated, false if not updated
+ * @return {Promise Object} Promise object that resolves totrue if successfully updated, false if not updated
  * 
  * @example 
  *  let bulletExample = {
@@ -241,7 +241,7 @@ export function getBullet(key){
  * 
  * @param {(string | number)} key - The key of the bullet to delete
  * 
- * @return {Boolean} true if successful, false if not
+ * @return {Promise Object} Promise that resolves true if successful, false if not
  * 
  * @example deleteBullet(1);
  */

@@ -6,7 +6,7 @@
 </head>
 
 <body>
-   <h1>IndexedDB test</h1>
+   <h1>Bullet Database</h1>
     <button id="create">CreateDB</button><br><br>
  <!--    <button id="add">Add</button><br><br> -->
     <form>
@@ -48,10 +48,42 @@
     <label for="dateget">Date:</label>
     <input type="date" id="dateget" name="dateget"><br><br>
 
-    <button id="daily">Get Bullets for day</button>
+    <button id="daily">Get Bullets for day</button><br><br>
 
+
+<!--     ENTRIES -->
+    <h1>Entries Database</h1>
+    <form>
+        <label for="entrydate">Date:</label>
+        <input type="text" id="entrydate" name="entrydate"><br><br>
+
+        <label for="entrytitle">Title:</label>
+        <input type="text" id="entrytitle" name="entrytitle"><br><br>
+
+        <label for="entrycontent">content:</label>
+        <input type="text" id="entrycontent" name="entrycontent"><br><br>
+
+        <button id="entryadd">Add Entry</button>
+    </form>
+
+    <br><br>
+
+    <label for="entrykey">key:</label>
+    <input type="text" id="entrykey" name="entrykey"><br><br>
+    <button id="entryget">Get Entry</button>
+    <button id="entryupdate">Update Entry</button>
+    <button id="entrydelete">Delete Entry</button><br><br>
+
+    <label for="dateget2">Date:</label>
+    <input type="date" id="dateget2" name="dateget2"><br><br>
+
+    <button id="entrydaily">Get Entries for day</button><br><br>
+    
+    <!-- imports -->
     <script type="module" src="bullet_api.js"></script>
-    <script type="module" src="api_test.js"></script>
+    <script type="module" src="bullet_api_test.js"></script>
+    <script type="module" src="entries_api.js"></script>
+    <script type="module" src="entries_api_test.js"></script>
 <!--     <script src="entries_api.js"></script> -->
 </body>
 </html>

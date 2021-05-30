@@ -1,40 +1,33 @@
-/*
-bullet object:
-        { 
-            Id: (autoincrement),
-            log: (‘daily’, ‘monthly’, ‘future’),
-            type: (‘note’, ‘event’, ‘task’),
-            Date: (MM/DD/YEAR) 05*,
-            priority: (true or false),
-            content: (text content of bullet),
-            Completed: (true or false),
-            Parent/Indent: (will either be id of parent or how many times to indent)
-        }
+//CONSTANTS
+const DATABASENAME = "BuJoDatabase";
+const ENTRYDB = "entryDB";
+const ERR_DB_NOT_CREATED = "ERROR: Database hasn't been created!";
+const ERR_CANT_GET_ENTRY = "ERROR: Unable to access entry with key: ";
+const ERR_CANT_DELETE_ENTRY = "ERROR: Unable to delete entry with key: ";
 
-entry object:  
-        {
-            "date": ‘05/20/2021’,
-            "bullets": [“text1”, “text2”, ...]
-        }
-*/
+//making sure indexeddb is supported in multiple browsers
+Object.defineProperty(window, 'indexedDB', {
+    value: window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB
+});
 
 /**
  * createEntry
  * Adds an entry object to the entryStore object store of the database
  * and returns its assigned key
  * 
- * @param entry - The entry object to add to the database
+ * @param {Object} entry - The entry object to add to the database
  * 
- * @return A promise which resolves to the entry's key or -1 if unsuccessful
+ * @return {Promise Object} A promise which resolves to the entry's key or -1 if unsuccessful
  * 
  * @example 
  *  let testEntry = {
  *      "date": ‘05/20/2021’,
- *      "bullets": [“text1”, “text2”, ...]
+ *      "title": "title",
+ *      "content": ajhdsfhjkasdhfjksa
  *  };
  *  createDB(testEntry);
  */
-function createEntry(entry){
+export function createEntry(entry){
     return new Promise((resolve, reject) => {
         //opening database
         let request = window.indexedDB.open(DATABASENAME);
@@ -74,23 +67,25 @@ function createEntry(entry){
  * updateEntry
  * Updates the specified entry to be equal to the new entry object
  * 
- * @param key - The key of the entry to update
+ * @param {(string | number)} key - The key of the entry to update
  * 
- * @param entry - The new entry object to set the old entry equal to
+ * @param {Object} entry - The new entry object to set the old entry equal to
  * 
- * @return A promise which resolves to true if successfully updated, false if not updated
+ * @return {Promise Object} A promise which resolves to true if successfully updated, false if not updated
  * 
  * @example 
  *  let testEntry = {
  *      "date": ‘05/20/2021’,
- *      "bullets": [“text1”, “text2”, ...]
+ *      "title": "title",
+ *      "contnet": ajhdsfhjkasdhfjksa
  *  };
  *  updateEntry(1, testEntry);
  */
-function updateEntry(key, entry){
+export function updateEntry(key, entry){
     return new Promise((resolve, reject) => {
-        //Get attributes to change
-        let bullets = entry.bullets;
+        //Get attributes to change, (date not needed)
+        let title = entry.title;
+        let content = entry.content;
 
         //opening database
         let request = window.indexedDB.open(DATABASENAME);
@@ -106,7 +101,9 @@ function updateEntry(key, entry){
                 let currEntry = event.target.result;
                 
                 if (currEntry !== undefined) {
-                    currEntry.bullets = bullets;
+                    //updating attributes
+                    currEntry.title = title;
+                    currEntry.content = content;
 
                     let putRequest = store.put(currEntry, key);
                     
@@ -141,13 +138,13 @@ function updateEntry(key, entry){
  * getEntry
  * Returns the specified entry object from the database
  * 
- * @param key - The key of the entry to get
+ * @param {(string | number)} key - The key of the entry to get
  * 
- * @return The associated entry object, or {} if unable to get entry
+ * @return {Object} The associated entry object, or {} if unable to get entry
  * 
  * @example getEntry(1);
  */
-function getEntry(key){
+export function getEntry(key){
     return new Promise((resolve, reject) => {
         //opening database
         let request = window.indexedDB.open(DATABASENAME);
@@ -181,17 +178,17 @@ function getEntry(key){
     });
 }
 
-/*
+/** 
  * deleteEntry
  * Deletes the specified entry object from the database
  * 
- * @param key - The key of the entry to delete
+ * @param {(string | number)}key - The key of the entry to delete
  * 
- * @return A promise which resolves to true if deleted, false if not
+ * @return {Promise Object} A promise which resolves to true if deleted, false if not
  * 
  * @example deleteEntry(1);
  */
-function deleteEntry(key){
+export function deleteEntry(key){
     return new Promise((resolve, reject) => {
         //opening database
         let request = window.indexedDB.open(DATABASENAME);
@@ -224,4 +221,57 @@ function deleteEntry(key){
             return false;
         }
     });    
+}
+
+/**
+ * getDailyEntries
+ * Returns an array of all entries for given date, in the order that they
+ * are added.
+ * 
+ * @param {string} date - string of date in the format "MM/DD/YEAR"
+ * @return {Array} an array entries for the given date
+ * 
+ * @example getDailyEntries("05/29/2021")
+ */
+export function getDailyEntries(date) {
+    return new Promise((resolve, reject) => {
+        //opening database
+        let request = window.indexedDB.open(DATABASENAME);
+
+        //db opens successfully
+        request.onsuccess = function(event){
+            let db = request.result;
+            let transaction = db.transaction([ENTRYDB], "readonly");
+            let objStore = transaction.objectStore(ENTRYDB);
+            let objStoreRequest = objStore.openCursor(null, 'next');
+            let matchingEntries = [];
+            //Bullet object successfully accessed
+            objStoreRequest.onsuccess = function (e){
+                let cursor = e.target.result;
+                if(cursor != null) {
+                    if(cursor.value.date == date) {
+                        matchingEntries.push(cursor.value);
+                        //console.log(cursor.key);
+                    }
+                    cursor.continue();
+                } else {
+                    resolve(matchingEntries);
+                }
+            }
+            //Unable to access bullet object
+            objStoreRequest.onerror = function(event){
+                console.log.error(ERR_CANT_GET_ENTRY + key);
+                resolve({});
+            }
+
+            transaction.oncomplete = function () {
+                db.close();
+            }
+        }
+        //unable to open database
+        request.onerror = function(event){
+            console.log.error(ERR_DB_NOT_CREATED);
+            resolve({});
+        }
+    });
 }

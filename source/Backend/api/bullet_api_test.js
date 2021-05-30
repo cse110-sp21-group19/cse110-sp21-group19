@@ -34,7 +34,7 @@ addBtn.addEventListener("click", async (event) => {
     console.log(key);
 
     //this also works
-    createBullet(bulletExample).then((result) => console.log(result));
+    //createBullet(bulletExample).then((result) => console.log(result));
 
 });
 
@@ -92,6 +92,7 @@ importantBtn.addEventListener("click", ()=> {
 
 let dailyBtn = document.getElementById("daily");
 dailyBtn.addEventListener("click", () => {
+    //parsing date input value to mm/dd/year format
     let date = document.getElementById("dateget").value;
     let splitDate = date.split("-");
     let year = splitDate[0];
