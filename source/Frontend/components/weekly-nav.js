@@ -4,6 +4,7 @@ const SELECTEDRADIUS = "0.2rem";
 const DEFAULTBORDERLEFT = null;
 const DEFAULTRADIUS = null;
 
+//<weekly-nav> custom web component
 class WeeklyNav extends HTMLElement{
 	constructor() {
 		super();
@@ -223,4 +224,5 @@ function getWeeklyNavTitle(first, last){
 	return title;
 }/* getWeeklyNavTitle */
 
+// Define a custom element for the weekly nav web component
 customElements.define("weekly-nav", WeeklyNav);
