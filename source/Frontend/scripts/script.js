@@ -1,13 +1,13 @@
 // script.js
-import { router } from './router.js';
-import { createWeeklyNav } from "./weekly-nav-script.js";
+import { router } from "./router.js";
+//import { createWeeklyNav } from "./weekly-nav-script.js";
 import { closeMenu } from "./side-nav-script.js";
 
 const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
 
 // When the back button is hit, set the state with the new page
-window.addEventListener('popstate', e => {
+window.addEventListener("popstate", e => {
 	console.log("in popstate");
 	console.log(router.currentState.from);
 	const DATE = document.querySelector("log-type").readLog.date;
@@ -26,11 +26,11 @@ window.addEventListener('popstate', e => {
 const SNDAILYLOG = SIDENAVROOT.getElementById("sn-daily-log");
 SNDAILYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current date
-    let d = new Date();
+	let d = new Date();
 	router.setState("daily-log", false, d, "side-nav");
 
-    // TODO: update the side bar to weekly-nav
-    // TODO: update main-text area
+	// TODO: update the side bar to weekly-nav
+	// TODO: update main-text area
 
 	closeMenu();
 });
@@ -39,11 +39,11 @@ SNDAILYLOG.addEventListener("click", () => {
 const SNMONTHLYLOG = SIDENAVROOT.getElementById("sn-monthly-log");
 SNMONTHLYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current month
-    let d = new Date();
+	let d = new Date();
 	router.setState("monthly-log", false, d, "side-nav");
 
-    // TODO: update the side bar to task list
-    // TODO: update main-text area
+	// TODO: update the side bar to task list
+	// TODO: update main-text area
 
 	closeMenu();
 });
@@ -52,11 +52,11 @@ SNMONTHLYLOG.addEventListener("click", () => {
 const SNFUTURELOG = SIDENAVROOT.getElementById("sn-future-log");
 SNFUTURELOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current year
-    let d = new Date();
+	let d = new Date();
 	router.setState("future-log", false, d, "side-nav");
 
-    // TODO: update the side bar to task list
-    // TODO: update main-text area
+	// TODO: update the side bar to task list
+	// TODO: update main-text area
 
 	closeMenu();
 });
@@ -85,8 +85,8 @@ PREVLOG.addEventListener("click", () => {
 NEXTLOG.addEventListener("click", () => {
 	const DATE = document.querySelector("log-type").readLog.date;
 	// increment the current date
-	const nextDate = new Date(DATE)
-	nextDate.setDate(nextDate.getDate() + 1)
+	const nextDate = new Date(DATE);
+	nextDate.setDate(nextDate.getDate() + 1);
 
 	router.setState("daily-log", false, nextDate, "next");
 });
@@ -94,6 +94,6 @@ NEXTLOG.addEventListener("click", () => {
 // Add additional entries bar web component
 const addlEntryBar = document.createElement("entry-bar");
 addlEntryBar.type = "initial";
-const addlEntries = document.querySelector(".additional")
+const addlEntries = document.querySelector(".additional");
 addlEntries.appendChild(addlEntryBar);
 

@@ -24,7 +24,7 @@ MAINTEXT.appendChild(BULLETS);
 MAINTEXT.appendChild(INPUT);
 
 
-const MAINTEXTHEADER = document.querySelector("#date > h1");
+//const MAINTEXTHEADER = document.querySelector("#date > h1");
 
 INPUT.addEventListener("keyup", function(event) {
 	if (event.key === "Enter") {
