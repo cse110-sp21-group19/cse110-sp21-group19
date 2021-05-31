@@ -2,6 +2,8 @@ import { createEntry, deleteEntry, updateEntry } from "../../../Backend/api/entr
 
 //global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
+//variable that tracks the key of the entry currently being viewed
+var currKey = 0;
 
 
 /**
@@ -81,9 +83,7 @@ var isViewing = false;
 		//buttons
 		let saveBtn = this.shadowRoot.querySelector(".save-btn");
 		let deleteButton = this.shadowRoot.querySelector(".delete-btn");
-
-		//variable that tracks the key of the entry currently being viewed
-		let currKey = 0;
+		let exitBtn = this.shadowRoot.querySelector(".close-edit");
 
 		//hide the delete button by default
 		deleteButton.style.display="none";
@@ -125,11 +125,11 @@ var isViewing = false;
 					newNote.style.marginLeft = "7rem";
 				}
 				//append the newly created entry
-				let bulletKey = await createEntry(
-					{	date: DATE,
-						title: newNote.entry.title,
-						content: newNote.entry.content,
-					});
+				let bulletKey = await createEntry({
+					date: DATE,
+					title: newNote.entry.title,
+					content: newNote.entry.content
+				});
 				newNote.key = bulletKey;
 				innerBar.appendChild(newNote);
 	
@@ -143,7 +143,7 @@ var isViewing = false;
 				//find the current entry in the document and update its contents
 				for(let i = 0; i < innerBar.childElementCount; ++i){
 					let currEntry;
-					if(innerBar.children[i].key == currKey){
+					if(innerBar.children[i].entry.key == currKey){
 						currEntry = innerBar.children[i];
 						currEntry.entry = makeEntry(entryTitle, entryContent, currKey);
 						break;
@@ -169,8 +169,10 @@ var isViewing = false;
 			//if user wants to delete the entry, find and delete the entry
 			if(response){
 				for(let i = 0; i < innerBar.childElementCount; ++i){
-					if(innerBar.children[i].key == currKey){
+					//console.log(innerBar.children[i].entry.key);
+					if(innerBar.children[i].entry.key == currKey){
 						let currEntry = innerBar.children[i];
+						console.log(currEntry);
 						innerBar.removeChild(currEntry)
 						break;
 					} 
@@ -193,6 +195,15 @@ var isViewing = false;
 				title.innerText=" Add Title";
 				content.innerText="Add note here...";
 			}
+		});
+		exitBtn.addEventListener("click", function(){
+			//discard changes made to the content displayed in the editing panel
+			title.innerText="Add Title";
+			content.innerText="Add note here..."
+			//const DATE = document.querySelector("log-type").readLog.date;
+			mainText.style.display = "block";
+			editing.style.display="none";
+			document.querySelector("entry-bar").type="openbar";
 		});
 	}
 
@@ -261,24 +272,12 @@ var isViewing = false;
 			//toggle the relevant elements
 			initial.style.display="none";
 			editing.style.display="block";
-			let title = this.shadowRoot.querySelector(".entry-title");
-			let content = this.shadowRoot.querySelector(".text-content");
-			
-			let exitBtn = this.shadowRoot.querySelector(".close-edit");
-
+		
 			if(isViewing){
 				this.shadowRoot.querySelector(".delete-btn").style.display="block";
 			}
 			//fires when user clicks the exit button in the editing panel
-			exitBtn.addEventListener("click", function(){
-				//discard changes made to the content displayed in the editing panel
-				title.innerText="Add Title";
-				content.innerText="Add note here..."
-				window.location.hash = "";
-				const DATE = document.querySelector("log-type").readLog.date;
-				mainText.style.display = "block";
-            	document.querySelector("entry-bar").type="openbar";
-			});
+			
 
 		}
 		//openbar mode - after user finishes creating/editing an entry, keep the bar open so they can see the changes
@@ -289,6 +288,52 @@ var isViewing = false;
 			inactiveBar.style.display = "none";
 			activeBar.style.display="flex";
 		}
+	}
+	set entries(entries){
+		let mainText = document.querySelector(".main-text");
+		let innerBar = this.shadowRoot.querySelector(".content");
+		let title = this.shadowRoot.querySelector(".entry-title");
+		let content = this.shadowRoot.querySelector(".text-content");
+
+		//different states of entryBar
+		let initial = this.shadowRoot.querySelector(".initial");
+		let editing = this.shadowRoot.querySelector(".editing");
+
+		//buttons
+		let deleteButton = this.shadowRoot.querySelector(".delete-btn");
+		
+		while(innerBar.firstChild){
+			innerBar.removeChild(innerBar.firstChild);
+		}
+
+		entries.forEach(entry => {
+			let newEntry = document.createElement("text-entry");
+			newEntry.entry = entry;
+
+			newEntry.addEventListener("click", function(){
+				//change the mode to is viewing
+				isViewing = true;
+	
+				//hide and display relevant components
+				mainText.style.display="none"
+				initial.style.display="none";
+				editing.style.display="block";
+				deleteButton.style.display="block";
+	
+				//display the title and contents of the current entry to the screen
+				title.innerText = newEntry.entry.title;
+				content.innerText = newEntry.entry.content;
+	
+				//get the key of the current entry
+				currKey = newEntry.entry.key;
+			});
+			if(innerBar.childElementCount > 0){
+				newEntry.style.marginLeft = "7rem";
+			}
+			innerBar.appendChild(newEntry);
+			
+		});
+		
 	}	
 }/*entryBar*/
 

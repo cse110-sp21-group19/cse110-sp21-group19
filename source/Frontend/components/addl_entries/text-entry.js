@@ -2,6 +2,7 @@
  * @typedef {Object} entry
  * @property {string} title - The title of the entry object
  * @property {string} content - The contents of the entry object
+ * @property {Number} key
  */
 
 /**
@@ -54,7 +55,7 @@
 	get entry(){
 		let currTitle = this.shadowRoot.querySelector(".entry-title").innerText;
 		let currContent = this.shadowRoot.querySelector(".entry-content").innerText;
-		let key = this.shadowRoot.querySelector(".entry-content").innerText;
+		let key = this.shadowRoot.querySelector(".key").innerText;
 		let toReturn = {title: currTitle, content: currContent, key: parseInt(key)};
 		return toReturn;
 	} /*get entry*/
