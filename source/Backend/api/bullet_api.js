@@ -340,7 +340,11 @@ export function getAllPriority() {
  * Returns an array of all bullets for given date
  * 
  * @param {Object} date - a JS Date object
- * @return {Array} an array bullets for the given date
+ * @return {Array} an 2d array where the first array contains an array of keys
+ *                 and the seocnd array contains the array of bullets
+ * example: Array returned is ARRAY
+ * key = ARRAY[0][0];
+ * object of key is = ARRAY[1][0];
  * 
  * @example getDailyBullets
  */
@@ -356,6 +360,7 @@ export function getDailyBullets(date) {
             let objStore = transaction.objectStore(BULLETDB);
             let objStoreRequest = objStore.openCursor(null, 'next');
             let matchingBullets = [];
+            let matchingKeys = [];
             //Bullet object successfully accessed
             objStoreRequest.onsuccess = function (e){
                 
@@ -365,11 +370,12 @@ export function getDailyBullets(date) {
                         let currDate = cursor.value.date;
                         if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
                             matchingBullets.push(cursor.value);
+                            matchingKeys.push(cursor.key);
                         }
                     }
                     cursor.continue();
                 } else {
-                    resolve(matchingBullets);
+                    resolve([matchingKeys, matchingBullets]);
                 }
             }
             //Unable to access bullet object
