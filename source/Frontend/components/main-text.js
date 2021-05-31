@@ -195,17 +195,19 @@ class BulletEntry extends HTMLElement {
 	 */
 	get entry() {
 		const LOGTYPE = document.querySelector("log-type").readLog;
-		console.log(LOGTYPE);
-		const BULLETTYPEELEM = this.shadowRoot.getElementById("bullet-type").innerHTML;
-		console.log("LOGTYPE.TYPE: " + LOGTYPE.type);
-		console.log("LOGTYPE.DATE: " + LOGTYPE.date);
+		
+		const BULLETTYPEELEM = this.shadowRoot.getElementById("bullet-type");
+		console.log("in get entry()");
+		console.log(BULLETTYPEELEM);
+		let bulletType = this.shadowRoot.getElementById("bullet-type").className;
+
 		let entryObj = {
 			"log": LOGTYPE.type,
 			"date": LOGTYPE.date,
 			"priority": false,
 			"content": this.shadowRoot.getElementById("bullet-inputted").value,
 			"completed": false,
-			"type": BULLETTYPEELEM,
+			"type": bulletType,
 			"children": []
 		};
 
@@ -216,7 +218,7 @@ class BulletEntry extends HTMLElement {
 
 		// set completed value
 		if (entryObj.type === "task"
-			&& BULLETTYPEELEM === TASKCOMPLETE) {
+			&& !BULLETTYPEELEM.innerHTML.includes("incomplete")) {
 			entryObj.completed = true;
 		}
 
@@ -243,25 +245,28 @@ class BulletEntry extends HTMLElement {
 		
 		const BULLETTYPEELEM = this.shadowRoot.getElementById("bullet-type");
 		let bulletHTML;
+		// set bullet type
 		if (entry.type === "note") {
 			bulletHTML = NOTEBULLET;
+			BULLETTYPEELEM.className = "note";
 		}
 		else if (entry.type === "event") {
 			bulletHTML = EVENTBULLET;
+			BULLETTYPEELEM.className = "event";
 		}
-		// event
+		// task bullet
 		else {
 			if (entry.completed) {
 				bulletHTML = TASKCOMPLETE;
+				BULLETTYPEELEM.className = "task";
 			}
 			else {
 				bulletHTML = TASKBULLET;
+				BULLETTYPEELEM.className = "task";
 			}
-
 		}
 
 		BULLETTYPEELEM.innerHTML = bulletHTML;
-		// TODO: do something with entry.date
 		this.shadowRoot.getElementById("bullet-inputted").value = entry.content;
 
 		// set priority value
@@ -271,16 +276,6 @@ class BulletEntry extends HTMLElement {
 		else {
 			this.shadowRoot.getElementById("prioritize-bullet").innerHTML = NOTPRIORITY;
 		}
-
-		// set completed value
-		/*
-		if (entry.type === TASKCOMPLETE && entry.completed === true) {
-			BULLETTYPEELEM.options[BULLETTYPEELEM.selectedIndex].innerHTML = TASKCOMPLETE;
-		}
-		else {
-			BULLETTYPEELEM.options[BULLETTYPEELEM.selectedIndex].innerHTML = TASKBULLET;
-		}
-		*/
 	}
 
 }

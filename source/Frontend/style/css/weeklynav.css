@@ -49,13 +49,9 @@
   /* Handle on hover */
 }
 
-.week-container .wn-item:hover {
-  -webkit-transition: -webkit-filter 0.15s linear;
-  transition: -webkit-filter 0.15s linear;
-  transition: filter 0.15s linear;
-  transition: filter 0.15s linear, -webkit-filter 0.15s linear;
-  -webkit-filter: brightness(85%);
-          filter: brightness(85%);
+.week-container .wn-item:hover .wn-date {
+  color: #71B637;
+  text-decoration: underline;
 }
 
 .week-container .wn-item .wn-date {

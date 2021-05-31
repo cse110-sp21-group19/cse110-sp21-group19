@@ -72,35 +72,7 @@ class WeeklyNav extends HTMLElement{
 			let priorityBullets = document.createElement("div");
 			priorityBullets.className = "wn-bullets-container";
 
-			bullets.forEach(bullet =>{
-				let bulletElem = document.createElement("div");
-				let bulletType = document.createElement("span");
-				bulletType.id = "bullet-type";
-				console.log(bullet.type);
-				switch (bullet.type){
-					case "note":
-						bulletType.innerHTML = NOTEBULLET;
-						break;
-					case "event":
-						bulletType.innerHTML = EVENTBULLET;
-						break;
-					case "task":
-						if(bullet.completed){
-							bulletType.innerHTML = TASKCOMPLETE;
-						}
-						else{
-							bulletType.innerHTML = TASKBULLET;
-						}
-						break;
-					default:
-						bulletType.innerHTML = NOTEBULLET;
-
-				}
-				bulletElem.className = "wn-bullet";
-				bulletElem.appendChild(bulletType);
-				bulletElem.innerHTML += bullet.content;
-				priorityBullets.appendChild(bulletElem);
-			})
+			appendBullets(priorityBullets, bullets);
 
 			let navItem = document.createElement("div");
 			navItem.className = "wn-item";
@@ -205,21 +177,60 @@ class WeeklyNav extends HTMLElement{
 			let currItem = navContainer.childNodes[i];
 			if (currItem.style.borderLeft == SELECTEDBORDERLEFT) {
 				let priorityBullets = navContainer.childNodes[i].querySelector(".wn-bullets-container");
+				//remove existing children
 				while (priorityBullets.firstChild) {
 					priorityBullets.removeChild(priorityBullets.firstChild);
 				}
-				bullets.forEach(bullet => {
-					let bulletElem = document.createElement("div");
-					bulletElem.className = "wn-bullet";
-					bulletElem.innerHTML = bullet.content;
-					priorityBullets.appendChild(bulletElem);
-				})
+				//repopulate list
+				appendBullets(priorityBullets, bullets);
 			}
-
 		}
 	}
 }
 
+
+/**
+ * appendBullets()
+ * Helper function to help populate the priority bullets list on each weekly nav item.
+ * 
+ * @param {Element} container - The element in which to append the bullets to
+ * @param {Array} bullets - An array of bullet entry objects to append to container
+ * 
+ * @example
+ * 	appendBullets(container, bullets);
+ */
+function appendBullets(container, bullets){
+	bullets.forEach(bullet => {
+		let bulletElem = document.createElement("div");
+		bulletElem.className = "wn-bullet";
+		let bulletType = document.createElement("span");
+		bulletType.id = "bullet-type";
+		//bullet icon depending on the bullet type
+		switch (bullet.type){
+			case "note":
+				bulletType.innerHTML = NOTEBULLET;
+				break;
+			case "event":
+				bulletType.innerHTML = EVENTBULLET;
+				break;
+			case "task":
+				if(bullet.completed){
+					bulletType.innerHTML = TASKCOMPLETE;
+					bulletElem.style.textDecoration = "line-through";
+				}
+				else{
+					bulletType.innerHTML = TASKBULLET;
+				}
+				break;
+			default:
+				bulletType.innerHTML = NOTEBULLET;
+
+		}
+		bulletElem.appendChild(bulletType);
+		bulletElem.innerHTML += bullet.content;
+		container.appendChild(bulletElem);
+	});
+} /* appendBullets */
 
 /**
  * getDateString 

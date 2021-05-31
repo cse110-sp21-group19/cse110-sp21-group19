@@ -32,9 +32,11 @@
         //Hover whole item highlights clickable part
         //only hover clickable part
         //click date
-        &:hover{
-            transition: filter 0.15s linear;
-            filter: brightness(85%);
+        &:hover .wn-date{
+            // transition: filter 0.15s linear;
+            // filter: brightness(85%);
+            color: $accent;
+            text-decoration: underline;
         }
         .wn-date{
             
