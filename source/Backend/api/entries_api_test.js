@@ -5,7 +5,7 @@ let addBtn = document.getElementById("entryadd");
 addBtn.addEventListener("click", async (event) => {
     event.preventDefault();
 
-    let date = document.getElementById("entrydate").value;
+    let date = new Date(document.getElementById("entrydate").value);
     let title = document.getElementById("entrytitle").value;
     let content = document.getElementById("entrycontent").value;
 
@@ -31,7 +31,7 @@ get.addEventListener("click", async function(event){
 /* -----UPDATING ENTRY----*/
 let update = document.getElementById("entryupdate");
 update.addEventListener("click", async function(event){
-    let date = document.getElementById("entrydate").value;
+    let date = new Date(document.getElementById("entrydate").value);
     let title = document.getElementById("entrytitle").value;
     let content = document.getElementById("entrycontent").value;
 
@@ -60,15 +60,9 @@ deleteBtn.addEventListener("click", async () => {
 let dailyBtn = document.getElementById("entrydaily");
 dailyBtn.addEventListener("click", () => {
     //parsing date input value to mm/dd/year format
-    let date = document.getElementById("dateget2").value;
-    let splitDate = date.split("-");
-    let year = splitDate[0];
-    let month = splitDate[1];
-    let day = splitDate[2];
+    let date = new Date(document.getElementById("dateget2").value);
 
-    let formattedDate = `${month}/${day}/${year}`;
-
-    getDailyEntries(formattedDate).then((result) => {
+    getDailyEntries(date).then((result) => {
         console.log(result);
     });
 });

@@ -228,10 +228,15 @@ export function deleteEntry(key){
  * Returns an array of all entries for given date, in the order that they
  * are added.
  * 
- * @param {string} date - string of date in the format "MM/DD/YEAR"
- * @return {Array} an array entries for the given date
+ * @param {Object} date - a JS Date object
+ * @return {Array} an 2d array where the first array contains an array of keys
+ *                 and the seocnd array contains the array of bullets
+ * example: Array returned is ARRAY
+ * key = ARRAY[0][0];
+ * object of key is = ARRAY[1][0];
  * 
- * @example getDailyEntries("05/29/2021")
+ * @example getDailyEntries(new Date())
+ * 
  */
 export function getDailyEntries(date) {
     return new Promise((resolve, reject) => {
@@ -245,17 +250,19 @@ export function getDailyEntries(date) {
             let objStore = transaction.objectStore(ENTRYDB);
             let objStoreRequest = objStore.openCursor(null, 'next');
             let matchingEntries = [];
+            let matchingKeys = []
             //Bullet object successfully accessed
             objStoreRequest.onsuccess = function (e){
                 let cursor = e.target.result;
                 if(cursor != null) {
-                    if(cursor.value.date == date) {
+                    let currDate = cursor.value.date;
+                    if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
                         matchingEntries.push(cursor.value);
-                        //console.log(cursor.key);
+                        matchingKeys.push(cursor.key);
                     }
                     cursor.continue();
                 } else {
-                    resolve(matchingEntries);
+                    resolve([matchingKeys, matchingEntries]);
                 }
             }
             //Unable to access bullet object

@@ -1,4 +1,4 @@
-import { createDB, createBullet, getBullet, updateBullet, deleteBullet, getAllPriority, getDailyBullets } from './bullet_api.js';
+import { createDB, createBullet, getBullet, updateBullet, deleteBullet, getAllPriority, getDailyBullets, getDailyPriority, getDailyTodo } from './bullet_api.js';
 
 /* TESTING BULLET API */
 
@@ -13,10 +13,10 @@ addBtn.addEventListener("click", async (event) => {
 
     let log = document.getElementById("log").value;
     let type = document.getElementById("type").value;
-    let date = document.getElementById("date").value;
-    let priority = document.getElementById("priority").value;
+    let date = new Date(document.getElementById("date").value);
+    let priority = Boolean(document.getElementById("priority").value);
     let content = document.getElementById("content").value;
-    let completed = document.getElementById("completed").value;
+    let completed = Boolean(document.getElementById("completed").value);
     let children = document.getElementById("children").value;
 
     let bulletExample = {
@@ -51,10 +51,10 @@ let update = document.getElementById("update");
 update.addEventListener("click", async function(event){
     let log = document.getElementById("log").value;
     let type = document.getElementById("type").value;
-    let date = document.getElementById("date").value;
-    let priority = document.getElementById("priority").value;
+    let date = new Date(document.getElementById("date").value);
+    let priority = Boolean(document.getElementById("priority").value);
     let content = document.getElementById("content").value;
-    let completed = document.getElementById("completed").value;
+    let completed = Boolean(document.getElementById("completed").value);
     let children = document.getElementById("children").value;
 
     let bulletExample = {
@@ -90,18 +90,32 @@ importantBtn.addEventListener("click", ()=> {
     })
 })
 
+/* Daily bullets */
 let dailyBtn = document.getElementById("daily");
 dailyBtn.addEventListener("click", () => {
-    //parsing date input value to mm/dd/year format
-    let date = document.getElementById("dateget").value;
-    let splitDate = date.split("-");
-    let year = splitDate[0];
-    let month = splitDate[1];
-    let day = splitDate[2];
+    let date = new Date(document.getElementById("dateget").value);
 
-    let formattedDate = `${month}/${day}/${year}`;
+    getDailyBullets(date).then((result) => {
+        console.log(result);
+    });
+});
 
-    getDailyBullets(formattedDate).then((result) => {
+/* important daily bullets */
+let dailyImptBtn = document.getElementById("dailypriority");
+dailyImptBtn.addEventListener("click", () => {
+    let date = new Date(document.getElementById("dateget").value);
+
+    getDailyPriority(date).then((result) => {
+        console.log(result);
+    });
+});
+
+/* daily todo bullets */
+let dailyTodoBtn = document.getElementById("dailytodo");
+dailyTodoBtn.addEventListener("click", () => {
+    let date = new Date(document.getElementById("dateget").value);
+
+    getDailyTodo(date).then((result) => {
         console.log(result);
     });
 });
