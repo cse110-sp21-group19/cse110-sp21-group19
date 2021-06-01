@@ -27,3 +27,15 @@ export function formatEntries(entries, keys){
 	return toReturn;
 }
 
+export async function updateAddlEntries() {
+	let myDate = document.querySelector("log-type").readLog.header;
+	const ADDLENTRYBAR = document.querySelector("entry-bar");
+
+	let entriesList = await getDailyEntries(myDate);
+	let keys = entriesList[0];
+	let fetchedEntries = entriesList[1];
+
+	ADDLENTRYBAR.type = "initial";
+	ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
+}
+

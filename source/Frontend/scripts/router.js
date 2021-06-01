@@ -5,7 +5,7 @@ import { DAYS, MONTHS } from '../components/log-type.js';
 import { closeMenu } from "./side-nav-script.js";
 import { createToDoList } from "./todo-script.js";
 import { getDailyEntries } from "../../Backend/api/entries_api.js";
-import { formatEntries } from "./addl-entries-script.js"
+import { formatEntries, updateAddlEntries } from "./addl-entries-script.js"
 
 //import { getDailyBullets } from "../../Backend/api/bullet_api.js";
 
@@ -58,7 +58,7 @@ router.currentState = null;
  * @example
  *      dailyLog("5-24-2021");
  */
-async function dailyLog(date, from){
+function dailyLog(date, from){
     const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
     sideNavTitle.textContent = "Daily Log";
@@ -98,15 +98,7 @@ async function dailyLog(date, from){
         
         // TODO: update the main-text data with getter
 
-        let myDate = document.querySelector("log-type").readLog.header;
-        const ADDLENTRYBAR = document.querySelector("entry-bar");
-
-        let entriesList = await getDailyEntries(myDate);
-        let keys = entriesList[0];
-        let fetchedEntries = entriesList[1];
-
-        ADDLENTRYBAR.type = "initial";
-        ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
+        updateAddlEntries();
 
     }
 } /* dailyLog */
