@@ -130,11 +130,19 @@ async function dailyLog(date, from){
         // Get daily bullets from database
         const currDate = document.querySelector("log-type").readLog.date;
         let todayBullets = await getDailyBullets(currDate);
-        todayBullets.forEach(function (item, index) {
+        todayBullets[1].forEach(function (item, index) {
             let newBullet = document.createElement("bullet-entry");
             newBullet.entry = item;
             const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
             BULLETLIST.appendChild(newBullet);
+
+
+            let bulletKey = todayBullets[0][index];
+
+            editableEntry(bulletKey, newBullet);
+            prioritizeEntry(bulletKey, newBullet);
+            completeTask(bulletKey, newBullet);
+            deleteEntry(bulletKey, newBullet);
         });
 
         MAINTEXT.appendChild(BULLETS);
