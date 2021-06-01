@@ -1,5 +1,5 @@
 // script.js
-import { router } from "./router.js";
+import { router, dailyLog } from "./router.js";
 import { createWeeklyNav } from "./weekly-nav-script.js";
 import { closeMenu } from "./side-nav-script.js";
 
@@ -11,6 +11,9 @@ const SIDENAVROOT  = SIDENAV.shadowRoot;
 // create database
 document.addEventListener("DOMContentLoaded", function() {
 	createDB();
+	// default to open current daily log page
+	//dailyLog(new Date(), "on-load");
+	router.setState("daily-log", false, new Date(), "on-load");
 });
 
 // When the back button is hit, set the state with the new page

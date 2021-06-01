@@ -368,8 +368,6 @@ export function getDailyBullets(date) {
                 if(cursor != null) {
                     if(cursor.value.log = "daily"){
                         let currDate = cursor.value.date;
-                        console.log("currDate");
-                        console.log(currDate);
                         if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
                             matchingBullets.push(cursor.value);
                             matchingKeys.push(cursor.key);

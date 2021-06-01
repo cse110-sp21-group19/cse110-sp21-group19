@@ -72,7 +72,7 @@ router.currentState = null;
  * @example
  *      dailyLog("5-24-2021");
  */
-async function dailyLog(date, from){
+export async function dailyLog(date, from){
     const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
     sideNavTitle.textContent = "Daily Log";
@@ -140,7 +140,10 @@ async function dailyLog(date, from){
         // add ability to create new bullets
         createNewBullets(INPUT, bulletStack);
         // add ability to add nested bullets
-        nestedBullets(INPUT, bulletStack);
+        //nestedBullets(INPUT, bulletStack);
+        let parentBullet = nestedBullets(INPUT, bulletStack);
+		console.log("parentBullet from router");
+		console.log(parentBullet);
     }
 } /* dailyLog */
 

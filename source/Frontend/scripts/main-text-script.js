@@ -209,33 +209,33 @@ export function nestedBullets(inputElement, bulletStack) {
         // Unnest by one level on shift + tab
         const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
         if ((event.shiftKey && event.key === "Tab")) {
+			console.log("in shift + tab");
             event.preventDefault();
             if (bulletStack.length > 1) {
-				console.log("topStack");
-                let topStack = bulletStack.pop(bulletStack[bulletStack.length - 1]);
-				topStack.shadowRoot.querySelectorAll("bullet-entry").forEach(element => {
-					console.log(element.entry);
-				});
-				console.log(topStack);
+				let parentBullet = bulletStack[bulletStack.length - 1].shadowRoot.querySelector("bullet-entry");
+                bulletStack.pop(bulletStack[bulletStack.length - 1]);
                 // unindent the input text
                 BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+				return parentBullet;
             }
+			return null;
         }
         // Nest by one level on tab
         else if (event.key === "Tab") {
+			console.log("in + tab");
             // prevent tab key from moving to next button
             this.focus();
             event.preventDefault();
             const newSublist = document.createElement("bullet-list");
-			//console.log("newSublist");
-			//console.log(newSublist);
-			let peek = bulletStack[bulletStack.length - 1];
-			console.log("parent");
-			console.log(peek);
+			let parentBullet = bulletStack[bulletStack.length - 1];
+			//console.log("parent");
+			//console.log(parentBullet);
             bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
             bulletStack.push(newSublist);
             // indent the input text
             BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+			return parentBullet;
         }
     });
+	return null;
 }
