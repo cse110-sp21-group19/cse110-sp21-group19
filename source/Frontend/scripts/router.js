@@ -5,7 +5,7 @@ import { DAYS, MONTHS } from '../components/log-type.js';
 import { closeMenu } from "./side-nav-script.js";
 import { createToDoList } from "./todo-script.js";
 
-import { editableEntry, deleteEntry, prioritizeEntry, completeTask } from "./main-text-script.js";
+import { editableEntry, deleteEntry, prioritizeEntry, completeTask, createNewBullets, nestedBullets } from "./main-text-script.js";
 import { getDailyBullets, createBullet } from "../../Backend/api/bullet_api.js";
 
 export const router = {};
@@ -136,7 +136,6 @@ async function dailyLog(date, from){
             const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
             BULLETLIST.appendChild(newBullet);
 
-
             let bulletKey = todayBullets[0][index];
 
             editableEntry(bulletKey, newBullet);
@@ -253,61 +252,3 @@ function pushToHistory(state, date, from) {
     return history;
   }
   
-function createNewBullets(inputElement, bulletInput, bulletStack) {
-    inputElement.addEventListener("keyup", async function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            // create new entry information on enter
-            let entry = {
-                "priority": false,
-                "content": bulletInput.value,
-                "completed": false,
-                "type": bulletInput.value,
-            };
-
-            let newBullet = document.createElement("bullet-entry");
-            newBullet.entry = entry;
-
-            // append new bullet entries to main-text element
-            const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
-            BULLETLIST.appendChild(newBullet);
-
-            // clear INPUT value after enter
-            bulletInput.value = "";
-
-            // add new bullet to DB
-            let bulletKey = await createBullet(newBullet.entry);
-
-            editableEntry(bulletKey, newBullet);
-            prioritizeEntry(bulletKey, newBullet);
-            completeTask(bulletKey, newBullet);
-            deleteEntry(bulletKey, newBullet);
-        }
-    });
-}
-
-function nestedBullets(inputElement, bulletInput, bulletStack) {
-    inputElement.addEventListener("keydown", function (event) {
-        // FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
-        // Unnest by one level on shift + tab
-        if ((event.shiftKey && event.key === "Tab")) {
-            event.preventDefault();
-            if (bulletStack.length > 1) {
-                bulletStack.pop(bulletStack[bulletStack.length - 1]);
-                // unindent the input text
-                bulletInput.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
-            }
-        }
-        // Nest by one level on tab
-        else if (event.key === "Tab") {
-            // prevent tab key from moving to next button
-            this.focus();
-            event.preventDefault();
-            const newSublist = document.createElement("bullet-list");
-            bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
-            bulletStack.push(newSublist);
-            // indent the input text
-            bulletInput.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
-        }
-    });
-}
