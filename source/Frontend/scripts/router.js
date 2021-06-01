@@ -137,7 +137,6 @@ async function dailyLog(date, from){
             BULLETLIST.appendChild(newBullet);
         });
 
-
         MAINTEXT.appendChild(BULLETS);
         MAINTEXT.appendChild(INPUT);
 
@@ -280,7 +279,7 @@ function createNewBullets(inputElement, bulletInput, bulletStack) {
 }
 
 function nestedBullets(inputElement, bulletInput, bulletStack) {
-    inputElement.addEventListener("keydown", function(event) {
+    inputElement.addEventListener("keydown", function (event) {
         // FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
         // Unnest by one level on shift + tab
         if ((event.shiftKey && event.key === "Tab")) {
