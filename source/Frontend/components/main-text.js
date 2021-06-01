@@ -243,8 +243,6 @@ class BulletEntry extends HTMLElement {
 		
 		const BULLETTYPEELEM = this.shadowRoot.getElementById("bullet-type");
 		let bulletHTML;
-		console.log("in set entry");
-		console.log(entry);
 		// set bullet type
 		if (entry.type === "note") {
 			bulletHTML = NOTEBULLET;

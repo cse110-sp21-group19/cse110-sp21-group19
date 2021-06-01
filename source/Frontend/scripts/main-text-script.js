@@ -123,23 +123,24 @@ export function completeTask(key, entry) {
  * createNewBullets
  * Add the ability to add new bullets to the current page.
  * @param {object} inputElement - A bullet-input element.
- * @param {object} bulletInput - The input field element in a bullet-input.
- * element
  * @param {Array} bulletStack - An array containing bullet objects on the page.
  *
  * @example
  *     createNewBullets(inputElement, bulletElement, bulletStack);
  */
-export function createNewBullets(inputElement, bulletInput, bulletStack) {
+export function createNewBullets(inputElement, bulletStack) {
     inputElement.addEventListener("keyup", async function(event) {
         if (event.key === "Enter") {
             event.preventDefault();
+
+			const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
+			const BULLETTYPE = inputElement.shadowRoot.getElementById("bullet-type");
             // create new entry information on enter
             let entry = {
                 "priority": false,
-                "content": bulletInput.value,
+                "content": BULLETINPUT.value,
                 "completed": false,
-                "type": bulletInput.value,
+                "type": BULLETTYPE.value,
             };
 
             let newBullet = document.createElement("bullet-entry");
@@ -150,7 +151,7 @@ export function createNewBullets(inputElement, bulletInput, bulletStack) {
             BULLETLIST.appendChild(newBullet);
 
             // clear INPUT value after enter
-            bulletInput.value = "";
+            BULLETINPUT.value = "";
 
             // add new bullet to DB
             let bulletKey = await createBullet(newBullet.entry);
@@ -202,16 +203,17 @@ export function bulletsFromDB(item, index, bulletStack, todayBullets) {
  * @example
  *     nestedBullets(inputElement, bulletElement, bulletStack);
  */
-export function nestedBullets(inputElement, bulletInput, bulletStack) {
+export function nestedBullets(inputElement, bulletStack) {
     inputElement.addEventListener("keydown", function (event) {
         // FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
         // Unnest by one level on shift + tab
+        const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
         if ((event.shiftKey && event.key === "Tab")) {
             event.preventDefault();
             if (bulletStack.length > 1) {
                 bulletStack.pop(bulletStack[bulletStack.length - 1]);
                 // unindent the input text
-                bulletInput.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+                BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
             }
         }
         // Nest by one level on tab
@@ -223,7 +225,7 @@ export function nestedBullets(inputElement, bulletInput, bulletStack) {
             bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
             bulletStack.push(newSublist);
             // indent the input text
-            bulletInput.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+            BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
         }
     });
 }

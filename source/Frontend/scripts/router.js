@@ -121,6 +121,7 @@ async function dailyLog(date, from){
         // create new bullet input element
         const INPUT = document.createElement("bullet-input");
         const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
+        const BULLETTYPE = INPUT.shadowRoot.getElementById("bullet-type");
 
         // Bullet Nesting Stack
         let bulletStack = [];
@@ -129,8 +130,6 @@ async function dailyLog(date, from){
         // Get daily bullets from database
         const currDate = document.querySelector("log-type").readLog.date;
         let todayBullets = await getDailyBullets(currDate);
-        console.log("todayBullets");
-        console.log(todayBullets);
         todayBullets[1].forEach(function(item, index) {
             bulletsFromDB(item, index, bulletStack, todayBullets);
         });
@@ -139,9 +138,9 @@ async function dailyLog(date, from){
         MAINTEXT.appendChild(INPUT);
 
         // add ability to create new bullets
-        createNewBullets(INPUT, BULLETINPUT, bulletStack);
+        createNewBullets(INPUT, bulletStack);
         // add ability to add nested bullets
-        nestedBullets(INPUT, BULLETINPUT, bulletStack);
+        nestedBullets(INPUT, bulletStack);
     }
 } /* dailyLog */
 
