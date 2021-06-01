@@ -197,8 +197,6 @@ class BulletEntry extends HTMLElement {
 		const LOGTYPE = document.querySelector("log-type").readLog;
 		
 		const BULLETTYPEELEM = this.shadowRoot.getElementById("bullet-type");
-		console.log("in get entry()");
-		console.log(BULLETTYPEELEM);
 		let bulletType = this.shadowRoot.getElementById("bullet-type").className;
 
 		let entryObj = {

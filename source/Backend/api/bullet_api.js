@@ -366,7 +366,7 @@ export function getDailyBullets(date) {
                 
                 let cursor = e.target.result;
                 if(cursor != null) {
-                    if(cursor.value.type = "daily"){
+                    if(cursor.value.log = "daily"){
                         let currDate = cursor.value.date;
                         if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
                             matchingBullets.push(cursor.value);

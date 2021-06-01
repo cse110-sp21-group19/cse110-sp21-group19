@@ -7,7 +7,8 @@ import { createToDoList } from "./todo-script.js";
 import { getDailyEntries } from "../../Backend/api/entries_api.js";
 import { formatEntries, updateAddlEntries } from "./addl-entries-script.js"
 
-//import { getDailyBullets } from "../../Backend/api/bullet_api.js";
+import { editableEntry, deleteEntry, prioritizeEntry, completeTask, createNewBullets, nestedBullets, bulletsFromDB } from "./main-text-script.js";
+import { getDailyBullets, createBullet } from "../../Backend/api/bullet_api.js";
 
 export const router = {};
 
@@ -25,7 +26,7 @@ export const router = {};
     switch (state) {
         case "daily-log":
             dailyLog(date, from);
-            console.log("daily " + date);
+            //console.log("daily " + date);
             break;
         case "monthly-log":
             monthlyLog(date);
@@ -55,7 +56,7 @@ router.currentState = null;
  * @example
  *      dailyLog("5-24-2021");
  */
-function dailyLog(date, from){
+export async function dailyLog(date, from){
     const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
     sideNavTitle.textContent = "Daily Log";
@@ -76,7 +77,7 @@ function dailyLog(date, from){
         let WEEKLYNAV = document.querySelector("weekly-nav");
 
         //If we are currently on a sunday, replace weekly nav menu with prev week
-        if((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
+        if ((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
             console.log("HELLO")
             WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "0";
             WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "0";
@@ -90,14 +91,44 @@ function dailyLog(date, from){
                 WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
               }, 300);
             }
-        else{
+        else {
             WEEKLYNAV.selectedDay = date.getDay() + 1;
         }
         
-        // TODO: update the main-text data with getter
-
         updateAddlEntries();
 
+
+
+        // reset current main-text area
+        const MAINTEXT = document.getElementById("main-text");
+        MAINTEXT.innerHTML = "";
+
+        // create new bullet list
+        const BULLETS = document.createElement("bullet-list");
+        BULLETS.id = "bullets";
+        // create new bullet input element
+        const INPUT = document.createElement("bullet-input");
+        const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
+        const BULLETTYPE = INPUT.shadowRoot.getElementById("bullet-type");
+
+        // Bullet Nesting Stack
+        let bulletStack = [];
+        bulletStack.push(BULLETS);
+
+        // Get daily bullets from database
+        const currDate = document.querySelector("log-type").readLog.date;
+        let todayBullets = await getDailyBullets(currDate);
+        todayBullets[1].forEach(function(item, index) {
+            bulletsFromDB(item, index, bulletStack, todayBullets);
+        });
+
+        MAINTEXT.appendChild(BULLETS);
+        MAINTEXT.appendChild(INPUT);
+
+        // add ability to create new bullets
+        createNewBullets(INPUT, bulletStack);
+        // add ability to add nested bullets
+        nestedBullets(INPUT, bulletStack);
     }
 } /* dailyLog */
 
@@ -174,7 +205,7 @@ function futureLog(){
  * @param {string} from where the setState was called from
 */
 function pushToHistory(state, date, from) {
-    console.log("push from: " + from)
+    //console.log("push from: " + from)
     router.currentState = {
         page: state, date: date, from:from
     };
@@ -194,3 +225,4 @@ function pushToHistory(state, date, from) {
     console.log(history)
     return history;
   }
+  
