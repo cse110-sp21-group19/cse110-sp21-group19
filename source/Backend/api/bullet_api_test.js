@@ -94,7 +94,6 @@ importantBtn.addEventListener("click", ()=> {
 let dailyBtn = document.getElementById("daily");
 dailyBtn.addEventListener("click", () => {
     let date = new Date(document.getElementById("dateget").value);
-
     getDailyBullets(date).then((result) => {
         console.log(result);
     });
@@ -114,7 +113,7 @@ dailyImptBtn.addEventListener("click", () => {
 let dailyTodoBtn = document.getElementById("dailytodo");
 dailyTodoBtn.addEventListener("click", () => {
     let date = new Date(document.getElementById("dateget").value);
-
+    
     getDailyTodo(date).then((result) => {
         console.log(result);
     });
