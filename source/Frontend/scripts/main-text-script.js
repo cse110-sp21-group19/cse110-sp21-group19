@@ -211,7 +211,12 @@ export function nestedBullets(inputElement, bulletStack) {
         if ((event.shiftKey && event.key === "Tab")) {
             event.preventDefault();
             if (bulletStack.length > 1) {
-                bulletStack.pop(bulletStack[bulletStack.length - 1]);
+				console.log("topStack");
+                let topStack = bulletStack.pop(bulletStack[bulletStack.length - 1]);
+				topStack.shadowRoot.querySelectorAll("bullet-entry").forEach(element => {
+					console.log(element.entry);
+				});
+				console.log(topStack);
                 // unindent the input text
                 BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
             }
@@ -222,6 +227,11 @@ export function nestedBullets(inputElement, bulletStack) {
             this.focus();
             event.preventDefault();
             const newSublist = document.createElement("bullet-list");
+			//console.log("newSublist");
+			//console.log(newSublist);
+			let peek = bulletStack[bulletStack.length - 1];
+			console.log("parent");
+			console.log(peek);
             bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
             bulletStack.push(newSublist);
             // indent the input text
