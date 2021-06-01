@@ -9,12 +9,10 @@ const SIDENAVROOT  = SIDENAV.shadowRoot;
 // const today = new Date();
 // router.setState("daily-log", false, today, "first-load");
 // create database
-dailyLog( new Date(), "on-load")
+router.setState("daily-log", false, new Date(), "on-load");
 //FIX LATER: Decide where to put all first time functions
 document.addEventListener("DOMContentLoaded", function() {
 	createDB();
-	//dailyLog( new Date(), "on-load")
-	//router.setState("daily-log", false, new Date(), "on-load");
 });
 
 

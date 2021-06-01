@@ -47,12 +47,19 @@ export function editableEntry(key, entry) {
 export function deleteEntry(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toDelete = bulletEntryRoot.getElementById("delete-bullet");
-	toDelete.addEventListener("click", function() {
+	toDelete.addEventListener("click", async function() {
 		// remove bullet from main-text area
 		entry.remove();
 		// remove bullet from database
 		deleteBullet(key);
 		// TODO: delete all children of a parent bullet
+
+
+		//Updates the weekly nav 
+		const WEEKLYNAV = document.querySelector("weekly-nav");
+		const currDate = document.querySelector("log-type").readLog.date;
+		let bullets =  await getDailyPriority(currDate);
+		WEEKLYNAV.updatePriorityBullets = bullets;
 	});
 } /* deleteEntry */
 
@@ -72,12 +79,17 @@ export function prioritizeEntry(key, entry) {
 
 		if (toPrioritize.innerHTML.includes("priority")) {
 			toPrioritize.innerHTML = NOTPRIORITY;
+			toPrioritize.style.color = "transparent";
 		}
 		else {
 			toPrioritize.innerHTML = PRIORITY;
+			toPrioritize.style.color = "black";
 		}
 		// update prioritized/deprioritized bullet to DB
 		updateBullet(key, entry.entry);
+
+		//Should probably put this stuff into a function
+		//Updates the weekly nav 
 		const WEEKLYNAV = document.querySelector("weekly-nav");
 		const currDate = document.querySelector("log-type").readLog.date;
 		let bullets =  await getDailyPriority(currDate);
@@ -108,7 +120,7 @@ export function completeTask(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toComplete = bulletEntryRoot.getElementById("bullet-type");
 	const content = bulletEntryRoot.getElementById("bullet-inputted");
-	toComplete.addEventListener("click", function() {
+	toComplete.addEventListener("click", async function() {
 		if (toComplete.innerHTML.includes("incomplete")) {
 			toComplete.innerHTML = TASKCOMPLETE;
 			content.style.textDecoration = "line-through";
@@ -119,7 +131,19 @@ export function completeTask(key, entry) {
 		}
 		// update completed/incomplete task bullet to DB
 		updateBullet(key, entry.entry);
+		//Updates the weekly nav 
+		const WEEKLYNAV = document.querySelector("weekly-nav");
+		const currDate = document.querySelector("log-type").readLog.date;
+		let bullets =  await getDailyPriority(currDate);
+		WEEKLYNAV.updatePriorityBullets = bullets;
 	});
+
+	if (toComplete.innerHTML.includes("incomplete")) {
+		content.style.textDecoration = "none";
+	}
+	else if (toComplete.innerHTML.includes("complete")) {
+		content.style.textDecoration = "line-through";
+	}
 } /* completeTask */
 
 /**
@@ -212,23 +236,33 @@ export function nestedBullets(inputElement, bulletStack) {
         // Unnest by one level on shift + tab
         const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
         if ((event.shiftKey && event.key === "Tab")) {
+			console.log("in shift + tab");
             event.preventDefault();
             if (bulletStack.length > 1) {
+				let parentBullet = bulletStack[bulletStack.length - 1].shadowRoot.querySelector("bullet-entry");
                 bulletStack.pop(bulletStack[bulletStack.length - 1]);
                 // unindent the input text
                 BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+				return parentBullet;
             }
+			return null;
         }
         // Nest by one level on tab
         else if (event.key === "Tab") {
+			console.log("in + tab");
             // prevent tab key from moving to next button
             this.focus();
             event.preventDefault();
             const newSublist = document.createElement("bullet-list");
+			let parentBullet = bulletStack[bulletStack.length - 1];
+			//console.log("parent");
+			//console.log(parentBullet);
             bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
             bulletStack.push(newSublist);
             // indent the input text
             BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+			return parentBullet;
         }
     });
+	return null;
 }
