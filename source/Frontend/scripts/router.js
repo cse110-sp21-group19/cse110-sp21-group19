@@ -129,6 +129,8 @@ async function dailyLog(date, from){
         // Get daily bullets from database
         const currDate = document.querySelector("log-type").readLog.date;
         let todayBullets = await getDailyBullets(currDate);
+        console.log("todayBullets");
+        console.log(todayBullets);
         todayBullets[1].forEach(function(item, index) {
             bulletsFromDB(item, index, bulletStack, todayBullets);
         });
