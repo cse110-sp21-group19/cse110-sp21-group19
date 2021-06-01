@@ -96,7 +96,7 @@ export function prioritizeEntry(key, entry) {
  * bullet content. If the task is completed, uncheck the bullet and remove the 
  * strikethrough from the bullet content.
  * @param {Number} key - The bullet key returned by the database.
- * @param {object} entry - a bullet-type element
+ * @param {object} entry - A bullet-type element.
  *
  * @example
  *     completeTask(key, entry);
@@ -119,7 +119,17 @@ export function completeTask(key, entry) {
 	});
 } /* completeTask */
 
-
+/**
+ * createNewBullets
+ * Add the ability to add new bullets to the current page.
+ * @param {object} inputElement - A bullet-input element.
+ * @param {object} bulletInput - The input field element in a bullet-input.
+ * element
+ * @param {Array} bulletStack - An array containing bullet objects on the page.
+ *
+ * @example
+ *     createNewBullets(inputElement, bulletElement, bulletStack);
+ */
 export function createNewBullets(inputElement, bulletInput, bulletStack) {
     inputElement.addEventListener("keyup", async function(event) {
         if (event.key === "Enter") {
@@ -153,6 +163,45 @@ export function createNewBullets(inputElement, bulletInput, bulletStack) {
     });
 }
 
+/**
+ * bulletsFromDB
+ * Add the ability to get bullets from the database and populate them on the
+ * page.
+ * @param {object} item - The json information of a bullet element 
+ * retrieved from the database.
+ * @param {object} index - The index of the current bullet element.
+ * @param {Array} bulletStack - An array containing bullet objects on the page.
+ * @param {Array} todayBullets - An array containing an array of the bullet 
+ * information and an array containing the keys for each of the bullets.
+ *
+ * @example
+ *     bulletsFromDB(item, index, bulletStack, todayBullets);
+ */
+export function bulletsFromDB(item, index, bulletStack, todayBullets) {
+	let newBullet = document.createElement("bullet-entry");
+            newBullet.entry = item;
+            const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+            BULLETLIST.appendChild(newBullet);
+
+            let bulletKey = todayBullets[0][index];
+
+            editableEntry(bulletKey, newBullet);
+            prioritizeEntry(bulletKey, newBullet);
+            completeTask(bulletKey, newBullet);
+            deleteEntry(bulletKey, newBullet);
+}
+
+/**
+ * nestedBullets
+ * Add the ability to create nested bullets on input.
+ * @param {object} inputElement - A bullet-input element.
+ * @param {object} bulletInput - The input field element in a bullet-input.
+ * element
+ * @param {Array} bulletStack - An array containing bullet objects on the page.
+ *
+ * @example
+ *     nestedBullets(inputElement, bulletElement, bulletStack);
+ */
 export function nestedBullets(inputElement, bulletInput, bulletStack) {
     inputElement.addEventListener("keydown", function (event) {
         // FIXME: Backspace doesn't work yet, will prevent backspace behavior all together

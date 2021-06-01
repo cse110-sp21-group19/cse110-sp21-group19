@@ -5,7 +5,7 @@ import { DAYS, MONTHS } from '../components/log-type.js';
 import { closeMenu } from "./side-nav-script.js";
 import { createToDoList } from "./todo-script.js";
 
-import { editableEntry, deleteEntry, prioritizeEntry, completeTask, createNewBullets, nestedBullets } from "./main-text-script.js";
+import { editableEntry, deleteEntry, prioritizeEntry, completeTask, createNewBullets, nestedBullets, bulletsFromDB } from "./main-text-script.js";
 import { getDailyBullets, createBullet } from "../../Backend/api/bullet_api.js";
 
 export const router = {};
@@ -120,8 +120,7 @@ async function dailyLog(date, from){
         BULLETS.id = "bullets";
         // create new bullet input element
         const INPUT = document.createElement("bullet-input");
-        const INPUTROOT = INPUT.shadowRoot;
-        const BULLETINPUT = INPUTROOT.getElementById("bullet-input");
+        const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
 
         // Bullet Nesting Stack
         let bulletStack = [];
@@ -130,26 +129,16 @@ async function dailyLog(date, from){
         // Get daily bullets from database
         const currDate = document.querySelector("log-type").readLog.date;
         let todayBullets = await getDailyBullets(currDate);
-        todayBullets[1].forEach(function (item, index) {
-            let newBullet = document.createElement("bullet-entry");
-            newBullet.entry = item;
-            const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
-            BULLETLIST.appendChild(newBullet);
-
-            let bulletKey = todayBullets[0][index];
-
-            editableEntry(bulletKey, newBullet);
-            prioritizeEntry(bulletKey, newBullet);
-            completeTask(bulletKey, newBullet);
-            deleteEntry(bulletKey, newBullet);
+        todayBullets[1].forEach(function(item, index) {
+            bulletsFromDB(item, index, bulletStack, todayBullets);
         });
 
         MAINTEXT.appendChild(BULLETS);
         MAINTEXT.appendChild(INPUT);
 
-        // create new bullets
+        // add ability to create new bullets
         createNewBullets(INPUT, BULLETINPUT, bulletStack);
-        // nested bullets
+        // add ability to add nested bullets
         nestedBullets(INPUT, BULLETINPUT, bulletStack);
     }
 } /* dailyLog */
