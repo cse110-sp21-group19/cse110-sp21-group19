@@ -2,59 +2,7 @@
 
 // Constants for different bullet types
 import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
-import { createBullet, deleteBullet, updateBullet } from "../../Backend/api/bullet_api.js";
-
-// BULLET STUFF
-// DOM Elements
-const MAINTEXT = document.getElementById("main-text");
-
-const BULLETS = document.createElement("bullet-list");
-BULLETS.id = "bullets";
-
-const INPUT = document.createElement("bullet-input");
-const INPUTROOT = INPUT.shadowRoot;
-const BULLETINPUT = INPUTROOT.getElementById("bullet-input");
-
-const BULLETTYPE = INPUTROOT.getElementById("bullet-type");
-
-// Bullet Nesting Stack
-let bulletStack = [];
-bulletStack.push(BULLETS);
-
-MAINTEXT.appendChild(BULLETS);
-MAINTEXT.appendChild(INPUT);
-
-INPUT.addEventListener("keyup", async function(event) {
-	if (event.key === "Enter") {
-		event.preventDefault();
-
-		let entry = {
-			"priority": false,
-			"content": BULLETINPUT.value,
-			"completed": false,
-			"type": BULLETTYPE.value,
-		};
-
-		let newBullet = document.createElement("bullet-entry");
-		newBullet.entry = entry;
-
-		// append new bullet entries to main-text element
-		const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
-		BULLETLIST.appendChild(newBullet);
-
-		// clear INPUT value after enter
-		BULLETINPUT.value = "";
-
-		// add new bullet to DB
-		let bulletKey = await createBullet(newBullet.entry);
-
-		editableEntry(bulletKey, newBullet);
-		prioritizeEntry(bulletKey, newBullet);
-		completeTask(bulletKey, newBullet);
-		deleteEntry(bulletKey, newBullet);
-	}
-});
-
+import { getDailyBullets, createBullet, deleteBullet, updateBullet } from "../../Backend/api/bullet_api.js";
 
 /** 
  * editableEntry
@@ -65,7 +13,7 @@ INPUT.addEventListener("keyup", async function(event) {
  * @example
  *     editableEntry(key, entry);
  */
-function editableEntry(key, entry) {
+export function editableEntry(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const bulletEntry = bulletEntryRoot.querySelector(".bullet-entry");
 	const inputted = bulletEntryRoot.getElementById("bullet-inputted");
@@ -97,7 +45,7 @@ function editableEntry(key, entry) {
  * @example
  *     deleteEntry(entry);
  */
-function deleteEntry(key, entry) {
+export function deleteEntry(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toDelete = bulletEntryRoot.getElementById("delete-bullet");
 	toDelete.addEventListener("click", function() {
@@ -105,6 +53,7 @@ function deleteEntry(key, entry) {
 		entry.remove();
 		// remove bullet from database
 		deleteBullet(key);
+		// TODO: delete all children of a parent bullet
 	});
 } /* deleteEntry */
 
@@ -117,7 +66,7 @@ function deleteEntry(key, entry) {
  * @example
  *     prioritizeEntry(key, entry);
  */
-function prioritizeEntry(key, entry) {
+export function prioritizeEntry(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toPrioritize = bulletEntryRoot.getElementById("prioritize-bullet");
 	toPrioritize.addEventListener("click", function() {
@@ -146,7 +95,7 @@ function prioritizeEntry(key, entry) {
  * @example
  *     completeTask(key, entry);
  */
-function completeTask(key, entry) {
+export function completeTask(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toComplete = bulletEntryRoot.getElementById("bullet-type");
 	const content = bulletEntryRoot.getElementById("bullet-inputted");
@@ -165,6 +114,7 @@ function completeTask(key, entry) {
 } /* completeTask */
 
 // Create Nested Bullets
+/*
 INPUT.addEventListener("keydown", function(event) {
 	// FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
 	// Unnest by one level on shift + tab
@@ -188,3 +138,4 @@ INPUT.addEventListener("keydown", function(event) {
 		BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
 	}
 });
+*/

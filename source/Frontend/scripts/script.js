@@ -3,14 +3,15 @@ import { router } from "./router.js";
 import { createWeeklyNav } from "./weekly-nav-script.js";
 import { closeMenu } from "./side-nav-script.js";
 
-import { createDB } from "../../Backend/api/bullet_api.js";
+import { createDB, getDailyBullets } from "../../Backend/api/bullet_api.js";
+
 const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
 
 // create database
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function() {
 	createDB();
-})
+});
 
 // When the back button is hit, set the state with the new page
 window.addEventListener('popstate', e => {

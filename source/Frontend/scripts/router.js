@@ -5,7 +5,8 @@ import { DAYS, MONTHS } from '../components/log-type.js';
 import { closeMenu } from "./side-nav-script.js";
 import { createToDoList } from "./todo-script.js";
 
-//import { getDailyBullets } from "../../Backend/api/bullet_api.js";
+import { editableEntry, deleteEntry, prioritizeEntry, completeTask } from "./main-text-script.js";
+import { getDailyBullets, createBullet } from "../../Backend/api/bullet_api.js";
 
 export const router = {};
 
@@ -29,7 +30,7 @@ const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-cont
     switch (state) {
         case "daily-log":
             dailyLog(date, from);
-            console.log("daily " + date);
+            //console.log("daily " + date);
             break;
         case "monthly-log":
             monthlyLog(date);
@@ -71,7 +72,7 @@ router.currentState = null;
  * @example
  *      dailyLog("5-24-2021");
  */
-function dailyLog(date, from){
+async function dailyLog(date, from){
     const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
     sideNavTitle.textContent = "Daily Log";
@@ -91,7 +92,7 @@ function dailyLog(date, from){
         //get the current selected day of the week from the weekly nav
         let WEEKLYNAV = document.querySelector("weekly-nav");
         //If we are currently on a sunday, replace weekly nav menu with prev week
-        if((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
+        if ((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
             console.log("HELLO")
             WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "0";
             WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
@@ -105,13 +106,45 @@ function dailyLog(date, from){
                 WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "1";
               }, 300);
             }
-        else{
+        else {
             WEEKLYNAV.selectedDay = date.getDay() + 1;
         }
         
 
-        // TODO: update the main-text data with getter
+        // reset current main-text area
+        const MAINTEXT = document.getElementById("main-text");
+        MAINTEXT.innerHTML = "";
 
+        // create new bullet list
+        const BULLETS = document.createElement("bullet-list");
+        BULLETS.id = "bullets";
+        // create new bullet input element
+        const INPUT = document.createElement("bullet-input");
+        const INPUTROOT = INPUT.shadowRoot;
+        const BULLETINPUT = INPUTROOT.getElementById("bullet-input");
+
+        // Bullet Nesting Stack
+        let bulletStack = [];
+        bulletStack.push(BULLETS);
+
+        // Get daily bullets from database
+        const currDate = document.querySelector("log-type").readLog.date;
+        let todayBullets = await getDailyBullets(currDate);
+        todayBullets.forEach(function (item, index) {
+            let newBullet = document.createElement("bullet-entry");
+            newBullet.entry = item;
+            const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+            BULLETLIST.appendChild(newBullet);
+        });
+
+
+        MAINTEXT.appendChild(BULLETS);
+        MAINTEXT.appendChild(INPUT);
+
+        // create new bullets
+        createNewBullets(INPUT, BULLETINPUT, bulletStack);
+        // nested bullets
+        nestedBullets(INPUT, BULLETINPUT, bulletStack);
     }
 } /* dailyLog */
 
@@ -187,7 +220,7 @@ function futureLog(){
  * @param {string} from where the setState was called from
 */
 function pushToHistory(state, date, from) {
-    console.log("push from: " + from)
+    //console.log("push from: " + from)
     router.currentState = {
         page: "daily-log", date: date, from:from
     };
@@ -212,3 +245,62 @@ function pushToHistory(state, date, from) {
     }
     return history;
   }
+  
+function createNewBullets(inputElement, bulletInput, bulletStack) {
+    inputElement.addEventListener("keyup", async function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            // create new entry information on enter
+            let entry = {
+                "priority": false,
+                "content": bulletInput.value,
+                "completed": false,
+                "type": bulletInput.value,
+            };
+
+            let newBullet = document.createElement("bullet-entry");
+            newBullet.entry = entry;
+
+            // append new bullet entries to main-text element
+            const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+            BULLETLIST.appendChild(newBullet);
+
+            // clear INPUT value after enter
+            bulletInput.value = "";
+
+            // add new bullet to DB
+            let bulletKey = await createBullet(newBullet.entry);
+
+            editableEntry(bulletKey, newBullet);
+            prioritizeEntry(bulletKey, newBullet);
+            completeTask(bulletKey, newBullet);
+            deleteEntry(bulletKey, newBullet);
+        }
+    });
+}
+
+function nestedBullets(inputElement, bulletInput, bulletStack) {
+    inputElement.addEventListener("keydown", function(event) {
+        // FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
+        // Unnest by one level on shift + tab
+        if ((event.shiftKey && event.key === "Tab")) {
+            event.preventDefault();
+            if (bulletStack.length > 1) {
+                bulletStack.pop(bulletStack[bulletStack.length - 1]);
+                // unindent the input text
+                bulletInput.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+            }
+        }
+        // Nest by one level on tab
+        else if (event.key === "Tab") {
+            // prevent tab key from moving to next button
+            this.focus();
+            event.preventDefault();
+            const newSublist = document.createElement("bullet-list");
+            bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
+            bulletStack.push(newSublist);
+            // indent the input text
+            bulletInput.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+        }
+    });
+}
