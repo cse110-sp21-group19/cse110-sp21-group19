@@ -114,7 +114,7 @@ var currKey = 0;
 				content.innerText = newNote.entry.content;
 
 				//get the key of the current entry
-				currKey = newNote.key;
+				currKey = newNote.entry.key;
 			});
 
 			//if we are not viewing an existing entry
@@ -130,7 +130,7 @@ var currKey = 0;
 					title: newNote.entry.title,
 					content: newNote.entry.content
 				});
-				newNote.key = bulletKey;
+				newNote.entry = {title: newNote.entry.title, content: newNote.entry.content, key: bulletKey};
 				innerBar.appendChild(newNote);
 	
 				mainText.style.display = "block";
@@ -169,7 +169,7 @@ var currKey = 0;
 			//if user wants to delete the entry, find and delete the entry
 			if(response){
 				for(let i = 0; i < innerBar.childElementCount; ++i){
-					//console.log(innerBar.children[i].entry.key);
+					console.log(innerBar.children[i]);
 					if(innerBar.children[i].entry.key == currKey){
 						let currEntry = innerBar.children[i];
 						console.log(currEntry);

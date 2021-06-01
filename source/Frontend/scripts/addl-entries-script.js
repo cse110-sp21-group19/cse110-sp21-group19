@@ -35,7 +35,7 @@ export async function updateAddlEntries() {
 	let keys = entriesList[0];
 	let fetchedEntries = entriesList[1];
 
-	ADDLENTRYBAR.type = "initial";
+	//ADDLENTRYBAR.type = "initial";
 	ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
 }
 
