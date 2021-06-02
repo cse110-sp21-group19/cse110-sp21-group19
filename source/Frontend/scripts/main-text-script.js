@@ -123,7 +123,8 @@ export function completeTask(key, entry) {
  * createNewBullets
  * Add the ability to add new bullets to the current page.
  * @param {object} inputElement - A bullet-input element.
- * @param {Array} bulletStack - An array containing bullet objects on the page.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
  *
  * @example
  *     createNewBullets(inputElement, bulletElement, bulletStack);
@@ -172,7 +173,8 @@ export function createNewBullets(inputElement, bulletStack) {
  * @param {object} item - The json information of a bullet element 
  * retrieved from the database.
  * @param {object} index - The index of the current bullet element.
- * @param {Array} bulletStack - An array containing bullet objects on the page.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
  * @param {Array} todayBullets - An array containing an array of the bullet 
  * information and an array containing the keys for each of the bullets.
  *
@@ -219,7 +221,8 @@ export function bulletsFromDB(item, index, bulletStack, todayBullets) {
  * @param {object} inputElement - A bullet-input element.
  * @param {object} bulletInput - The input field element in a bullet-input.
  * element
- * @param {Array} bulletStack - An array containing bullet objects on the page.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
  *
  * @example
  *     nestedBullets(inputElement, bulletElement, bulletStack);
@@ -235,7 +238,6 @@ export function nestedBullets(inputElement, bulletStack) {
 			unnestBulletHelper(bulletStack);
 			// unindent the input text
 			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
-			//return null;
         }
         // Nest by one level on tab
         else if (event.key === "Tab") {
@@ -245,12 +247,20 @@ export function nestedBullets(inputElement, bulletStack) {
 			nestBulletHelper(bulletStack);
 			// indent the input text
 			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
-			//return parentBullet;
         }
     });
-	//return null;
 }
 
+/**
+ * nestedBulletHelper
+ * Helper function to nest bullets by inserting a new bullet-list element as a
+ * sublist.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
+ *
+ * @example
+ *     nestedBulletHelper(bulletStack);
+ */
 function nestBulletHelper(bulletStack) {
 	const NEWSUBLIST = document.createElement("bullet-list");
 	let parentBullet = bulletStack[bulletStack.length - 1];
@@ -258,6 +268,16 @@ function nestBulletHelper(bulletStack) {
 	bulletStack.push(NEWSUBLIST);
 }
 
+/**
+ * unnestedBulletHelper
+ * Helper function to unnest bullets by popping the current bullet-list element 
+ * as a from the bulletStack.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
+ *
+ * @example
+ *     unnestedBulletHelper(bulletStack);
+ */
 function unnestBulletHelper(bulletStack) {
 	if (bulletStack.length > 1) {
 		let parentBullet = bulletStack[bulletStack.length - 1].shadowRoot.querySelector("bullet-entry");
