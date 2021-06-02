@@ -1,0 +1,21 @@
+{
+    "tags": {
+        
+    },
+    "source": {
+        "include": ["source/Frontend"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "templates": {
+        
+    },
+    "opts": {
+        "destination": "specs/docs/frontend",
+        "recurse": true,
+        "readme": "specs/docs/frontend/README.md"
+    }
+}
