@@ -38,7 +38,7 @@ export function createDB() {
         bulletStore.createIndex("content", "content", { unique: false });
         bulletStore.createIndex("priority", "priority", { unique: false });
         bulletStore.createIndex("completed", "completed", { unique: false });
-        bulletStore.createIndex("orderId", "orderId", { unique: false });
+        bulletStore.createIndex("levels", "levels", { unique: false });
 
         //creating entryStore (EntriyDB For additional entries)
         let entryStore = db.createObjectStore(ENTRYDB, {autoIncrement: true});
