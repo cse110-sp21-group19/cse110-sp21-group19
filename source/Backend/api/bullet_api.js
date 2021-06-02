@@ -484,7 +484,7 @@ export function getDailyTodo(date) {
                 let cursor = e.target.result;
                 if(cursor != null) {
                     //all uncompeted tasks
-                    if(cursor.value.type == "task" && cursor.value.completed == false) {
+                    if(cursor.value.type == "task" && cursor.value.completed == false && cursor.value.log == "daily") {
                         //Checking dates
                         let currDate = cursor.value.date;
                         if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
