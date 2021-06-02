@@ -17,7 +17,7 @@ addBtn.addEventListener("click", async (event) => {
     let priority = Boolean(document.getElementById("priority").value);
     let content = document.getElementById("content").value;
     let completed = Boolean(document.getElementById("completed").value);
-    let children = document.getElementById("children").value;
+    let level = document.getElementById("level").value;
 
     let bulletExample = {
         "log": log,
@@ -26,7 +26,7 @@ addBtn.addEventListener("click", async (event) => {
         "priority": priority,
         "content": content,
         "completed": completed,
-        "children": children
+        "level": level
     };
 
     //example
@@ -55,7 +55,7 @@ update.addEventListener("click", async function(event){
     let priority = Boolean(document.getElementById("priority").value);
     let content = document.getElementById("content").value;
     let completed = Boolean(document.getElementById("completed").value);
-    let children = document.getElementById("children").value;
+    let level = document.getElementById("level").value;
 
     let bulletExample = {
         "log": log,
@@ -64,7 +64,7 @@ update.addEventListener("click", async function(event){
         "priority": priority,
         "content": content,
         "completed": completed,
-        "children": children
+        "level": level
     };
 
     let key = document.getElementById("key").value;

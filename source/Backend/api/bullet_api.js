@@ -38,7 +38,7 @@ export function createDB() {
         bulletStore.createIndex("content", "content", { unique: false });
         bulletStore.createIndex("priority", "priority", { unique: false });
         bulletStore.createIndex("completed", "completed", { unique: false });
-        bulletStore.createIndex("orderId", "orderId", { unique: false });
+        bulletStore.createIndex("levels", "levels", { unique: false });
 
         //creating entryStore (EntriyDB For additional entries)
         let entryStore = db.createObjectStore(ENTRYDB, {autoIncrement: true});
@@ -484,7 +484,7 @@ export function getDailyTodo(date) {
                 let cursor = e.target.result;
                 if(cursor != null) {
                     //all uncompeted tasks
-                    if(cursor.value.type == "task" && cursor.value.completed == false) {
+                    if(cursor.value.type == "task" && cursor.value.completed == false && cursor.value.log == "daily") {
                         //Checking dates
                         let currDate = cursor.value.date;
                         if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {

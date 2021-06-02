@@ -250,12 +250,13 @@ export function getDailyEntries(date) {
             let objStore = transaction.objectStore(ENTRYDB);
             let objStoreRequest = objStore.openCursor(null, 'next');
             let matchingEntries = [];
-            let matchingKeys = []
+            let matchingKeys = [];
             //Bullet object successfully accessed
             objStoreRequest.onsuccess = function (e){
                 let cursor = e.target.result;
                 if(cursor != null) {
                     let currDate = cursor.value.date;
+
                     if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
                         matchingEntries.push(cursor.value);
                         matchingKeys.push(cursor.key);
