@@ -120,8 +120,6 @@ export async function dailyLog(date, from){
         BULLETS.id = "bullets";
         // create new bullet input element
         const INPUT = document.createElement("bullet-input");
-        const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
-        const BULLETTYPE = INPUT.shadowRoot.getElementById("bullet-type");
 
         // Bullet Nesting Stack
         let bulletStack = [];
@@ -140,10 +138,10 @@ export async function dailyLog(date, from){
         // add ability to create new bullets
         createNewBullets(INPUT, bulletStack);
         // add ability to add nested bullets
-        //nestedBullets(INPUT, bulletStack);
-        let parentBullet = nestedBullets(INPUT, bulletStack);
-		console.log("parentBullet from router");
-		console.log(parentBullet);
+        nestedBullets(INPUT, bulletStack);
+        //let parentBullet = nestedBullets(INPUT, bulletStack);
+		//console.log("parentBullet from router");
+		//console.log(parentBullet);
     }
 } /* dailyLog */
 

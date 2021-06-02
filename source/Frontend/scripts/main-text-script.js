@@ -141,6 +141,7 @@ export function createNewBullets(inputElement, bulletStack) {
                 "content": BULLETINPUT.value,
                 "completed": false,
                 "type": BULLETTYPE.value,
+                "levels": bulletStack.length - 1,
             };
 
             let newBullet = document.createElement("bullet-entry");
@@ -179,17 +180,37 @@ export function createNewBullets(inputElement, bulletStack) {
  *     bulletsFromDB(item, index, bulletStack, todayBullets);
  */
 export function bulletsFromDB(item, index, bulletStack, todayBullets) {
+	// nest existing bullets from the data base
+	let prevBullet = todayBullets[1][index-1];
+	if (prevBullet) {
+		// unnest bullets
+		if ((prevBullet.levels > item.levels)) {
+			let currLevels = prevBullet.levels;
+			while (currLevels > item.levels) {
+				unnestBulletHelper(bulletStack);
+				currLevels -= 1;
+			}
+		}
+		// nest bullets
+		if ((prevBullet.levels < item.levels)) {
+			let currLevels = prevBullet.levels;
+			while (currLevels < item.levels) {
+				nestBulletHelper(bulletStack);
+				currLevels += 1;
+			}
+		}
+	}
 	let newBullet = document.createElement("bullet-entry");
-            newBullet.entry = item;
-            const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
-            BULLETLIST.appendChild(newBullet);
+	newBullet.entry = item;
+	const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+	BULLETLIST.appendChild(newBullet);
 
-            let bulletKey = todayBullets[0][index];
+	let bulletKey = todayBullets[0][index];
 
-            editableEntry(bulletKey, newBullet);
-            prioritizeEntry(bulletKey, newBullet);
-            completeTask(bulletKey, newBullet);
-            deleteEntry(bulletKey, newBullet);
+	editableEntry(bulletKey, newBullet);
+	prioritizeEntry(bulletKey, newBullet);
+	completeTask(bulletKey, newBullet);
+	deleteEntry(bulletKey, newBullet);
 }
 
 /**
@@ -204,38 +225,43 @@ export function bulletsFromDB(item, index, bulletStack, todayBullets) {
  *     nestedBullets(inputElement, bulletElement, bulletStack);
  */
 export function nestedBullets(inputElement, bulletStack) {
+
     inputElement.addEventListener("keydown", function (event) {
         // FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
         // Unnest by one level on shift + tab
         const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
         if ((event.shiftKey && event.key === "Tab")) {
-			console.log("in shift + tab");
             event.preventDefault();
-            if (bulletStack.length > 1) {
-				let parentBullet = bulletStack[bulletStack.length - 1].shadowRoot.querySelector("bullet-entry");
-                bulletStack.pop(bulletStack[bulletStack.length - 1]);
-                // unindent the input text
-                BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
-				return parentBullet;
-            }
-			return null;
+			unnestBulletHelper(bulletStack);
+			// unindent the input text
+			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+			//return null;
         }
         // Nest by one level on tab
         else if (event.key === "Tab") {
-			console.log("in + tab");
             // prevent tab key from moving to next button
             this.focus();
             event.preventDefault();
-            const newSublist = document.createElement("bullet-list");
-			let parentBullet = bulletStack[bulletStack.length - 1];
-			//console.log("parent");
-			//console.log(parentBullet);
-            bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
-            bulletStack.push(newSublist);
-            // indent the input text
-            BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
-			return parentBullet;
+			nestBulletHelper(bulletStack);
+			// indent the input text
+			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+			//return parentBullet;
         }
     });
-	return null;
+	//return null;
+}
+
+function nestBulletHelper(bulletStack) {
+	const NEWSUBLIST = document.createElement("bullet-list");
+	let parentBullet = bulletStack[bulletStack.length - 1];
+	parentBullet.shadowRoot.getElementById("bullet-list").appendChild(NEWSUBLIST);
+	bulletStack.push(NEWSUBLIST);
+}
+
+function unnestBulletHelper(bulletStack) {
+	if (bulletStack.length > 1) {
+		let parentBullet = bulletStack[bulletStack.length - 1].shadowRoot.querySelector("bullet-entry");
+		bulletStack.pop(bulletStack[bulletStack.length - 1]);
+		//return parentBullet;
+	}
 }
