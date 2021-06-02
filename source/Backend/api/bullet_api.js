@@ -402,7 +402,7 @@ export function getDailyBullets(date) {
  * Returns an array of all bullets that have the priority property marked
  * as true for the given date
  * 
- * @param {Date Object} - date object of current date
+ * @param {Object} - date object of current date
  * 
  * @return {Array} an array important bullets for given date
  * 
@@ -461,7 +461,7 @@ export function getDailyPriority(date) {
  * Returns an array of all bullets that are marked as task and 
  * have the same date
  * 
- * @param {Date Object} - date object of current date
+ * @param {Object} - date object of current date
  * 
  * @return {Array} an array of todo bullets for the day
  * 
