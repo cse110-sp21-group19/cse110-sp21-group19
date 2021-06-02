@@ -36,35 +36,86 @@
   -webkit-box-flex: 1;
       -ms-flex: 1 1 0px;
           flex: 1 1 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background: white;
   border-radius: 0.4rem;
   -webkit-transition: border-left 0.15s linear;
   transition: border-left 0.15s linear;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 
-.week-container .wn-item:hover {
-  -webkit-transition: -webkit-filter 0.15s linear;
-  transition: -webkit-filter 0.15s linear;
-  transition: filter 0.15s linear;
-  transition: filter 0.15s linear, -webkit-filter 0.15s linear;
-  -webkit-filter: brightness(85%);
-          filter: brightness(85%);
+.week-container .wn-item:hover .wn-date {
+  color: #FFA33F;
+  text-decoration: underline;
 }
 
 .week-container .wn-item .wn-date {
   pointer-events: none;
-  margin-left: 0.5rem;
-  font-size: 1.05em;
+  margin-top: 0.6rem;
+  margin-left: 0.6rem;
+  width: 5vw;
+  min-width: rem;
+  height: 100%;
+}
+
+.week-container .wn-item .wn-date #day-of-month {
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 .week-container .wn-item .wn-date #day-of-week {
   padding: 0 0.35em;
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   font-weight: lighter;
-  font-size: 1.05em;
+  font-size: 1.1em;
+}
+
+.week-container .wn-item .wn-bullets-container {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  margin: 0.4rem;
+  overflow-y: hidden;
+}
+
+.week-container .wn-item .wn-bullets-container svg {
+  height: 1em;
+  width: 1em;
+  padding-right: 0.5rem;
+}
+
+.week-container .wn-item .wn-bullets-container:hover {
+  overflow-y: auto;
+}
+
+.week-container .wn-item .wn-bullets-container .wn-bullet {
+  margin: 0.3rem;
 }
 
 .week-container .wn-item p {
-  visibility: collapse;
+  position: absolute;
+  visibility: hidden;
+}
+
+.week-container .wn-item ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.week-container .wn-item ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.week-container .wn-item ::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+  border-radius: 6px;
+}
+
+.week-container .wn-item ::-webkit-scrollbar-thumb:hover {
+  background: #71B637;
 }
 /*# sourceMappingURL=weeklynav.css.map */

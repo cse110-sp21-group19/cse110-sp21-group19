@@ -57,6 +57,7 @@ function openMenu(){
  * 	closeMenu()
  */
 export function closeMenu(){
+    console.log("sup yall")
     let x = SIDENAVROOT.getElementById("x");
     let y = SIDENAVROOT.getElementById("y");
     let z = SIDENAVROOT.getElementById("z");

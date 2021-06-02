@@ -14,9 +14,10 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 1rem 2rem 1rem 2rem;
+  padding: 2vh 2vw 2vh 2vw;
+  min-width: 55%;
   border-radius: 1rem;
-  margin-left: 1.8rem;
+  margin-left: 3vw;
 }
 
 .active-bar .close {
@@ -51,8 +52,8 @@
 .active-bar .new-entry {
   overflow: visible;
   width: 8rem;
-  height: 5rem;
-  margin-top: 2rem;
+  height: 10vh;
+  margin-top: 3vh;
 }
 
 .active-bar .new-entry:hover {
@@ -160,8 +161,8 @@
   width: 7vh;
   min-width: 50px;
   position: absolute;
-  right: 6rem;
-  top: 10rem;
+  right: 5vw;
+  top: 18vh;
 }
 
 .editing .delete-btn:hover {

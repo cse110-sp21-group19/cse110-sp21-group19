@@ -1,10 +1,20 @@
 // script.js
-import { router } from './router.js';
+import { router, dailyLog } from "./router.js";
 import { createWeeklyNav } from "./weekly-nav-script.js";
 import { closeMenu } from "./side-nav-script.js";
 
+import { createDB } from "../../Backend/api/bullet_api.js";
 const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
+// const today = new Date();
+// router.setState("daily-log", false, today, "first-load");
+// create database
+router.setState("daily-log", false, new Date(), "on-load");
+//FIX LATER: Decide where to put all first time functions
+document.addEventListener("DOMContentLoaded", function() {
+	createDB();
+});
+
 
 // When the back button is hit, set the state with the new page
 window.addEventListener("popstate", e => {
@@ -27,7 +37,7 @@ window.addEventListener("popstate", e => {
 const SNDAILYLOG = SIDENAVROOT.getElementById("sn-daily-log");
 SNDAILYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current date
-    let d = new Date();
+    const d = new Date();
 	router.setState("daily-log", false, d, "side-nav");
 
     // TODO: update the side bar to weekly-nav
@@ -40,8 +50,7 @@ SNDAILYLOG.addEventListener("click", () => {
 const SNMONTHLYLOG = SIDENAVROOT.getElementById("sn-monthly-log");
 SNMONTHLYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current month
-    let d = new Date();
-	console.log("YOOOO");
+    const d = new Date();
 	router.setState("monthly-log", false, d, "side-nav");
 
     // TODO: update the side bar to task list
@@ -54,7 +63,7 @@ SNMONTHLYLOG.addEventListener("click", () => {
 const SNFUTURELOG = SIDENAVROOT.getElementById("sn-future-log");
 SNFUTURELOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current year
-    let d = new Date();
+    const d = new Date();
 	router.setState("future-log", false, d, "side-nav");
 
     // TODO: update the side bar to task list
@@ -93,9 +102,4 @@ NEXTLOG.addEventListener("click", () => {
 	router.setState("daily-log", false, nextDate, "next");
 });
 
-// Add additional entries bar web component
-const addlEntryBar = document.createElement("entry-bar");
-addlEntryBar.type = "initial";
-const addlEntries = document.querySelector(".additional")
-addlEntries.appendChild(addlEntryBar);
 

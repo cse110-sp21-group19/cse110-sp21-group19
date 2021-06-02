@@ -76,14 +76,8 @@
         border-bottom-right-radius: 0.8em;
         transition: max-height 0.4s ease-in-out;
         ul{
-            a{
+            .sn-link{
                 color:white;
-                &:visited{
-                    color: white;
-                }
-                &:active{
-                    color:white;
-                }
                 &:hover{
                     transition: color 0.25s linear;
                     color: black;
