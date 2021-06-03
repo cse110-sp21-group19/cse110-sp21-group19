@@ -6,22 +6,26 @@ class Calendar extends HTMLElement{
 
 		const template = document.createElement("template");
 
+		//list items are weird to get rid of small space in between items
+		//source: https://css-tricks.com/fighting-the-space-between-inline-block-elements/
 		template.innerHTML = `
 			<div class="cal-container">
-				<div class="month"></div>
+				<div class="calendar">
+					<div class="month"></div>
 
-				<ul class="weekdays">
-					<li>Su</li>
-					<li>Mo</li>
-					<li>Tu</li>
-					<li>We</li>
-					<li>Th</li>
-					<li>Fr</li>
-					<li>Sa</li>
-				</ul>
+					<ul class="weekdays">
+						<li>Su</li
+						><li>Mo</li
+						><li>Tu</li
+						><li>We</li
+						><li>Th</li
+						><li>Fr</li
+						><li>Sa</li>
+					</ul>
 
-				<ul class="days">
-				</ul>
+					<ul class="days">
+					</ul>
+				</div>
 			</div>
 		`;
 
@@ -58,6 +62,21 @@ class Calendar extends HTMLElement{
 			shadow.querySelector(".days").appendChild(newDay);
 			date.setDate(date.getDate() + 1);
 		}
+	}
+
+	set currentDay(date){
+		let selectedDay = date.getDate();
+		const shadow = this.shadowRoot;
+		shadow.querySelector(".days").childNodes.forEach(day =>{
+			if(day.className == "day"){
+				if(day.textContent == selectedDay){
+					day.classList.add("current-day");
+				}
+				else{
+					day.classList.remove("current-day");
+				}
+			}
+		})
 	}
 
 }

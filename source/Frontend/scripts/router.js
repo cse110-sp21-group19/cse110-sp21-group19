@@ -92,6 +92,16 @@ export async function dailyLog(date, from){
                 WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
               }, 300);
             }
+        else if(from == "monthly-log" || from == "side-nav"){
+            console.log("FROM SIDE NAV OR MONTHYL")
+            let CAL = document.querySelector("calendar-component");
+            CAL.remove();
+            
+                await createWeeklyNav(date);
+            WEEKLYNAV = document.querySelector("weekly-nav");
+            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
+            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
+        }
         else {
             WEEKLYNAV.selectedDay = date.getDay() + 1;
         }

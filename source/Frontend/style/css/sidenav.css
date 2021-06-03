@@ -81,6 +81,7 @@
   max-width: 100%;
   -ms-grid-column: 1;
       grid-column-start: 1;
+  z-index: 100;
 }
 
 .side-nav-menu-container .side-nav-menu {
