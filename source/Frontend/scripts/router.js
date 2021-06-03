@@ -78,7 +78,6 @@ export async function dailyLog(date, from){
 
         //If we are currently on a sunday, replace weekly nav menu with prev week
         if ((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
-            console.log("HELLO")
             WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "0";
             WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "0";
             setTimeout(function() {
@@ -90,7 +89,26 @@ export async function dailyLog(date, from){
                 WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
                 WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
               }, 300);
-            }
+        }
+        else if(from == "on-load"){
+            await createWeeklyNav(date);
+            WEEKLYNAV = document.querySelector("weekly-nav");
+            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
+            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
+
+            
+            const DATE = document.querySelector("log-type").readLog.header;
+            const ADDLENTRYBAR = document.createElement("entry-bar");
+            const ADDLENTRIES = document.querySelector(".additional")
+
+            let entriesList = await getDailyEntries(DATE);
+            let keys = entriesList[0];
+            let fetchedEntries = entriesList[1];
+
+            ADDLENTRYBAR.type = "initial";
+            ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
+            ADDLENTRIES.appendChild(ADDLENTRYBAR);
+        }
         else {
             WEEKLYNAV.selectedDay = date.getDay() + 1;
         }
