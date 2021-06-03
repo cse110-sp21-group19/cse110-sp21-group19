@@ -283,3 +283,11 @@ export function getDailyEntries(date) {
         }
     });
 }
+
+module.exports = {
+    createEntry,
+    updateEntry,
+    getEntry,
+    deleteEntry,
+    getDailyEntries
+}
