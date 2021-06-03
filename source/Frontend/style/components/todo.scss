@@ -1,0 +1,52 @@
+/* Weekly Nav - Cory */
+@import '../abstracts/mixins', '../abstracts/variables';
+
+.todo-title{
+    margin-top: 1.4rem; //Fix this later
+    margin-bottom: 0.5rem;
+    margin-left: 0.9rem;
+
+}
+.todo-container{
+    background: $accent;
+    z-index: -1;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    //This will differ from weekly nav
+    display: grid;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    //Will also add overflow
+    height: 80vh; //MAY HAVE TO CHANGE THIS -- look at layout file weekly nav container height
+
+    .wn-item{
+        margin: 0.4rem;
+        display: grid;
+        background: white;
+        border-radius: 0.5rem;
+        grid-template-rows: 1;
+        grid-template-columns: auto auto;
+        &:hover{
+            filter: brightness(90%);
+        }
+        .wn-date{
+            pointer-events: none;
+            grid-column-start: 1;
+            margin-left: 0.5rem;
+            font-size: 0.95em;
+            #day-of-week{
+                padding: 0 0.35em;
+                font-family: $sans-serif;
+                font-weight: lighter;
+                font-size: 1.05em;
+            }
+        }
+        .wn-bullets{
+            grid-column-start: 3;
+            font-size: 10px;
+        }
+
+        p {
+            visibility:hidden;
+        }
+    }
+}

@@ -1,0 +1,172 @@
+/* Additional Entries - Malhar */
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* colors */
+/* spacing */
+/* Begin styling addl button */
+.active-bar {
+  background: #FFA33F;
+  height: 20vh;
+  width: 85%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem 2rem 1rem 2rem;
+  border-radius: 1rem;
+  margin-left: 1.8rem;
+}
+
+.active-bar .close {
+  text-align: left;
+  font-size: 30px;
+  color: black;
+}
+
+.active-bar .close:hover {
+  cursor: pointer;
+}
+
+.active-bar .content {
+  height: 13vh;
+  width: 65%;
+  min-width: 55%;
+  background: white;
+  border-radius: 1rem;
+  margin-top: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 0 1rem 3rem 1rem;
+}
+
+.active-bar .new-entry {
+  overflow: visible;
+  width: 8rem;
+  height: 5rem;
+  margin-top: 2rem;
+}
+
+.active-bar .new-entry:hover {
+  cursor: pointer;
+}
+
+.inactive-bar {
+  width: 3vw;
+  height: 3vw;
+  min-width: 3vw;
+  min-height: 3vw;
+  margin: 0 1rem 2rem;
+  background: transparent;
+  border-radius: 1vw;
+  padding: 0.2rem;
+  float: right;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  white-space: nowrap;
+}
+
+.inactive-bar:hover {
+  cursor: pointer;
+}
+
+#btn {
+  height: 7vh;
+  width: 7vh;
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  grid-column-end: 5;
+}
+
+#btn:hover {
+  cursor: pointer;
+}
+
+*:focus {
+  outline: none;
+}
+
+.editing {
+  display: none;
+  padding: 2rem;
+  height: 75vh;
+  width: 90%;
+  min-height: 550px;
+  min-width: 300px;
+  margin-left: 3rem;
+  background: #71B637;
+  border-radius: 1rem;
+}
+
+.editing .close {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.editing .close:hover {
+  cursor: pointer;
+}
+
+.editing .close-edit {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.editing .close-edit:hover {
+  cursor: pointer;
+}
+
+.editing .text-content {
+  margin-top: 1rem;
+  width: 98.5%;
+  height: 70%;
+  background: white;
+  border-radius: 1rem;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  overflow-y: auto;
+}
+
+.editing .save-btn-wrapper {
+  float: right;
+}
+
+.editing .save-btn {
+  height: 7vh;
+  width: 7vh;
+}
+
+.editing .save-btn:hover {
+  cursor: pointer;
+}
+
+.editing h1 {
+  text-align: center;
+}
+
+.editing .delete-btn {
+  height: 100px;
+  width: 7vh;
+  min-width: 50px;
+  position: absolute;
+  right: 6rem;
+  top: 10rem;
+}
+
+.editing .delete-btn:hover {
+  cursor: pointer;
+}
+
+/* End styling addl button */
+/*# sourceMappingURL=entrybar.css.map */
