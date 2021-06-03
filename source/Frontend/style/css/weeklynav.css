@@ -50,7 +50,7 @@
 }
 
 .week-container .wn-item:hover .wn-date {
-  color: #71B637;
+  color: #FFA33F;
   text-decoration: underline;
 }
 
@@ -59,7 +59,7 @@
   margin-top: 0.6rem;
   margin-left: 0.6rem;
   width: 5vw;
-  min-width: 8rem;
+  min-width: rem;
   height: 100%;
 }
 
