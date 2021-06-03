@@ -34,6 +34,7 @@ class SideNav extends HTMLElement{
 						<li><a id="sn-daily-log" class="sn-link" href="#">${DAILY}</a></li>
 						<li><a id="sn-monthly-log" class="sn-link" href="#">${MONTHLY}</a></li>
 						<li><a id="sn-future-log" class="sn-link" href="#">${FUTURE}</a></li>
+						<li><p id="sn-help" class="sn-link">Help</p></li>
 					</ul>
 				</div>
 			</div>

@@ -10,6 +10,8 @@ import { formatEntries, updateAddlEntries } from "./addl-entries-script.js"
 import { editableEntry, deleteEntry, prioritizeEntry, completeTask, createNewBullets, nestedBullets, bulletsFromDB } from "./main-text-script.js";
 import { getDailyBullets, createBullet } from "../../Backend/api/bullet_api.js";
 
+import { helpGuideContent, createHelpPage } from "./help-guide-script.js";
+
 export const router = {};
 
 //FIX LATER:router copied from lab to get things going
@@ -35,6 +37,10 @@ export const router = {};
         case "future-log":
             futureLog();
             console.log("future");
+            break;
+        case "help":
+            help();
+            console.log("help");
             break;
         default:
             console.log("default");
@@ -199,6 +205,44 @@ function futureLog(){
         weeklyNav.remove();
     }
 } /* futureLog */
+
+/**
+ * help 
+ * Set the state for the a help guide page.
+ * 
+ * @example
+ *      help();
+ */
+function help(){
+    const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
+    let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+    sideNavTitle.textContent = "Help";
+
+    const LOGTYPE = document.querySelector("log-type");
+    let d = new Date();
+    // update the header text above main-text area
+    let headerText = "Table of Contents";
+
+    //remove the weekly nav menu
+    /*
+    let weeklyNav = document.querySelector("weekly-nav");
+    if(weeklyNav){
+        weeklyNav.remove();
+    }
+    */
+
+   // clear main-text area
+   document.getElementById("main-text").innerText = "";
+
+   // add help page data
+   //createHelpPage(helpGuideContent);
+    const MAINTEXT = document.getElementById("main-text");
+    helpGuideContent.forEach(element => {
+        let section = document.createElement("help-section");
+        section.info = element;
+        MAINTEXT.appendChild(section);
+    });
+} /* help */
 
 /**
  * pushToHistory
