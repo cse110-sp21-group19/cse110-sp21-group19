@@ -88,7 +88,8 @@ PREVLOG.addEventListener("click", () => {
 	if(LOG == "daily-log"){
 		prevDate.setDate(prevDate.getDate() - 1);
 	}
-	else if (LOG == "daily-log"){
+	//TODO IMPLEMENT THIS IN FORWARD AND HAVE IT CHANGE NECESSARY THINGS IN ROUTER
+	else if (LOG == "monthly-log"){
 		prevDate.setDate(prevDate.getFullYear(), prevDate.getMonth() - 1, 1);
 	}
 
