@@ -15,7 +15,8 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 2vh 2vw 2vh 2vw;
-  min-width: 55%;
+  min-width: 300px;
+  min-height: 100px;
   border-radius: 1rem;
   margin-left: 3vw;
 }
@@ -33,11 +34,11 @@
 .active-bar .content {
   height: 13vh;
   width: 65%;
-  min-width: 55%;
+  min-width: 100px;
   background: white;
   border-radius: 1rem;
   margin-top: 0;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -47,6 +48,10 @@
       -ms-flex-direction: row;
           flex-direction: row;
   padding: 0 1rem 3rem 1rem;
+}
+
+.active-bar .content:hover {
+  overflow-x: auto;
 }
 
 .active-bar .new-entry {
@@ -96,6 +101,40 @@
 
 *:focus {
   outline: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  bottom: 15vh;
+  background-color: black;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  color: black;
+}
+
+.dropdown-content span:hover {
+  cursor: pointer;
+  background: #4AB2D6;
+}
+
+/* Links inside the dropdown */
+.dropdown-content span {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 .editing {
@@ -166,6 +205,104 @@
 }
 
 .editing .delete-btn:hover {
+  cursor: pointer;
+}
+
+.img-editing {
+  display: none;
+  padding: 2rem;
+  height: 75vh;
+  width: 90%;
+  min-height: 550px;
+  min-width: 300px;
+  margin-left: 3rem;
+  background: #71B637;
+  border-radius: 1rem;
+}
+
+.img-editing .close {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.img-editing .close:hover {
+  cursor: pointer;
+}
+
+.img-editing .close-edit {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.img-editing .close-edit:hover {
+  cursor: pointer;
+}
+
+.img-editing .img-content {
+  margin-top: 1rem;
+  margin-left: 3vw;
+  width: 55vw;
+  max-width: 1000px;
+  height: 70%;
+  background: white;
+  border-radius: 1rem;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  overflow-y: auto;
+}
+
+.img-editing .img-content .img-text {
+  position: relative;
+  top: 47%;
+  left: 38%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.img-editing .img-content .choose-img {
+  display: none;
+}
+
+.img-editing .img-content .uploaded {
+  max-width: 90%;
+  max-height: 90%;
+  width: auto;
+  height: auto;
+  margin-left: 6vw;
+}
+
+.img-editing .img-content:hover {
+  cursor: pointer;
+}
+
+.img-editing .save-btn-wrapper {
+  float: right;
+  padding: 1rem;
+}
+
+.img-editing .save-btn {
+  height: 7vh;
+  width: 7vh;
+}
+
+.img-editing .save-btn:hover {
+  cursor: pointer;
+}
+
+.img-editing h1 {
+  text-align: center;
+}
+
+.img-editing .delete-btn {
+  height: 100px;
+  width: 7vh;
+  min-width: 50px;
+  position: absolute;
+  right: 5vw;
+  top: 18vh;
+}
+
+.img-editing .delete-btn:hover {
   cursor: pointer;
 }
 

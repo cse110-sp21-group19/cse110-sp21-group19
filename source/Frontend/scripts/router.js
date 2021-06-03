@@ -162,6 +162,7 @@ function monthlyLog(date){
         LOGTYPE.updateLog = MONTHLYINFO;
 
         // TODO: update the main-text data with getter
+        updateAddlEntries();
 
     }
 } /* monthlyLog */

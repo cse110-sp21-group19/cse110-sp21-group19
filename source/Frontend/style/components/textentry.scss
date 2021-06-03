@@ -1,13 +1,24 @@
 .note{
     overflow: visible;
     width: 8rem;
-    height: 10vh;
+    height: 12vh;
+    min-height: 50px;
     margin-top: 3vh;
     margin-right: 1rem;
-    
-
 }
 .note:hover{
+    cursor: pointer;
+}
+
+.image{
+    overflow: visible;
+    width: 8rem;
+    height: 12vh;
+    min-height: 50px;
+    margin-top: 3.5vh;
+    margin-right: 1rem;
+}
+.image:hover{
     cursor: pointer;
 }
 
@@ -15,19 +26,20 @@
     position: relative;
     .tooltiptext{
         position: absolute;
-        bottom: 10.5vh;
+        bottom: 12.5vh;
         left: 1vw;
         font-weight: bold;
         font-size: 1rem;
+        overflow-wrap: break-word;
     }
 }
 ::-webkit-scrollbar {
     height: 10px;
-  }
+}
 
   /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #616161; 
+    background: rgb(182, 182, 182);
     border-radius: 10px;
 }
-    
+
