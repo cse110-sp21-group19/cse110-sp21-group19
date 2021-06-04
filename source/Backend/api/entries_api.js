@@ -258,7 +258,7 @@ export function getDailyEntries(date) {
 				if(cursor != null) {
 					let currDate = cursor.value.date;
 
-					if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
+					if(currDate == date) {
 						matchingEntries.push(cursor.value);
 						matchingKeys.push(cursor.key);
 					}
