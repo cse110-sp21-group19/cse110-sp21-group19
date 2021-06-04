@@ -118,6 +118,7 @@ var currKey = 0;
 		let saveBtn = this.shadowRoot.querySelector(".save-btn");
 		let saveBtnImg = this.shadowRoot.querySelectorAll(".save-btn")[1];
 		let deleteButton = this.shadowRoot.querySelector(".delete-btn");
+		let deleteButtonImg = this.shadowRoot.querySelectorAll(".delete-btn")[1];
 		let exitBtnText = this.shadowRoot.querySelectorAll(".close-edit")[0];
 		let exitBtnImg = this.shadowRoot.querySelectorAll(".close-edit")[1];
 
@@ -228,7 +229,7 @@ var currKey = 0;
 				mainText.style.display="none"
 				initial.style.display="none";
 				imgEditing.style.display="block";
-				deleteButton.style.display="block";
+				deleteButtonImg.style.display="block";
 
 				//display the title and image of the current entry to the screen
 				
@@ -330,6 +331,42 @@ var currKey = 0;
 				deleteButton.style.display="none";
 				title.innerText=" Add Title";
 				content.innerText="Add note here...";
+			}
+		});
+
+		deleteButtonImg.addEventListener("click", function(){
+			//find the current entry in the document
+			let response = confirm("Delete this entry?");
+
+			//if user wants to delete the entry, find and delete the entry
+			if(response){
+				for(let i = 0; i < innerBar.childElementCount; ++i){
+					console.log(innerBar.children[i]);
+					if(innerBar.children[i].entry.key == currKey){
+						let currEntry = innerBar.children[i];
+						console.log(currEntry);
+						innerBar.removeChild(currEntry)
+						break;
+					} 
+				}
+
+				//delete this entry from the database
+				deleteEntry(currKey);
+
+				//adjust the margin of the first entry
+				if(innerBar.children[0]){
+					innerBar.children[0].style.marginLeft = "1rem";
+				}
+
+				//redirect to homepage
+				mainText.style.display = "block";
+            	document.querySelector("entry-bar").type="openbar";
+
+				//hide the delete button and reset the content to display in the editing panel
+				deleteButtonImg.style.display="none";
+				imgTitle.innerText="Add Title";
+				infoText.style.display="block";
+				uploaded.src="";
 			}
 		});
 		
@@ -459,7 +496,7 @@ var currKey = 0;
 		else{
 			initial.style.display="block";
 			editing.style.display="none";
-			
+			imgEditing.style.display="none";
 			inactiveBar.style.display = "none";
 			activeBar.style.display="flex";
 		}
