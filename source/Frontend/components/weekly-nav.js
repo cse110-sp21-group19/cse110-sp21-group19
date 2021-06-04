@@ -11,7 +11,6 @@ class WeeklyNav extends HTMLElement{
 		super();
 		const template = document.createElement("template");
 
-		//TODO: Fix the styling
 		template.innerHTML = `
 			<h2 class="weekly-nav-title"></h2>
 			<div class="week-container">

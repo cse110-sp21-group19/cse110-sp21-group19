@@ -177,7 +177,9 @@ function monthlyLog(date){
             WEEKLYNAV.remove();
         }
         let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        console.log(firstDay.getMonth());
         createCalendar(firstDay);
+        createToDoList(firstDay);
         // TODO: update the main-text data with getter
 
     }
