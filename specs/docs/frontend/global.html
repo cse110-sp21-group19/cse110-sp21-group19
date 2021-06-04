@@ -104,7 +104,7 @@
     
 
     
-    <h4 class="name" id="getDateString"><span class="type-signature"></span>getDateString<span class="signature">(day)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="createEntry"><span class="type-signature"></span>createEntry<span class="signature">(title, content)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
 
     
@@ -112,8 +112,7 @@
 
 
 <div class="description">
-    <p>getDateString
-Converts integer day of week to its related string.</p>
+    <p>Helper function to create a new entry obejct</p>
 </div>
 
 
@@ -149,13 +148,13 @@ Converts integer day of week to its related string.</p>
 
         <tr>
             
-                <td class="name"><code>day</code></td>
+                <td class="name"><code>title</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">string</span>
 
 
             
@@ -165,7 +164,30 @@ Converts integer day of week to its related string.</p>
 
             
 
-            <td class="description last"><p>An integer of the day of the week (0-6).</p></td>
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>content</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
         </tr>
 
     
@@ -206,7 +228,7 @@ Converts integer day of week to its related string.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="weekly-nav.js.html">weekly-nav.js</a>, <a href="weekly-nav.js.html#line171">line 171</a>
+        <a href="addl_entries_entry-bar.js.html">addl_entries/entry-bar.js</a>, <a href="addl_entries_entry-bar.js.html#line263">line 263</a>
     </li></ul></dd>
     
 
@@ -235,189 +257,25 @@ Converts integer day of week to its related string.</p>
 
         
 <div class="param-desc">
-    <p>A string of the related day of the week of the parameter.</p>
+    <ul>
+<li>Return an object of the form: {title: title, content: content}</li>
+</ul>
 </div>
 
 
 
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>getDateString(day)</code></pre>
-
-
-
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
         
-            
-
-    
-
-    
-    <h4 class="name" id="getWeeklyNavTitle"><span class="type-signature"></span>getWeeklyNavTitle<span class="signature">(first, last)</span><span class="type-signature"></span></h4>
-    
-
-    
+<span class="param-type">Object</span>
 
 
-
-<div class="description">
-    <p>getWeeklyNavTitle
-Formats the title on top of the weekly nav menu.
-Also address edge case if week is between two months and/or two years.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>first</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>A date object referring to the first day of the week.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>last</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>A date object referring to the last day of the week.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="weekly-nav.js.html">weekly-nav.js</a>, <a href="weekly-nav.js.html#line206">line 206</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
+    </dd>
 </dl>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>A string of the correct title in the format &quot;Month, Year&quot; or
-&quot;Month1/Month2, Year&quot; or &quot;Month1/Month2, Year1/Year2&quot;.</p>
-</div>
-
-
-
     
 
 
@@ -425,7 +283,7 @@ Also address edge case if week is between two months and/or two years.</p>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>getWeekyNavTitle(first, last)</code></pre>
+    <pre class="prettyprint"><code>myEntry = createEntry(title, content);</code></pre>
 
 
 
@@ -672,6 +530,149 @@ main-text area.</p></td>
 
 
             
+                
+<h4 class="name" id="entry">entry</h4>
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The title of the entry object</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>content</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The contents of the entry object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="addl_entries_text-entry.js.html">addl_entries/text-entry.js</a>, <a href="addl_entries_text-entry.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
     
 
     
@@ -685,13 +686,13 @@ main-text area.</p></td>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="entryBar.html">entryBar</a></li><li><a href="textEntry.html">textEntry</a></li></ul><h3>Global</h3><ul><li><a href="global.html#createEntry">createEntry</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun May 30 2021 20:40:36 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Jun 04 2021 02:22:51 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
