@@ -1,3 +1,8 @@
+//entry-bar.js
+//import additional entries router
+import { router } from "../../scripts/router.js";
+const setState = router.setState;
+
 //global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
 
@@ -117,8 +122,8 @@ class entryBar extends HTMLElement{
 				//append the newly created entry
 				innerBar.appendChild(newNote);
 				//set the state to redirect back to homepage
-				mainText.style.display = "block";
-				document.querySelector("entry-bar").type="openbar";	
+				const DATE = document.querySelector("log-type").readLog.date;
+				setState("viewing-addl-entries", false, DATE);	
 				title.innerText="Add Title";
 				content.innerText="Add note here...";
 			}
@@ -145,8 +150,8 @@ class entryBar extends HTMLElement{
 					innerBar.children[0].style.marginLeft = "1rem";
 				}
 				//set the state and redirect to homepage
-				mainText.style.display = "block";
-				document.querySelector("entry-bar").type="openbar";
+				const DATE = document.querySelector("log-type").readLog.date;
+				setState("viewing-addl-entries", false, DATE);
 				//hide the delete button and reset the content to display in the editing panel
 				deleteButton.style.display="none";
 				title.innerText=" Add Title";
@@ -165,8 +170,8 @@ class entryBar extends HTMLElement{
 	get type(){
 		let initial = this.shadowRoot.querySelector(".initial");
 		let activeBar = this.shadowRoot.querySelector(".active-bar");
+		//Cory - I added this to fix the linting, not sure if its needed
 		let editing = this.shadowRoot.querySelector(".editing");
-
 		if (initial.style.display == "block" && activeBar.style.display == "none"){
 			return "initial";
 		}
@@ -189,7 +194,6 @@ class entryBar extends HTMLElement{
 		let activeBar = this.shadowRoot.querySelector(".active-bar");
 		let closeBtn = this.shadowRoot.querySelector(".close");
 		let newEntry = this.shadowRoot.querySelector(".new-entry");
-		let mainText = document.querySelector(".main-text");
 		
 		if(type == "initial"){
 			initial.style.display="block";
@@ -211,8 +215,8 @@ class entryBar extends HTMLElement{
 			newEntry.addEventListener("click", function(){
 				//since we are adding a new entry, set the is viewing mode to false
 				isViewing = false;
-				mainText.style.display = "none";
-				document.querySelector("entry-bar").type="editing";
+				const DATE = document.querySelector("log-type").readLog.date;
+				setState("new-addl-entry", false, DATE);
 			});
 
 		}
@@ -234,8 +238,8 @@ class entryBar extends HTMLElement{
 				title.innerText="Add Title";
 				content.innerText="Add note here...";
 				window.location.hash = "";
-				mainText.style.display = "block";
-				document.querySelector("entry-bar").type="openbar";
+				const DATE = document.querySelector("log-type").readLog.date;
+				setState("viewing-addl-entries", false, DATE);
 			});
 
 		}

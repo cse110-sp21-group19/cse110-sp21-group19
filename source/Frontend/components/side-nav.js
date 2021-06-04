@@ -1,9 +1,10 @@
 //side-nav.js
+
 const FUTURE = "Future Log";
 const DAILY = "Daily Log";
 const MONTHLY = "Monthly Log";
 
-// <side-nav> custom web component
+//<side-nav> custom web component
 class SideNav extends HTMLElement{
 	constructor() {
 		super();
@@ -46,6 +47,5 @@ class SideNav extends HTMLElement{
 	}
 
 }
-
 // Define a custom element for the sidenav web component
 customElements.define("side-nav", SideNav);
