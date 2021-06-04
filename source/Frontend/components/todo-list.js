@@ -1,7 +1,4 @@
-const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
-const SELECTEDRADIUS = "0.2rem";
-const DEFAULTBORDERLEFT = null;
-const DEFAULTRADIUS = null;
+import { TASKBULLET, TASKCOMPLETE } from "./main-text.js";
 
 class TodoList extends HTMLElement{
 	constructor() {
@@ -38,7 +35,11 @@ class TodoList extends HTMLElement{
 
 
 	set todoList(list){
-		const todoContainer = this.shadowRoot.querySelector(".todo-container")
+		const todoContainer = this.shadowRoot.querySelector(".todo-container");
+		
+		let scrollContainer = document.createElement("div");
+		scrollContainer.className = "scroll-container";
+		console.log(todoContainer);
 		list.forEach(element =>{
 			let day = getDateString(element.date.getDay());
 			let date = element.date.getDate();
@@ -66,7 +67,7 @@ class TodoList extends HTMLElement{
 
 
 			let todoItem = document.createElement("div");
-			navItem.className = "todo-item";
+			todoItem.className = "todo-item";
 
 			let todoDate = document.createElement("div");
 			todoDate.className = "todo-date";
@@ -83,10 +84,11 @@ class TodoList extends HTMLElement{
 			todoItem.appendChild(todoDate);
 			todoItem.appendChild(todoBullets);
 
-			todoContainer.appendChild(todoItem);
-			todoContainer.appendChild(todoBullets);
+			console.log(todoItem);
+			scrollContainer.appendChild(todoItem);
 
 		});
+		todoContainer.appendChild(scrollContainer);
 	}
 
 	

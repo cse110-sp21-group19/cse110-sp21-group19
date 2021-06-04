@@ -13,10 +13,11 @@ export async function createToDoList(date){
     //adding weekly navigation web component
     let todoBullets = await getMonthTodoBullets(date);
 
-    console.log(todoBullets);
-    //const TODO = document.createElement("todo-list");
-    //document.getElementById("weekly-nav-container").appendChild(TODO);
+    const TODO = document.createElement("todo-list");
+    TODO.todoList = todoBullets;
+    document.getElementById("weekly-nav-container").appendChild(TODO);
 
+    return true;
 } /* createToDoList */
 //Make TODO Menu here
 
@@ -26,10 +27,9 @@ export async function createToDoList(date){
  */
 async function getMonthTodoBullets(date){
     let month = date.getMonth();
-        console.log(month)
     let monthBullets = [];
     let currDate = new Date(date);
-    while (currDate.getMonth() - 1 === month){
+    while (currDate.getMonth() === month){
         let dayObj = {
             date: currDate,
             bullets: []
@@ -43,5 +43,6 @@ async function getMonthTodoBullets(date){
         currDate.setDate(currDate.getDate() + 1);
     }
 
+    //console.log(monthBullets);
     return monthBullets;
 }

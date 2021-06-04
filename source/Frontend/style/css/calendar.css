@@ -4,7 +4,9 @@
 /* spacing */
 .cal-container {
   background: #71B637;
-  height: 45vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -13,11 +15,14 @@
 }
 
 .cal-container .calendar {
-  -webkit-box-flex: 4;
-      -ms-flex-positive: 4;
-          flex-grow: 4;
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
   position: relative;
-  margin: 1.6rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 1.4rem;
   background: white;
   border-radius: 1.5rem;
 }

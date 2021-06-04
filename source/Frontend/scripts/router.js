@@ -156,7 +156,7 @@ export async function dailyLog(date, from){
  * @example
  *      monthlyLog("5-24-2021");
  */
-function monthlyLog(date){
+async function monthlyLog(date){
     const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
     sideNavTitle.textContent = "Monthly Log";
@@ -178,8 +178,8 @@ function monthlyLog(date){
         }
         let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
         console.log(firstDay.getMonth());
+		await createToDoList(firstDay);
         createCalendar(firstDay);
-        createToDoList(firstDay);
         // TODO: update the main-text data with getter
 
     }

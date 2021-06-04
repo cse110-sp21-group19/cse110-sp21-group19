@@ -3,74 +3,75 @@
 
 .cal-container{
 	background: $accent;
-	height: 45vh;
+	height: fit-content;
 	display: flex;
 	border-bottom-left-radius: 1.5rem;
 	border-bottom-right-radius: 1.5rem;
 	.calendar{
-		flex-grow: 4;
+		flex-grow: 2;
 		position: relative;
-		margin: 1.6rem;
+		height: fit-content;
+		margin: 1.4rem;
 		background: white;
 		border-radius: 1.5rem;
-	.month{
-		z-index: 1;
-		padding: 0.5rem;
-		font-size: 1.5em;
-		font-weight: bold;
-	}
-	.weekdays {
-		margin-top: 0;
-		padding-left: 2.5rem;
-		padding-right: 2.5rem;
-		margin-bottom: 0.6rem;
-		white-space: nowrap;
-		li {
-			padding-top: 0.3rem;
-			display: inline-block;
-			font-size: 1.25em;
-			font-weight: 600;
-			width: 14.2%;
-			
-			color: rgb(65, 65, 65);
-			text-align: center;
+		.month{
+			z-index: 1;
+			padding: 0.5rem;
+			font-size: 1.5em;
+			font-weight: bold;
 		}
-	  }
-	
+		.weekdays {
+			margin-top: 0;
+			padding-left: 2.5rem;
+			padding-right: 2.5rem;
+			margin-bottom: 0.6rem;
+			white-space: nowrap;
+			li {
+				padding-top: 0.3rem;
+				display: inline-block;
+				font-size: 1.25em;
+				font-weight: 600;
+				width: 14.2%;
+				
+				color: rgb(65, 65, 65);
+				text-align: center;
+			}
+		}
+		
 
-	.days{
-		margin-top: 0;
-		padding-left: 2.5rem;
-		padding-right: 2.5rem;
-		padding-bottom: 1.2rem;
-		  li{
-			  padding-top: 1rem;
-			  padding-bottom: 1rem;
-			font-size: 1.25em;
-			font-weight: 500;
-			list-style-type: none;
-			display: inline-block;
-			width: 14.2%;
-			text-align: center;
-			color: rgb(85, 85, 85);
-		  }
-		  .day:hover{
-			cursor: pointer;
-			background: rgba(255, 163, 63, 0.35);
-			border-radius: 1rem;
-		  }
-		  .current-day{
-			  color: white;
-			  background: $accent2;
-			  border-radius: 1.5rem;
-			  &:hover{
+		.days{
+			margin-top: 0;
+			padding-left: 2.5rem;
+			padding-right: 2.5rem;
+			padding-bottom: 1.2rem;
+			li{
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+				font-size: 1.25em;
+				font-weight: 500;
+				list-style-type: none;
+				display: inline-block;
+				width: 14.2%;
+				text-align: center;
+				color: rgb(85, 85, 85);
+			}
+			.day:hover{
 				cursor: pointer;
 				background: rgba(255, 163, 63, 0.35);
 				border-radius: 1rem;
-			  }
-		  }
+			}
+			.current-day{
+				color: white;
+				background: $accent2;
+				border-radius: 1.5rem;
+				&:hover{
+					cursor: pointer;
+					background: rgba(255, 163, 63, 0.35);
+					border-radius: 1rem;
+				}
+			}
 		
-	}
+		}
 }
 }
 
