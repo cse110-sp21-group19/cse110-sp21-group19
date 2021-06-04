@@ -1,7 +1,7 @@
 // main-text-script.js
 
 import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
-import { getDailyBullets, createBullet, deleteBullet, updateBullet, getDailyPriority } from "../../Backend/api/bullet_api.js";
+import { createBullet, deleteBullet, updateBullet, getDailyPriority } from "../../Backend/api/bullet_api.js";
 
 /** 
  * editableEntry
@@ -156,39 +156,39 @@ export function completeTask(key, entry) {
  *     createNewBullets(inputElement, bulletElement, bulletStack);
  */
 export function createNewBullets(inputElement, bulletStack) {
-    inputElement.addEventListener("keyup", async function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
+	inputElement.addEventListener("keyup", async function(event) {
+		if (event.key === "Enter") {
+			event.preventDefault();
 
 			const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
 			const BULLETTYPE = inputElement.shadowRoot.getElementById("bullet-type");
-            // create new entry information on enter
-            let entry = {
-                "priority": false,
-                "content": BULLETINPUT.value,
-                "completed": false,
-                "type": BULLETTYPE.value,
-            };
+			// create new entry information on enter
+			let entry = {
+				"priority": false,
+				"content": BULLETINPUT.value,
+				"completed": false,
+				"type": BULLETTYPE.value,
+			};
 
-            let newBullet = document.createElement("bullet-entry");
-            newBullet.entry = entry;
+			let newBullet = document.createElement("bullet-entry");
+			newBullet.entry = entry;
 
-            // append new bullet entries to main-text element
-            const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
-            BULLETLIST.appendChild(newBullet);
+			// append new bullet entries to main-text element
+			const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+			BULLETLIST.appendChild(newBullet);
 
-            // clear INPUT value after enter
-            BULLETINPUT.value = "";
+			// clear INPUT value after enter
+			BULLETINPUT.value = "";
 
-            // add new bullet to DB
-            let bulletKey = await createBullet(newBullet.entry);
+			// add new bullet to DB
+			let bulletKey = await createBullet(newBullet.entry);
 
-            editableEntry(bulletKey, newBullet);
-            prioritizeEntry(bulletKey, newBullet);
-            completeTask(bulletKey, newBullet);
-            deleteEntry(bulletKey, newBullet);
-        }
-    });
+			editableEntry(bulletKey, newBullet);
+			prioritizeEntry(bulletKey, newBullet);
+			completeTask(bulletKey, newBullet);
+			deleteEntry(bulletKey, newBullet);
+		}
+	});
 }
 
 /**
@@ -207,16 +207,16 @@ export function createNewBullets(inputElement, bulletStack) {
  */
 export function bulletsFromDB(item, index, bulletStack, todayBullets) {
 	let newBullet = document.createElement("bullet-entry");
-            newBullet.entry = item;
-            const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
-            BULLETLIST.appendChild(newBullet);
+	newBullet.entry = item;
+	const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+	BULLETLIST.appendChild(newBullet);
 
-            let bulletKey = todayBullets[0][index];
+	let bulletKey = todayBullets[0][index];
 
-            editableEntry(bulletKey, newBullet);
-            prioritizeEntry(bulletKey, newBullet);
-            completeTask(bulletKey, newBullet);
-            deleteEntry(bulletKey, newBullet);
+	editableEntry(bulletKey, newBullet);
+	prioritizeEntry(bulletKey, newBullet);
+	completeTask(bulletKey, newBullet);
+	deleteEntry(bulletKey, newBullet);
 }
 
 /**
@@ -231,38 +231,38 @@ export function bulletsFromDB(item, index, bulletStack, todayBullets) {
  *     nestedBullets(inputElement, bulletElement, bulletStack);
  */
 export function nestedBullets(inputElement, bulletStack) {
-    inputElement.addEventListener("keydown", function (event) {
-        // FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
-        // Unnest by one level on shift + tab
-        const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
-        if ((event.shiftKey && event.key === "Tab")) {
+	inputElement.addEventListener("keydown", function (event) {
+		// FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
+		// Unnest by one level on shift + tab
+		const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
+		if ((event.shiftKey && event.key === "Tab")) {
 			console.log("in shift + tab");
-            event.preventDefault();
-            if (bulletStack.length > 1) {
+			event.preventDefault();
+			if (bulletStack.length > 1) {
 				let parentBullet = bulletStack[bulletStack.length - 1].shadowRoot.querySelector("bullet-entry");
-                bulletStack.pop(bulletStack[bulletStack.length - 1]);
-                // unindent the input text
-                BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+				bulletStack.pop(bulletStack[bulletStack.length - 1]);
+				// unindent the input text
+				BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
 				return parentBullet;
-            }
+			}
 			return null;
-        }
-        // Nest by one level on tab
-        else if (event.key === "Tab") {
+		}
+		// Nest by one level on tab
+		else if (event.key === "Tab") {
 			console.log("in + tab");
-            // prevent tab key from moving to next button
-            this.focus();
-            event.preventDefault();
-            const newSublist = document.createElement("bullet-list");
+			// prevent tab key from moving to next button
+			this.focus();
+			event.preventDefault();
+			const newSublist = document.createElement("bullet-list");
 			let parentBullet = bulletStack[bulletStack.length - 1];
 			//console.log("parent");
 			//console.log(parentBullet);
-            bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
-            bulletStack.push(newSublist);
-            // indent the input text
-            BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+			bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
+			bulletStack.push(newSublist);
+			// indent the input text
+			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
 			return parentBullet;
-        }
-    });
+		}
+	});
 	return null;
 }

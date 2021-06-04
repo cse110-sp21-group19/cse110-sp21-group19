@@ -1,6 +1,5 @@
 //weekly nav script
-import {DAYS, MONTHS} from '../components/log-type.js';
-import {router} from './router.js';
+import { router } from './router.js';
 import { getDailyPriority } from "../../Backend/api/bullet_api.js";
 
 
