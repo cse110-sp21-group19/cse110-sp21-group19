@@ -9,4 +9,4 @@ To test the team's indexedDB backend a pure JS in-memory implementation of the I
 
 ## Decision Outcome
 
-We decided to use fake-indexeddb to be able to unit test backend team's database.
+We decided to use fake-indexeddb so we can unit test backend team's database. 
