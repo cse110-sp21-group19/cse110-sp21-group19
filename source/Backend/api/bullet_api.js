@@ -515,3 +515,14 @@ export function getDailyTodo(date) {
 	});
 }
 
+module.exports = {
+    createDB, 
+    createBullet, 
+    updateBullet, 
+    getBullet, 
+    deleteBullet, 
+    getAllPriority, 
+    getDailyBullets, 
+    getDailyTodo, 
+    getDailyPriority
+};
