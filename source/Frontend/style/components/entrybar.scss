@@ -10,10 +10,16 @@
     width: 85%;
     display: flex;
     justify-content: space-between;
+<<<<<<< HEAD
     padding: 2vh 2vw 2vh 2vw;
     min-width: 55%;
     border-radius: 1rem;
     margin-left: 3vw;
+=======
+    padding: 1rem 2rem 1rem 2rem;
+    border-radius: 1rem;
+    margin-left: 1.8rem;
+>>>>>>> cf65456718608473901182411e977cbed4623ca0
 
     .close{
         text-align: left;
@@ -40,8 +46,13 @@
     .new-entry{
         overflow: visible;
         width: 8rem;
+<<<<<<< HEAD
         height: 10vh;
         margin-top: 3vh;
+=======
+        height: 5rem;
+        margin-top: 2rem;
+>>>>>>> cf65456718608473901182411e977cbed4623ca0
     }
     .new-entry:hover{
         cursor: pointer;

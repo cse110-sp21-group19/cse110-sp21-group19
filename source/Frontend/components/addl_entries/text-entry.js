@@ -10,7 +10,7 @@
  *
  * This class represents a single additional text entry
  */
- class textEntry extends HTMLElement{
+class textEntry extends HTMLElement{
 	constructor() {
 		super();
 		// templated HTML content

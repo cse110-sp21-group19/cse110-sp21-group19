@@ -76,6 +76,5 @@ async function createDaysOfWeekArray(date) {
 		currDate.setDate(currDate.getDate() + 1);
 	}
 
-    console.log(daysOfWeek);
 	return daysOfWeek;
 } /* createDaysofWeekArray */

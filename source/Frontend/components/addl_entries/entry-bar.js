@@ -11,7 +11,7 @@ var currKey = 0;
  *
  * This class represents additional entries bar at the bottom of the screen
  */
- class entryBar extends HTMLElement{
+class entryBar extends HTMLElement{
 	constructor() {
 		super();
 	
@@ -228,7 +228,6 @@ var currKey = 0;
 			return "openbar";
 		}
 	}
-
 	/**	Set the 'type' attribute of the entry bar which determines what content to hide/display
 	 * @param {string}
 	 * 
