@@ -35,7 +35,7 @@
         &:hover .wn-date{
             // transition: filter 0.15s linear;
             // filter: brightness(85%);
-            color: $accent;
+            color: $accent2;
             text-decoration: underline;
         }
         .wn-date{
@@ -44,7 +44,7 @@
             margin-top: 0.6rem;
             margin-left: 0.6rem;
             width: 5vw;
-            min-width: 8rem;
+            min-width: rem;
             height: 100%;
             //grid-column-start: 1;
             #day-of-month{
@@ -97,7 +97,7 @@
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: $accent
+    background: $accent;
   }
     }
 }

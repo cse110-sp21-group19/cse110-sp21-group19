@@ -4,17 +4,17 @@ import {binaryHelper, imgToBinary } from "../scripts/binary-helpers.js"
 
 // Add additional entries bar web component
 
-const DATE = document.querySelector("log-type").readLog.header;
-const ADDLENTRYBAR = document.createElement("entry-bar");
-const ADDLENTRIES = document.querySelector(".additional")
+// const DATE = document.querySelector("log-type").readLog.header;
+// const ADDLENTRYBAR = document.createElement("entry-bar");
+// const ADDLENTRIES = document.querySelector(".additional")
 
-let entriesList = await getDailyEntries(DATE);
-let keys = entriesList[0];
-let fetchedEntries = entriesList[1];
+// let entriesList = await getDailyEntries(DATE);
+// let keys = entriesList[0];
+// let fetchedEntries = entriesList[1];
 
-ADDLENTRYBAR.type = "initial";
-ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
-ADDLENTRIES.appendChild(ADDLENTRYBAR);
+// ADDLENTRYBAR.type = "initial";
+// ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
+// ADDLENTRIES.appendChild(ADDLENTRYBAR);
 
 export function formatEntries(entries, keys){
 	let toReturn = [];
