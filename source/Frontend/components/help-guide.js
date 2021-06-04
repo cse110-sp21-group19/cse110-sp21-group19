@@ -26,9 +26,17 @@ class HelpElement extends HTMLElement {
                 <p id="help-element-content"></p>
 			</div>`;
         // create a shadow root for this web component
-		this.attachShadow({ mode: "open" });
+		const shadow = this.attachShadow({ mode: "open" });
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+		// Apply external styles to the shadow dom
+		const bulletEntryStyle = document.createElement("link");
+		bulletEntryStyle.setAttribute("rel", "stylesheet");
+		bulletEntryStyle.setAttribute("href", "style/css/helpguide.css");
+
+		// Attach the created elements to the shadow dom
+		shadow.appendChild(bulletEntryStyle);
     }
 
     get info() {
@@ -73,9 +81,17 @@ class HelpSection extends HTMLElement {
                 <div id="help-section-elements"></div>
 			</div>`;
         // create a shadow root for this web component
-		this.attachShadow({ mode: "open" });
+		const shadow = this.attachShadow({ mode: "open" });
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true))
+
+		// Apply external styles to the shadow dom
+		const bulletEntryStyle = document.createElement("link");
+		bulletEntryStyle.setAttribute("rel", "stylesheet");
+		bulletEntryStyle.setAttribute("href", "style/css/helpguide.css");
+
+		// Attach the created elements to the shadow dom
+		shadow.appendChild(bulletEntryStyle);
     }
 
     get info() {
@@ -96,7 +112,6 @@ class HelpSection extends HTMLElement {
 	 * 					}
 	 */
     set info(info) {
-        console.log("in section.info setter");
         // set title
         const TITLE = this.shadowRoot.getElementById("help-section-title");
         TITLE.innerText = info.sectionTitle;
@@ -118,27 +133,3 @@ class HelpSection extends HTMLElement {
 }
 
 customElements.define("help-section", HelpSection);
-
-/*
-class HelpGuide extends HTMLElement {
-    constructor() {
-        super();
-
-        // templated HTML content
-		const template = document.createElement("template");
-
-		template.innerHTML = `
-			<div class="help-element" id="help-element">
-                <h3 id="help-element-title"></h3>
-                <p id="help-element-content"></p>
-			</div>
-			`;
-        // create a shadow root for this web component
-		const shadow = this.attachShadow({ mode: "open" });
-		// attach cloned content of template to shadow DOM 
-		this.shadowRoot.appendChild(template.content.cloneNode(true))
-    }
-}
-
-customElements.define("help-guide", HelpGuide);
-*/

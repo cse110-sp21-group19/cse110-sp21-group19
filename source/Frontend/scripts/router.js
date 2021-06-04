@@ -241,25 +241,22 @@ function help(){
     // update the header text above main-text area
     let headerText = "Table of Contents";
 
-    //remove the weekly nav menu
+    // TODO: remove the weekly nav menu
     /*
     let weeklyNav = document.querySelector("weekly-nav");
     if(weeklyNav){
         weeklyNav.remove();
     }
     */
+    // TODO: add table of contents
+
+    // TOOD: change main-text header
 
    // clear main-text area
    document.getElementById("main-text").innerText = "";
 
    // add help page data
-   //createHelpPage(helpGuideContent);
-    const MAINTEXT = document.getElementById("main-text");
-    helpGuideContent.forEach(element => {
-        let section = document.createElement("help-section");
-        section.info = element;
-        MAINTEXT.appendChild(section);
-    });
+    createHelpPage(helpGuideContent);
 } /* help */
 
 /**

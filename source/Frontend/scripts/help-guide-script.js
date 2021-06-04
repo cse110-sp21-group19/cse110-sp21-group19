@@ -67,12 +67,18 @@ export const helpGuideContent = [{
 }];
 
 export function createHelpPage(helpContent) {
-    const MAINTEXT = document.getElementById("main-text");
+    const HELPCONTAINER = document.createElement("div");
+    HELPCONTAINER.className = "help-container";
+    console.log(HELPCONTAINER);
+
     helpContent.forEach(element => {
         let section = document.createElement("help-section");
-        //console.log(element);
         console.log("in createHelpPage");
         section.info = element;
-        MAINTEXT.appendChild(section);
+        HELPCONTAINER.appendChild(section);
     });
+
+    // append help-container to main-text area
+    const MAINTEXT = document.getElementById("main-text");
+    MAINTEXT.appendChild(HELPCONTAINER);
 }
