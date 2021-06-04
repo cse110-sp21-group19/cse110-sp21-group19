@@ -1,4 +1,4 @@
-import { createDB, createBullet, getBullet, updateBullet, deleteBullet, getAllPriority, getDailyBullets, getDailyPriority, getDailyTodo } from "./bullet_api.js";
+import { createDB, createBullet, getBullet, updateBullet, deleteBullet, getAllPriority, getDailyBullets, getDailyPriority, getDailyTodo } from "../bullet_api.js";
 
 /* TESTING BULLET API */
 

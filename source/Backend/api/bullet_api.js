@@ -515,6 +515,127 @@ export function getDailyTodo(date) {
 	});
 }
 
+/**
+ * getMonthlyBullets
+ * Returns an array of all bullets that are from the monthly log and have the same month/year
+ * 
+ * @param {Object} - date object containing month/year we want
+ * 
+ * @return {Array} a 2d array of monthly bullets and their keys for the month
+ * 						-[[Keys], [Bullets]]
+ * 
+ * @example getMonthlyBullets()
+ */
+export function getMonthlyBullets(date) {
+	return new Promise((resolve) => {
+		//opening database
+		let request = window.indexedDB.open(DATABASENAME);
+
+		//db opens successfully
+		request.onsuccess = function(){
+			let db = request.result;
+			let transaction = db.transaction([BULLETDB], "readonly");
+			let objStore = transaction.objectStore(BULLETDB);
+			let objStoreRequest = objStore.openCursor(null, "next");
+			let matchingBullets = [];
+			let matchingKeys = [];
+			//Bullet object successfully accessed
+			objStoreRequest.onsuccess = function (e){
+                
+				let cursor = e.target.result;
+				if(cursor != null) {
+					//checking whether bullet belongs to the monthly log
+					if(cursor.value.log == "monthly") {
+						//comparing months
+						let currDate = cursor.value.date;
+						if(currDate.getMonth() == date.getMonth() && currDate.getFullYear() == date.getFullYear()) {
+							matchingBullets.push(cursor.value);
+							matchingKeys.push(cursor.key);
+						}
+					}
+					cursor.continue();
+				} else {
+					resolve([matchingKeys, matchingBullets]);
+				}
+			};
+			//Unable to access bullet object
+			objStoreRequest.onerror = function(){
+				console.log.error(ERR_CANT_ACCESS_BULLET);
+				resolve({});
+			};
+
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+		//unable to open database
+		request.onerror = function(){
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve({});
+		};
+	});
+}
+
+/**
+ * getFutureBullets
+ * Returns an array of all bullets that are the future log, and have the same year
+ * 
+ * @param {Object} - date object containing the year we want to retrive from
+ * 
+ * @return {Array} an array of keys and bullets: [[Keys], [Bullets]]
+ * 
+ * @example getFutureBullets()
+ */
+export function getFutureBullets(date) {
+	return new Promise((resolve) => {
+		//opening database
+		let request = window.indexedDB.open(DATABASENAME);
+
+		//db opens successfully
+		request.onsuccess = function(){
+			let db = request.result;
+			let transaction = db.transaction([BULLETDB], "readonly");
+			let objStore = transaction.objectStore(BULLETDB);
+			let objStoreRequest = objStore.openCursor(null, "next");
+			let matchingBullets = [];
+			let matchingKeys = [];
+			//Bullet object successfully accessed
+			objStoreRequest.onsuccess = function (e){
+                
+				let cursor = e.target.result;
+				if(cursor != null) {
+					//all future bullets
+					if(cursor.value.log == "future") {
+						//Checking year
+						let currDate = cursor.value.date;
+						if(currDate.getFullYear() == date.getFullYear()) {
+							matchingBullets.push(cursor.value);
+							matchingKeys.push(cursor.key);
+						}
+					}
+					cursor.continue();
+				} else {
+					resolve([matchingKeys, matchingBullets]);
+				}
+			};
+			//Unable to access bullet object
+			objStoreRequest.onerror = function(){
+				console.log.error(ERR_CANT_ACCESS_BULLET);
+				resolve({});
+			};
+
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+		//unable to open database
+		request.onerror = function(){
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve({});
+		};
+	});
+}
+
 module.exports = {
     createDB, 
     createBullet, 
@@ -524,5 +645,7 @@ module.exports = {
     getAllPriority, 
     getDailyBullets, 
     getDailyTodo, 
-    getDailyPriority
+	getDailyPriority,
+	getMonthlyBullets,
+	getFutureBullets
 };

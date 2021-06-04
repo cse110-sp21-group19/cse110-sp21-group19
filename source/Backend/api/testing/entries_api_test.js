@@ -1,4 +1,4 @@
-import { createEntry, updateEntry, getEntry, deleteEntry, getDailyEntries } from "./entries_api.js";
+import { createEntry, updateEntry, getEntry, deleteEntry, getDailyEntries } from "../entries_api.js";
 
 /* -----CREATING ENTRY---- */
 let addBtn = document.getElementById("entryadd");
