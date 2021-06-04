@@ -10,7 +10,6 @@ class WeeklyNav extends HTMLElement{
 		super();
 		const template = document.createElement("template");
 
-
 		template.innerHTML = `
 			<h2 class="weekly-nav-title"></h2>
 			<div class="week-container">

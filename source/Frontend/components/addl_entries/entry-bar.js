@@ -1,6 +1,8 @@
+//entry-bar.js
 //import additional entries router
 import { router } from "../../scripts/router.js";
 const setState = router.setState;
+
 //global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
 
