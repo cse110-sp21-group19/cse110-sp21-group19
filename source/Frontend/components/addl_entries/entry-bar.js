@@ -1,5 +1,5 @@
 //import additional entries router
-import { router } from '../../scripts/router.js';
+import { router } from "../../scripts/router.js";
 const setState = router.setState;
 //global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
@@ -9,7 +9,7 @@ var isViewing = false;
  *
  * This class represents additional entries bar at the bottom of the screen
  */
- class entryBar extends HTMLElement{
+class entryBar extends HTMLElement{
 	constructor() {
 		super();
 	
@@ -96,7 +96,7 @@ var isViewing = false;
 				//change the mode to is viewing
 				isViewing = true;
 				//hide and display relevant components
-				mainText.style.display="none"
+				mainText.style.display="none";
 				initial.style.display="none";
 				editing.style.display="block";
 				deleteButton.style.display="block";
@@ -233,7 +233,7 @@ var isViewing = false;
 			exitBtn.addEventListener("click", function(){
 				//discard changes made to the content displayed in the editing panel
 				title.innerText="Add Title";
-				content.innerText="Add note here..."
+				content.innerText="Add note here...";
 				window.location.hash = "";
 				const DATE = document.querySelector("log-type").readLog.date;
 				setState("viewing-addl-entries", false, DATE);

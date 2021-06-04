@@ -1,6 +1,6 @@
 //weekly nav script
-import {DAYS, MONTHS} from '../components/log-type.js';
-import {router} from './router.js';
+import {DAYS, MONTHS} from "../components/log-type.js";
+import {router} from "./router.js";
 let today = new Date();
 createWeeklyNav(today);
 let WEEKLYNAV = document.querySelector("weekly-nav");
@@ -17,29 +17,29 @@ WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity =
  *  createWeeklyNav(date)
  */
 export function createWeeklyNav(date) {
-    //adding weekly navigation web component
-    let week = createDaysOfWeekArray(date);
-    const WEEKLYNAV = document.createElement("weekly-nav");
-    WEEKLYNAV.daysOfWeek = week;
-    WEEKLYNAV.selectedDay = date.getDay() + 1;
-    document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
-    //Onclick listener for the items inside the weekly nav
-    WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "0";
-    WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
-    const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
-    weeklyNavContainer.addEventListener("click", (event)=>{
-        if(event.target.className == "wn-item"){
-            //which day was selected
-            let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
-            WEEKLYNAV.selectedDay = index;
+	//adding weekly navigation web component
+	let week = createDaysOfWeekArray(date);
+	const WEEKLYNAV = document.createElement("weekly-nav");
+	WEEKLYNAV.daysOfWeek = week;
+	WEEKLYNAV.selectedDay = date.getDay() + 1;
+	document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
+	//Onclick listener for the items inside the weekly nav
+	WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "0";
+	WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
+	const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
+	weeklyNavContainer.addEventListener("click", (event)=>{
+		if(event.target.className == "wn-item"){
+			//which day was selected
+			let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
+			WEEKLYNAV.selectedDay = index;
 
-            //get the newly selected date and update router
-            let selectedDate = WEEKLYNAV.selectedInfo;
-            router.setState("daily-log", false, selectedDate, "weekly-nav");
+			//get the newly selected date and update router
+			let selectedDate = WEEKLYNAV.selectedInfo;
+			router.setState("daily-log", false, selectedDate, "weekly-nav");
            
-        }
+		}
 
-    });
+	});
 } /* createWeeklyNav */
 
 
