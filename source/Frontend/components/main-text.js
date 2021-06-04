@@ -194,19 +194,13 @@ class BulletEntry extends HTMLElement {
 	 *      this.entry
 	 */
 	get entry() {
-		const LOGTYPE = document.querySelector("log-type").readLog;
-		console.log(LOGTYPE);
 		const BULLETTYPEELEM = this.shadowRoot.getElementById("bullet-type").innerHTML;
-		console.log("LOGTYPE.TYPE: " + LOGTYPE.type);
-		console.log("LOGTYPE.DATE: " + LOGTYPE.date);
 		let entryObj = {
-			"log": LOGTYPE.type,
-			"date": LOGTYPE.date,
-			"priority": false,
-			"content": this.shadowRoot.getElementById("bullet-inputted").value,
-			"completed": false,
 			"type": BULLETTYPEELEM,
-			"children": []
+			"date": "", // FIXME
+			"content": this.shadowRoot.getElementById("bullet-inputted").value,
+			"priority": false,
+			"completed": false
 		};
 
 		// set priority value
