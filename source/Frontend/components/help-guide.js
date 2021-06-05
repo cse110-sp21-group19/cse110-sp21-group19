@@ -133,3 +133,50 @@ class HelpSection extends HTMLElement {
 }
 
 customElements.define("help-section", HelpSection);
+
+
+class HelpTableOfContents extends HTMLElement {
+	constructor() {
+		super();
+		const template = document.createElement("template");
+
+		template.innerHTML = `
+			<h2 class="help-nav-title">Table of Contents</h2>
+			<div class="help-toc-container">
+			</div>
+		`;
+
+		//const shadow = 
+		this.attachShadow({ mode: "open" });
+		// attach cloned content of template to shadow DOM 
+		this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+		/*
+		// Apply external styles to the shadow dom
+		const linkElem = document.createElement("link");
+		linkElem.setAttribute("rel", "stylesheet");
+		// NOTE: it's important that you do NOT include the slash before "style/css/..."
+		linkElem.setAttribute("href", "style/css/weeklynav.css");
+
+		// Attach the created elements to the shadow dom
+		shadow.appendChild(linkElem);
+		*/
+	}
+
+	get contents() {
+		return null;
+	}
+
+	set contents(contents) {
+		let tocContainer = this.shadowRoot.querySelector(".help-toc-container");
+		contents.forEach(element => {
+			let tocLink = document.createElement("div");
+			tocLink.className = "toc-link";
+			tocLink.id = "toc-link";
+			tocLink.innerText = element.sectionTitle;
+			tocContainer.appendChild(tocLink);
+		});
+	}
+}
+
+customElements.define("help-toc", HelpTableOfContents);

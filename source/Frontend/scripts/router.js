@@ -238,25 +238,52 @@ function help(){
 
     const LOGTYPE = document.querySelector("log-type");
     let d = new Date();
-    // update the header text above main-text area
-    let headerText = "Table of Contents";
 
     // TODO: remove the weekly nav menu
-    /*
     let weeklyNav = document.querySelector("weekly-nav");
     if(weeklyNav){
         weeklyNav.remove();
     }
-    */
-    // TODO: add table of contents
 
-    // TOOD: change main-text header
+
+    // change main-text header
+    document.querySelector("log-type").shadowRoot.querySelector("h1").innerText = "Help Guide";
 
    // clear main-text area
    document.getElementById("main-text").innerText = "";
 
    // add help page data
     createHelpPage(helpGuideContent);
+    
+    // TODO: add table of contents
+    const HELPSEC = document.querySelectorAll("help-section");
+            console.log(HELPSEC)
+    console.log(document.querySelector(".help-container").childNodes)
+    /*
+    HELPSEC.forEach(element => {
+        let sectionHeader = element.shadowRoot.getElementById("help-section");
+        let scrollPos = sectionHeader.offsetTop;
+        document.querySelector(".help-container").scrollTop = scrollPos;
+    });
+    */
+    const HELPTOC = document.createElement("help-toc");
+    HELPTOC.contents = helpGuideContent;
+    document.getElementById("weekly-nav-container").appendChild(HELPTOC);
+
+    HELPTOC.shadowRoot.querySelector(".help-toc-container").childNodes.forEach((element, index) => {
+        element.addEventListener("click", () => {
+            //console.log(HELPSEC[index].shadowRoot.getElementById("help-section-title"))
+            if (HELPSEC[index-1]) {
+            let sectionHeader = HELPSEC[index-1].shadowRoot.getElementById("help-section-title");
+            console.log(HELPSEC[index-1].shadowRoot.getElementById("help-section-title").innerText);
+            let scrollPos = sectionHeader.offsetTop;
+            document.querySelector(".help-container").scrollTop = scrollPos + 25;
+            }
+            
+        });
+    });
+
+
 } /* help */
 
 /**

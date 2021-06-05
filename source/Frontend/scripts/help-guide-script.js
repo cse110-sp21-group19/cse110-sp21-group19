@@ -82,3 +82,8 @@ export function createHelpPage(helpContent) {
     const MAINTEXT = document.getElementById("main-text");
     MAINTEXT.appendChild(HELPCONTAINER);
 }
+
+export function createHelpToc(helpContent) {
+    const HELPTOC = document.createElement("help-toc");
+    HELPTOC.contents = helpContent;
+}
