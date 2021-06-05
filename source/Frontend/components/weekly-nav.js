@@ -1,25 +1,15 @@
-<<<<<<< HEAD
-=======
 //weekly-nav.js
->>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
 const SELECTEDRADIUS = "0.2rem";
 const DEFAULTBORDERLEFT = null;
 const DEFAULTRADIUS = null;
 
-<<<<<<< HEAD
-=======
 //<weekly-nav> custom web component
->>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 class WeeklyNav extends HTMLElement{
 	constructor() {
 		super();
 		const template = document.createElement("template");
 
-<<<<<<< HEAD
-		//TODO: Fix the styling
-=======
->>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 		template.innerHTML = `
 			<h2 class="weekly-nav-title"></h2>
 			<div class="week-container">
@@ -234,8 +224,5 @@ function getWeeklyNavTitle(first, last){
 	return title;
 }/* getWeeklyNavTitle */
 
-<<<<<<< HEAD
-=======
 // Define a custom element for the weekly nav web component   
->>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 customElements.define("weekly-nav", WeeklyNav);

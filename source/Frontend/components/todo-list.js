@@ -1,14 +1,6 @@
-<<<<<<< HEAD
-const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
-const SELECTEDRADIUS = "0.2rem";
-const DEFAULTBORDERLEFT = null;
-const DEFAULTRADIUS = null;
-
-=======
 //todolist.js
 
 //TODO: Complete this webcomponent
->>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 class TodoList extends HTMLElement{
 	constructor() {
 		super();
@@ -49,101 +41,6 @@ class TodoList extends HTMLElement{
 		//TODO
 	}
 
-<<<<<<< HEAD
-	/**
-	 * get selectedInfo
-	 * Get the date info of the item selected.
-	 * @param {}
-	 * @returns An object containing the date info of the current selected item in
-	 * the weekly nav menu.
-	 * 
-	 * @example
-	 *      this.selectedInfo
-	 */
-	get selectedInfo (){
-
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
-
-		//iterate over weekly nav items and return info of item with border
-		//(the one with a border is the selected one) 
-		let dateObj;
-		for(let i = 1; i < navContainer.childNodes.length; i++){
-			let currItem = navContainer.childNodes[i];
-			if(currItem.style.borderLeft == SELECTEDBORDERLEFT){
-				dateObj = {
-					"day": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-week']").textContent,
-					"date": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-month']").textContent,
-					"month": currItem.querySelector("p").textContent
-				};
-			}
-		}
-		return dateObj;
-	}/* get selectedInfo */
-
-	/**
-	 * set selectedDay 
-	 * Set an item in the list as selected.
-	 * 
-	 * @param {number} day - The day of the week of the item that is to be styled 
-	 * as selected.
-	 * 
-	 * @example
-	 *      this.selectedDay = day
-	 */
-	set selectedDay(day){
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
-
-		for(let i = 1; i < navContainer.childNodes.length; i++){
-			if(i == day){
-				navContainer.childNodes[i].style.borderTopLeftRadius = SELECTEDRADIUS;
-				navContainer.childNodes[i].style.borderBottomLeftRadius = SELECTEDRADIUS;
-				//navContainer.childNodes[i].style.border = "0.2rem solid darkgreen";
-				navContainer.childNodes[i].style.borderLeft = SELECTEDBORDERLEFT;
-			}
-			else{
-				navContainer.childNodes[i].style.borderTopLeftRadius = DEFAULTRADIUS;
-				navContainer.childNodes[i].style.borderBottomLeftRadius = DEFAULTRADIUS;
-				navContainer.childNodes[i].style.borderLeft = DEFAULTBORDERLEFT;
-			}
-		}
-	} /* set seletedDay */
 }
 
-
-/**
- * getDateString 
- * Converts integer day of week to its related string.
- * 
- * @param {number} day - An integer of the day of the week (0-6).
- * 
- * @returns A string of the related day of the week of the parameter.
- * 
- * @example
- *      getDateString(day)
- */
-function getDateString(day){
-	switch(day){
-	case 0:
-		return "Sunday";
-	case 1:
-		return "Monday";
-	case 2:
-		return "Tuesday";
-	case 3:
-		return "Wednesday";
-	case 4:
-		return "Thursday";
-	case 5:
-		return "Friday";
-	case 6:
-		return "Saturday";
-	default:
-		return "Sunday";
-	}
-}/* getDateString */
-
-=======
-}
-
->>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 customElements.define("todo-list", TodoList);

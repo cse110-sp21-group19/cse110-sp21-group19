@@ -1,26 +1,11 @@
 // script.js
 import { router } from "./router.js";
-<<<<<<< HEAD
-import { createWeeklyNav } from "./weekly-nav-script.js";
-import { closeMenu } from "./side-nav-script.js";
-
-import { createDB } from "../../Backend/api/bullet_api.js";
-const SIDENAV  = document.querySelector("side-nav");
-const SIDENAVROOT  = SIDENAV.shadowRoot;
-
-// create database
-document.addEventListener("DOMContentLoaded", () => {
-	createDB();
-});
-
-=======
 //import { createWeeklyNav } from "./weekly-nav-script.js";
 import { closeMenu } from "./side-nav-script.js";
 
 const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
 
->>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 // When the back button is hit, set the state with the new page
 window.addEventListener("popstate", e => {
 	console.log("in popstate");
