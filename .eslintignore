@@ -1,6 +1,6 @@
 *.json
 *.md
 *.css
+*.css.map
 *.html
-*.sass
 *.scss

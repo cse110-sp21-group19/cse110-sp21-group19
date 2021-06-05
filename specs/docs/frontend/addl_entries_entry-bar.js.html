@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/addl_entries/entry-bar.js</title>
+    <title>JSDoc: Source: addl_entries/entry-bar.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/addl_entries/entry-bar.js</h1>
+    <h1 class="page-title">Source: addl_entries/entry-bar.js</h1>
 
     
 
@@ -26,18 +26,7 @@
     
     <section>
         <article>
-<<<<<<< HEAD
-            <pre class="prettyprint source linenums"><code>//import additional entries router
-import { router } from "../../scripts/router.js";
-const setState = router.setState;
-=======
-            <pre class="prettyprint source linenums"><code>//entry-bar.js
-//import additional entries router
-import { router } from "../../scripts/router.js";
-const setState = router.setState;
-
->>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
-//global variable to keep track of whether user is viewing an existing entry or creating a new one
+            <pre class="prettyprint source linenums"><code>//global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
 
 /**
@@ -156,8 +145,8 @@ class entryBar extends HTMLElement{
 				//append the newly created entry
 				innerBar.appendChild(newNote);
 				//set the state to redirect back to homepage
-				const DATE = document.querySelector("log-type").readLog.date;
-				setState("viewing-addl-entries", false, DATE);	
+				mainText.style.display = "block";
+				document.querySelector("entry-bar").type="openbar";	
 				title.innerText="Add Title";
 				content.innerText="Add note here...";
 			}
@@ -184,8 +173,8 @@ class entryBar extends HTMLElement{
 					innerBar.children[0].style.marginLeft = "1rem";
 				}
 				//set the state and redirect to homepage
-				const DATE = document.querySelector("log-type").readLog.date;
-				setState("viewing-addl-entries", false, DATE);
+				mainText.style.display = "block";
+				document.querySelector("entry-bar").type="openbar";
 				//hide the delete button and reset the content to display in the editing panel
 				deleteButton.style.display="none";
 				title.innerText=" Add Title";
@@ -204,12 +193,8 @@ class entryBar extends HTMLElement{
 	get type(){
 		let initial = this.shadowRoot.querySelector(".initial");
 		let activeBar = this.shadowRoot.querySelector(".active-bar");
-<<<<<<< HEAD
-
-=======
-		//Cory - I added this to fix the linting, not sure if its needed
 		let editing = this.shadowRoot.querySelector(".editing");
->>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
+
 		if (initial.style.display == "block" &amp;&amp; activeBar.style.display == "none"){
 			return "initial";
 		}
@@ -232,6 +217,7 @@ class entryBar extends HTMLElement{
 		let activeBar = this.shadowRoot.querySelector(".active-bar");
 		let closeBtn = this.shadowRoot.querySelector(".close");
 		let newEntry = this.shadowRoot.querySelector(".new-entry");
+		let mainText = document.querySelector(".main-text");
 		
 		if(type == "initial"){
 			initial.style.display="block";
@@ -253,8 +239,8 @@ class entryBar extends HTMLElement{
 			newEntry.addEventListener("click", function(){
 				//since we are adding a new entry, set the is viewing mode to false
 				isViewing = false;
-				const DATE = document.querySelector("log-type").readLog.date;
-				setState("new-addl-entry", false, DATE);
+				mainText.style.display = "none";
+				document.querySelector("entry-bar").type="editing";
 			});
 
 		}
@@ -276,8 +262,8 @@ class entryBar extends HTMLElement{
 				title.innerText="Add Title";
 				content.innerText="Add note here...";
 				window.location.hash = "";
-				const DATE = document.querySelector("log-type").readLog.date;
-				setState("viewing-addl-entries", false, DATE);
+				mainText.style.display = "block";
+				document.querySelector("entry-bar").type="openbar";
 			});
 
 		}
@@ -314,17 +300,13 @@ function createEntry(title, content){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="entryBar.html">entryBar</a></li><li><a href="textEntry.html">textEntry</a></li></ul><h3>Global</h3><ul><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="entryBar.html">entryBar</a></li><li><a href="textEntry.html">textEntry</a></li></ul><h3>Global</h3><ul><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-<<<<<<< HEAD
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 03 2021 23:10:35 GMT+0000 (Coordinated Universal Time)
-=======
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Jun 04 2021 04:45:20 GMT+0000 (Coordinated Universal Time)
->>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Jun 04 2021 02:30:24 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

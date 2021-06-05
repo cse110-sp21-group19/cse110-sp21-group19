@@ -1,6 +1,8 @@
+//entry-bar.js
 //import additional entries router
 import { router } from "../../scripts/router.js";
 const setState = router.setState;
+
 //global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
 
@@ -168,7 +170,8 @@ class entryBar extends HTMLElement{
 	get type(){
 		let initial = this.shadowRoot.querySelector(".initial");
 		let activeBar = this.shadowRoot.querySelector(".active-bar");
-
+		//Cory - I added this to fix the linting, not sure if its needed
+		let editing = this.shadowRoot.querySelector(".editing");
 		if (initial.style.display == "block" && activeBar.style.display == "none"){
 			return "initial";
 		}

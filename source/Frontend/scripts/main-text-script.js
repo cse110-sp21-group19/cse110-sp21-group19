@@ -2,7 +2,10 @@
 
 // Constants for different bullet types
 import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
+<<<<<<< HEAD
 import { createBullet, updateBullet } from "../../Backend/api/bullet_api.js";
+=======
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 
 // BULLET STUFF
 // DOM Elements
@@ -25,9 +28,15 @@ MAINTEXT.appendChild(BULLETS);
 MAINTEXT.appendChild(INPUT);
 
 
+<<<<<<< HEAD
 const MAINTEXTHEADER = document.querySelector("#date > h1");
 
 INPUT.addEventListener("keyup", async function(event) {
+=======
+//const MAINTEXTHEADER = document.querySelector("#date > h1");
+
+INPUT.addEventListener("keyup", function(event) {
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 	if (event.key === "Enter") {
 		event.preventDefault();
 
@@ -49,15 +58,23 @@ INPUT.addEventListener("keyup", async function(event) {
 		// clear INPUT value after enter
 		BULLETINPUT.value = "";
 
+<<<<<<< HEAD
 		// TODO: add new bullet to DB
 		let bulletKey = await createBullet(newBullet.entry);
 
 		editableEntry(bulletKey, newBullet);
+=======
+		editableEntry(newBullet);
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 		prioritizeEntry(newBullet);
 		completeTask(newBullet);
 		deleteEntry(newBullet);
 
+<<<<<<< HEAD
 		
+=======
+		// TODO: add new bullet to DB
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 	}
 });
 
@@ -65,13 +82,21 @@ INPUT.addEventListener("keyup", async function(event) {
 /** 
  * editableEntry
  * Allow each bullet entry to be edited on a double click.
+<<<<<<< HEAD
  * @param {Number} key - The bullet key returned by the database.
  * @param {object} entry - A bullet-entry element.
+=======
+ * @param {object} - A bullet-entry element.
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
  *
  * @example
  *     editableEntry();
  */
+<<<<<<< HEAD
 function editableEntry(key, entry) {
+=======
+function editableEntry(entry) {
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 	let bulletEntryRoot = entry.shadowRoot;
 	const bulletEntry = bulletEntryRoot.querySelector(".bullet-entry");
 	const inputted = bulletEntryRoot.getElementById("bullet-inputted");
@@ -87,7 +112,10 @@ function editableEntry(key, entry) {
 			if (event.key === "Enter") {
 				inputted.readOnly = true;
 				hoverMsg.innerHTML = "Double click to edit note";
+<<<<<<< HEAD
 				updateBullet(key, entry.entry);
+=======
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 			}
 		});
 		// TODO: after click away from entry, return to 'readyOnly' mode
@@ -101,7 +129,10 @@ function editableEntry(key, entry) {
         */
 
 		// TODO: update edited bullet to DB
+<<<<<<< HEAD
 		//console.log(entry);
+=======
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 	}
 } /* editableEntry */
 

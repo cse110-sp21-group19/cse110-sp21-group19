@@ -87,8 +87,8 @@ class LogType extends HTMLElement {
 	 */
 	set updateLog(logObj) {
 		// update class name
-		let logType = this.shadowRoot.getElementById("header").className;
-		logType = logObj.type;
+		let logType = this.shadowRoot.getElementById("header");
+		logType.className = logObj.type;
 
 		// update date associated with page
 		let logDate = this.shadowRoot.getElementById("js-date-obj");

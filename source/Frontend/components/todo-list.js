@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
 const SELECTEDRADIUS = "0.2rem";
 const DEFAULTBORDERLEFT = null;
 const DEFAULTRADIUS = null;
 
+=======
+//todolist.js
+
+//TODO: Complete this webcomponent
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 class TodoList extends HTMLElement{
 	constructor() {
 		super();
@@ -43,6 +49,7 @@ class TodoList extends HTMLElement{
 		//TODO
 	}
 
+<<<<<<< HEAD
 	/**
 	 * get selectedInfo
 	 * Get the date info of the item selected.
@@ -135,4 +142,8 @@ function getDateString(day){
 	}
 }/* getDateString */
 
+=======
+}
+
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 customElements.define("todo-list", TodoList);

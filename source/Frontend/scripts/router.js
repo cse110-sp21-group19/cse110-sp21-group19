@@ -2,6 +2,7 @@
 
 import { createWeeklyNav } from "./weekly-nav-script.js";
 import { DAYS, MONTHS } from "../components/log-type.js";
+<<<<<<< HEAD
 import { closeMenu } from "./side-nav-script.js";
 import { createToDoList } from "./todo-script.js";
 
@@ -12,6 +13,11 @@ export const router = {};
 // weekly-nav elements
 const WEEKLYNAV = document.querySelector("weekly-nav");
 const WEEKLYNAVCONTAINER = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
+=======
+
+export const router = {};
+
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 
 //FIX LATER:router copied from lab to get things going
 /**

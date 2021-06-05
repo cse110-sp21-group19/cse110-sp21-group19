@@ -1,5 +1,8 @@
 //side-nav-script.js
+<<<<<<< HEAD
 import {DAYS, MONTHS} from "../components/log-type.js";
+=======
+>>>>>>> da87fdbd29ca6f887fceb177fc8833fad3c1309d
 
 const MENUHEIGHT = "89vh";
 const BORDERADIUS = "0.8em";
