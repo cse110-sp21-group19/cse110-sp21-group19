@@ -76,3 +76,22 @@ svg, input[type=text] {
     vertical-align: middle;
     display: inline-block;
 }
+
+.entry.dark-mode {
+    .bullet-entry {
+        &:hover {
+            background-color: $dark;
+        }
+    }
+    #bullet-inputted {
+        color: white;
+    }
+
+    button {
+        svg {
+            path {
+                fill: white;
+            }
+        }
+    }
+}

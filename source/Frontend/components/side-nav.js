@@ -3,6 +3,10 @@ const FUTURE = "Future Log";
 const DAILY = "Daily Log";
 const MONTHLY = "Monthly Log";
 
+//export const SUN = "http://upir.ir/images/3h5bm7om60h8p238b15.svg";
+//export const MOON = "http://upir.ir/images/naf6siuc4jn3eqjb9380.svg";
+import { SUN } from "./icons.js";
+
 //const DHASH = "#daily-log";
 //const MHASH = "#monthly-log";
 //const FHASH = "#future-log";
@@ -20,6 +24,12 @@ class SideNav extends HTMLElement{
         //         </ul>
         //     </div>
 		template.innerHTML = `
+			<style>
+				svg {
+					width: 2rem;
+					height: 2rem;
+				}
+			</style>
 			<div id="burger-and-title" class="burger-and-title">
 				<div class="burger" id="side-nav-burger">
 					<div class="x" id="x"></div>
@@ -30,6 +40,9 @@ class SideNav extends HTMLElement{
 			</div>
 			<div class="side-nav-menu-container">
 				<div class="side-nav-menu" id="side-nav-menu">
+					<div class="color-mode-container">
+						${SUN}
+					</div>
 					<ul>
 						<li><a id="sn-daily-log" class="sn-link" href="#">${DAILY}</a></li>
 						<li><a id="sn-monthly-log" class="sn-link" href="#">${MONTHLY}</a></li>

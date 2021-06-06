@@ -1,8 +1,14 @@
 //side-nav-script.js
 import {DAYS, MONTHS} from '../components/log-type.js';
+import { SUN, MOON } from "../components/icons.js";
 
 const MENUHEIGHT = "89vh";
 const BORDERADIUS = "0.8em";
+
+const LIGHT =  "#E5E5E5";
+const DARK  = "#181A18";
+const WHITE =  "white";
+const BLACK =  "black";
 
 //Adding the side nav menu web component 
 
@@ -80,3 +86,68 @@ export function closeMenu(){
 
 
 }/* closeMenu */
+
+/**
+ * colorToggle
+ * Allows user to click on the sun/moon icon in the side navigation to change 
+ * the color theme to light/dark mode.
+ * 
+ * @example
+ * 	colorToggle()
+ */
+//export function colorToggle() {
+    const BODY = document.querySelector("body");
+    const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
+
+
+    COLORCONTAINER.addEventListener("click", () => {
+        const IMG = COLORCONTAINER.querySelector("svg");
+        const WNITEMS = document.querySelector("weekly-nav").shadowRoot.querySelectorAll(".wn-item");
+        const BULLETINPUTROOT = document.querySelector("bullet-input").shadowRoot;
+        const BULLETINPUT = BULLETINPUTROOT.querySelector(".new-bullet");
+        const BULLETSELECTOR = BULLETINPUTROOT.getElementById("bullet-type");
+        const BULLETINPUTBAR = BULLETINPUTROOT.getElementById("bullet-input");
+        // if it is currently light mode, switch to dark
+        //if (IMG.id === "light-mode") {
+        if (IMG.id === "") {
+            COLORCONTAINER.innerHTML = MOON;
+            IMG.id = "dark-mode";
+            BODY.className = "dark-mode";
+
+            WNITEMS.forEach(element => {
+                element.style.background = DARK;
+            });
+            BULLETINPUT.style.background = DARK;
+            BULLETINPUTBAR.style.color = WHITE;
+            BULLETSELECTOR.style.color = WHITE;
+
+            const BULLETLISTEL = document.querySelectorAll("bullet-list");
+            BULLETLISTEL.forEach(element => {
+                element.shadowRoot.querySelectorAll("bullet-entry").forEach(element => {
+                    element.shadowRoot.querySelector(".entry").className += " dark-mode";
+                });
+            });
+        }
+        // else if it is currently dark mode, switch to light
+        else {
+            COLORCONTAINER.innerHTML = SUN;
+            IMG.id = "light-mode";
+            BODY.className = "";
+            WNITEMS.forEach(element => {
+                element.style.background = WHITE;
+            });
+            BULLETINPUT.style.background = LIGHT;
+            BULLETINPUTBAR.style.color = BLACK;
+            BULLETSELECTOR.style.color = BLACK;
+
+            const BULLETLISTEL = document.querySelectorAll("bullet-list");
+            BULLETLISTEL.forEach(element => {
+                element.shadowRoot.querySelectorAll("bullet-entry").forEach(element => {
+                    element.shadowRoot.querySelector(".entry").className = "entry";
+                });
+            });
+        }
+        closeMenu();
+    })
+
+//} /* colorToggle */

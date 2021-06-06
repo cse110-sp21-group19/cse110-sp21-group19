@@ -179,6 +179,11 @@ class BulletEntry extends HTMLElement {
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(bulletEntryStyle);
 
+		// dark mode class
+		if (document.body.className == "dark-mode") {
+			this.shadowRoot.querySelector(".entry").className += " dark-mode";
+		}
+
 		this.shadowRoot.getElementById("prioritize-bullet").innerHTML = NOTPRIORITY;
 		this.shadowRoot.getElementById("bullet-type").innerHTML = NOTEBULLET;
 	}

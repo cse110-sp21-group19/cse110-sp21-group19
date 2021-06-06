@@ -164,4 +164,16 @@ svg, input[type=text] {
   vertical-align: middle;
   display: inline-block;
 }
+
+.entry.dark-mode .bullet-entry:hover {
+  background-color: #181A18;
+}
+
+.entry.dark-mode #bullet-inputted {
+  color: white;
+}
+
+.entry.dark-mode button svg path {
+  fill: white;
+}
 /*# sourceMappingURL=bulletentry.css.map */

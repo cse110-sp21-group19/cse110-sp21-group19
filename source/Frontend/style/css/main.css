@@ -146,6 +146,12 @@ body .side-nav-container {
   display: grid;
 }
 
+/* dark mode */
+body.dark-mode {
+  background: #181A18;
+  color: #E5E5E5;
+}
+
 /* Components */
 /* Main Text - Manda */
 .main-text {
@@ -154,5 +160,10 @@ body .side-nav-container {
   background: white;
   padding: 2rem;
   margin: 0 1rem;
+}
+
+/* dark mode */
+body.dark-mode .main-text {
+  background: black;
 }
 /*# sourceMappingURL=main.css.map */

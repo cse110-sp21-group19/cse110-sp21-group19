@@ -44,3 +44,9 @@ body {
         //grid-template-columns: 30% 70%;
     }
 }
+
+/* dark mode */
+body.dark-mode {
+    background: $dark;
+    color: $light;
+}

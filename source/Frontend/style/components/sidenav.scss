@@ -96,6 +96,19 @@
             }
         
         }
+        .color-mode-container {
+            text-align: right;
+            padding: 0 3rem;
+            svg {
+                width: 2rem;
+                height: 2rem;
+                cursor: pointer;
+                fill: white;
+                &:hover {
+                    fill: black;
+                }
+            }
+        }
     }
 }
 

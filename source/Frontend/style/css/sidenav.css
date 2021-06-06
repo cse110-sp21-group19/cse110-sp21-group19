@@ -119,4 +119,20 @@
   font-size: 2em;
   cursor: pointer;
 }
+
+.side-nav-menu-container .side-nav-menu .color-mode-container {
+  text-align: right;
+  padding: 0 3rem;
+}
+
+.side-nav-menu-container .side-nav-menu .color-mode-container svg {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  fill: white;
+}
+
+.side-nav-menu-container .side-nav-menu .color-mode-container svg:hover {
+  fill: black;
+}
 /*# sourceMappingURL=sidenav.css.map */
