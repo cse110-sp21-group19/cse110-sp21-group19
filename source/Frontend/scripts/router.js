@@ -9,6 +9,7 @@ import { updateAddlEntries, formatEntries } from "./addl-entries-script.js";
 
 import { createNewBullets, nestedBullets, bulletsFromDB } from "./main-text-script.js";
 import { getDailyBullets } from "../../Backend/api/bullet_api.js";
+import { createFutureNav } from "./future-nav-script.js";
 
 export const router = {};
 
@@ -91,12 +92,18 @@ export async function dailyLog(date, from){
               }, 300);
             }
         else if(from == "monthly-log" || from == "side-nav"){
-            console.log("FROM SIDE NAV OR MONTHYL")
-            let CAL = document.querySelector("calendar-component");
-            CAL.remove();
-
-			let TODO = document.querySelector("todo-list");
-            TODO.remove();
+            const CAL = document.querySelector("calendar-component");
+			const TODO = document.querySelector("todo-list");
+            const FUTURENAV = document.querySelector("future-nav");
+            if(CAL){
+                CAL.remove();
+            }
+            if(TODO){
+                TODO.remove();  
+            }
+            if(FUTURENAV){
+                FUTURENAV.remove();  
+            }
                 await createWeeklyNav(date);
             WEEKLYNAV = document.querySelector("weekly-nav");
             WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
@@ -187,9 +194,13 @@ async function monthlyLog(date){
         }
         LOGTYPE.updateLog = MONTHLYINFO;
 
-        let WEEKLYNAV = document.querySelector("weekly-nav");
+        const WEEKLYNAV = document.querySelector("weekly-nav");
+        const FUTURENAV = document.querySelector("future-nav");
         if(WEEKLYNAV){
             WEEKLYNAV.remove();
+        }
+        if(FUTURENAV){
+            FUTURENAV.remove();  
         }
         let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
         console.log(firstDay.getMonth());
@@ -229,10 +240,20 @@ function futureLog(){
 	LOGTYPE.updateLog = FUTUREINFO;
 
 	//remove the weekly nav menu
-	let weeklyNav = document.querySelector("weekly-nav");
-	if(weeklyNav){
-		weeklyNav.remove();
+	const WEEKLYNAV = document.querySelector("weekly-nav");
+    const CAL = document.querySelector("calendar-component");
+    const TODO = document.querySelector("todo-list");
+	if(WEEKLYNAV){
+		WEEKLYNAV.remove();
 	}
+    if(CAL){
+        CAL.remove();
+    }
+    if(TODO){
+        TODO.remove();  
+    }
+
+    createFutureNav(d);
 } /* futureLog */
 
 /**

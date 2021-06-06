@@ -28,13 +28,16 @@
             display: flex;
             background: white;
             border-radius: 0.5rem;
-            grid-template-rows: 1;
-            grid-template-columns: auto auto;
             &:hover{
                 filter: brightness(90%);
             }
-            .todo-date{
-                            
+            .no-items{
+              pointer-events: none;
+              font-size: 1.5em;
+              font-weight: bold;
+              padding: 1rem 2rem;
+            }
+            .todo-date{                       
                 pointer-events: none;
                 margin-top: 0.6rem;
                 margin-left: 0.6rem;
@@ -44,13 +47,13 @@
                 #day-of-month{
                     font-size: 1.1em;
                     font-weight: bold;
-                  }
-                  #day-of-week{
+                }
+                #day-of-week{
                       padding: 0 0.35em;
                       font-family: $sans-serif;
                       font-weight: lighter;
                       font-size: 1.1em;
-                  }
+                }
             }
             .todo-bullets-container{
                 flex-grow: 2;
@@ -93,4 +96,3 @@
       }
     
 }
-

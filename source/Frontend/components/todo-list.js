@@ -8,6 +8,11 @@ class TodoList extends HTMLElement{
 		template.innerHTML = `
 			<h2 class="todo-title">To-Do List</h2>
 			<div class="todo-container">
+				<div class ="scroll-container">
+					<div class="todo-item">
+						<div class="no-items">Nothing To Do!</div>
+					</div>
+				</div>
 			</div>
 		`;
 
@@ -35,60 +40,59 @@ class TodoList extends HTMLElement{
 
 
 	set todoList(list){
-		const todoContainer = this.shadowRoot.querySelector(".todo-container");
+		const scrollContainer = this.shadowRoot.querySelector(".scroll-container");
+
+		 if(list.length > 0){
+		 	scrollContainer.innerHTML = "";
+			list.forEach(element =>{
+				let day = getDateString(element.date.getDay());
+				let date = element.date.getDate();
+				let bullets = element.bullets;
+
+				let todoBullets = document.createElement("div");
+				todoBullets.className = "todo-bullets-container";
+				bullets.forEach(bullet=>{
+					let bulletElem = document.createElement("div");
+					bulletElem.className = "todo-bullet";
+					let bulletType = document.createElement("span");
+					bulletType.id = "bullet-type";
+					if(bullet.completed){
+						bulletType.innerHTML = TASKCOMPLETE;
+						bulletElem.style.textDecoration = "line-through";
+					}
+					else{
+						bulletType.innerHTML = TASKBULLET;
+					}
 		
-		let scrollContainer = document.createElement("div");
-		scrollContainer.className = "scroll-container";
-		console.log(todoContainer);
-		list.forEach(element =>{
-			let day = getDateString(element.date.getDay());
-			let date = element.date.getDate();
-			let bullets = element.bullets;
-
-			let todoBullets = document.createElement("div");
-			todoBullets.className = "todo-bullets-container";
-			bullets.forEach(bullet=>{
-				let bulletElem = document.createElement("div");
-				bulletElem.className = "todo-bullet";
-				let bulletType = document.createElement("span");
-				bulletType.id = "bullet-type";
-				if(bullet.completed){
-					bulletType.innerHTML = TASKCOMPLETE;
-					bulletElem.style.textDecoration = "line-through";
-				}
-				else{
-					bulletType.innerHTML = TASKBULLET;
-				}
-	
-				bulletElem.appendChild(bulletType);
-				bulletElem.innerHTML += bullet.content;
-				todoBullets.appendChild(bulletElem);
-			})
+					bulletElem.appendChild(bulletType);
+					bulletElem.innerHTML += bullet.content;
+					todoBullets.appendChild(bulletElem);
+				})
 
 
-			let todoItem = document.createElement("div");
-			todoItem.className = "todo-item";
+				let todoItem = document.createElement("div");
+				todoItem.className = "todo-item";
 
-			let todoDate = document.createElement("div");
-			todoDate.className = "todo-date";
-			let dayOfWeek = document.createElement("span");
-			dayOfWeek.id = "day-of-week";
-			dayOfWeek.textContent = day;
-			let dayOfMonth = document.createElement("span");
-			dayOfMonth.id = "day-of-month";
-			dayOfMonth.textContent = date;
+				let todoDate = document.createElement("div");
+				todoDate.className = "todo-date";
+				let dayOfWeek = document.createElement("span");
+				dayOfWeek.id = "day-of-week";
+				dayOfWeek.textContent = day;
+				let dayOfMonth = document.createElement("span");
+				dayOfMonth.id = "day-of-month";
+				dayOfMonth.textContent = date;
 
-			todoDate.appendChild(dayOfMonth);
-			todoDate.appendChild(dayOfWeek);
+				todoDate.appendChild(dayOfMonth);
+				todoDate.appendChild(dayOfWeek);
 
-			todoItem.appendChild(todoDate);
-			todoItem.appendChild(todoBullets);
+				todoItem.appendChild(todoDate);
+				todoItem.appendChild(todoBullets);
 
-			console.log(todoItem);
-			scrollContainer.appendChild(todoItem);
+				console.log(todoItem);
+				scrollContainer.appendChild(todoItem);
 
-		});
-		todoContainer.appendChild(scrollContainer);
+			});
+		}
 	}
 
 	
