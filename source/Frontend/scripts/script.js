@@ -82,6 +82,7 @@ PREVLOG.addEventListener("click", () => {
 	const DATE = LOGTYPE.readLog.date;
 	const LOG = LOGTYPE.readLog.type;
 	// decrement the current date
+	console.log("LOG: " + LOG);
 	const prevDate= new Date(DATE);
 	if(LOG == "daily-log"){
 		prevDate.setDate(prevDate.getDate() - 1);
@@ -102,5 +103,3 @@ NEXTLOG.addEventListener("click", () => {
 	nextDate.setDate(nextDate.getDate() + 1)
 	router.setState("daily-log", false, nextDate, "next");
 });
-
-

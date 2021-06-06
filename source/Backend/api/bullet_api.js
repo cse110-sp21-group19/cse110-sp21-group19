@@ -4,6 +4,7 @@ const BULLETDB = "bulletDB";
 const ENTRYDB = "entryDB";
 const ERR_DB_NOT_CREATED = "ERROR: Database hasn't been created!";
 const ERR_CANT_GET_BULLET = "ERROR: Unable to access bullet with key: ";
+const ERR_CANT_ACCESS_BULLET = "ERROR: Unable to access bullet";
 const ERR_CANT_DELETE_BULLET = "ERROR: Unable to delete bullet with key: ";
 
 //making sure indexeddb is supported in multiple browsers
@@ -30,24 +31,24 @@ export function createDB() {
 		//creating BulletStore(BulletsDB)
 		let bulletStore = db.createObjectStore(BULLETDB, { autoIncrement: true }); 
         
-        //defining columns in BulletStore
-        //orderId, log, type, date, priority, content, completed
-        bulletStore.createIndex("log", "log", { unique: false });
-        bulletStore.createIndex("type", "type", { unique: false });
-        bulletStore.createIndex("date", "date", { unique: false });
-        bulletStore.createIndex("content", "content", { unique: false });
-        bulletStore.createIndex("priority", "priority", { unique: false });
-        bulletStore.createIndex("completed", "completed", { unique: false });
-        bulletStore.createIndex("levels", "levels", { unique: false });
+		//defining columns in BulletStore
+		//orderId, log, type, date, priority, content, completed
+		bulletStore.createIndex("log", "log", { unique: false });
+		bulletStore.createIndex("type", "type", { unique: false });
+		bulletStore.createIndex("date", "date", { unique: false });
+		bulletStore.createIndex("content", "content", { unique: false });
+		bulletStore.createIndex("priority", "priority", { unique: false });
+		bulletStore.createIndex("completed", "completed", { unique: false });
+		bulletStore.createIndex("levels", "levels", { unique: false });
 
-        //creating entryStore (EntriyDB For additional entries)
-        let entryStore = db.createObjectStore(ENTRYDB, {autoIncrement: true});
+		//creating entryStore (EntriyDB For additional entries)
+		let entryStore = db.createObjectStore(ENTRYDB, {autoIncrement: true});
 
-        //defining columns in entryStore
-        entryStore.createIndex("date", "date", {unique: false});
-        entryStore.createIndex("title", "title", {unique: false});
-        entryStore.createIndex("content", "content", {unique: false});
-    }
+		//defining columns in entryStore
+		entryStore.createIndex("date", "date", {unique: false});
+		entryStore.createIndex("title", "title", {unique: false});
+		entryStore.createIndex("content", "content", {unique: false});
+	};
 }
 
 /**
@@ -69,14 +70,14 @@ export function createDB() {
  *                                      or key of parent object
  *  };
  * 
- * @return {Promise Object} A promise that resolves to the key of the newly added bullet, 
+ * @return {Promise} A promise that resolves to the key of the newly added bullet, 
  *                          or -1 if unsuccessful
  * 
  * @example 
  *  createBullet(bulletExample);
  */
 export function createBullet(bullet) {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		//opening database
 		let request = window.indexedDB.open(DATABASENAME);
 
@@ -118,7 +119,7 @@ export function createBullet(bullet) {
  * 
  * @param {Object} bullet - The new bullet object to set the old bullet equal to
  * 
- * @return {Promise Object} Promise object that resolves totrue if successfully updated, false if not updated
+ * @return {Promise} Promise object that resolves totrue if successfully updated, false if not updated
  * 
  * @example 
  *  let bulletExample = {
@@ -136,7 +137,7 @@ export function createBullet(bullet) {
  *  (log and date not needed most likely)
  */
 export function updateBullet(key, bullet){
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		let priority = bullet.priority;
 		let content = bullet.content;
 		let completed = bullet.completed;
@@ -204,12 +205,12 @@ export function updateBullet(key, bullet){
  * @example getBullet(1);
  */
 export function getBullet(key){
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		//opening database
 		let request = window.indexedDB.open(DATABASENAME);
 
 		//db opens successfully
-		request.onsuccess = function(event){
+		request.onsuccess = function (){
 			let db = request.result;
 			let transaction = db.transaction([BULLETDB], "readonly");
 			let objStore = transaction.objectStore(BULLETDB);
@@ -220,7 +221,7 @@ export function getBullet(key){
 				resolve(e.target.result);
 			};
 			//Unable to access bullet object
-			objStoreRequest.onerror = function(event){
+			objStoreRequest.onerror = function(){
 				console.log.error(ERR_CANT_GET_BULLET + key);
 				resolve({});
 			};
@@ -230,7 +231,7 @@ export function getBullet(key){
 			};
 		};
 		//unable to open database
-		request.onerror = function(event){
+		request.onerror = function(){
 			console.log.error(ERR_DB_NOT_CREATED);
 			resolve({});
 		};
@@ -243,30 +244,30 @@ export function getBullet(key){
  * 
  * @param {(string | number)} key - The key of the bullet to delete
  * 
- * @return {Promise Object} Promise that resolves true if successful, false if not
+ * @return {Promise} Promise that resolves true if successful, false if not
  * 
  * @example deleteBullet(1);
  */
 export function deleteBullet(key){
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		//opening database
 		let request = window.indexedDB.open(DATABASENAME);
 
 		//db opens successfully
-		request.onsuccess = function(event){
+		request.onsuccess = function (){
 			let db = request.result;
 			let transaction = db.transaction([BULLETDB], "readwrite");
 			let objStore = transaction.objectStore(BULLETDB);
 			let deleteRequest = objStore.delete(Number(key));
 
 			//Bullet object successfully deleted
-			deleteRequest.onsuccess = function (event) {
+			deleteRequest.onsuccess = function() {
 				console.log(deleteRequest.result);
 				resolve(true);
 			};
 
 			//Unable to delete bullet object
-			deleteRequest.onerror = function(event){
+			deleteRequest.onerror = function(){
 				console.log.error(ERR_CANT_DELETE_BULLET + key);
 				resolve(false);
 			};
@@ -276,7 +277,7 @@ export function deleteBullet(key){
 			};
 		};
 		//unable to open database
-		request.onerror = function(event){
+		request.onerror = function(){
 			console.log.error(ERR_DB_NOT_CREATED);
 			return false;
 		};
@@ -293,12 +294,12 @@ export function deleteBullet(key){
  * @example getAllPriority()
  */
 export function getAllPriority() {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		//opening database
 		let request = window.indexedDB.open(DATABASENAME);
 
 		//db opens successfully
-		request.onsuccess = function(event){
+		request.onsuccess = function(){
 			let db = request.result;
 			let transaction = db.transaction([BULLETDB], "readonly");
 			let objStore = transaction.objectStore(BULLETDB);
@@ -318,8 +319,8 @@ export function getAllPriority() {
 				}
 			};
 			//Unable to access bullet object
-			objStoreRequest.onerror = function(event){
-				console.log.error(ERR_CANT_GET_BULLET + key);
+			objStoreRequest.onerror = function(){
+				console.log.error(ERR_CANT_ACCESS_BULLET);
 				resolve({});
 			};
 
@@ -328,7 +329,7 @@ export function getAllPriority() {
 			};
 		};
 		//unable to open database
-		request.onerror = function(event){
+		request.onerror = function(){
 			console.log.error(ERR_DB_NOT_CREATED);
 			resolve({});
 		};
@@ -349,12 +350,12 @@ export function getAllPriority() {
  * @example getDailyBullets
  */
 export function getDailyBullets(date) {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		//opening database
 		let request = window.indexedDB.open(DATABASENAME);
 
 		//db opens successfully
-		request.onsuccess = function(event){
+		request.onsuccess = function(){
 			let db = request.result;
 			let transaction = db.transaction([BULLETDB], "readonly");
 			let objStore = transaction.objectStore(BULLETDB);
@@ -366,7 +367,7 @@ export function getDailyBullets(date) {
                 
 				let cursor = e.target.result;
 				if(cursor != null) {
-					if(cursor.value.log = "daily"){
+					if (cursor.value.log == "daily") {
 						let currDate = cursor.value.date;
 						if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
 							matchingBullets.push(cursor.value);
@@ -379,8 +380,8 @@ export function getDailyBullets(date) {
 				}
 			};
 			//Unable to access bullet object
-			objStoreRequest.onerror = function(event){
-				console.log.error(ERR_CANT_GET_BULLET + key);
+			objStoreRequest.onerror = function(){
+				console.log.error(ERR_CANT_ACCESS_BULLET);
 				resolve({});
 			};
 
@@ -389,7 +390,7 @@ export function getDailyBullets(date) {
 			};
 		};
 		//unable to open database
-		request.onerror = function(event){
+		request.onerror = function(){
 			console.log.error(ERR_DB_NOT_CREATED);
 			resolve({});
 		};
@@ -401,19 +402,19 @@ export function getDailyBullets(date) {
  * Returns an array of all bullets that have the priority property marked
  * as true for the given date
  * 
- * @param {Date Object} - date object of current date
+ * @param {Object} - date object of current date
  * 
  * @return {Array} an array important bullets for given date
  * 
  * @example getAllPriority()
  */
 export function getDailyPriority(date) {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		//opening database
 		let request = window.indexedDB.open(DATABASENAME);
 
 		//db opens successfully
-		request.onsuccess = function(event){
+		request.onsuccess = function(){
 			let db = request.result;
 			let transaction = db.transaction([BULLETDB], "readonly");
 			let objStore = transaction.objectStore(BULLETDB);
@@ -438,8 +439,8 @@ export function getDailyPriority(date) {
 				}
 			};
 			//Unable to access bullet object
-			objStoreRequest.onerror = function(event){
-				console.log.error(ERR_CANT_GET_BULLET + key);
+			objStoreRequest.onerror = function(){
+				console.log.error(ERR_CANT_ACCESS_BULLET);
 				resolve({});
 			};
 
@@ -448,7 +449,7 @@ export function getDailyPriority(date) {
 			};
 		};
 		//unable to open database
-		request.onerror = function(event){
+		request.onerror = function(){
 			console.log.error(ERR_DB_NOT_CREATED);
 			resolve({});
 		};
@@ -460,19 +461,19 @@ export function getDailyPriority(date) {
  * Returns an array of all bullets that are marked as task and 
  * have the same date
  * 
- * @param {Date Object} - date object of current date
+ * @param {Object} - date object of current date
  * 
  * @return {Array} an array of todo bullets for the day
  * 
  * @example getDailyTodo()
  */
 export function getDailyTodo(date) {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		//opening database
 		let request = window.indexedDB.open(DATABASENAME);
 
 		//db opens successfully
-		request.onsuccess = function(event){
+		request.onsuccess = function(){
 			let db = request.result;
 			let transaction = db.transaction([BULLETDB], "readonly");
 			let objStore = transaction.objectStore(BULLETDB);
@@ -481,36 +482,170 @@ export function getDailyTodo(date) {
 			//Bullet object successfully accessed
 			objStoreRequest.onsuccess = function (e){
                 
-                let cursor = e.target.result;
-                if(cursor != null) {
-                    //all uncompeted tasks
-                    if(cursor.value.type == "task" && cursor.value.completed == false && cursor.value.log == "daily") {
-                        //Checking dates
-                        let currDate = cursor.value.date;
-                        if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
-                            matchingBullets.push(cursor.value);
-                        }
-                    }
-                    cursor.continue();
-                } else {
-                    resolve(matchingBullets);
-                }
-            }
-            //Unable to access bullet object
-            objStoreRequest.onerror = function(event){
-                console.log.error(ERR_CANT_GET_BULLET + key);
-                resolve({});
-            }
+				let cursor = e.target.result;
+				if(cursor != null) {
+					//all uncompeted tasks
+					if(cursor.value.type == "task" && cursor.value.completed == false && cursor.value.log == "daily") {
+						//Checking dates
+						let currDate = cursor.value.date;
+						if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
+							matchingBullets.push(cursor.value);
+						}
+					}
+					cursor.continue();
+				} else {
+					resolve(matchingBullets);
+				}
+			};
+			//Unable to access bullet object
+			objStoreRequest.onerror = function(){
+				console.log.error(ERR_CANT_ACCESS_BULLET);
+				resolve({});
+			};
 
-            transaction.oncomplete = function () {
-                db.close();
-            }
-        }
-        //unable to open database
-        request.onerror = function(event){
-            console.log.error(ERR_DB_NOT_CREATED);
-            resolve({});
-        }
-    });
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+		//unable to open database
+		request.onerror = function(){
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve({});
+		};
+	});
 }
 
+/**
+ * getMonthlyBullets
+ * Returns an array of all bullets that are from the monthly log and have the same month/year
+ * 
+ * @param {Object} - date object containing month/year we want
+ * 
+ * @return {Array} a 2d array of monthly bullets and their keys for the month
+ * 						-[[Keys], [Bullets]]
+ * 
+ * @example getMonthlyBullets()
+ */
+export function getMonthlyBullets(date) {
+	return new Promise((resolve) => {
+		//opening database
+		let request = window.indexedDB.open(DATABASENAME);
+
+		//db opens successfully
+		request.onsuccess = function(){
+			let db = request.result;
+			let transaction = db.transaction([BULLETDB], "readonly");
+			let objStore = transaction.objectStore(BULLETDB);
+			let objStoreRequest = objStore.openCursor(null, "next");
+			let matchingBullets = [];
+			let matchingKeys = [];
+			//Bullet object successfully accessed
+			objStoreRequest.onsuccess = function (e){
+                
+				let cursor = e.target.result;
+				if(cursor != null) {
+					//checking whether bullet belongs to the monthly log
+					if(cursor.value.log == "monthly") {
+						//comparing months
+						let currDate = cursor.value.date;
+						if(currDate.getMonth() == date.getMonth() && currDate.getFullYear() == date.getFullYear()) {
+							matchingBullets.push(cursor.value);
+							matchingKeys.push(cursor.key);
+						}
+					}
+					cursor.continue();
+				} else {
+					resolve([matchingKeys, matchingBullets]);
+				}
+			};
+			//Unable to access bullet object
+			objStoreRequest.onerror = function(){
+				console.log.error(ERR_CANT_ACCESS_BULLET);
+				resolve({});
+			};
+
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+		//unable to open database
+		request.onerror = function(){
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve({});
+		};
+	});
+}
+
+/**
+ * getFutureBullets
+ * Returns an array of all bullets that are the future log, and have the same year
+ * 
+ * @param {Object} - date object containing the year we want to retrive from
+ * 
+ * @return {Array} an array of keys and bullets: [[Keys], [Bullets]]
+ * 
+ * @example getFutureBullets()
+ */
+export function getFutureBullets(date) {
+	return new Promise((resolve) => {
+		//opening database
+		let request = window.indexedDB.open(DATABASENAME);
+
+		//db opens successfully
+		request.onsuccess = function(){
+			let db = request.result;
+			let transaction = db.transaction([BULLETDB], "readonly");
+			let objStore = transaction.objectStore(BULLETDB);
+			let objStoreRequest = objStore.openCursor(null, "next");
+			let matchingBullets = [];
+			let matchingKeys = [];
+			//Bullet object successfully accessed
+			objStoreRequest.onsuccess = function (e){
+                
+				let cursor = e.target.result;
+				if(cursor != null) {
+					//all future bullets
+					if(cursor.value.log == "future") {
+						//Checking year
+						let currDate = cursor.value.date;
+						if(currDate.getFullYear() == date.getFullYear()) {
+							matchingBullets.push(cursor.value);
+							matchingKeys.push(cursor.key);
+						}
+					}
+					cursor.continue();
+				} else {
+					resolve([matchingKeys, matchingBullets]);
+				}
+			};
+			//Unable to access bullet object
+			objStoreRequest.onerror = function(){
+				console.log.error(ERR_CANT_ACCESS_BULLET);
+				resolve({});
+			};
+
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+		//unable to open database
+		request.onerror = function(){
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve({});
+		};
+	});
+}
+
+/* module.exports = {
+	createDB, 
+	createBullet, 
+	updateBullet, 
+	getBullet, 
+	deleteBullet, 
+	getAllPriority, 
+	getDailyBullets, 
+	getDailyTodo, 
+	getDailyPriority,
+	getMonthlyBullets,
+	getFutureBullets
+}; */

@@ -1,5 +1,6 @@
 import { TASKBULLET, TASKCOMPLETE } from "./main-text.js";
 
+//TODO: Complete this webcomponent
 class TodoList extends HTMLElement{
 	constructor() {
 		super();
