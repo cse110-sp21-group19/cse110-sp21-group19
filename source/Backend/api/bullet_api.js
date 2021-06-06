@@ -2,6 +2,7 @@
 const DATABASENAME = "BuJoDatabase";
 const BULLETDB = "bulletDB";
 const ENTRYDB = "entryDB";
+const SETTINGDB = "settingDB";
 const ERR_DB_NOT_CREATED = "ERROR: Database hasn't been created!";
 const ERR_CANT_GET_BULLET = "ERROR: Unable to access bullet with key: ";
 const ERR_CANT_ACCESS_BULLET = "ERROR: Unable to access bullet";
@@ -48,6 +49,13 @@ export function createDB() {
 		entryStore.createIndex("date", "date", {unique: false});
 		entryStore.createIndex("title", "title", {unique: false});
 		entryStore.createIndex("content", "content", {unique: false});
+
+		//creating settingStore to store color
+		let settingStore = db.createObjectStore(SETTINGDB, {autoIncrement: true});
+
+		//define columns
+		settingStore.createIndex("darkMode", "darkMode", {unique: true});
+
 	};
 }
 
@@ -636,7 +644,7 @@ export function getFutureBullets(date) {
 	});
 }
 
-module.exports = {
+/* module.exports = {
 	createDB, 
 	createBullet, 
 	updateBullet, 
@@ -648,4 +656,4 @@ module.exports = {
 	getDailyPriority,
 	getMonthlyBullets,
 	getFutureBullets
-};
+}; */

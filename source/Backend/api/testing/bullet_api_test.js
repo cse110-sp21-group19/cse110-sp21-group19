@@ -1,4 +1,5 @@
 import { createDB, createBullet, getBullet, updateBullet, deleteBullet, getAllPriority, getDailyBullets, getDailyPriority, getDailyTodo } from "../bullet_api.js";
+import { createDefault, updateMode, getMode } from "../settings_api.js";
 
 /* TESTING BULLET API */
 
@@ -40,10 +41,12 @@ addBtn.addEventListener("click", async (event) => {
 
 /* -----GETTING BULLET----*/
 let get = document.getElementById("get");
-get.addEventListener("click", async function(){
-	let key = document.getElementById("key").value;
+get.addEventListener("click", /* async  */function(){
+/* 	let key = document.getElementById("key").value;
 	let result = await getBullet(Number(key));
-	console.log(result);
+	console.log(result); */
+	createDefault();
+
 });
 
 /* -----UPDATING BULLET----*/
@@ -75,11 +78,16 @@ update.addEventListener("click", async function(){
 /* -----DELETING BULLET----*/
 let deleteBtn = document.getElementById("delete");
 deleteBtn.addEventListener("click", async () => {
-	let key = document.getElementById("key").value;
+/* 	let key = document.getElementById("key").value;
 	let result = await deleteBullet(Number(key));/* .then(result => {
         console.log(`Deleted?: ${result}`);
-    }); */
-	console.log(`Deleted: ${result}`);
+    }); 
+	console.log(`Deleted: ${result}`); */
+	console.log("hello")
+	updateMode(true);
+
+	let test = await getMode();
+	console.log(test);
 }); 
 
 /* ----BULLET GETTERS----- */
