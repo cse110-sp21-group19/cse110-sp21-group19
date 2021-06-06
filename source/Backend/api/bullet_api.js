@@ -30,24 +30,24 @@ export function createDB() {
 		//creating BulletStore(BulletsDB)
 		let bulletStore = db.createObjectStore(BULLETDB, { autoIncrement: true }); 
         
-		//defining columns in BulletStore
-		//orderId, log, type, date, priority, content, completed
-		bulletStore.createIndex("log", "log", { unique: false });
-		bulletStore.createIndex("type", "type", { unique: false });
-		bulletStore.createIndex("date", "date", { unique: false });
-		bulletStore.createIndex("content", "content", { unique: false });
-		bulletStore.createIndex("priority", "priority", { unique: false });
-		bulletStore.createIndex("completed", "completed", { unique: false });
-		bulletStore.createIndex("orderId", "orderId", { unique: false });
+        //defining columns in BulletStore
+        //orderId, log, type, date, priority, content, completed
+        bulletStore.createIndex("log", "log", { unique: false });
+        bulletStore.createIndex("type", "type", { unique: false });
+        bulletStore.createIndex("date", "date", { unique: false });
+        bulletStore.createIndex("content", "content", { unique: false });
+        bulletStore.createIndex("priority", "priority", { unique: false });
+        bulletStore.createIndex("completed", "completed", { unique: false });
+        bulletStore.createIndex("levels", "levels", { unique: false });
 
-		//creating entryStore (EntriyDB For additional entries)
-		let entryStore = db.createObjectStore(ENTRYDB, {autoIncrement: true});
+        //creating entryStore (EntriyDB For additional entries)
+        let entryStore = db.createObjectStore(ENTRYDB, {autoIncrement: true});
 
-		//defining columns in entryStore
-		entryStore.createIndex("date", "date", {unique: false});
-		entryStore.createIndex("title", "title", {unique: false});
-		entryStore.createIndex("content", "content", {unique: false});
-	};
+        //defining columns in entryStore
+        entryStore.createIndex("date", "date", {unique: false});
+        entryStore.createIndex("title", "title", {unique: false});
+        entryStore.createIndex("content", "content", {unique: false});
+    }
 }
 
 /**
@@ -481,36 +481,36 @@ export function getDailyTodo(date) {
 			//Bullet object successfully accessed
 			objStoreRequest.onsuccess = function (e){
                 
-				let cursor = e.target.result;
-				if(cursor != null) {
-					//all uncompeted tasks
-					if(cursor.value.type == "task" && cursor.value.completed == false) {
-						//Checking dates
-						let currDate = cursor.value.date;
-						if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
-							matchingBullets.push(cursor.value);
-						}
-					}
-					cursor.continue();
-				} else {
-					resolve(matchingBullets);
-				}
-			};
-			//Unable to access bullet object
-			objStoreRequest.onerror = function(event){
-				console.log.error(ERR_CANT_GET_BULLET + key);
-				resolve({});
-			};
+                let cursor = e.target.result;
+                if(cursor != null) {
+                    //all uncompeted tasks
+                    if(cursor.value.type == "task" && cursor.value.completed == false && cursor.value.log == "daily") {
+                        //Checking dates
+                        let currDate = cursor.value.date;
+                        if(currDate.toLocaleDateString("en-US") == date.toLocaleDateString("en-US")) {
+                            matchingBullets.push(cursor.value);
+                        }
+                    }
+                    cursor.continue();
+                } else {
+                    resolve(matchingBullets);
+                }
+            }
+            //Unable to access bullet object
+            objStoreRequest.onerror = function(event){
+                console.log.error(ERR_CANT_GET_BULLET + key);
+                resolve({});
+            }
 
-			transaction.oncomplete = function () {
-				db.close();
-			};
-		};
-		//unable to open database
-		request.onerror = function(event){
-			console.log.error(ERR_DB_NOT_CREATED);
-			resolve({});
-		};
-	});
+            transaction.oncomplete = function () {
+                db.close();
+            }
+        }
+        //unable to open database
+        request.onerror = function(event){
+            console.log.error(ERR_DB_NOT_CREATED);
+            resolve({});
+        }
+    });
 }
 

@@ -1,9 +1,9 @@
 // router.js
 
 import { createWeeklyNav } from "./weekly-nav-script.js";
-import { DAYS, MONTHS } from "../components/log-type.js";
-// import { closeMenu } from "./side-nav-script.js";
-// import { createToDoList } from "./todo-script.js";
+import { createCalendar } from "./calendar-script.js";
+import { DAYS, MONTHS } from '../components/log-type.js';
+import { createToDoList } from "./todo-script.js";
 import { getDailyEntries } from "../../Backend/api/entries_api.js";
 import { updateAddlEntries, formatEntries } from "./addl-entries-script.js";
 
@@ -89,6 +89,18 @@ export async function dailyLog(date, from){
                 WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
                 WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
               }, 300);
+            }
+        else if(from == "monthly-log" || from == "side-nav"){
+            console.log("FROM SIDE NAV OR MONTHYL")
+            let CAL = document.querySelector("calendar-component");
+            CAL.remove();
+
+			let TODO = document.querySelector("todo-list");
+            TODO.remove();
+                await createWeeklyNav(date);
+            WEEKLYNAV = document.querySelector("weekly-nav");
+            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
+            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
         }
         else if(from == "on-load"){
             await createWeeklyNav(date);
@@ -115,42 +127,38 @@ export async function dailyLog(date, from){
         
 		updateAddlEntries();
 
+        // reset current main-text area
+        const MAINTEXT = document.getElementById("main-text");
+        MAINTEXT.innerHTML = "";
 
+        // create new bullet list
+        const BULLETS = document.createElement("bullet-list");
+        BULLETS.id = "bullets";
+        // create new bullet input element
+        const INPUT = document.createElement("bullet-input");
 
-		// reset current main-text area
-		const MAINTEXT = document.getElementById("main-text");
-		MAINTEXT.innerHTML = "";
+        // Bullet Nesting Stack
+        let bulletStack = [];
+        bulletStack.push(BULLETS);
 
-		// create new bullet list
-		const BULLETS = document.createElement("bullet-list");
-		BULLETS.id = "bullets";
-		// create new bullet input element
-		const INPUT = document.createElement("bullet-input");
-		const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
-		const BULLETTYPE = INPUT.shadowRoot.getElementById("bullet-type");
+        // Get daily bullets from database
+        const currDate = document.querySelector("log-type").readLog.date;
+        let todayBullets = await getDailyBullets(currDate);
+        todayBullets[1].forEach(function(item, index) {
+            bulletsFromDB(item, index, bulletStack, todayBullets);
+        });
 
-		// Bullet Nesting Stack
-		let bulletStack = [];
-		bulletStack.push(BULLETS);
+        MAINTEXT.appendChild(BULLETS);
+        MAINTEXT.appendChild(INPUT);
 
-		// Get daily bullets from database
-		const currDate = document.querySelector("log-type").readLog.date;
-		let todayBullets = await getDailyBullets(currDate);
-		todayBullets[1].forEach(function(item, index) {
-			bulletsFromDB(item, index, bulletStack, todayBullets);
-		});
-
-		MAINTEXT.appendChild(BULLETS);
-		MAINTEXT.appendChild(INPUT);
-
-		// add ability to create new bullets
-		createNewBullets(INPUT, bulletStack);
-		// add ability to add nested bullets
-		//nestedBullets(INPUT, bulletStack);
-		let parentBullet = nestedBullets(INPUT, bulletStack);
-		console.log("parentBullet from router");
-		console.log(parentBullet);
-	}
+        // add ability to create new bullets
+        createNewBullets(INPUT, bulletStack);
+        // add ability to add nested bullets
+        nestedBullets(INPUT, bulletStack);
+        //let parentBullet = nestedBullets(INPUT, bulletStack);
+		//console.log("parentBullet from router");
+		//console.log(parentBullet);
+    }
 } /* dailyLog */
 
 
@@ -163,7 +171,7 @@ export async function dailyLog(date, from){
  * @example
  *      monthlyLog("5-24-2021");
  */
-function monthlyLog(date){
+async function monthlyLog(date){
     const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
     sideNavTitle.textContent = "Monthly Log";
@@ -179,6 +187,14 @@ function monthlyLog(date){
         }
         LOGTYPE.updateLog = MONTHLYINFO;
 
+        let WEEKLYNAV = document.querySelector("weekly-nav");
+        if(WEEKLYNAV){
+            WEEKLYNAV.remove();
+        }
+        let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        console.log(firstDay.getMonth());
+		await createToDoList(firstDay);
+        createCalendar(firstDay);
         // TODO: update the main-text data with getter
         updateAddlEntries();
 
@@ -227,24 +243,26 @@ function futureLog(){
  * @param {string} from where the setState was called from
 */
 function pushToHistory(state, date, from) {
-	//console.log("push from: " + from)
-	router.currentState = {
-		page: state, date: date, from:from
-	};
-	switch (state) {
-	case "daily-log":
-		history.pushState({ page: "daily-log", date: date, from:from}, "", `./#daily${date}`);
-		break;
-	case "monthly-log":
-		history.pushState({ page: "monthly-log", date: date, from:from}, "", `./#monthly${date}`);
-		break;
-	case "future-log":
-		history.pushState({ page: "future-log", date: date, from:from}, "", `./#future${date}`);
-		break;
-	default:
-		history.pushState({}, "", "./");
-	}
-	console.log(history);
-	return history;
-}
+    //console.log("push from: " + from)
+    router.currentState = {
+        page: state, date: date, from:from
+    };
+    switch (state) {
+        case "daily-log":
+            console.log("here")
+            history.pushState({ page: "daily-log", date: date, from:from}, "", `./#daily${date}`);
+            console.log("here")
+            break;
+        case "monthly-log":
+            history.pushState({ page: "monthly-log", date: date, from:from}, "", `./#monthly${date}`);
+            break;
+        case "future-log":
+            history.pushState({ page: "future-log", date: date, from:from}, "", `./#future${date}`);
+            break;
+        default:
+            history.pushState({}, '', './');
+    }
+    console.log(history)
+    return history;
+  }
   
