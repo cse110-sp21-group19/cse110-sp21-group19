@@ -15,8 +15,6 @@ Here is our current planned pipline (includes merged items, and implemented in-p
 
 - documentation - We likely are going to use JSdoc since the benefit of automatic documentation will greatly reduce the overhead near the end of the project and will generally increase code readability and give a reference for our developers, implementation is ongoing.
 
-- unit test automation (frontend) - We are looking to use jest-puppeteer as it can be quickly integrated through npm and has support from the CSE 110 - likely on to be implemented on experimental branch. Implementation is ongoing.
-
 - code quality - We are looking into "codacy", research is ongoing but we are likely going to implement this soon.
 
 ## Backlog  
@@ -24,3 +22,6 @@ Here is our current planned pipline (includes merged items, and implemented in-p
 - Deployment - initial research is ongoing. Current options are github pages vs heroku
 
 - Logging - We are still iff-y on the need for this right now cause our developers arent as close to this stage (major overkill). Rudimentary research is going on but we want developer teams to have more input here since they will be using this tool for debugging later
+
+## Closed
+- unit test automation (frontend) - We are looking to use jest-puppeteer as it can be quickly integrated through npm and has support from the CSE 110 - likely on to be implemented on experimental branch. After more exploratory programming, we ultimately scrapped the idea in favor to manual testing due to time and the rough integratability problems with our system.
