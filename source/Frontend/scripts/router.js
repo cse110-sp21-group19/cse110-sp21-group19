@@ -4,8 +4,8 @@ import { createWeeklyNav } from "./weekly-nav-script.js";
 import { DAYS, MONTHS } from "../components/log-type.js";
 // import { closeMenu } from "./side-nav-script.js";
 // import { createToDoList } from "./todo-script.js";
-// import { getDailyEntries } from "../../Backend/api/entries_api.js";
-import { updateAddlEntries } from "./addl-entries-script.js";
+import { getDailyEntries } from "../../Backend/api/entries_api.js";
+import { updateAddlEntries, formatEntries } from "./addl-entries-script.js";
 
 import { createNewBullets, nestedBullets, bulletsFromDB } from "./main-text-script.js";
 import { getDailyBullets } from "../../Backend/api/bullet_api.js";
@@ -57,43 +57,61 @@ router.currentState = null;
  *      dailyLog("5-24-2021");
  */
 export async function dailyLog(date, from){
-	const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
-	let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
-	sideNavTitle.textContent = "Daily Log";
-	// behavior if clicked the '<' or '>' button from the main-text header
-	if (date) {
-		const LOGTYPE = document.querySelector("log-type");
-		// update the header text above main-text area
-		let headerText = DAYS[date.getDay()] + ", " + MONTHS[date.getMonth()] + " " + date.getDate();
-		const DAILYINFO = {
-			"type": "daily",
-			"date": date,
-			"header": headerText
-		};
-		LOGTYPE.updateLog = DAILYINFO;
+    const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
+    let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+    sideNavTitle.textContent = "Daily Log";
+    // behavior if clicked the '<' or '>' button from the main-text header
+    if (date) {
+        const LOGTYPE = document.querySelector("log-type");
+        // update the header text above main-text area
+        let headerText = DAYS[date.getDay()] + ", " + MONTHS[date.getMonth()] + " " + date.getDate();
+        const DAILYINFO = {
+            "type": "daily",
+            "date": date,
+            "header": headerText
+        }
+        LOGTYPE.updateLog = DAILYINFO;
 
 
-		//get the current selected day of the week from the weekly nav
-		let WEEKLYNAV = document.querySelector("weekly-nav");
+        //get the current selected day of the week from the weekly nav
+        let WEEKLYNAV = document.querySelector("weekly-nav");
 
-		//If we are currently on a sunday, replace weekly nav menu with prev week
-		if ((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
-			console.log("HELLO");
-			WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "0";
-			WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "0";
-			setTimeout(function() {
-				WEEKLYNAV.remove();
-				createWeeklyNav(date);
-			}, 150);
-			setTimeout(function() {
-				WEEKLYNAV = document.querySelector("weekly-nav");
-				WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
-				WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
-			}, 300);
-		}
-		else {
-			WEEKLYNAV.selectedDay = date.getDay() + 1;
-		}
+        //If we are currently on a sunday, replace weekly nav menu with prev week
+        if ((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
+            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "0";
+            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "0";
+            setTimeout(function() {
+                WEEKLYNAV.remove();
+                createWeeklyNav(date);
+              }, 150);
+            setTimeout(function() {
+                WEEKLYNAV = document.querySelector("weekly-nav");
+                WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
+                WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
+              }, 300);
+        }
+        else if(from == "on-load"){
+            await createWeeklyNav(date);
+            WEEKLYNAV = document.querySelector("weekly-nav");
+            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
+            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
+
+            
+            const DATE = document.querySelector("log-type").readLog.header;
+            const ADDLENTRYBAR = document.createElement("entry-bar");
+            const ADDLENTRIES = document.querySelector(".additional")
+
+            let entriesList = await getDailyEntries(DATE);
+            let keys = entriesList[0];
+            let fetchedEntries = entriesList[1];
+
+            ADDLENTRYBAR.type = "initial";
+            ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
+            ADDLENTRIES.appendChild(ADDLENTRYBAR);
+        }
+        else {
+            WEEKLYNAV.selectedDay = date.getDay() + 1;
+        }
         
 		updateAddlEntries();
 
