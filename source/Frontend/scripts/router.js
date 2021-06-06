@@ -164,24 +164,25 @@ export async function dailyLog(date, from){
  *      monthlyLog("5-24-2021");
  */
 function monthlyLog(date){
-	const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
-	let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
-	sideNavTitle.textContent = "Monthly Log";
-	// behavior if clicked the '<' or '>' button from the main-text header
-	if (date) {
-		const LOGTYPE = document.querySelector("log-type");
-		// update the header text above main-text area
-		let headerText = MONTHS[date.getMonth()] + " " + date.getFullYear();
-		const MONTHLYINFO = {
-			"type": "monthly",
-			"date": date,
-			"header": headerText
-		};
-		LOGTYPE.updateLog = MONTHLYINFO;
+    const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
+    let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+    sideNavTitle.textContent = "Monthly Log";
+    // behavior if clicked the '<' or '>' button from the main-text header
+    if (date) {
+        const LOGTYPE = document.querySelector("log-type");
+        // update the header text above main-text area
+        let headerText = MONTHS[date.getMonth()] + " " + date.getFullYear();
+        const MONTHLYINFO = {
+            "type": "monthly",
+            "date": date,
+            "header": headerText
+        }
+        LOGTYPE.updateLog = MONTHLYINFO;
 
-		// TODO: update the main-text data with getter
+        // TODO: update the main-text data with getter
+        updateAddlEntries();
 
-	}
+    }
 } /* monthlyLog */
 
 
