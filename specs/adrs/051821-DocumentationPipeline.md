@@ -9,4 +9,4 @@ The team will have to document all the code. In order to streamline this process
 
 ## Decision Outcome
 
-We decided to go with JSDocs since this option has a defined structure that most of our developers already familiar with
+We decided to go with JSDocs since this option has a defined structure that most of our developers already familiar with frin similar JavaDocs and distribute the responsibility of documentation well.
