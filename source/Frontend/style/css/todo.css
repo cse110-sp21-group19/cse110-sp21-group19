@@ -15,6 +15,9 @@
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
   padding: 0.6rem;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 
 .todo-container .scroll-container {
@@ -88,26 +91,23 @@
   margin: 0.3rem;
 }
 
-::-webkit-scrollbar {
+.todo-container ::-webkit-scrollbar {
   width: 8px;
   position: relative;
   top: 50px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
+.todo-container ::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 6px;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
+.todo-container ::-webkit-scrollbar-thumb {
   background: #b6b6b6;
   border-radius: 6px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+.todo-container ::-webkit-scrollbar-thumb:hover {
   background: #FFA33F;
 }
 /*# sourceMappingURL=todo.css.map */

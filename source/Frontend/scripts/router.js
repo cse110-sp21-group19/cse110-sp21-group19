@@ -96,7 +96,9 @@ export async function dailyLog(date, from){
             console.log("FROM SIDE NAV OR MONTHYL")
             let CAL = document.querySelector("calendar-component");
             CAL.remove();
-            
+
+			let TODO = document.querySelector("todo-list");
+            TODO.remove();
                 await createWeeklyNav(date);
             WEEKLYNAV = document.querySelector("weekly-nav");
             WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";

@@ -13,11 +13,9 @@
     z-index: -1;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
-    
+   
+    //may have to change this
     padding: 0.6rem;
-    //This will differ from weekly nav
-    // display: flex;
-    // flex-direction: column; //MAY HAVE TO CHANGE THIS -- look at layout file weekly nav container height
     .scroll-container{
         overflow-y: auto;
         display: flex;
@@ -70,31 +68,29 @@
     
         }
     }
-
+    ::-webkit-scrollbar {
+        width: 8px;
+        
+        position: relative;
+        top: 50px;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        border-radius: 6px; 
+      }
+       
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: rgb(182, 182, 182);
+        border-radius: 6px; 
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: $accent2;
+      }
     
 }
-::-webkit-scrollbar {
-    width: 8px;
-    
-    position: relative;
-    top: 50px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    border-radius: 6px; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: rgb(182, 182, 182);
-    border-radius: 6px; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: $accent2;
-  }
-
 

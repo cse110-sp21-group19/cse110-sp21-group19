@@ -12,7 +12,7 @@ class TodoList extends HTMLElement{
 		`;
 
 		//ToDo Item format
-		// <div class="wn-item-mask">
+		// 
 		// <div class="wn-item">
 		//     <h2 class="wn-date"><span id="day-of-month"></span><span id="day-of-week"></span> </h2>
 		//     <ul class="wn-bullets"></ul>
