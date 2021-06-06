@@ -1,9 +1,9 @@
-import { createDB, createBullet, getBullet, updateBullet, deleteBullet, getAllPriority, getDailyBullets, getDailyPriority, getDailyTodo } from './bullet_api.js';
+import { createDB, createBullet, getBullet, updateBullet, deleteBullet, getAllPriority, getDailyBullets, getDailyPriority, getDailyTodo } from "./bullet_api.js";
 
 /* TESTING BULLET API */
 
 /* -----CREATING DATABASE----- */
- let create = document.getElementById("create", createDB);
+let create = document.getElementById("create", createDB);
 create.addEventListener("click", createDB);
 
 /* -----CREATING BULLET---- */
@@ -41,9 +41,9 @@ addBtn.addEventListener("click", async (event) => {
 /* -----GETTING BULLET----*/
 let get = document.getElementById("get");
 get.addEventListener("click", async function(event){
-    let key = document.getElementById("key").value;
-    let result = await getBullet(Number(key));
-    console.log(result);
+	let key = document.getElementById("key").value;
+	let result = await getBullet(Number(key));
+	console.log(result);
 });
 
 /* -----UPDATING BULLET----*/
@@ -75,46 +75,46 @@ update.addEventListener("click", async function(event){
 /* -----DELETING BULLET----*/
 let deleteBtn = document.getElementById("delete");
 deleteBtn.addEventListener("click", async () => {
-    let key = document.getElementById("key").value;
-    let result = await deleteBullet(Number(key));/* .then(result => {
+	let key = document.getElementById("key").value;
+	let result = await deleteBullet(Number(key));/* .then(result => {
         console.log(`Deleted?: ${result}`);
     }); */
-    console.log(`Deleted: ${result}`);
+	console.log(`Deleted: ${result}`);
 }); 
 
 /* ----BULLET GETTERS----- */
 let importantBtn = document.getElementById("important");
 importantBtn.addEventListener("click", ()=> {
-    getAllPriority().then((result) => {
-        console.log(result);
-    })
-})
+	getAllPriority().then((result) => {
+		console.log(result);
+	});
+});
 
 /* Daily bullets */
 let dailyBtn = document.getElementById("daily");
 dailyBtn.addEventListener("click", () => {
-    let date = new Date(document.getElementById("dateget").value);
-    getDailyBullets(date).then((result) => {
-        console.log(result);
-    });
+	let date = new Date(document.getElementById("dateget").value);
+	getDailyBullets(date).then((result) => {
+		console.log(result);
+	});
 });
 
 /* important daily bullets */
 let dailyImptBtn = document.getElementById("dailypriority");
 dailyImptBtn.addEventListener("click", () => {
-    let date = new Date(document.getElementById("dateget").value);
+	let date = new Date(document.getElementById("dateget").value);
 
-    getDailyPriority(date).then((result) => {
-        console.log(result);
-    });
+	getDailyPriority(date).then((result) => {
+		console.log(result);
+	});
 });
 
 /* daily todo bullets */
 let dailyTodoBtn = document.getElementById("dailytodo");
 dailyTodoBtn.addEventListener("click", () => {
-    let date = new Date(document.getElementById("dateget").value);
+	let date = new Date(document.getElementById("dateget").value);
     
-    getDailyTodo(date).then((result) => {
-        console.log(result);
-    });
+	getDailyTodo(date).then((result) => {
+		console.log(result);
+	});
 });

@@ -1,8 +1,7 @@
 // main-text-script.js
 
-// Constants for different bullet types
 import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
-import { getDailyBullets, createBullet, deleteBullet, updateBullet } from "../../Backend/api/bullet_api.js";
+import { createBullet, deleteBullet, updateBullet, getDailyPriority } from "../../Backend/api/bullet_api.js";
 
 /** 
  * editableEntry
@@ -48,12 +47,19 @@ export function editableEntry(key, entry) {
 export function deleteEntry(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toDelete = bulletEntryRoot.getElementById("delete-bullet");
-	toDelete.addEventListener("click", function() {
+	toDelete.addEventListener("click", async function() {
 		// remove bullet from main-text area
 		entry.remove();
 		// remove bullet from database
 		deleteBullet(key);
 		// TODO: delete all children of a parent bullet
+
+
+		//Updates the weekly nav 
+		const WEEKLYNAV = document.querySelector("weekly-nav");
+		const currDate = document.querySelector("log-type").readLog.date;
+		let bullets =  await getDailyPriority(currDate);
+		WEEKLYNAV.updatePriorityBullets = bullets;
 	});
 } /* deleteEntry */
 
@@ -69,16 +75,25 @@ export function deleteEntry(key, entry) {
 export function prioritizeEntry(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toPrioritize = bulletEntryRoot.getElementById("prioritize-bullet");
-	// toggle priority on click
-	toPrioritize.addEventListener("click", function() {
+	toPrioritize.addEventListener("click", async function() {
+
 		if (toPrioritize.innerHTML.includes("priority")) {
 			toPrioritize.innerHTML = NOTPRIORITY;
+			toPrioritize.style.color = "transparent";
 		}
 		else {
 			toPrioritize.innerHTML = PRIORITY;
+			toPrioritize.style.color = "black";
 		}
 		// update prioritized/deprioritized bullet to DB
 		updateBullet(key, entry.entry);
+
+		//Should probably put this stuff into a function
+		//Updates the weekly nav 
+		const WEEKLYNAV = document.querySelector("weekly-nav");
+		const currDate = document.querySelector("log-type").readLog.date;
+		let bullets =  await getDailyPriority(currDate);
+		WEEKLYNAV.updatePriorityBullets = bullets;
 	});
 	// update styling to only show priority star if the bullet is prioritized
 	if (toPrioritize.innerHTML.includes("priority")) {
@@ -105,7 +120,7 @@ export function completeTask(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toComplete = bulletEntryRoot.getElementById("bullet-type");
 	const content = bulletEntryRoot.getElementById("bullet-inputted");
-	toComplete.addEventListener("click", function() {
+	toComplete.addEventListener("click", async function() {
 		if (toComplete.innerHTML.includes("incomplete")) {
 			toComplete.innerHTML = TASKCOMPLETE;
 			content.style.textDecoration = "line-through";
@@ -116,7 +131,19 @@ export function completeTask(key, entry) {
 		}
 		// update completed/incomplete task bullet to DB
 		updateBullet(key, entry.entry);
+		//Updates the weekly nav 
+		const WEEKLYNAV = document.querySelector("weekly-nav");
+		const currDate = document.querySelector("log-type").readLog.date;
+		let bullets =  await getDailyPriority(currDate);
+		WEEKLYNAV.updatePriorityBullets = bullets;
 	});
+
+	if (toComplete.innerHTML.includes("incomplete")) {
+		content.style.textDecoration = "none";
+	}
+	else if (toComplete.innerHTML.includes("complete")) {
+		content.style.textDecoration = "line-through";
+	}
 } /* completeTask */
 
 /**
@@ -130,9 +157,9 @@ export function completeTask(key, entry) {
  *     createNewBullets(inputElement, bulletElement, bulletStack);
  */
 export function createNewBullets(inputElement, bulletStack) {
-    inputElement.addEventListener("keyup", async function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
+	inputElement.addEventListener("keyup", async function(event) {
+		if (event.key === "Enter") {
+			event.preventDefault();
 
 			const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
 			const BULLETTYPE = inputElement.shadowRoot.getElementById("bullet-type");

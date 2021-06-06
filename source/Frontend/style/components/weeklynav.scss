@@ -23,35 +23,81 @@
         min-height: 0;
         margin: 0.4rem;
         flex: 1 1 0;
+        display: flex;
         background: white;
         border-radius: 0.4rem;
         transition: border-left 0.15s linear;
-        //display: grid;
-        //grid-template-rows: 1;
-        //grid-template-columns: auto auto;
-        &:hover{
-            transition: filter 0.15s linear;
-            filter: brightness(85%);
+
+        //Ideas for hover/onclick behavior
+        //Hover whole item highlights clickable part
+        //only hover clickable part
+        //click date
+        &:hover .wn-date{
+            // transition: filter 0.15s linear;
+            // filter: brightness(85%);
+            color: $accent2;
+            text-decoration: underline;
         }
         .wn-date{
+            
             pointer-events: none;
+            margin-top: 0.6rem;
+            margin-left: 0.6rem;
+            width: 5vw;
+            min-width: rem;
+            height: 100%;
             //grid-column-start: 1;
-            margin-left: 0.5rem;
-            font-size: 1.05em;
+            #day-of-month{
+              font-size: 1.1em;
+              font-weight: bold;
+            }
             #day-of-week{
                 padding: 0 0.35em;
                 font-family: $sans-serif;
                 font-weight: lighter;
-                font-size: 1.05em;
+                font-size: 1.1em;
             }
         }
-        .wn-bullets{
-            // //grid-column-start: 3;
-            // font-size: 10px;
+        .wn-bullets-container{
+            flex-grow: 2;
+            margin: 0.4rem;
+            overflow-y: hidden;
+            svg {
+                height: 1em;
+                width: 1em;
+                padding-right: 0.5rem;
+            }
+            &:hover{
+              overflow-y: auto;
+            }
+            .wn-bullet{
+              margin:0.3rem;
+            }
         }
 
         p {
-            visibility:collapse;
+            position: absolute;
+            visibility:hidden;
         }
+        /* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(182, 182, 182);
+    border-radius: 6px; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $accent;
+  }
     }
 }
