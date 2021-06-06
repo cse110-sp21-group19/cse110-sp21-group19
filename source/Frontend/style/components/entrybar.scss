@@ -2,8 +2,10 @@
 
 @import '../abstracts/mixins', '../abstracts/variables';
 
-/* Begin styling addl button */
-
+*:focus{
+    outline: none;
+}
+/*Begin styling additional entry bar*/
 .active-bar{
     background: $accent2;
     height: 20vh;
@@ -11,7 +13,8 @@
     display: flex;
     justify-content: space-between;
     padding: 2vh 2vw 2vh 2vw;
-    min-width: 55%;
+    min-width: 300px;
+    min-height: 100px;
     border-radius: 1rem;
     margin-left: 3vw;
 
@@ -27,15 +30,18 @@
     .content{
         height: 13vh;
         width: 65%;
-        min-width: 55%;
+        min-width: 100px;
         background: white;
         border-radius: 1rem;
         margin-top: 0;
-        overflow-x: auto;
+        overflow-x: hidden;
         overflow-y: hidden;
         display: flex;
         flex-direction: row;
         padding: 0 1rem 3rem 1rem;
+    }
+    .content:hover{
+        overflow-x: auto;
     }
     .new-entry{
         overflow: visible;
@@ -45,6 +51,7 @@
     }
     .new-entry:hover{
         cursor: pointer;
+
     }
 
 }
@@ -78,6 +85,38 @@
 *:focus{
     outline: none;
 }
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    bottom: 15vh;
+    background-color: black;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  .dropdown:hover{
+    .dropdown-content {
+        display: block;
+        color: black;
+    }  
+}
+  .dropdown-content span:hover {
+    cursor: pointer;
+    background: #4AB2D6;
+} 
+  /* Links inside the dropdown */
+  .dropdown-content span {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  /*End styling additional entry bar*/
+/* Begin styling text entry*/
 .editing{
     display: none;
     padding: 2rem;
@@ -104,6 +143,8 @@
         cursor: pointer;
     }
     .text-content{
+        min-width: 100%;
+        min-height: 70%;
         margin-top: 1rem;
         width: 98.5%;
         height: 70%;
@@ -111,7 +152,16 @@
         border-radius: 1rem;
         padding-top: 1rem;
         padding-left: 0.5rem;
-        overflow-y: auto;
+        border: none;
+        overflow: auto;
+        outline: none;
+        font-size: 1em;
+        font-family: 'Open Sans', sans-serif;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+
+        resize: none; /*remove the resize handle on the bottom right*/
         
     }
     .save-btn-wrapper{
@@ -126,7 +176,99 @@
         cursor: pointer;
     }
 
-    h1{text-align: center;
+    h1{
+        text-align: center;
+    }
+
+    .delete-btn{
+        height: 100px;
+        width: 7vh;
+        min-width: 50px;
+        position: absolute;
+        right: 5vw;
+        top: 18vh;
+    }
+    .delete-btn:hover{
+        cursor: pointer;
+    }
+
+}
+/* End styling text entry*/
+
+/* Begin styling image entry*/
+.img-editing{
+    display: none;
+    padding: 2rem;
+    height: 75vh;
+    width: 90%;
+    min-height: 550px;
+    min-width: 300px;
+    margin-left: 3rem;
+    background: $accent;
+    border-radius: 1rem;
+    
+    .close{
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .close:hover{
+        cursor: pointer;
+    }
+    .close-edit{
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .close-edit:hover{
+        cursor: pointer;
+    }
+    .img-content{
+        margin-top: 1rem;
+        margin-left: 3vw;
+        width: 55vw;
+        max-width: 1000px;
+        height: 70%;
+        background: white;
+        border-radius: 1rem;
+        padding-top: 1rem;
+        padding-left: 0.5rem;
+        overflow-y: auto;
+        .img-text{
+            position: relative;
+            top: 47%;
+            left: 38%;
+            transform: translateY(-50%);
+        }
+        .choose-img{
+            display: none;
+        }
+        .uploaded{
+            max-width:90%;
+            max-height:90%;
+            width: auto;
+            height: auto;
+            margin-left: 6vw;
+        }
+        
+    }
+   
+    .img-content:hover{
+        cursor: pointer;
+    }
+    .save-btn-wrapper{
+        float: right;
+        padding: 1rem;
+    }
+    .save-btn{
+        height: 7vh;
+        width: 7vh;
+    
+    }
+    .save-btn:hover{
+        cursor: pointer;
+    }
+
+    h1{
+        text-align: center;
     }
 
     .delete-btn{
@@ -143,4 +285,10 @@
 
 }
 
-/* End styling addl button */
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+/* End styling image entry*/
