@@ -1,6 +1,6 @@
 import { createEntry, deleteEntry, getEntry, updateEntry } from "../../../Backend/api/entries_api.js";
 import { binaryToImgUrl, imgToBinary} from "../../scripts/binary-helpers.js"
-import { insertTextAtCaret, setEntrybarType } from "../../scripts/addl-entries-script.js"
+import { insertTextAtCaret } from "../../scripts/addl-entries-script.js"
 //global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
 //variable that tracks the key of the entry currently being viewed
@@ -464,6 +464,92 @@ class entryBar extends HTMLElement{
 
 //define the custom web component "entry-bar" and associate it to the class "entryBar"
 customElements.define("entry-bar", entryBar);
+
+function setEntrybarType(SHADOW, type) {
+	let initial = SHADOW.querySelector(".initial");
+	let editing = SHADOW.querySelector(".editing");
+	let imgEditing = SHADOW.querySelector(".img-editing");
+	let inactiveBar = SHADOW.querySelector(".inactive-bar");
+	let activeBar = SHADOW.querySelector(".active-bar");
+	let closeBtn = SHADOW.querySelector(".close");
+	let newTextEntry = SHADOW.querySelector(".create-note");
+	let newImgEntry = SHADOW.querySelector(".create-img");
+	let uploaded = SHADOW.querySelector(".uploaded");
+	let infoText = SHADOW.querySelector(".img-text");
+	let imgContent = SHADOW.querySelector(".img-content");
+	let mainText = document.querySelector(".main-text");
+
+	imgContent.style.overflow = "hidden";
+	
+	if(type == "initial"){
+		initial.style.display="block";
+		editing.style.display="none";
+		
+		activeBar.style.display = "none";
+		inactiveBar.style.display = "block";
+		//fires when user clicks on collapsed version of the entry bar
+		inactiveBar.addEventListener("click", function(){
+			inactiveBar.style.display = "none";
+			activeBar.style.display="flex";
+		});
+		//fires when user clicks on the close button to collapse the entry bar
+		closeBtn.addEventListener("click", function(){
+			activeBar.style.display = "none";
+			inactiveBar.style.display = "grid";
+		});
+		//fires when user clicks the button to add a new entry
+		newTextEntry.addEventListener("click", function(){
+			//since we are adding a new entry, set the is viewing mode to false
+			isViewing = false;
+			mainText.style.display = "none";
+			document.querySelector("entry-bar").type="editing";
+		});
+		newImgEntry.addEventListener("click", function(){
+			//since we are adding a new entry, set the is viewing mode to false
+			isViewing = false;
+			mainText.style.display = "none";
+			document.querySelector("entry-bar").type="img-editing";
+		});
+	}
+
+	else if(type == "editing"){
+		//toggle the relevant elements
+		initial.style.display="none";
+		editing.style.display="block";
+	
+		if(isViewing){
+			SHADOW.querySelector(".delete-btn").style.display="block";
+		}
+		//fires when user clicks the exit button in the editing panel
+		
+
+	}
+	else if(type == "img-editing"){
+		//toggle the relevant elements
+		uploaded.src="";
+		infoText.style.display="block";
+		imgContent.style.overflow = "hidden";
+
+		initial.style.display="none";
+		imgEditing.style.display="block";
+	
+		if(isViewing){
+			SHADOW.querySelector(".delete-btn").style.display="block";
+			infoText.style.display="none";
+		}
+		//fires when user clicks the exit button in the editing panel
+		
+
+	}
+	//openbar mode - after user finishes creating/editing an entry, keep the bar open so they can see the changes
+	else{
+		initial.style.display="block";
+		editing.style.display="none";
+		imgEditing.style.display="none";
+		inactiveBar.style.display = "none";
+		activeBar.style.display="flex";
+	}
+}
 
 /** Helper function to create a new entry object
  * 
