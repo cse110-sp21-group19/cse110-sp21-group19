@@ -124,89 +124,91 @@ export function insertTextAtCaret(el, text) {
     setSelection(el, newPos, newPos);
 }
 
+export function setEntrybarType(SHADOW, type, isViewing) {
 
-// export function loadEntries(SHADOW, entries, currKey, isViewing){
+	let initial = SHADOW.querySelector(".initial");
+	let editing = SHADOW.querySelector(".editing");
+	let imgEditing = SHADOW.querySelector(".img-editing");
+	let inactiveBar = SHADOW.querySelector(".inactive-bar");
+	let activeBar = SHADOW.querySelector(".active-bar");
+	let closeBtn = SHADOW.querySelector(".close");
+	let newTextEntry = SHADOW.querySelector(".create-note");
+	let newImgEntry = SHADOW.querySelector(".create-img");
+	let uploaded = SHADOW.querySelector(".uploaded");
+	let infoText = SHADOW.querySelector(".img-text");
+	let imgContent = SHADOW.querySelector(".img-content");
+	let mainText = document.querySelector(".main-text");
 
-// 	console.log(SHADOW);
-
-// 	let mainText = document.querySelector(".main-text");
-// 	let innerBar = SHADOW.querySelector(".content");
-// 	let title = SHADOW.querySelector(".entry-title");
-// 	let content = SHADOW.querySelector(".text-content");
-
-// 	//different states of entryBar
-// 	let initial = SHADOW.querySelector(".initial");
-// 	let editing = SHADOW.querySelector(".editing");
-// 	let imgEditing = SHADOW.querySelector(".img-editing");
-// 	let imgTitle = SHADOW.querySelectorAll(".entry-title")[1];
-// 	let uploaded = SHADOW.querySelector(".uploaded");
-// 	let infoText = SHADOW.querySelector(".img-text");
-
-// 	infoText.style.display="none";
-
-// 	//buttons
-// 	let deleteButton = SHADOW.querySelector(".delete-btn");
-// 	let deleteButtonImg = SHADOW.querySelectorAll(".delete-btn")[1];
+	imgContent.style.overflow = "hidden";
 	
-// 	while(innerBar.firstChild){
-// 		innerBar.removeChild(innerBar.firstChild);
-// 	}
-
-// 	entries.forEach(entry => {
-// 		//console.log(entry);
-// 		let newEntry = document.createElement("addl-entry");
-// 		newEntry.entry = entry;
-// 		//console.log(newEntry.entry.image);
-// 		if(newEntry.entry.image){
-// 			newEntry.addEventListener("click", async function(){
-// 				//change the mode to is viewing
-// 				isViewing = true;
-// 				document.querySelector("entry-bar").type = "img-editing";
-// 				//hide and display relevant components
-// 				mainText.style.display="none"
-// 				initial.style.display="none";
-// 				imgEditing.style.display="block";
-// 				deleteButtonImg.style.display="block";
-
-// 				//display the title and image of the current entry to the screen
-				
-// 				imgTitle.innerText = newEntry.entry.title;
-				
-// 				//get the key of the current entry
-// 				currKey = newEntry.entry.key;
-// 				let toUpload = await getEntry(currKey);
-// 				let imgUrl = await binaryToImgUrl(toUpload.image);
-				
-// 				uploaded.src = imgUrl;
-// 			});
-
-// 		}else{
-// 			newEntry.addEventListener("click", function(){
-// 				//change the mode to is viewing
-// 				isViewing = true;
-	
-// 				//hide and display relevant components
-// 				mainText.style.display="none"
-// 				initial.style.display="none";
-// 				editing.style.display="block";
-// 				deleteButton.style.display="block";
-	
-// 				//display the title and contents of the current entry to the screen
-// 				title.innerText = newEntry.entry.title;
-// 				content.value = newEntry.entry.content;
-	
-// 				//get the key of the current entry
-// 				currKey = newEntry.entry.key;
-// 			});
-// 		}
-// 		if(innerBar.childElementCount > 0){
-// 			newEntry.style.marginLeft = "7rem";
-// 		}
-// 		innerBar.appendChild(newEntry);
+	if(type == "initial"){
+		initial.style.display="block";
+		editing.style.display="none";
 		
-// 	});
-	
-// }
+		activeBar.style.display = "none";
+		inactiveBar.style.display = "block";
+		//fires when user clicks on collapsed version of the entry bar
+		inactiveBar.addEventListener("click", function(){
+			inactiveBar.style.display = "none";
+			activeBar.style.display="flex";
+		});
+		//fires when user clicks on the close button to collapse the entry bar
+		closeBtn.addEventListener("click", function(){
+			activeBar.style.display = "none";
+			inactiveBar.style.display = "grid";
+		});
+		//fires when user clicks the button to add a new entry
+		newTextEntry.addEventListener("click", function(){
+			//since we are adding a new entry, set the is viewing mode to false
+			isViewing = false;
+			mainText.style.display = "none";
+			document.querySelector("entry-bar").type="editing";
+		});
+		newImgEntry.addEventListener("click", function(){
+			//since we are adding a new entry, set the is viewing mode to false
+			isViewing = false;
+			mainText.style.display = "none";
+			document.querySelector("entry-bar").type="img-editing";
+		});
+	}
 
+	else if(type == "editing"){
+		//toggle the relevant elements
+		initial.style.display="none";
+		editing.style.display="block";
+	
+		if(isViewing){
+			SHADOW.querySelector(".delete-btn").style.display="block";
+		}
+		//fires when user clicks the exit button in the editing panel
+		
+
+	}
+	else if(type == "img-editing"){
+		//toggle the relevant elements
+		uploaded.src="";
+		infoText.style.display="block";
+		imgContent.style.overflow = "hidden";
+
+		initial.style.display="none";
+		imgEditing.style.display="block";
+	
+		if(isViewing){
+			SHADOW.querySelector(".delete-btn").style.display="block";
+			infoText.style.display="none";
+		}
+		//fires when user clicks the exit button in the editing panel
+		
+
+	}
+	//openbar mode - after user finishes creating/editing an entry, keep the bar open so they can see the changes
+	else{
+		initial.style.display="block";
+		editing.style.display="none";
+		imgEditing.style.display="none";
+		inactiveBar.style.display = "none";
+		activeBar.style.display="flex";
+	}
+}
 
 

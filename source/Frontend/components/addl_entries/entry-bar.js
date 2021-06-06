@@ -1,6 +1,6 @@
 import { createEntry, deleteEntry, getEntry, updateEntry } from "../../../Backend/api/entries_api.js";
 import { binaryToImgUrl, imgToBinary} from "../../scripts/binary-helpers.js"
-import { insertTextAtCaret } from "../../scripts/addl-entries-script.js"
+import { insertTextAtCaret, setEntrybarType } from "../../scripts/addl-entries-script.js"
 //global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
 //variable that tracks the key of the entry currently being viewed
@@ -124,65 +124,7 @@ var currKey = 0;
 		//hide the delete button by default
 		deleteButton.style.display="none";
 		
-		//allow for tabs
-		content.addEventListener("keydown", function(e){
-			if(e.key==="Tab"){
-				e.preventDefault();
-				insertTextAtCaret(content, "\t");
-			}
-		});
-
-		//add in bullets when user presses '-'
-		content.addEventListener("keydown", function(e){
-			if(e.key===" "){
-				let myString = content.value;
-				let lines = myString.split('\n');
-
-				for (let i = 0; i < lines.length; ++i){
-					if (lines[i].search("-") != -1 && lines[i].search("•") == -1){
-						lines[i] = lines[i].replace("-", "•");
-					}
-				}
-				content.value = lines.join("\n");
-			}
-		});
-		//if the previous line has a bullet, add to the next line as well
-		content.addEventListener("keydown", function(e){
-			if(e.key==="Enter"){
-				let myString = content.value;
-				let lines = myString.split('\n');
-
-				//if the last line entered has nested bullets and tabs
-				if (lines[lines.length-1].search("•") != -1){
-					console.log("found");
-
-					let numTabs = lines[lines.length-1].split("\t").length - 1;
-					console.log("found");
-					e.preventDefault();
-					content.value = content.value + "\n";
-
-					for (let i = 0; i < numTabs; ++i){
-						insertTextAtCaret(content, "\t");
-					}
-		
-					insertTextAtCaret(content, "• ");
-				}
-				//if it only hastabs
-				else if (lines[lines.length-1].search("\t") != -1){
-					let numTabs = lines[lines.length-1].split("\t").length - 1;
-					console.log("found");
-					content.value = content.value + "\n";
-					e.preventDefault();
-
-					for (let i = 0; i < numTabs; ++i){
-						insertTextAtCaret(content, "\t");
-					}
-					
-				}
-			}
-		});
-
-
+		textAreaFeatures(this.shadowRoot);
 		//event listener that allows user to upload image
 		imgContent.addEventListener("click", function(){
 			imgSelector.click();
@@ -191,18 +133,21 @@ var currKey = 0;
 			}
 		});
 
+		//clear cached files
 		imgSelector.addEventListener("click", function(){
 			if (infoText.style.display="block"){
 				imgSelector.value="";
 			}
 		});
 
+		//preview the image to upload
 		imgSelector.addEventListener("change", function(){
 			if(this.files[0]){
 				infoText.style.display="none";
 				uploaded.src = URL.createObjectURL(this.files[0]);
 			}
 		});
+
 		//event listener that fires everytime the save button is clicked
 		saveBtn.addEventListener("click", async function(){
 			const DATE = document.querySelector("log-type").readLog.header;
@@ -218,7 +163,6 @@ var currKey = 0;
 			newNote.addEventListener("click", function(){
 				//change the mode to is viewing
 				isViewing = true;
-				//console.log("hi");
 				//hide and display relevant components
 				mainText.style.display="none"
 				initial.style.display="none";
@@ -371,75 +315,11 @@ var currKey = 0;
 
 		//event listener for deleting an entry
 		deleteButton.addEventListener("click", function(){
-			//find the current entry in the document
-			let response = confirm("Delete this entry?");
-
-			//if user wants to delete the entry, find and delete the entry
-			if(response){
-				for(let i = 0; i < innerBar.childElementCount; ++i){
-					console.log(innerBar.children[i]);
-					if(innerBar.children[i].entry.key == currKey){
-						let currEntry = innerBar.children[i];
-						console.log(currEntry);
-						innerBar.removeChild(currEntry)
-						break;
-					} 
-				}
-
-				//delete this entry from the database
-				deleteEntry(currKey);
-
-				//adjust the margin of the first entry
-				if(innerBar.children[0]){
-					innerBar.children[0].style.marginLeft = "1rem";
-				}
-
-				//redirect to homepage
-				mainText.style.display = "block";
-            	document.querySelector("entry-bar").type="openbar";
-
-				//hide the delete button and reset the content to display in the editing panel
-				deleteButton.style.display="none";
-				title.innerText=" Add Title";
-				content.value="";
-				content.placeholder="Add note here...";
-			}
+			deleteNote();
 		});
 
 		deleteButtonImg.addEventListener("click", function(){
-			//find the current entry in the document
-			let response = confirm("Delete this entry?");
-
-			//if user wants to delete the entry, find and delete the entry
-			if(response){
-				for(let i = 0; i < innerBar.childElementCount; ++i){
-					console.log(innerBar.children[i]);
-					if(innerBar.children[i].entry.key == currKey){
-						let currEntry = innerBar.children[i];
-						console.log(currEntry);
-						innerBar.removeChild(currEntry)
-						break;
-					} 
-				}
-
-				//delete this entry from the database
-				deleteEntry(currKey);
-
-				//adjust the margin of the first entry
-				if(innerBar.children[0]){
-					innerBar.children[0].style.marginLeft = "1rem";
-				}
-
-				//redirect to homepage
-				mainText.style.display = "block";
-            	document.querySelector("entry-bar").type="openbar";
-
-				//hide the delete button and reset the content to display in the editing panel
-				deleteButtonImg.style.display="none";
-				imgTitle.innerText="Add Title";
-				infoText.style.display="block";
-				uploaded.src="";
-			}
+			deleteImg();
 		});
 		
 		exitBtnText.addEventListener("click", function(){
@@ -495,88 +375,7 @@ var currKey = 0;
 	 * @example entryBar.type = "initial";
 	 */
 	set type(type){
-		let initial = this.shadowRoot.querySelector(".initial");
-		let editing = this.shadowRoot.querySelector(".editing");
-		let imgEditing = this.shadowRoot.querySelector(".img-editing");
-		let inactiveBar = this.shadowRoot.querySelector(".inactive-bar");
-		let activeBar = this.shadowRoot.querySelector(".active-bar");
-		let closeBtn = this.shadowRoot.querySelector(".close");
-		let newTextEntry = this.shadowRoot.querySelector(".create-note");
-		let newImgEntry = this.shadowRoot.querySelector(".create-img");
-		let uploaded = this.shadowRoot.querySelector(".uploaded");
-		let infoText = this.shadowRoot.querySelector(".img-text");
-		let imgContent = this.shadowRoot.querySelector(".img-content");
-		let mainText = document.querySelector(".main-text");
-		imgContent.style.overflow = "hidden";
-		
-		if(type == "initial"){
-			initial.style.display="block";
-			editing.style.display="none";
-			
-			activeBar.style.display = "none";
-			inactiveBar.style.display = "block";
-			//fires when user clicks on collapsed version of the entry bar
-			inactiveBar.addEventListener("click", function(){
-				inactiveBar.style.display = "none";
-				activeBar.style.display="flex";
-			});
-			//fires when user clicks on the close button to collapse the entry bar
-			closeBtn.addEventListener("click", function(){
-				activeBar.style.display = "none";
-				inactiveBar.style.display = "grid";
-			});
-			//fires when user clicks the button to add a new entry
-			newTextEntry.addEventListener("click", function(){
-				//since we are adding a new entry, set the is viewing mode to false
-				isViewing = false;
-				mainText.style.display = "none";
-            	document.querySelector("entry-bar").type="editing";
-			});
-			newImgEntry.addEventListener("click", function(){
-				//since we are adding a new entry, set the is viewing mode to false
-				isViewing = false;
-				mainText.style.display = "none";
-            	document.querySelector("entry-bar").type="img-editing";
-			});
-		}
-
-		else if(type == "editing"){
-			//toggle the relevant elements
-			initial.style.display="none";
-			editing.style.display="block";
-		
-			if(isViewing){
-				this.shadowRoot.querySelector(".delete-btn").style.display="block";
-			}
-			//fires when user clicks the exit button in the editing panel
-			
-
-		}
-		else if(type == "img-editing"){
-			//toggle the relevant elements
-			uploaded.src="";
-			infoText.style.display="block";
-			imgContent.style.overflow = "hidden";
-
-			initial.style.display="none";
-			imgEditing.style.display="block";
-		
-			if(isViewing){
-				this.shadowRoot.querySelector(".delete-btn").style.display="block";
-				infoText.style.display="none";
-			}
-			//fires when user clicks the exit button in the editing panel
-			
-
-		}
-		//openbar mode - after user finishes creating/editing an entry, keep the bar open so they can see the changes
-		else{
-			initial.style.display="block";
-			editing.style.display="none";
-			imgEditing.style.display="none";
-			inactiveBar.style.display = "none";
-			activeBar.style.display="flex";
-		}
+		setEntrybarType(this.shadowRoot, type, isViewing);
 	}
 	/**	Setter that loads the entries to the page, given an array of entries from the database
 	 * 
@@ -585,7 +384,6 @@ var currKey = 0;
 	 * @example ENTRYBAR.entries = loadedEntries;
 	 */
 	set entries(entries){
-		
 		let mainText = document.querySelector(".main-text");
 		let innerBar = this.shadowRoot.querySelector(".content");
 		let title = this.shadowRoot.querySelector(".entry-title");
@@ -660,7 +458,6 @@ var currKey = 0;
 				newEntry.style.marginLeft = "7rem";
 			}
 			innerBar.appendChild(newEntry);
-			
 		});
 		
 	}	
@@ -684,4 +481,164 @@ function makeEntry(title, content, key, image){
 		return {title: title, content: content, key: key, image: "true"};
 	}
 	return {title: title, content: content, key: key, image: "false"};
+}
+
+/** Helper function to delete a text entry
+ * 
+ * @param {}
+ */
+function deleteNote() {
+	let SHADOW = document.querySelector("entry-bar").shadowRoot;
+	let mainText = document.querySelector(".main-text");
+	let innerBar = SHADOW.querySelector(".content");
+	let title = SHADOW.querySelectorAll(".entry-title")[0];
+	let content = SHADOW.querySelector(".text-content");
+
+	let deleteButton = SHADOW.querySelector(".delete-btn");
+
+	//find the current entry in the document
+	let response = confirm("Delete this entry?");
+
+	//if user wants to delete the entry, find and delete the entry
+	if(response){
+		for(let i = 0; i < innerBar.childElementCount; ++i){
+			console.log(innerBar.children[i]);
+			if(innerBar.children[i].entry.key == currKey){
+				let currEntry = innerBar.children[i];
+				console.log(currEntry);
+				innerBar.removeChild(currEntry)
+				break;
+			} 
+		}
+
+		//delete this entry from the database
+		deleteEntry(currKey);
+
+		//adjust the margin of the first entry
+		if(innerBar.children[0]){
+			innerBar.children[0].style.marginLeft = "1rem";
+		}
+
+		//redirect to homepage
+		mainText.style.display = "block";
+		document.querySelector("entry-bar").type="openbar";
+
+		//hide the delete button and reset the content to display in the editing panel
+		deleteButton.style.display="none";
+		title.innerText=" Add Title";
+		content.value="";
+		content.placeholder="Add note here...";
+	}
+}
+
+/** Helper function to delete an image entry
+ * 
+ * @param {}
+ */
+function deleteImg() {
+	let SHADOW = document.querySelector("entry-bar").shadowRoot;
+	let mainText = document.querySelector(".main-text");
+	let innerBar = SHADOW.querySelector(".content");
+	let imgTitle = SHADOW.querySelectorAll(".entry-title")[1];
+	let uploaded = SHADOW.querySelector(".uploaded");
+	let infoText = SHADOW.querySelector(".img-text");
+	let deleteButtonImg = SHADOW.querySelectorAll(".delete-btn")[1];
+	
+	//find the current entry in the document
+	let response = confirm("Delete this entry?");
+
+	//if user wants to delete the entry, find and delete the entry
+	if(response){
+		for(let i = 0; i < innerBar.childElementCount; ++i){
+			console.log(innerBar.children[i]);
+			if(innerBar.children[i].entry.key == currKey){
+				let currEntry = innerBar.children[i];
+				console.log(currEntry);
+				innerBar.removeChild(currEntry)
+				break;
+			} 
+		}
+
+		//delete this entry from the database
+		deleteEntry(currKey);
+
+		//adjust the margin of the first entry
+		if(innerBar.children[0]){
+			innerBar.children[0].style.marginLeft = "1rem";
+		}
+
+		//redirect to homepage
+		mainText.style.display = "block";
+		document.querySelector("entry-bar").type="openbar";
+
+		//hide the delete button and reset the content to display in the editing panel
+		deleteButtonImg.style.display="none";
+		imgTitle.innerText="Add Title";
+		infoText.style.display="block";
+		uploaded.src="";
+	}
+}
+
+/** Helper function that allows users to add tabs and bullets to text entries
+ * @param {Object} SHADOW - the shadowRoot of the entry-bar component
+ */
+function textAreaFeatures(SHADOW) {
+	let content = SHADOW.querySelector(".text-content");
+	//allow for tabs
+	content.addEventListener("keydown", function(e){
+		if(e.key==="Tab"){
+			e.preventDefault();
+			insertTextAtCaret(content, "\t");
+		}
+	});
+
+	//add in bullets when user presses '-'
+	content.addEventListener("keydown", function(e){
+		if(e.key===" "){
+			let myString = content.value;
+			let lines = myString.split('\n');
+
+			for (let i = 0; i < lines.length; ++i){
+				if (lines[i].search("-") != -1 && lines[i].search("•") == -1){
+					lines[i] = lines[i].replace("-", "•");
+				}
+			}
+			content.value = lines.join("\n");
+		}
+	});
+	//if the previous line has a bullet, add to the next line as well
+	content.addEventListener("keydown", function(e){
+		if(e.key==="Enter"){
+			let myString = content.value;
+			let lines = myString.split('\n');
+
+			//if the last line entered has nested bullets and tabs
+			if (lines[lines.length-1].search("•") != -1){
+				console.log("found");
+
+				let numTabs = lines[lines.length-1].split("\t").length - 1;
+				console.log("found");
+				e.preventDefault();
+				content.value = content.value + "\n";
+
+				for (let i = 0; i < numTabs; ++i){
+					insertTextAtCaret(content, "\t");
+				}
+	
+				insertTextAtCaret(content, "• ");
+			}
+			//if it only hastabs
+			else if (lines[lines.length-1].search("\t") != -1){
+				let numTabs = lines[lines.length-1].split("\t").length - 1;
+				console.log("found");
+				content.value = content.value + "\n";
+				e.preventDefault();
+
+				for (let i = 0; i < numTabs; ++i){
+					insertTextAtCaret(content, "\t");
+				}
+				
+			}
+		}
+	});
 }
