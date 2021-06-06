@@ -1,9 +1,9 @@
 // router.js
 
 import { createWeeklyNav } from "./weekly-nav-script.js";
-import { DAYS, MONTHS } from "../components/log-type.js";
-// import { closeMenu } from "./side-nav-script.js";
-// import { createToDoList } from "./todo-script.js";
+import { createCalendar } from "./calendar-script.js";
+import { DAYS, MONTHS } from '../components/log-type.js';
+import { createToDoList } from "./todo-script.js";
 import { getDailyEntries } from "../../Backend/api/entries_api.js";
 import { updateAddlEntries, formatEntries } from "./addl-entries-script.js";
 
@@ -89,6 +89,16 @@ export async function dailyLog(date, from){
                 WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
                 WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
               }, 300);
+            }
+        else if(from == "monthly-log" || from == "side-nav"){
+            console.log("FROM SIDE NAV OR MONTHYL")
+            let CAL = document.querySelector("calendar-component");
+            CAL.remove();
+            
+                await createWeeklyNav(date);
+            WEEKLYNAV = document.querySelector("weekly-nav");
+            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
+            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
         }
         else if(from == "on-load"){
             await createWeeklyNav(date);
@@ -175,6 +185,12 @@ function monthlyLog(date){
         }
         LOGTYPE.updateLog = MONTHLYINFO;
 
+        let WEEKLYNAV = document.querySelector("weekly-nav");
+        if(WEEKLYNAV){
+            WEEKLYNAV.remove();
+        }
+        let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        createCalendar(firstDay);
         // TODO: update the main-text data with getter
         updateAddlEntries();
 
@@ -223,24 +239,24 @@ function futureLog(){
  * @param {string} from where the setState was called from
 */
 function pushToHistory(state, date, from) {
-	//console.log("push from: " + from)
-	router.currentState = {
-		page: state, date: date, from:from
-	};
-	switch (state) {
-	case "daily-log":
-		history.pushState({ page: "daily-log", date: date, from:from}, "", `./#daily${date}`);
-		break;
-	case "monthly-log":
-		history.pushState({ page: "monthly-log", date: date, from:from}, "", `./#monthly${date}`);
-		break;
-	case "future-log":
-		history.pushState({ page: "future-log", date: date, from:from}, "", `./#future${date}`);
-		break;
-	default:
-		history.pushState({}, "", "./");
-	}
-	console.log(history);
-	return history;
-}
+    //console.log("push from: " + from)
+    router.currentState = {
+        page: state, date: date, from:from
+    };
+    switch (state) {
+        case "daily-log":
+            history.pushState({ page: "daily-log", date: date, from:from}, "", `./#daily${date}`);
+            break;
+        case "monthly-log":
+            history.pushState({ page: "monthly-log", date: date, from:from}, "", `./#monthly${date}`);
+            break;
+        case "future-log":
+            history.pushState({ page: "future-log", date: date, from:from}, "", `./#future${date}`);
+            break;
+        default:
+            history.pushState({}, '', './');
+    }
+    console.log(history)
+    return history;
+  }
   
