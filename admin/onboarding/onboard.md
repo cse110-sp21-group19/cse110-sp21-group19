@@ -87,7 +87,7 @@ Make sure you read over the [Style Guide](admin/specs/../../../../specs/style_gu
 For more information about SCSS compiling, read the documentation [here](https://sass-lang.com/documentation)
 
 ## Navigating the Repository
-The source code is separated into 3 parts
+The repository is separated into 3 parts
 1. Admin
 2. Source
 3. Specs
