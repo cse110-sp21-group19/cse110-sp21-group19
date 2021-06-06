@@ -206,23 +206,23 @@ function appendBullets(container, bullets){
 		bulletType.id = "bullet-type";
 		//bullet icon depending on the bullet type
 		switch (bullet.type){
-			case "note":
-				bulletType.innerHTML = NOTEBULLET;
-				break;
-			case "event":
-				bulletType.innerHTML = EVENTBULLET;
-				break;
-			case "task":
-				if(bullet.completed){
-					bulletType.innerHTML = TASKCOMPLETE;
-					bulletElem.style.textDecoration = "line-through";
-				}
-				else{
-					bulletType.innerHTML = TASKBULLET;
-				}
-				break;
-			default:
-				bulletType.innerHTML = NOTEBULLET;
+		case "note":
+			bulletType.innerHTML = NOTEBULLET;
+			break;
+		case "event":
+			bulletType.innerHTML = EVENTBULLET;
+			break;
+		case "task":
+			if(bullet.completed){
+				bulletType.innerHTML = TASKCOMPLETE;
+				bulletElem.style.textDecoration = "line-through";
+			}
+			else{
+				bulletType.innerHTML = TASKBULLET;
+			}
+			break;
+		default:
+			bulletType.innerHTML = NOTEBULLET;
 
 		}
 		bulletElem.appendChild(bulletType);

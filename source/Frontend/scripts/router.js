@@ -3,13 +3,12 @@
 import { createWeeklyNav } from "./weekly-nav-script.js";
 import { createCalendar } from "./calendar-script.js";
 import { DAYS, MONTHS } from '../components/log-type.js';
-import { closeMenu } from "./side-nav-script.js";
 import { createToDoList } from "./todo-script.js";
 import { getDailyEntries } from "../../Backend/api/entries_api.js";
-import { formatEntries, updateAddlEntries } from "./addl-entries-script.js"
+import { updateAddlEntries, formatEntries } from "./addl-entries-script.js";
 
-import { editableEntry, deleteEntry, prioritizeEntry, completeTask, createNewBullets, nestedBullets, bulletsFromDB } from "./main-text-script.js";
-import { getDailyBullets, createBullet } from "../../Backend/api/bullet_api.js";
+import { createNewBullets, nestedBullets, bulletsFromDB } from "./main-text-script.js";
+import { getDailyBullets } from "../../Backend/api/bullet_api.js";
 
 export const router = {};
 
@@ -23,28 +22,28 @@ export const router = {};
  * @param {string} from Where the setState came from
  */
 
- router.setState = (state, statePopped, date, from) => {
-    switch (state) {
-        case "daily-log":
-            dailyLog(date, from);
-            //console.log("daily " + date);
-            break;
-        case "monthly-log":
-            monthlyLog(date);
-            console.log("monthly");
-            break;
-        case "future-log":
-            futureLog();
-            console.log("future");
-            break;
-        default:
-            console.log("default");
-    }
+router.setState = (state, statePopped, date, from) => {
+	switch (state) {
+	case "daily-log":
+		dailyLog(date, from);
+		//console.log("daily " + date);
+		break;
+	case "monthly-log":
+		monthlyLog(date);
+		console.log("monthly");
+		break;
+	case "future-log":
+		futureLog();
+		console.log("future");
+		break;
+	default:
+		console.log("default");
+	}
 
-    if(!statePopped) { //&& window.location.hash != `#${state}`) {
-        pushToHistory(state, date, from);
-    }
-}
+	if(!statePopped) { //&& window.location.hash != `#${state}`) {
+		pushToHistory(state, date, from);
+	}
+};
 
 router.currentState = null;
 //TODO ADD DATE IMPLEMENTATION HERE
@@ -79,7 +78,6 @@ export async function dailyLog(date, from){
 
         //If we are currently on a sunday, replace weekly nav menu with prev week
         if ((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
-            console.log("HELLO")
             WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "0";
             WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "0";
             setTimeout(function() {
@@ -104,13 +102,30 @@ export async function dailyLog(date, from){
             WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
             WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
         }
+        else if(from == "on-load"){
+            await createWeeklyNav(date);
+            WEEKLYNAV = document.querySelector("weekly-nav");
+            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
+            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
+
+            
+            const DATE = document.querySelector("log-type").readLog.header;
+            const ADDLENTRYBAR = document.createElement("entry-bar");
+            const ADDLENTRIES = document.querySelector(".additional")
+
+            let entriesList = await getDailyEntries(DATE);
+            let keys = entriesList[0];
+            let fetchedEntries = entriesList[1];
+
+            ADDLENTRYBAR.type = "initial";
+            ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
+            ADDLENTRIES.appendChild(ADDLENTRYBAR);
+        }
         else {
             WEEKLYNAV.selectedDay = date.getDay() + 1;
         }
         
-        updateAddlEntries();
-
-
+		updateAddlEntries();
 
         // reset current main-text area
         const MAINTEXT = document.getElementById("main-text");
@@ -121,8 +136,6 @@ export async function dailyLog(date, from){
         BULLETS.id = "bullets";
         // create new bullet input element
         const INPUT = document.createElement("bullet-input");
-        const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
-        const BULLETTYPE = INPUT.shadowRoot.getElementById("bullet-type");
 
         // Bullet Nesting Stack
         let bulletStack = [];
@@ -141,10 +154,10 @@ export async function dailyLog(date, from){
         // add ability to create new bullets
         createNewBullets(INPUT, bulletStack);
         // add ability to add nested bullets
-        //nestedBullets(INPUT, bulletStack);
-        let parentBullet = nestedBullets(INPUT, bulletStack);
-		console.log("parentBullet from router");
-		console.log(parentBullet);
+        nestedBullets(INPUT, bulletStack);
+        //let parentBullet = nestedBullets(INPUT, bulletStack);
+		//console.log("parentBullet from router");
+		//console.log(parentBullet);
     }
 } /* dailyLog */
 
@@ -183,6 +196,7 @@ async function monthlyLog(date){
 		await createToDoList(firstDay);
         createCalendar(firstDay);
         // TODO: update the main-text data with getter
+        updateAddlEntries();
 
     }
 } /* monthlyLog */
@@ -197,28 +211,28 @@ async function monthlyLog(date){
  *      futureLog();
  */
 function futureLog(){
-    const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
-    let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
-    sideNavTitle.textContent = "Future Log";
+	const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
+	let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+	sideNavTitle.textContent = "Future Log";
 
-    // defaults to current year
-    // FIXME: new behavior
-    const LOGTYPE = document.querySelector("log-type");
-    let d = new Date();
-    // update the header text above main-text area
-    let headerText = d.getFullYear();
-    const FUTUREINFO = {
-        "type": "future",
-        "date": d,
-        "header": headerText
-    }
-    LOGTYPE.updateLog = FUTUREINFO;
+	// defaults to current year
+	// FIXME: new behavior
+	const LOGTYPE = document.querySelector("log-type");
+	let d = new Date();
+	// update the header text above main-text area
+	let headerText = d.getFullYear();
+	const FUTUREINFO = {
+		"type": "future",
+		"date": d,
+		"header": headerText
+	};
+	LOGTYPE.updateLog = FUTUREINFO;
 
-    //remove the weekly nav menu
-    let weeklyNav = document.querySelector("weekly-nav");
-    if(weeklyNav){
-        weeklyNav.remove();
-    }
+	//remove the weekly nav menu
+	let weeklyNav = document.querySelector("weekly-nav");
+	if(weeklyNav){
+		weeklyNav.remove();
+	}
 } /* futureLog */
 
 /**

@@ -1,7 +1,7 @@
 // main-text-script.js
 
 import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
-import { getDailyBullets, createBullet, deleteBullet, updateBullet, getDailyPriority } from "../../Backend/api/bullet_api.js";
+import { createBullet, deleteBullet, updateBullet, getDailyPriority } from "../../Backend/api/bullet_api.js";
 
 /** 
  * editableEntry
@@ -150,15 +150,16 @@ export function completeTask(key, entry) {
  * createNewBullets
  * Add the ability to add new bullets to the current page.
  * @param {object} inputElement - A bullet-input element.
- * @param {Array} bulletStack - An array containing bullet objects on the page.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
  *
  * @example
  *     createNewBullets(inputElement, bulletElement, bulletStack);
  */
 export function createNewBullets(inputElement, bulletStack) {
-    inputElement.addEventListener("keyup", async function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
+	inputElement.addEventListener("keyup", async function(event) {
+		if (event.key === "Enter") {
+			event.preventDefault();
 
 			const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
 			const BULLETTYPE = inputElement.shadowRoot.getElementById("bullet-type");
@@ -168,6 +169,7 @@ export function createNewBullets(inputElement, bulletStack) {
                 "content": BULLETINPUT.value,
                 "completed": false,
                 "type": BULLETTYPE.value,
+                "levels": bulletStack.length - 1,
             };
 
             let newBullet = document.createElement("bullet-entry");
@@ -198,7 +200,8 @@ export function createNewBullets(inputElement, bulletStack) {
  * @param {object} item - The json information of a bullet element 
  * retrieved from the database.
  * @param {object} index - The index of the current bullet element.
- * @param {Array} bulletStack - An array containing bullet objects on the page.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
  * @param {Array} todayBullets - An array containing an array of the bullet 
  * information and an array containing the keys for each of the bullets.
  *
@@ -206,17 +209,37 @@ export function createNewBullets(inputElement, bulletStack) {
  *     bulletsFromDB(item, index, bulletStack, todayBullets);
  */
 export function bulletsFromDB(item, index, bulletStack, todayBullets) {
+	// nest existing bullets from the data base
+	let prevBullet = todayBullets[1][index-1];
+	if (prevBullet) {
+		// unnest bullets
+		if ((prevBullet.levels > item.levels)) {
+			let currLevels = prevBullet.levels;
+			while (currLevels > item.levels) {
+				unnestBulletHelper(bulletStack);
+				currLevels -= 1;
+			}
+		}
+		// nest bullets
+		if ((prevBullet.levels < item.levels)) {
+			let currLevels = prevBullet.levels;
+			while (currLevels < item.levels) {
+				nestBulletHelper(bulletStack);
+				currLevels += 1;
+			}
+		}
+	}
 	let newBullet = document.createElement("bullet-entry");
-            newBullet.entry = item;
-            const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
-            BULLETLIST.appendChild(newBullet);
+	newBullet.entry = item;
+	const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+	BULLETLIST.appendChild(newBullet);
 
-            let bulletKey = todayBullets[0][index];
+	let bulletKey = todayBullets[0][index];
 
-            editableEntry(bulletKey, newBullet);
-            prioritizeEntry(bulletKey, newBullet);
-            completeTask(bulletKey, newBullet);
-            deleteEntry(bulletKey, newBullet);
+	editableEntry(bulletKey, newBullet);
+	prioritizeEntry(bulletKey, newBullet);
+	completeTask(bulletKey, newBullet);
+	deleteEntry(bulletKey, newBullet);
 }
 
 /**
@@ -225,44 +248,67 @@ export function bulletsFromDB(item, index, bulletStack, todayBullets) {
  * @param {object} inputElement - A bullet-input element.
  * @param {object} bulletInput - The input field element in a bullet-input.
  * element
- * @param {Array} bulletStack - An array containing bullet objects on the page.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
  *
  * @example
  *     nestedBullets(inputElement, bulletElement, bulletStack);
  */
 export function nestedBullets(inputElement, bulletStack) {
+
     inputElement.addEventListener("keydown", function (event) {
         // FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
         // Unnest by one level on shift + tab
         const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
         if ((event.shiftKey && event.key === "Tab")) {
-			console.log("in shift + tab");
             event.preventDefault();
-            if (bulletStack.length > 1) {
-				let parentBullet = bulletStack[bulletStack.length - 1].shadowRoot.querySelector("bullet-entry");
-                bulletStack.pop(bulletStack[bulletStack.length - 1]);
-                // unindent the input text
-                BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
-				return parentBullet;
-            }
-			return null;
+			unnestBulletHelper(bulletStack);
+			// unindent the input text
+			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
         }
         // Nest by one level on tab
         else if (event.key === "Tab") {
-			console.log("in + tab");
             // prevent tab key from moving to next button
             this.focus();
             event.preventDefault();
-            const newSublist = document.createElement("bullet-list");
-			let parentBullet = bulletStack[bulletStack.length - 1];
-			//console.log("parent");
-			//console.log(parentBullet);
-            bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
-            bulletStack.push(newSublist);
-            // indent the input text
-            BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
-			return parentBullet;
+			nestBulletHelper(bulletStack);
+			// indent the input text
+			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
         }
     });
-	return null;
+}
+
+/**
+ * nestedBulletHelper
+ * Helper function to nest bullets by inserting a new bullet-list element as a
+ * sublist.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
+ *
+ * @example
+ *     nestedBulletHelper(bulletStack);
+ */
+function nestBulletHelper(bulletStack) {
+	const NEWSUBLIST = document.createElement("bullet-list");
+	let parentBullet = bulletStack[bulletStack.length - 1];
+	parentBullet.shadowRoot.getElementById("bullet-list").appendChild(NEWSUBLIST);
+	bulletStack.push(NEWSUBLIST);
+}
+
+/**
+ * unnestedBulletHelper
+ * Helper function to unnest bullets by popping the current bullet-list element 
+ * as a from the bulletStack.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
+ *
+ * @example
+ *     unnestedBulletHelper(bulletStack);
+ */
+function unnestBulletHelper(bulletStack) {
+	if (bulletStack.length > 1) {
+		let parentBullet = bulletStack[bulletStack.length - 1].shadowRoot.querySelector("bullet-entry");
+		bulletStack.pop(bulletStack[bulletStack.length - 1]);
+		//return parentBullet;
+	}
 }

@@ -1,14 +1,13 @@
 //weekly nav script
-import {DAYS, MONTHS} from '../components/log-type.js';
-import {router} from './router.js';
+import { router } from './router.js';
 import { getDailyPriority } from "../../Backend/api/bullet_api.js";
 
 
-let today = new Date();
-await createWeeklyNav(today);
-let WEEKLYNAV = document.querySelector("weekly-nav");
-WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "1";
-WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "1";
+// let today = new Date();
+// await createWeeklyNav(today);
+// let WEEKLYNAV = document.querySelector("weekly-nav");
+// WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "1";
+// WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "1";
 /**
  * createWeeklyNav
  * Takes in a date and creates a weekly nav component from that date and 
@@ -43,7 +42,6 @@ export async function createWeeklyNav(date) {
         }
 
     });
-
     return true;
 } /* createWeeklyNav */
 
@@ -78,6 +76,5 @@ async function createDaysOfWeekArray(date) {
 		currDate.setDate(currDate.getDate() + 1);
 	}
 
-    console.log(daysOfWeek);
 	return daysOfWeek;
 } /* createDaysofWeekArray */

@@ -22,7 +22,8 @@ export async function createToDoList(date){
 //Make TODO Menu here
 
 /**
- * 
+ * getMonthTodoBullets
+ * fill in later
  * @param {Date} date  - A date object to the first day in the month 
  */
 async function getMonthTodoBullets(date){

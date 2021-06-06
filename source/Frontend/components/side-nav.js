@@ -13,12 +13,12 @@ class SideNav extends HTMLElement{
 
 		const template = document.createElement("template");
 
-        //         <ul id="side-nav-menu">
-        //             <a id="sn-future-log" class="sn-link" href="#"><li>${FUTURE}</li></a>
-        //             <a id="sn-daily-log" class="sn-link" href="#"><li>${DAILY}</li></a>
-        //             <a id="sn-monthly-log" class="sn-link" href="#"><li>${MONTHLY}</li></a>
-        //         </ul>
-        //     </div>
+		//         <ul id="side-nav-menu">
+		//             <a id="sn-future-log" class="sn-link" href="#"><li>${FUTURE}</li></a>
+		//             <a id="sn-daily-log" class="sn-link" href="#"><li>${DAILY}</li></a>
+		//             <a id="sn-monthly-log" class="sn-link" href="#"><li>${MONTHLY}</li></a>
+		//         </ul>
+		//     </div>
 		template.innerHTML = `
 			<div id="burger-and-title" class="burger-and-title">
 				<div class="burger" id="side-nav-burger">

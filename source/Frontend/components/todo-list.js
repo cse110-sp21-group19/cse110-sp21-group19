@@ -94,7 +94,6 @@ class TodoList extends HTMLElement{
 	
 }
 
-
 /**
  * getDateString 
  * Converts integer day of week to its related string.
@@ -106,7 +105,7 @@ class TodoList extends HTMLElement{
  * @example
  *      getDateString(day)
  */
-function getDateString(day){
+ function getDateString(day){
 	switch(day){
 	case 0:
 		return "Sunday";
