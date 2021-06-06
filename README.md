@@ -5,6 +5,7 @@ Repo for CSE 110 Sp21 Group 19
 [iNeedA\<br> - Group Page](admin/team.md)
 
 ## Project Navigation
+- [Project Onboarding](admin/onboarding/onboard.md)
 - [Project Source Code](source)
 - [Style Guide](specs/style_guide.md)
 - [Meeting Notes](#meeting-notes)
