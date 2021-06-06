@@ -637,14 +637,14 @@ export function getFutureBullets(date) {
 }
 
 module.exports = {
-    createDB, 
-    createBullet, 
-    updateBullet, 
-    getBullet, 
-    deleteBullet, 
-    getAllPriority, 
-    getDailyBullets, 
-    getDailyTodo, 
+	createDB, 
+	createBullet, 
+	updateBullet, 
+	getBullet, 
+	deleteBullet, 
+	getAllPriority, 
+	getDailyBullets, 
+	getDailyTodo, 
 	getDailyPriority,
 	getMonthlyBullets,
 	getFutureBullets

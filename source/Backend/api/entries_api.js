@@ -273,23 +273,23 @@ export function getDailyEntries(date) {
 				resolve({});
 			};
 
-            transaction.oncomplete = function () {
-                db.close();
-            }
-        }
-        //unable to open database
-        request.onerror = function(event){
-            console.log.error(ERR_DB_NOT_CREATED);
-            resolve({});
-        }
-    });
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+		//unable to open database
+		request.onerror = function(){
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve({});
+		};
+	});
 }
 
 module.exports = {
-    createEntry,
-    updateEntry,
-    getEntry,
-    deleteEntry,
-    getDailyEntries
+	createEntry,
+	updateEntry,
+	getEntry,
+	deleteEntry,
+	getDailyEntries
 
-}
+};
