@@ -2,8 +2,10 @@
 
 @import '../abstracts/mixins', '../abstracts/variables';
 
-/* Begin styling addl button */
-
+*:focus{
+    outline: none;
+}
+/*Begin styling additional entry bar*/
 .active-bar{
     background: $accent2;
     height: 20vh;
@@ -113,7 +115,8 @@
     text-decoration: none;
     display: block;
   }
-
+  /*End styling additional entry bar*/
+/* Begin styling text entry*/
 .editing{
     display: none;
     padding: 2rem;
@@ -140,6 +143,8 @@
         cursor: pointer;
     }
     .text-content{
+        min-width: 100%;
+        min-height: 70%;
         margin-top: 1rem;
         width: 98.5%;
         height: 70%;
@@ -147,7 +152,16 @@
         border-radius: 1rem;
         padding-top: 1rem;
         padding-left: 0.5rem;
-        overflow-y: auto;
+        border: none;
+        overflow: auto;
+        outline: none;
+        font-size: 1em;
+        font-family: 'Open Sans', sans-serif;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+
+        resize: none; /*remove the resize handle on the bottom right*/
         
     }
     .save-btn-wrapper{
@@ -179,7 +193,9 @@
     }
 
 }
+/* End styling text entry*/
 
+/* Begin styling image entry*/
 .img-editing{
     display: none;
     padding: 2rem;
@@ -231,8 +247,10 @@
             width: auto;
             height: auto;
             margin-left: 6vw;
-        }  
+        }
+        
     }
+   
     .img-content:hover{
         cursor: pointer;
     }
@@ -266,4 +284,11 @@
     }
 
 }
-/* End styling addl button */
+
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+/* End styling image entry*/

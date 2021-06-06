@@ -1,3 +1,4 @@
+/*text entry icon*/
 .note{
     overflow: visible;
     width: 8rem;
@@ -10,6 +11,7 @@
     cursor: pointer;
 }
 
+/*image entry icon*/
 .image{
     overflow: visible;
     width: 8rem;
@@ -22,6 +24,7 @@
     cursor: pointer;
 }
 
+/*Entry title*/
 .tooltip{
     position: relative;
     .tooltiptext{
@@ -33,11 +36,12 @@
         overflow-wrap: break-word;
     }
 }
+
+/*Scrollbar*/
 ::-webkit-scrollbar {
     height: 10px;
 }
 
-  /* Handle */
 ::-webkit-scrollbar-thumb {
     background: rgb(182, 182, 182);
     border-radius: 10px;

@@ -3,15 +3,16 @@
  * @typedef {Object} entry
  * @property {string} title - The title of the entry object
  * @property {string} content - The contents of the entry object
+ * @property {string} image - The src to an image
  * @property {Number} key
  */
 
 /**
- * @class {textEntry} 
+ * @class {addlEntry} 
  *
  * This class represents a single additional text entry
  */
- class textEntry extends HTMLElement{
+ class addlEntry extends HTMLElement{
 	constructor() {
 		super();
 		// templated HTML content
@@ -38,6 +39,7 @@
 				<span class="entry-title">Title</span>
 				<span class="entry-content">Enter note...</span>
 				<span class="key"></span>
+				<span class="entry-img"></span>
 			</div>		
 			`;
 	
@@ -63,8 +65,12 @@
 		let currTitle = this.shadowRoot.querySelector(".entry-title").innerText;
 		let currContent = this.shadowRoot.querySelector(".entry-content").innerText;
 		let key = this.shadowRoot.querySelector(".key").innerText;
-		let toReturn = {title: currTitle, content: currContent, key: parseInt(key)};
-		return toReturn;
+		let currImg = this.shadowRoot.querySelector(".entry-img").innerText;
+
+		if(currImg == "true"){
+			return {title: currTitle, content: currContent, key: parseInt(key), image: true};
+		}
+		return {title: currTitle, content: currContent, key: parseInt(key), image: false};
 	} /*get entry*/
 
 	/** Sets the entry attribute of the text-entry component
@@ -72,11 +78,12 @@
 	 * @param entry
 	 * 
 	 * 
-	 * @example newEntry.entry = {title: "myTitle", content: "myContents"};
+	 * @example newEntry.entry = {title: "myTitle", content: "myContents", key: 3, image: "false"};
 	 */
 	set entry(entry){
 		let currTitle = this.shadowRoot.querySelector(".entry-title");
 		let currContent = this.shadowRoot.querySelector(".entry-content");
+		let currImg = this.shadowRoot.querySelector(".entry-img");
 		let toDisplay = this.shadowRoot.querySelector(".tooltiptext");
 		let key = this.shadowRoot.querySelector(".key");
 		let imgIcon = this.shadowRoot.querySelector(".image");
@@ -87,8 +94,10 @@
 		//save entry contents
 		currTitle.innerHTML = entry.title;
 		currContent.innerHTML = entry.content;
+		currImg.innerHTML = entry.image;
 		key.innerHTML = entry.key;
-		if(entry.content==""){
+
+		if(entry.image == "true"){
 			noteIcon.style.display="none";
 			imgIcon.style.display="block";
 		}
@@ -98,6 +107,6 @@
 		}
 	}/*set entry*/	
 }/*entryBar*/
-//define the custom web component "text-entry" and associate it to the class "textEntry"
-customElements.define("text-entry", textEntry);
+//define the custom web component "addl-entry" and associate it to the class "addlEntry"
+customElements.define("addl-entry", addlEntry);
 

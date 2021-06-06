@@ -1,6 +1,6 @@
 import { createEntry, deleteEntry, getEntry, updateEntry } from "../../../Backend/api/entries_api.js";
 import { binaryToImgUrl, imgToBinary} from "../../scripts/binary-helpers.js"
-
+import { insertTextAtCaret } from "../../scripts/addl-entries-script.js"
 //global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
 //variable that tracks the key of the entry currently being viewed
@@ -55,7 +55,7 @@ var currKey = 0;
 					<circle cx="25" cy="25" r="25" fill="#71B637"/>
 					<path d="M22.1111 31.2C22.4942 31.2 22.8616 31.0472 23.1325 30.7753C23.4034 30.5034 23.5556 30.1346 23.5556 29.75V21.05C23.5556 20.6654 23.4034 20.2966 23.1325 20.0247C22.8616 19.7528 22.4942 19.6 22.1111 19.6C21.728 19.6 21.3606 19.7528 21.0897 20.0247C20.8188 20.2966 20.6667 20.6654 20.6667 21.05V29.75C20.6667 30.1346 20.8188 30.5034 21.0897 30.7753C21.3606 31.0472 21.728 31.2 22.1111 31.2ZM36.5556 13.8H30.7778V12.35C30.7778 11.1963 30.3212 10.0899 29.5086 9.27409C28.6959 8.4583 27.5937 8 26.4444 8H23.5556C22.4063 8 21.3041 8.4583 20.4914 9.27409C19.6788 10.0899 19.2222 11.1963 19.2222 12.35V13.8H13.4444C13.0614 13.8 12.694 13.9528 12.4231 14.2247C12.1522 14.4966 12 14.8654 12 15.25C12 15.6346 12.1522 16.0034 12.4231 16.2753C12.694 16.5472 13.0614 16.7 13.4444 16.7H14.8889V32.65C14.8889 33.8037 15.3454 34.9101 16.1581 35.7259C16.9708 36.5417 18.073 37 19.2222 37H30.7778C31.927 37 33.0292 36.5417 33.8419 35.7259C34.6546 34.9101 35.1111 33.8037 35.1111 32.65V16.7H36.5556C36.9386 16.7 37.306 16.5472 37.5769 16.2753C37.8478 16.0034 38 15.6346 38 15.25C38 14.8654 37.8478 14.4966 37.5769 14.2247C37.306 13.9528 36.9386 13.8 36.5556 13.8ZM22.1111 12.35C22.1111 11.9654 22.2633 11.5966 22.5342 11.3247C22.8051 11.0528 23.1725 10.9 23.5556 10.9H26.4444C26.8275 10.9 27.1949 11.0528 27.4658 11.3247C27.7367 11.5966 27.8889 11.9654 27.8889 12.35V13.8H22.1111V12.35ZM32.2222 32.65C32.2222 33.0346 32.07 33.4034 31.7992 33.6753C31.5283 33.9472 31.1609 34.1 30.7778 34.1H19.2222C18.8391 34.1 18.4717 33.9472 18.2008 33.6753C17.93 33.4034 17.7778 33.0346 17.7778 32.65V16.7H32.2222V32.65ZM27.8889 31.2C28.272 31.2 28.6394 31.0472 28.9103 30.7753C29.1812 30.5034 29.3333 30.1346 29.3333 29.75V21.05C29.3333 20.6654 29.1812 20.2966 28.9103 20.0247C28.6394 19.7528 28.272 19.6 27.8889 19.6C27.5058 19.6 27.1384 19.7528 26.8675 20.0247C26.5966 20.2966 26.4444 20.6654 26.4444 21.05V29.75C26.4444 30.1346 26.5966 30.5034 26.8675 30.7753C27.1384 31.0472 27.5058 31.2 27.8889 31.2Z" fill="black"/>
 				</svg>
-				<ul class="text-content" contenteditable="True">Add a Note...</ul>
+				<textarea class="text-content" contenteditable="True" placeholder="Add a Note..."></textarea>
 				<div class="save-btn-wrapper">
 					<svg class="save-btn" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path fill-rule="evenodd" clip-rule="evenodd" d="M23.75 26.2507H6.25C4.86929 26.2507 3.75 25.1314 3.75 23.7507V6.25073C3.75 4.87002 4.86929 3.75073 6.25 3.75073H20L26.25 10.0007V23.7507C26.25 25.1314 25.1307 26.2507 23.75 26.2507Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -74,7 +74,7 @@ var currKey = 0;
               </svg>
               <div class="img-content">
 			  	<span class="img-text">Click here to upload an image...</span>
-                <img class="uploaded" >
+                	<img class="uploaded">
                 <form class="img-form">
                   <input class="choose-img" type="file" id="img" name="img" accept="image/*">
                 </form>
@@ -114,7 +114,6 @@ var currKey = 0;
 		let imgSelector = this.shadowRoot.querySelector(".choose-img");
 
 		//buttons
-		let imgInput = this.shadowRoot.querySelector(".choose-img");
 		let saveBtn = this.shadowRoot.querySelector(".save-btn");
 		let saveBtnImg = this.shadowRoot.querySelectorAll(".save-btn")[1];
 		let deleteButton = this.shadowRoot.querySelector(".delete-btn");
@@ -124,27 +123,94 @@ var currKey = 0;
 
 		//hide the delete button by default
 		deleteButton.style.display="none";
-
-		//imgEditing.style.display="block";
-		//event listener that allows user to upload image
 		
-
-		imgContent.addEventListener("click", function(){
-			imgSelector.click();
+		//allow for tabs
+		content.addEventListener("keydown", function(e){
+			if(e.key==="Tab"){
+				e.preventDefault();
+				insertTextAtCaret(content, "\t");
+			}
 		});
 
-		imgInput.addEventListener("change", function(){
-			infoText.style.display="none";
-			uploaded.src = URL.createObjectURL(this.files[0]);
-		})
+		//add in bullets when user presses '-'
+		content.addEventListener("keydown", function(e){
+			if(e.key===" "){
+				let myString = content.value;
+				let lines = myString.split('\n');
+
+				for (let i = 0; i < lines.length; ++i){
+					if (lines[i].search("-") != -1 && lines[i].search("•") == -1){
+						lines[i] = lines[i].replace("-", "•");
+					}
+				}
+				content.value = lines.join("\n");
+			}
+		});
+		//if the previous line has a bullet, add to the next line as well
+		content.addEventListener("keydown", function(e){
+			if(e.key==="Enter"){
+				let myString = content.value;
+				let lines = myString.split('\n');
+
+				//if the last line entered has nested bullets and tabs
+				if (lines[lines.length-1].search("•") != -1){
+					console.log("found");
+
+					let numTabs = lines[lines.length-1].split("\t").length - 1;
+					console.log("found");
+					e.preventDefault();
+					content.value = content.value + "\n";
+
+					for (let i = 0; i < numTabs; ++i){
+						insertTextAtCaret(content, "\t");
+					}
+		
+					insertTextAtCaret(content, "• ");
+				}
+				//if it only hastabs
+				else if (lines[lines.length-1].search("\t") != -1){
+					let numTabs = lines[lines.length-1].split("\t").length - 1;
+					console.log("found");
+					content.value = content.value + "\n";
+					e.preventDefault();
+
+					for (let i = 0; i < numTabs; ++i){
+						insertTextAtCaret(content, "\t");
+					}
+					
+				}
+			}
+		});
+
+
+		//event listener that allows user to upload image
+		imgContent.addEventListener("click", function(){
+			imgSelector.click();
+			if(isViewing){
+				infoText.style.display="none";
+			}
+		});
+
+		imgSelector.addEventListener("click", function(){
+			if (infoText.style.display="block"){
+				imgSelector.value="";
+			}
+		});
+
+		imgSelector.addEventListener("change", function(){
+			if(this.files[0]){
+				infoText.style.display="none";
+				uploaded.src = URL.createObjectURL(this.files[0]);
+			}
+		});
 		//event listener that fires everytime the save button is clicked
 		saveBtn.addEventListener("click", async function(){
 			const DATE = document.querySelector("log-type").readLog.header;
 			let entryTitle = title.innerText;
-			let entryContent = content.innerText;
-			let newNote = document.createElement("text-entry");
+			let entryContent = content.value;
+			let newNote = document.createElement("addl-entry");
 			//create a new text-entry component with the saved title and contents
-			let entry = makeEntry(entryTitle, entryContent, 0);
+			let entry = makeEntry(entryTitle, entryContent, 0, false);
 			newNote.entry = entry;
 			
 
@@ -161,7 +227,7 @@ var currKey = 0;
 
 				//display the title and contents of the current entry to the screen
 				title.innerText = newNote.entry.title;
-				content.innerText = newNote.entry.content;
+				content.value = newNote.entry.content;
 
 				//get the key of the current entry
 				currKey = newNote.entry.key;
@@ -180,13 +246,14 @@ var currKey = 0;
 					title: newNote.entry.title,
 					content: newNote.entry.content
 				});
-				newNote.entry = {title: newNote.entry.title, content: newNote.entry.content, key: bulletKey};
+				newNote.entry = {title: newNote.entry.title, content: newNote.entry.content, key: bulletKey, image: "false"};
 				innerBar.appendChild(newNote);
 	
 				mainText.style.display = "block";
             	document.querySelector("entry-bar").type="openbar";	
 				title.innerText="Add Title";
-				content.innerText="Add note here...";
+				content.value="";
+				content.placeholder="Add note here...";
 			}
 			//if we are viewing an existing entry
 			else{
@@ -214,9 +281,9 @@ var currKey = 0;
 		saveBtnImg.addEventListener("click", async function(){
 			const DATE = document.querySelector("log-type").readLog.header;
 			let entryTitle = imgTitle.innerText;
-			let newNote = document.createElement("text-entry");
+			let newNote = document.createElement("addl-entry");
 			//create a new text-entry component with the saved title and contents
-			let entry = makeEntry(entryTitle, "", 0);
+			let entry = makeEntry(entryTitle, "", 0, true);
 			newNote.entry = entry;
 			
 			//fires everytime the new entry is clicked
@@ -238,8 +305,8 @@ var currKey = 0;
 				//get the key of the current entry
 				currKey = newNote.entry.key;
 				let toUpload = await getEntry(currKey);
-				// console.log(toUpload);
-				uploaded.src = binaryToImgUrl(toUpload.image);
+				let imgUrl = await binaryToImgUrl(toUpload.image);
+				uploaded.src = imgUrl;
 			});
 
 
@@ -250,7 +317,7 @@ var currKey = 0;
 					newNote.style.marginLeft = "7rem";
 				}
 				//append the newly created entry
-				let binImg = await imgToBinary(imgInput.files[0]);
+				let binImg = await imgToBinary(imgSelector.files[0]);
 
 				let bulletKey = await createEntry({
 					date: DATE,
@@ -258,13 +325,14 @@ var currKey = 0;
 					image: binImg
 				});
 
-				newNote.entry = {title: newNote.entry.title, content: "", key: bulletKey};
+				newNote.entry = {title: newNote.entry.title, content: "", key: bulletKey, image: "true"};
 				innerBar.appendChild(newNote);
 
 				mainText.style.display = "block";
 				imgEditing.style.display = "none";
 				document.querySelector("entry-bar").type="openbar";	
 				title.innerText="Add Title";
+				
 			}
 			//if we are viewing an existing entry
 			else{
@@ -273,24 +341,27 @@ var currKey = 0;
 					let currEntry;
 					if(innerBar.children[i].entry.key == currKey){
 						currEntry = innerBar.children[i];
-						currEntry.entry = makeEntry(entryTitle, "", currKey);
+						currEntry.entry = makeEntry(entryTitle, "", currKey, true);
 						break;
 					} 
 				}
 
-				if (imgInput.files[0]){
-					let binImg = await imgToBinary(imgInput.files[0]);
-					uploaded.src = binaryToImgUrl(binImg);
+				if (imgSelector.files[0]){	//if a new image has been uploaded
+					let binImg = await imgToBinary(imgSelector.files[0]);
+					uploaded.src = URL.createObjectURL(imgSelector.files[0]);
 					updateEntry(currKey,
 						{	date: DATE,
 							title: newNote.entry.title,
 							image: binImg,
 						});
-				}else{
+					imgSelector.value="";
+				}else{	
+					console.log("image has not been changed");
+					let toUpload = await getEntry(currKey);
 					updateEntry(currKey,
 						{	date: DATE,
 							title: newNote.entry.title,
-							image: newNote.entry.image,
+							image: toUpload.image,
 						});
 				}
 				
@@ -330,7 +401,8 @@ var currKey = 0;
 				//hide the delete button and reset the content to display in the editing panel
 				deleteButton.style.display="none";
 				title.innerText=" Add Title";
-				content.innerText="Add note here...";
+				content.value="";
+				content.placeholder="Add note here...";
 			}
 		});
 
@@ -373,7 +445,8 @@ var currKey = 0;
 		exitBtnText.addEventListener("click", function(){
 			//discard changes made to the content displayed in the editing panel
 			title.innerText="Add Title";
-			content.innerText="Add note here..."
+			content.value="";
+			content.placeholder="Add note here..."
 			//const DATE = document.querySelector("log-type").readLog.date;
 			mainText.style.display = "block";
 			editing.style.display="none";
@@ -382,7 +455,8 @@ var currKey = 0;
 		exitBtnImg.addEventListener("click", function(){
 			//discard changes made to the content displayed in the editing panel
 			imgTitle.innerText="Add Title";
-			content.innerText="Add note here..."
+			content.value="";
+			content.placeholder="Add note here..."
 			//const DATE = document.querySelector("log-type").readLog.date;
 			mainText.style.display = "block";
 			imgEditing.style.display="none";
@@ -402,6 +476,7 @@ var currKey = 0;
 	get type(){
 		let initial = this.shadowRoot.querySelector(".initial");
 		let activeBar = this.shadowRoot.querySelector(".active-bar");
+		let editing = this.shadowRoot.querySelector(".editing");
 
 		if (initial.style.display == "block" && activeBar.style.display == "none"){
 			return "initial";
@@ -432,6 +507,7 @@ var currKey = 0;
 		let infoText = this.shadowRoot.querySelector(".img-text");
 		let imgContent = this.shadowRoot.querySelector(".img-content");
 		let mainText = document.querySelector(".main-text");
+		imgContent.style.overflow = "hidden";
 		
 		if(type == "initial"){
 			initial.style.display="block";
@@ -487,6 +563,7 @@ var currKey = 0;
 		
 			if(isViewing){
 				this.shadowRoot.querySelector(".delete-btn").style.display="block";
+				infoText.style.display="none";
 			}
 			//fires when user clicks the exit button in the editing panel
 			
@@ -501,7 +578,14 @@ var currKey = 0;
 			activeBar.style.display="flex";
 		}
 	}
+	/**	Setter that loads the entries to the page, given an array of entries from the database
+	 * 
+	 * @param {Array.<Object>} entries
+	 * 
+	 * @example ENTRYBAR.entries = loadedEntries;
+	 */
 	set entries(entries){
+		
 		let mainText = document.querySelector(".main-text");
 		let innerBar = this.shadowRoot.querySelector(".content");
 		let title = this.shadowRoot.querySelector(".entry-title");
@@ -514,28 +598,32 @@ var currKey = 0;
 		let imgTitle = this.shadowRoot.querySelectorAll(".entry-title")[1];
 		let uploaded = this.shadowRoot.querySelector(".uploaded");
 		let infoText = this.shadowRoot.querySelector(".img-text");
+
 		infoText.style.display="none";
 
 		//buttons
 		let deleteButton = this.shadowRoot.querySelector(".delete-btn");
+		let deleteButtonImg = this.shadowRoot.querySelectorAll(".delete-btn")[1];
 		
 		while(innerBar.firstChild){
 			innerBar.removeChild(innerBar.firstChild);
 		}
 
 		entries.forEach(entry => {
-			let newEntry = document.createElement("text-entry");
+			//console.log(entry);
+			let newEntry = document.createElement("addl-entry");
 			newEntry.entry = entry;
-
-			if(newEntry.entry.content==""){
+			//console.log(newEntry.entry.image);
+			if(newEntry.entry.image){
 				newEntry.addEventListener("click", async function(){
 					//change the mode to is viewing
 					isViewing = true;
+					document.querySelector("entry-bar").type = "img-editing";
 					//hide and display relevant components
 					mainText.style.display="none"
 					initial.style.display="none";
 					imgEditing.style.display="block";
-					deleteButton.style.display="block";
+					deleteButtonImg.style.display="block";
 	
 					//display the title and image of the current entry to the screen
 					
@@ -544,8 +632,9 @@ var currKey = 0;
 					//get the key of the current entry
 					currKey = newEntry.entry.key;
 					let toUpload = await getEntry(currKey);
+					let imgUrl = await binaryToImgUrl(toUpload.image);
 					
-					uploaded.src = binaryToImgUrl(toUpload.image);
+					uploaded.src = imgUrl;
 				});
 
 			}else{
@@ -561,7 +650,7 @@ var currKey = 0;
 		
 					//display the title and contents of the current entry to the screen
 					title.innerText = newEntry.entry.title;
-					content.innerText = newEntry.entry.content;
+					content.value = newEntry.entry.content;
 		
 					//get the key of the current entry
 					currKey = newEntry.entry.key;
@@ -585,10 +674,14 @@ customElements.define("entry-bar", entryBar);
  * @param {string} title 
  * @param {string} content 
  * @param {Number} key
+ * @param {boolean} image
  * @return {Object} - Return an object of the form: {title: title, content: content, key: key} 
  * 
  * @example myEntry = createEntry(title, content, key);
  */
-function makeEntry(title, content, key){
-	return {title: title, content: content, key: key};
+function makeEntry(title, content, key, image){
+	if(image){
+		return {title: title, content: content, key: key, image: "true"};
+	}
+	return {title: title, content: content, key: key, image: "false"};
 }
