@@ -87,7 +87,6 @@ export function updateEntry(key, entry){
 		//Get attributes to change, (date not needed)
 		let title = entry.title;
 		let content = entry.content;
-		let image = entry.image;
 
 		//opening database
 		let request = window.indexedDB.open(DATABASENAME);
@@ -106,7 +105,6 @@ export function updateEntry(key, entry){
 					//updating attributes
 					currEntry.title = title;
 					currEntry.content = content;
-					currEntry.image = image;
 
 					let putRequest = store.put(currEntry, key);
                     
