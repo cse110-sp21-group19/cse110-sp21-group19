@@ -28,5 +28,7 @@ Press transition arrows
 
 ## Output 
 Screenshots / Attached files / etc.
-[Screenshot 1](Testing%20Report%20Images/[Bug%203]%20-%20Monthly%20to%20Daily_1.png)
-[Screenshot 2](Testing%20Report%20Images/[Bug%203]%20-%20Monthly%20to%20Daily_2.png)
+
+[Screenshot 1](Testing%20Report%20Images/[Bug%20Derek%203]%20-%20Monthly%20to%20Daily_1.png)
+
+[Screenshot 2](Testing%20Report%20Images/[Bug%20Derek%203]%20-%20Monthly%20to%20Daily_2.png)

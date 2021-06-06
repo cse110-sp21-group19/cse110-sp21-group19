@@ -28,4 +28,5 @@ Repeatedly add bullets to main text
 
 ## Output 
 Screenshots / Attached files / etc.
-[Screenshot](Testing%20Report%20Images/[Bug%201]%20-%20Main%20Text_1.png)
+
+[Screenshot 1](Testing%20Report%20Images/[Bug%20Derek%201]%20-%20Main%20Text_1.png)
