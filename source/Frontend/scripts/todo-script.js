@@ -9,9 +9,9 @@
  * 	createToDoList()
  */
 export function createToDoList(){
-    //adding weekly navigation web component
-    const TODO = document.createElement("todo-list");
-    document.getElementById("weekly-nav-container").appendChild(TODO);
+	//adding weekly navigation web component
+	const TODO = document.createElement("todo-list");
+	document.getElementById("weekly-nav-container").appendChild(TODO);
 
 } /* createToDoList */
 //Make TODO Menu here

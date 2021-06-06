@@ -259,7 +259,6 @@ export function getDailyEntries(date) {
 				let cursor = e.target.result;
 				if(cursor != null) {
 					let currDate = cursor.value.date;
-
 					if(currDate == date) {
 						matchingEntries.push(cursor.value);
 						matchingKeys.push(cursor.key);

@@ -12,7 +12,7 @@ var currKey = 0;
  *
  * This class represents additional entries bar at the bottom of the screen
  */
- class entryBar extends HTMLElement{
+class entryBar extends HTMLElement{
 	constructor() {
 		super();
 	
@@ -164,7 +164,7 @@ var currKey = 0;
 				//change the mode to is viewing
 				isViewing = true;
 				//hide and display relevant components
-				mainText.style.display="none"
+				mainText.style.display="none";
 				initial.style.display="none";
 				editing.style.display="block";
 				deleteButton.style.display="block";
@@ -194,7 +194,7 @@ var currKey = 0;
 				innerBar.appendChild(newNote);
 	
 				mainText.style.display = "block";
-            	document.querySelector("entry-bar").type="openbar";	
+				document.querySelector("entry-bar").type="openbar";	
 				title.innerText="Add Title";
 				content.value="";
 				content.placeholder="Add note here...";
@@ -368,7 +368,6 @@ var currKey = 0;
 			return "openbar";
 		}
 	}
-
 	/**	Set the 'type' attribute of the entry bar which determines what content to hide/display
 	 * @param {string}
 	 * 
