@@ -1,6 +1,7 @@
 # Future Plan
 ## What We Have Done
 We have a bullet journal that has a daily, monthly, and yearly log. Users can easily create and edit bullet notes in each log as well as mark them as important. Marking specific bullets as important on the daily log will make them show up on the weekly overview and To-Do list if it is a task. Each log also has an option to add additional entries which could be a note where the user is allowed to type or a piece of media that the user uploads.
+
 ## What We Would do Given More Time
 Given more time, we would have loved the bullets to be draggable so they could be easily rearranged. A notification system would also be a nice feature to add to remind users about upcoming events or tasks. We also had planned for there to be an option for users to create a custom log for notes that did not fit into daily, monthly, or future log categories. In the additional entries, adding a option to draw free-form (like on a whiteboard) could be a useful feature for users who need to doodle something down quickly. More customization for the user would also be nice such as more color themes rather than just light and dark mode. These are all relatively small things that we would do next given the time. 
 
