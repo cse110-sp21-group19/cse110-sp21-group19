@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postInstall": "(npm install -d); (cd \"source/Frontend\" && npm install); (cd \"source/Backend\" && npm install)",
-    "postCI": "(npm ci); (cd \"source/Frontend\" && npm ci); (cd \"source/Backend\" && npm ci)",
     "test": "jest --coverage --passWithNoTests \"./source/Testing/index.js\"",
     "lint": "eslint \"source/**\" --ext .js",
     "lint:fix": "npm run lint -- --fix",
@@ -16,7 +14,9 @@
   "author": "cse110-group-19",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.14.3",
     "eslint": "^7.25.0",
+    "fake-indexeddb": "^3.1.2",
     "jest": "^26.6.3",
     "jsdoc": "^3.6.7"
   }

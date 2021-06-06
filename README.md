@@ -7,7 +7,6 @@ Repo for CSE 110 Sp21 Group 19
 ## Project Navigation
 - [Project Source Code](source)
 - [Style Guide](specs/style_guide.md)
-- Task List
 - [Meeting Notes](#meeting-notes)
 - [Members](#members)
 
@@ -55,11 +54,12 @@ This quarter, we will be working on making a [Bullet Journal](https://en.wikiped
 
 ## Running/Developing the project
 - If you are developing for this project or running it locally, run the following command to get our packages:
-  - ```npm run postInstall```
+  - ```npm install -d```
 
 - To run our code, we use the VSCode extension [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
   - We run Live Server in the ``` \source\frontend ``` file
 
+### Other scripts:
 - Here are the main scripts for working with our project:
   - ```npm run lint``` - Runs eslint to give styling feedback
   - ```npm run lint:fix``` - Fixes minor linting errors
