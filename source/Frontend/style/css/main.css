@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Layout */
 body {
-  background: #EDEBE6;
+  background: #E5E5E5;
   margin: auto;
   padding: 0 3rem;
 }
@@ -109,11 +109,13 @@ body .container {
 body .container .weekly-nav-container {
   -ms-grid-column: 1;
       grid-column-start: 1;
+  display: inline-block;
 }
 
 body .container .daily-log {
   -ms-grid-column: 2;
       grid-column-start: 2;
+  padding-top: 4rem;
 }
 
 body .container .daily-log-title {
@@ -127,7 +129,7 @@ body .container .daily-log-title {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 body .container .daily-log-title i {
@@ -143,8 +145,6 @@ body .container .daily-log-title i:hover {
 body .side-nav-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 30% 70%;
-      grid-template-columns: 30% 70%;
 }
 
 /* Components */
@@ -154,6 +154,6 @@ body .side-nav-container {
   border-radius: 1rem;
   background: white;
   padding: 2rem;
-  margin: 1rem;
+  margin: 0 1rem;
 }
 /*# sourceMappingURL=main.css.map */

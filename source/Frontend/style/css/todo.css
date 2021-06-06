@@ -10,56 +10,107 @@
 }
 
 .todo-container {
-  background: #a1b3a1;
+  background: #71B637;
   z-index: -1;
-  border-radius: 1rem;
-  padding: 0.5rem;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: auto auto auto auto auto auto auto;
-      grid-template-rows: auto auto auto auto auto auto auto;
-  height: 80vh;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  padding: 0.6rem;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 
-.todo-container .wn-item {
+.todo-container .scroll-container {
+  overflow-y: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 40vh;
+  margin: 0.5rem;
+  padding-right: 0.3rem;
+}
+
+.todo-container .scroll-container .todo-item {
   margin: 0.4rem;
-  display: -ms-grid;
-  display: grid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background: white;
   border-radius: 0.5rem;
-  -ms-grid-rows: 1;
-      grid-template-rows: 1;
-  -ms-grid-columns: auto auto;
-      grid-template-columns: auto auto;
 }
 
-.todo-container .wn-item:hover {
+.todo-container .scroll-container .todo-item:hover {
   -webkit-filter: brightness(90%);
           filter: brightness(90%);
 }
 
-.todo-container .wn-item .wn-date {
+.todo-container .scroll-container .todo-item .no-items {
   pointer-events: none;
-  -ms-grid-column: 1;
-      grid-column-start: 1;
-  margin-left: 0.5rem;
-  font-size: 0.95em;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 1rem 2rem;
 }
 
-.todo-container .wn-item .wn-date #day-of-week {
+.todo-container .scroll-container .todo-item .todo-date {
+  pointer-events: none;
+  margin-top: 0.6rem;
+  margin-left: 0.6rem;
+  width: 5vw;
+  min-width: 6rem;
+  height: 100%;
+}
+
+.todo-container .scroll-container .todo-item .todo-date #day-of-month {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.todo-container .scroll-container .todo-item .todo-date #day-of-week {
   padding: 0 0.35em;
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   font-weight: lighter;
-  font-size: 1.05em;
+  font-size: 1.1em;
 }
 
-.todo-container .wn-item .wn-bullets {
-  -ms-grid-column: 3;
-      grid-column-start: 3;
-  font-size: 10px;
+.todo-container .scroll-container .todo-item .todo-bullets-container {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  margin: 0.4rem;
+  overflow-y: none;
 }
 
-.todo-container .wn-item p {
-  visibility: hidden;
+.todo-container .scroll-container .todo-item .todo-bullets-container svg {
+  height: 1em;
+  width: 1em;
+  padding-right: 0.5rem;
+}
+
+.todo-container .scroll-container .todo-item .todo-bullets-container .todo-bullet {
+  margin: 0.3rem;
+}
+
+.todo-container ::-webkit-scrollbar {
+  width: 8px;
+  position: relative;
+  top: 50px;
+}
+
+.todo-container ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+.todo-container ::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+  border-radius: 6px;
+}
+
+.todo-container ::-webkit-scrollbar-thumb:hover {
+  background: #FFA33F;
 }
 /*# sourceMappingURL=todo.css.map */

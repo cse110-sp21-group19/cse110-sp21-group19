@@ -11,13 +11,14 @@
       -ms-flex-align: center;
           align-items: center;
   margin-top: 1rem;
-  width: 30vw;
   height: 4.2rem;
   -ms-grid-column: 1;
       grid-column-start: 1;
   max-width: 100%;
   border-radius: 0.8em;
-  background: #a1b3a1;
+  background: #FFA33F;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .burger-and-title .burger {
@@ -34,7 +35,7 @@
 .burger-and-title .burger .x, .burger-and-title .burger .y, .burger-and-title .burger .z {
   width: 36px;
   height: 5px;
-  background: #EDEBE6;
+  background: white;
   border-radius: 3px;
   z-index: 1;
   -webkit-transform-origin: 4px 0px;
@@ -53,7 +54,7 @@
   opacity: 1;
   -webkit-transform: rotate(45deg) translate(3px, -1px);
           transform: rotate(45deg) translate(3px, -1px);
-  background: #232323;
+  background: white;
 }
 
 .burger-and-title .burger .transformy {
@@ -63,7 +64,7 @@
 .burger-and-title .burger .transformz {
   -webkit-transform: rotate(-45deg) translate(0, -1px);
           transform: rotate(-45deg) translate(0, -1px);
-  background: #232323;
+  background: white;
 }
 
 .burger-and-title .side-nav-title {
@@ -72,6 +73,7 @@
           order: 2;
   margin-left: 2rem;
   font-weight: 600;
+  color: white;
 }
 
 .side-nav-menu-container {
@@ -79,10 +81,11 @@
   max-width: 100%;
   -ms-grid-column: 1;
       grid-column-start: 1;
+  z-index: 100;
 }
 
 .side-nav-menu-container .side-nav-menu {
-  background: #a1b3a1;
+  background: #FFA33F;
   position: absolute;
   max-height: 0;
   height: 100vh;
@@ -94,22 +97,14 @@
   transition: max-height 0.4s ease-in-out;
 }
 
-.side-nav-menu-container .side-nav-menu ul a {
-  color: black;
+.side-nav-menu-container .side-nav-menu ul .sn-link {
+  color: white;
 }
 
-.side-nav-menu-container .side-nav-menu ul a:visited {
-  color: black;
-}
-
-.side-nav-menu-container .side-nav-menu ul a:active {
-  color: black;
-}
-
-.side-nav-menu-container .side-nav-menu ul a:hover {
+.side-nav-menu-container .side-nav-menu ul .sn-link:hover {
   -webkit-transition: color 0.25s linear;
   transition: color 0.25s linear;
-  color: #EDEBE6;
+  color: black;
 }
 
 .side-nav-menu-container .side-nav-menu ul li {
