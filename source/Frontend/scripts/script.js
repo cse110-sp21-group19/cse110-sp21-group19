@@ -12,7 +12,7 @@ const SIDENAVROOT  = SIDENAV.shadowRoot;
 
 document.addEventListener("DOMContentLoaded", function() {
 	createDB();
-	router.setState("daily-log", false, new Date(), "on-load");
+	router.setState("future-log", false, new Date(), "on-load");
 });
 
 
