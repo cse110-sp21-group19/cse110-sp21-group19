@@ -94,7 +94,9 @@ export async function dailyLog(date, from){
             console.log("FROM SIDE NAV OR MONTHYL")
             let CAL = document.querySelector("calendar-component");
             CAL.remove();
-            
+
+			let TODO = document.querySelector("todo-list");
+            TODO.remove();
                 await createWeeklyNav(date);
             WEEKLYNAV = document.querySelector("weekly-nav");
             WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
@@ -169,7 +171,7 @@ export async function dailyLog(date, from){
  * @example
  *      monthlyLog("5-24-2021");
  */
-function monthlyLog(date){
+async function monthlyLog(date){
     const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
     let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
     sideNavTitle.textContent = "Monthly Log";
@@ -190,6 +192,8 @@ function monthlyLog(date){
             WEEKLYNAV.remove();
         }
         let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        console.log(firstDay.getMonth());
+		await createToDoList(firstDay);
         createCalendar(firstDay);
         // TODO: update the main-text data with getter
         updateAddlEntries();
@@ -245,7 +249,9 @@ function pushToHistory(state, date, from) {
     };
     switch (state) {
         case "daily-log":
+            console.log("here")
             history.pushState({ page: "daily-log", date: date, from:from}, "", `./#daily${date}`);
+            console.log("here")
             break;
         case "monthly-log":
             history.pushState({ page: "monthly-log", date: date, from:from}, "", `./#monthly${date}`);

@@ -42,7 +42,6 @@ export async function createWeeklyNav(date) {
         }
 
     });
-    
     return true;
 } /* createWeeklyNav */
 

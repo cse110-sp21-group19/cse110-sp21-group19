@@ -55,12 +55,13 @@ class Calendar extends HTMLElement{
 			shadow.querySelector(".days").appendChild(emptyDay);
 		}
 
-		while (date.getMonth() === month){
+		let currDate = new Date(date);
+		while (currDate.getMonth() === month){
 			let newDay = document.createElement("li");
 			newDay.className = "day";
-			newDay.textContent = date.getDate();
+			newDay.textContent = currDate.getDate();
 			shadow.querySelector(".days").appendChild(newDay);
-			date.setDate(date.getDate() + 1);
+			currDate.setDate(currDate.getDate() + 1);
 		}
 	}
 

@@ -8,45 +8,89 @@
 
 }
 .todo-container{
+
     background: $accent;
     z-index: -1;
-    border-radius: 1rem;
-    padding: 0.5rem;
-    //This will differ from weekly nav
-    display: grid;
-    grid-template-rows: auto auto auto auto auto auto auto;
-    //Will also add overflow
-    height: 80vh; //MAY HAVE TO CHANGE THIS -- look at layout file weekly nav container height
-
-    .wn-item{
-        margin: 0.4rem;
-        display: grid;
-        background: white;
-        border-radius: 0.5rem;
-        grid-template-rows: 1;
-        grid-template-columns: auto auto;
-        &:hover{
-            filter: brightness(90%);
-        }
-        .wn-date{
-            pointer-events: none;
-            grid-column-start: 1;
-            margin-left: 0.5rem;
-            font-size: 0.95em;
-            #day-of-week{
-                padding: 0 0.35em;
-                font-family: $sans-serif;
-                font-weight: lighter;
-                font-size: 1.05em;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+   
+    //may have to change this
+    padding: 0.6rem;
+    .scroll-container{
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        height: 40vh;
+        margin: 0.5rem;
+        padding-right: 0.3rem;
+        .todo-item{
+            margin: 0.4rem;
+            display: flex;
+            background: white;
+            border-radius: 0.5rem;
+            grid-template-rows: 1;
+            grid-template-columns: auto auto;
+            &:hover{
+                filter: brightness(90%);
             }
-        }
-        .wn-bullets{
-            grid-column-start: 3;
-            font-size: 10px;
-        }
-
-        p {
-            visibility:hidden;
+            .todo-date{
+                            
+                pointer-events: none;
+                margin-top: 0.6rem;
+                margin-left: 0.6rem;
+                width: 5vw;
+                min-width: 6rem;
+                height: 100%;
+                #day-of-month{
+                    font-size: 1.1em;
+                    font-weight: bold;
+                  }
+                  #day-of-week{
+                      padding: 0 0.35em;
+                      font-family: $sans-serif;
+                      font-weight: lighter;
+                      font-size: 1.1em;
+                  }
+            }
+            .todo-bullets-container{
+                flex-grow: 2;
+                margin: 0.4rem;
+                overflow-y: none;
+                svg {
+                    height: 1em;
+                    width: 1em;
+                    padding-right: 0.5rem;
+                }
+                .todo-bullet{
+                  margin:0.3rem;
+                }
+            }
+    
         }
     }
+    ::-webkit-scrollbar {
+        width: 8px;
+        
+        position: relative;
+        top: 50px;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        border-radius: 6px; 
+      }
+       
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: rgb(182, 182, 182);
+        border-radius: 6px; 
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: $accent2;
+      }
+    
 }
+

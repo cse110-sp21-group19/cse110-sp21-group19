@@ -10,7 +10,6 @@ const SIDENAVROOT  = SIDENAV.shadowRoot;
 // router.setState("daily-log", false, today, "first-load");
 // create database
 
-//FIX LATER: Decide where to put all first time functions
 document.addEventListener("DOMContentLoaded", function() {
 	createDB();
 	router.setState("daily-log", false, new Date(), "on-load");
@@ -19,9 +18,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // When the back button is hit, set the state with the new page
 window.addEventListener("popstate", e => {
-
 	console.log("in popstate");
-	console.log(router.currentState.from);
+
 	const DATE = document.querySelector("log-type").readLog.date;
 	if(DATE.getDay() == 0 && e.state?.date.getDay() == 6 && router.currentState.from == "next"){
 		router.setState(e.state?.page, true, e.state?.date, "prev");
