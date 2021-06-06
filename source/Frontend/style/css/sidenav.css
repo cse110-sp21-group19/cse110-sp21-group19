@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+/* device sizes */
 .burger-and-title {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11,7 +12,7 @@
       -ms-flex-align: center;
           align-items: center;
   margin-top: 1rem;
-  height: 4.2rem;
+  height: 4rem;
   -ms-grid-column: 1;
       grid-column-start: 1;
   max-width: 100%;

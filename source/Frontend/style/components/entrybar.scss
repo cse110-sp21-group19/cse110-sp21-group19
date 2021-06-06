@@ -9,14 +9,12 @@
 .active-bar{
     background: $accent2;
     height: 20vh;
-    width: 85%;
     display: flex;
     justify-content: space-between;
     padding: 2vh 2vw 2vh 2vw;
     min-width: 300px;
     min-height: 100px;
     border-radius: 1rem;
-    margin-left: 3vw;
 
     .close{
         text-align: left;
@@ -56,6 +54,9 @@
 
 }
 .inactive-bar{
+    position: absolute;
+    right: 0;
+    padding-right: 5rem;
     width: 3vw;
     height: 3vw;
     min-width: 3vw;
@@ -63,15 +64,20 @@
     margin: 0 1rem 2rem;
     background: transparent;
     border-radius: 1vw;
-    padding: 0.2rem;
-    float: right;
-    display: grid;
+    //padding: 0.2rem;
+    //float: right;
+    //display: grid;
     justify-content: center;
-    white-space: nowrap;   
-}
-.inactive-bar:hover{
+    white-space: nowrap;
+
     cursor: pointer;
+
+    svg {
+        position: absolute;
+        bottom: 4rem;
+    }
 }
+
 #btn{
     height: 7vh;
     width: 7vh;

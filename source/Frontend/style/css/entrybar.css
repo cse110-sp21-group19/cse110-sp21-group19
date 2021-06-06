@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+/* device sizes */
 *:focus {
   outline: none;
 }
@@ -11,7 +12,6 @@
 .active-bar {
   background: #FFA33F;
   height: 20vh;
-  width: 85%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -22,7 +22,6 @@
   min-width: 300px;
   min-height: 100px;
   border-radius: 1rem;
-  margin-left: 3vw;
 }
 
 .active-bar .close {
@@ -70,6 +69,9 @@
 }
 
 .inactive-bar {
+  position: absolute;
+  right: 0;
+  padding-right: 5rem;
   width: 3vw;
   height: 3vw;
   min-width: 3vw;
@@ -77,18 +79,16 @@
   margin: 0 1rem 2rem;
   background: transparent;
   border-radius: 1vw;
-  padding: 0.2rem;
-  float: right;
-  display: -ms-grid;
-  display: grid;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   white-space: nowrap;
+  cursor: pointer;
 }
 
-.inactive-bar:hover {
-  cursor: pointer;
+.inactive-bar svg {
+  position: absolute;
+  bottom: 4rem;
 }
 
 #btn {

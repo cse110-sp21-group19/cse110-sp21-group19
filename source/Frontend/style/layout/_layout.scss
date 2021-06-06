@@ -12,14 +12,16 @@ body {
         .weekly-nav-container {
             grid-column-start: 1;
             display: inline-block;
+            height: calc(100vh - 4rem);
             // flex-direction: column;
             // display: grid;
             // grid-template-rows: 10% 90%;
         }
         .daily-log {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 4rem);
             grid-column-start: 2;
-            //display: grid;
-            //grid-template-rows: 10% 90%;
             padding-top: 4rem;
 
             &-title {
@@ -37,6 +39,10 @@ body {
                         cursor: pointer;
                     }
                 }
+            }
+
+            .additional {
+                padding: 1rem 1rem 0rem 1rem;
             }
         }
     }
