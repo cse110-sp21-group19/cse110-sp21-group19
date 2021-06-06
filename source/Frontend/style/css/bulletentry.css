@@ -116,6 +116,10 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
+.bullet-entry .fa-star-fill {
+  color: black;
+}
+
 .bullet-entry:hover > button:hover {
   color: black !important;
 }
@@ -165,6 +169,29 @@ svg, input[type=text] {
   display: inline-block;
 }
 
+.entry.dark-mode {
+  /*
+        svg {
+            path {
+                fill: white !important;
+            }
+        }
+        */
+  /*
+    button {
+        svg {
+            path {
+                fill: white;
+            }
+        }
+    }
+    */
+}
+
+.entry.dark-mode .bullet-entry {
+  color: white !important;
+}
+
 .entry.dark-mode .bullet-entry:hover {
   background-color: #181A18;
 }
@@ -173,7 +200,7 @@ svg, input[type=text] {
   color: white;
 }
 
-.entry.dark-mode button svg path {
-  fill: white;
+.entry.dark-mode .fa-star-fill {
+  color: white;
 }
 /*# sourceMappingURL=bulletentry.css.map */

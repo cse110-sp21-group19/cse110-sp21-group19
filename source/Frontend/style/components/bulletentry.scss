@@ -27,6 +27,10 @@
         cursor: pointer;
     }
 
+    .fa-star-fill {
+        color: black;
+    }
+
 }
 
 .bullet-entry:hover > button:hover {
@@ -79,6 +83,7 @@ svg, input[type=text] {
 
 .entry.dark-mode {
     .bullet-entry {
+        color: white !important;
         &:hover {
             background-color: $dark;
         }
@@ -86,7 +91,22 @@ svg, input[type=text] {
     #bullet-inputted {
         color: white;
     }
+    .fa-star-fill {
+        color: white;
+    }
 
+    //.bullet-entry:hover > button:hover {
+        //color: white;
+        /*
+        svg {
+            path {
+                fill: white !important;
+            }
+        }
+        */
+    //}
+
+    /*
     button {
         svg {
             path {
@@ -94,4 +114,5 @@ svg, input[type=text] {
             }
         }
     }
+    */
 }
