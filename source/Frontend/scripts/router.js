@@ -115,42 +115,38 @@ export async function dailyLog(date, from){
         
 		updateAddlEntries();
 
+        // reset current main-text area
+        const MAINTEXT = document.getElementById("main-text");
+        MAINTEXT.innerHTML = "";
 
+        // create new bullet list
+        const BULLETS = document.createElement("bullet-list");
+        BULLETS.id = "bullets";
+        // create new bullet input element
+        const INPUT = document.createElement("bullet-input");
 
-		// reset current main-text area
-		const MAINTEXT = document.getElementById("main-text");
-		MAINTEXT.innerHTML = "";
+        // Bullet Nesting Stack
+        let bulletStack = [];
+        bulletStack.push(BULLETS);
 
-		// create new bullet list
-		const BULLETS = document.createElement("bullet-list");
-		BULLETS.id = "bullets";
-		// create new bullet input element
-		const INPUT = document.createElement("bullet-input");
-		const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
-		const BULLETTYPE = INPUT.shadowRoot.getElementById("bullet-type");
+        // Get daily bullets from database
+        const currDate = document.querySelector("log-type").readLog.date;
+        let todayBullets = await getDailyBullets(currDate);
+        todayBullets[1].forEach(function(item, index) {
+            bulletsFromDB(item, index, bulletStack, todayBullets);
+        });
 
-		// Bullet Nesting Stack
-		let bulletStack = [];
-		bulletStack.push(BULLETS);
+        MAINTEXT.appendChild(BULLETS);
+        MAINTEXT.appendChild(INPUT);
 
-		// Get daily bullets from database
-		const currDate = document.querySelector("log-type").readLog.date;
-		let todayBullets = await getDailyBullets(currDate);
-		todayBullets[1].forEach(function(item, index) {
-			bulletsFromDB(item, index, bulletStack, todayBullets);
-		});
-
-		MAINTEXT.appendChild(BULLETS);
-		MAINTEXT.appendChild(INPUT);
-
-		// add ability to create new bullets
-		createNewBullets(INPUT, bulletStack);
-		// add ability to add nested bullets
-		//nestedBullets(INPUT, bulletStack);
-		let parentBullet = nestedBullets(INPUT, bulletStack);
-		console.log("parentBullet from router");
-		console.log(parentBullet);
-	}
+        // add ability to create new bullets
+        createNewBullets(INPUT, bulletStack);
+        // add ability to add nested bullets
+        nestedBullets(INPUT, bulletStack);
+        //let parentBullet = nestedBullets(INPUT, bulletStack);
+		//console.log("parentBullet from router");
+		//console.log(parentBullet);
+    }
 } /* dailyLog */
 
 

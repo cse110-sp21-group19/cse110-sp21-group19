@@ -9,32 +9,32 @@ create.addEventListener("click", createDB);
 /* -----CREATING BULLET---- */
 let addBtn = document.getElementById("add");
 addBtn.addEventListener("click", async (event) => {
-	event.preventDefault();
+    event.preventDefault();
 
-	let log = document.getElementById("log").value;
-	let type = document.getElementById("type").value;
-	let date = new Date(document.getElementById("date").value);
-	let priority = Boolean(document.getElementById("priority").value);
-	let content = document.getElementById("content").value;
-	let completed = Boolean(document.getElementById("completed").value);
-	let children = document.getElementById("children").value;
+    let log = document.getElementById("log").value;
+    let type = document.getElementById("type").value;
+    let date = new Date(document.getElementById("date").value);
+    let priority = Boolean(document.getElementById("priority").value);
+    let content = document.getElementById("content").value;
+    let completed = Boolean(document.getElementById("completed").value);
+    let level = document.getElementById("level").value;
 
-	let bulletExample = {
-		"log": log,
-		"type": type,
-		"date": date,
-		"priority": priority,
-		"content": content,
-		"completed": completed,
-		"children": children
-	};
+    let bulletExample = {
+        "log": log,
+        "type": type,
+        "date": date,
+        "priority": priority,
+        "content": content,
+        "completed": completed,
+        "level": level
+    };
 
-	//example
-	let key = await createBullet(bulletExample);
-	console.log(key);
+    //example
+    let key = await createBullet(bulletExample);
+    console.log(key);
 
-	//this also works
-	//createBullet(bulletExample).then((result) => console.log(result));
+    //this also works
+    //createBullet(bulletExample).then((result) => console.log(result));
 
 });
 
@@ -49,27 +49,27 @@ get.addEventListener("click", async function(event){
 /* -----UPDATING BULLET----*/
 let update = document.getElementById("update");
 update.addEventListener("click", async function(event){
-	let log = document.getElementById("log").value;
-	let type = document.getElementById("type").value;
-	let date = new Date(document.getElementById("date").value);
-	let priority = Boolean(document.getElementById("priority").value);
-	let content = document.getElementById("content").value;
-	let completed = Boolean(document.getElementById("completed").value);
-	let children = document.getElementById("children").value;
+    let log = document.getElementById("log").value;
+    let type = document.getElementById("type").value;
+    let date = new Date(document.getElementById("date").value);
+    let priority = Boolean(document.getElementById("priority").value);
+    let content = document.getElementById("content").value;
+    let completed = Boolean(document.getElementById("completed").value);
+    let level = document.getElementById("level").value;
 
-	let bulletExample = {
-		"log": log,
-		"type": type,
-		"date": date,
-		"priority": priority,
-		"content": content,
-		"completed": completed,
-		"children": children
-	};
+    let bulletExample = {
+        "log": log,
+        "type": type,
+        "date": date,
+        "priority": priority,
+        "content": content,
+        "completed": completed,
+        "level": level
+    };
 
-	let key = document.getElementById("key").value;
-	let result = await updateBullet(Number(key), bulletExample);
-	console.log(result);
+    let key = document.getElementById("key").value;
+    let result = await updateBullet(Number(key), bulletExample);
+    console.log(result);
 });
 
 /* -----DELETING BULLET----*/
