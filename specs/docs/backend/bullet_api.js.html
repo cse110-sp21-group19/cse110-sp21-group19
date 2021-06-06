@@ -543,7 +543,140 @@ export function getDailyTodo(date) {
 	});
 }
 
-</code></pre>
+/**
+ * getMonthlyBullets
+ * Returns an array of all bullets that are from the monthly log and have the same month/year
+ * 
+ * @param {Object} - date object containing month/year we want
+ * 
+ * @return {Array} a 2d array of monthly bullets and their keys for the month
+ * 						-[[Keys], [Bullets]]
+ * 
+ * @example getMonthlyBullets()
+ */
+export function getMonthlyBullets(date) {
+	return new Promise((resolve) => {
+		//opening database
+		let request = window.indexedDB.open(DATABASENAME);
+
+		//db opens successfully
+		request.onsuccess = function(){
+			let db = request.result;
+			let transaction = db.transaction([BULLETDB], "readonly");
+			let objStore = transaction.objectStore(BULLETDB);
+			let objStoreRequest = objStore.openCursor(null, "next");
+			let matchingBullets = [];
+			let matchingKeys = [];
+			//Bullet object successfully accessed
+			objStoreRequest.onsuccess = function (e){
+                
+				let cursor = e.target.result;
+				if(cursor != null) {
+					//checking whether bullet belongs to the monthly log
+					if(cursor.value.log == "monthly") {
+						//comparing months
+						let currDate = cursor.value.date;
+						if(currDate.getMonth() == date.getMonth() &amp;&amp; currDate.getFullYear() == date.getFullYear()) {
+							matchingBullets.push(cursor.value);
+							matchingKeys.push(cursor.key);
+						}
+					}
+					cursor.continue();
+				} else {
+					resolve([matchingKeys, matchingBullets]);
+				}
+			};
+			//Unable to access bullet object
+			objStoreRequest.onerror = function(){
+				console.log.error(ERR_CANT_ACCESS_BULLET);
+				resolve({});
+			};
+
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+		//unable to open database
+		request.onerror = function(){
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve({});
+		};
+	});
+}
+
+/**
+ * getFutureBullets
+ * Returns an array of all bullets that are the future log, and have the same year
+ * 
+ * @param {Object} - date object containing the year we want to retrive from
+ * 
+ * @return {Array} an array of keys and bullets: [[Keys], [Bullets]]
+ * 
+ * @example getFutureBullets()
+ */
+export function getFutureBullets(date) {
+	return new Promise((resolve) => {
+		//opening database
+		let request = window.indexedDB.open(DATABASENAME);
+
+		//db opens successfully
+		request.onsuccess = function(){
+			let db = request.result;
+			let transaction = db.transaction([BULLETDB], "readonly");
+			let objStore = transaction.objectStore(BULLETDB);
+			let objStoreRequest = objStore.openCursor(null, "next");
+			let matchingBullets = [];
+			let matchingKeys = [];
+			//Bullet object successfully accessed
+			objStoreRequest.onsuccess = function (e){
+                
+				let cursor = e.target.result;
+				if(cursor != null) {
+					//all future bullets
+					if(cursor.value.log == "future") {
+						//Checking year
+						let currDate = cursor.value.date;
+						if(currDate.getFullYear() == date.getFullYear()) {
+							matchingBullets.push(cursor.value);
+							matchingKeys.push(cursor.key);
+						}
+					}
+					cursor.continue();
+				} else {
+					resolve([matchingKeys, matchingBullets]);
+				}
+			};
+			//Unable to access bullet object
+			objStoreRequest.onerror = function(){
+				console.log.error(ERR_CANT_ACCESS_BULLET);
+				resolve({});
+			};
+
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+		//unable to open database
+		request.onerror = function(){
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve({});
+		};
+	});
+}
+
+module.exports = {
+    createDB, 
+    createBullet, 
+    updateBullet, 
+    getBullet, 
+    deleteBullet, 
+    getAllPriority, 
+    getDailyBullets, 
+    getDailyTodo, 
+	getDailyPriority,
+	getMonthlyBullets,
+	getFutureBullets
+};</code></pre>
         </article>
     </section>
 
@@ -553,13 +686,13 @@ export function getDailyTodo(date) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createBullet">createBullet</a></li><li><a href="global.html#createDB">createDB</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#deleteBullet">deleteBullet</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#getAllPriority">getAllPriority</a></li><li><a href="global.html#getBullet">getBullet</a></li><li><a href="global.html#getDailyBullets">getDailyBullets</a></li><li><a href="global.html#getDailyEntries">getDailyEntries</a></li><li><a href="global.html#getDailyPriority">getDailyPriority</a></li><li><a href="global.html#getDailyTodo">getDailyTodo</a></li><li><a href="global.html#getEntry">getEntry</a></li><li><a href="global.html#updateBullet">updateBullet</a></li><li><a href="global.html#updateEntry">updateEntry</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createBullet">createBullet</a></li><li><a href="global.html#createDB">createDB</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#deleteBullet">deleteBullet</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#getAllPriority">getAllPriority</a></li><li><a href="global.html#getBullet">getBullet</a></li><li><a href="global.html#getDailyBullets">getDailyBullets</a></li><li><a href="global.html#getDailyEntries">getDailyEntries</a></li><li><a href="global.html#getDailyPriority">getDailyPriority</a></li><li><a href="global.html#getDailyTodo">getDailyTodo</a></li><li><a href="global.html#getEntry">getEntry</a></li><li><a href="global.html#getFutureBullets">getFutureBullets</a></li><li><a href="global.html#getMonthlyBullets">getMonthlyBullets</a></li><li><a href="global.html#updateBullet">updateBullet</a></li><li><a href="global.html#updateEntry">updateEntry</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 03 2021 23:10:36 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Jun 06 2021 06:38:49 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
