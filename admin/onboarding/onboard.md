@@ -60,7 +60,7 @@ For more detailed responsibilities for your team, contact your mentor or direct 
 ## Getting The Tools
 
 ### Github
-Make sure you have a Github account. You can sign up here: github.com
+Make sure you have a Github account. You can sign up [here](github.com)
 
 ### Setting up the IDE
 The Group codes in **Javascript (JS)**. You may want to download [Node.js](https://nodejs.org/en/download/) in order to run JS on your local machine.
