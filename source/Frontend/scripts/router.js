@@ -254,6 +254,7 @@ function futureLog(){
     }
 
     createFutureNav(d);
+    updateAddlEntries();
 } /* futureLog */
 
 /**
