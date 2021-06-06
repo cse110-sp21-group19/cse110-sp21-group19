@@ -147,6 +147,14 @@ body .side-nav-container {
   display: grid;
 }
 
+/* style logo */
+.logo {
+  position: absolute;
+  padding: 1rem 5rem;
+  right: 0;
+  z-index: -1;
+}
+
 /* Components */
 /* Main Text - Manda */
 .main-text {

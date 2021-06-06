@@ -46,3 +46,11 @@ body {
         //grid-template-columns: 30% 70%;
     }
 }
+
+/* style logo */
+.logo {
+    position: absolute;
+    padding: 1rem 5rem;
+    right: 0;
+    z-index: -1;
+}

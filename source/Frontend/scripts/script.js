@@ -1,4 +1,5 @@
 // script.js
+import { LOGO } from "../components/icons.js";
 import { router } from "./router.js";
 import { closeMenu } from "./side-nav-script.js";
 
@@ -9,6 +10,14 @@ const SIDENAVROOT  = SIDENAV.shadowRoot;
 // const today = new Date();
 // router.setState("daily-log", false, today, "first-load");
 // create database
+
+const CONTAINER = document.getElementById("container");
+const LOGOCONTAINER = document.createElement("div");
+LOGOCONTAINER.className = "logo";
+LOGOCONTAINER.innerHTML = LOGO;
+
+//CONTAINER.insertBefore(LOGOCONTAINER, DAILYLOG);
+document.querySelector("main").insertBefore(LOGOCONTAINER, CONTAINER);
 
 document.addEventListener("DOMContentLoaded", function() {
 	createDB();
