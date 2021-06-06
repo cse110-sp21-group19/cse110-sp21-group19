@@ -11,7 +11,7 @@ var currKey = 0;
  *
  * This class represents additional entries bar at the bottom of the screen
  */
- class entryBar extends HTMLElement{
+class entryBar extends HTMLElement{
 	constructor() {
 		super();
 	
@@ -104,7 +104,7 @@ var currKey = 0;
 				isViewing = true;
 
 				//hide and display relevant components
-				mainText.style.display="none"
+				mainText.style.display="none";
 				initial.style.display="none";
 				editing.style.display="block";
 				deleteButton.style.display="block";
@@ -134,7 +134,7 @@ var currKey = 0;
 				innerBar.appendChild(newNote);
 	
 				mainText.style.display = "block";
-            	document.querySelector("entry-bar").type="openbar";	
+				document.querySelector("entry-bar").type="openbar";	
 				title.innerText="Add Title";
 				content.innerText="Add note here...";
 			}
@@ -173,7 +173,7 @@ var currKey = 0;
 					if(innerBar.children[i].entry.key == currKey){
 						let currEntry = innerBar.children[i];
 						console.log(currEntry);
-						innerBar.removeChild(currEntry)
+						innerBar.removeChild(currEntry);
 						break;
 					} 
 				}
@@ -188,7 +188,7 @@ var currKey = 0;
 
 				//redirect to homepage
 				mainText.style.display = "block";
-            	document.querySelector("entry-bar").type="openbar";
+				document.querySelector("entry-bar").type="openbar";
 
 				//hide the delete button and reset the content to display in the editing panel
 				deleteButton.style.display="none";
@@ -199,7 +199,7 @@ var currKey = 0;
 		exitBtn.addEventListener("click", function(){
 			//discard changes made to the content displayed in the editing panel
 			title.innerText="Add Title";
-			content.innerText="Add note here..."
+			content.innerText="Add note here...";
 			//const DATE = document.querySelector("log-type").readLog.date;
 			mainText.style.display = "block";
 			editing.style.display="none";
@@ -217,6 +217,7 @@ var currKey = 0;
 	get type(){
 		let initial = this.shadowRoot.querySelector(".initial");
 		let activeBar = this.shadowRoot.querySelector(".active-bar");
+		let editing = this.shadowRoot.querySelector(".editing");
 
 		if (initial.style.display == "block" && activeBar.style.display == "none"){
 			return "initial";
@@ -228,7 +229,6 @@ var currKey = 0;
 			return "openbar";
 		}
 	}
-
 	/**	Set the 'type' attribute of the entry bar which determines what content to hide/display
 	 * @param {string}
 	 * 
@@ -264,7 +264,7 @@ var currKey = 0;
 				//since we are adding a new entry, set the is viewing mode to false
 				isViewing = false;
 				mainText.style.display = "none";
-            	document.querySelector("entry-bar").type="editing";
+				document.querySelector("entry-bar").type="editing";
 			});
 		}
 
@@ -315,7 +315,7 @@ var currKey = 0;
 				isViewing = true;
 	
 				//hide and display relevant components
-				mainText.style.display="none"
+				mainText.style.display="none";
 				initial.style.display="none";
 				editing.style.display="block";
 				deleteButton.style.display="block";
