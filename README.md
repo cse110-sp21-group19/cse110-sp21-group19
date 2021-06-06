@@ -16,6 +16,8 @@ Repo for CSE 110 Sp21 Group 19
 This quarter, we will be working on making a [Bullet Journal](https://en.wikipedia.org/wiki/Bullet_journal)
 
 # Meeting Notes
+- [6/3/21 - Sprint 3 Thursday](admin/meetings/060321-Sprint-3-Thursday.md)
+- [6/1/21 - Sprint 3 Tuesday](admin/meetings/060121-Sprint-3-Tuesday.md)
 - [5/29/21 - Sprint 2 Retrospective](admin/meetings/052921-Sprint-2-Retrospective.md)
 - [5/29/21 - Sprint 2 Review](admin/meetings/052921-Sprint-2-Review.md)
 - [5/27/21 - Week 9 Thursday](admin/meetings/052721-Week-9-Thursday.md)
