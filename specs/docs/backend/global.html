@@ -2009,6 +2009,337 @@ Returns the specified entry object from the database</p>
     
 
     
+    <h4 class="name" id="getFutureBullets"><span class="type-signature"></span>getFutureBullets<span class="signature">(date)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>getFutureBullets
+Returns an array of all bullets that are the future log, and have the same year</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>date</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>date object containing the year we want to retrive from</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="bullet_api.js.html">bullet_api.js</a>, <a href="bullet_api.js.html#line589">line 589</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>an array of keys and bullets: [[Keys], [Bullets]]</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>getFutureBullets()</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getMonthlyBullets"><span class="type-signature"></span>getMonthlyBullets<span class="signature">(date)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>getMonthlyBullets
+Returns an array of all bullets that are from the monthly log and have the same month/year</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>date</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>date object containing month/year we want</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="bullet_api.js.html">bullet_api.js</a>, <a href="bullet_api.js.html#line529">line 529</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a 2d array of monthly bullets and their keys for the month
+-[[Keys], [Bullets]]</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>getMonthlyBullets()</code></pre>
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="updateBullet"><span class="type-signature"></span>updateBullet<span class="signature">(key, bullet)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
     
 
@@ -2418,13 +2749,13 @@ Updates the specified entry to be equal to the new entry object</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createBullet">createBullet</a></li><li><a href="global.html#createDB">createDB</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#deleteBullet">deleteBullet</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#getAllPriority">getAllPriority</a></li><li><a href="global.html#getBullet">getBullet</a></li><li><a href="global.html#getDailyBullets">getDailyBullets</a></li><li><a href="global.html#getDailyEntries">getDailyEntries</a></li><li><a href="global.html#getDailyPriority">getDailyPriority</a></li><li><a href="global.html#getDailyTodo">getDailyTodo</a></li><li><a href="global.html#getEntry">getEntry</a></li><li><a href="global.html#updateBullet">updateBullet</a></li><li><a href="global.html#updateEntry">updateEntry</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createBullet">createBullet</a></li><li><a href="global.html#createDB">createDB</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#deleteBullet">deleteBullet</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#getAllPriority">getAllPriority</a></li><li><a href="global.html#getBullet">getBullet</a></li><li><a href="global.html#getDailyBullets">getDailyBullets</a></li><li><a href="global.html#getDailyEntries">getDailyEntries</a></li><li><a href="global.html#getDailyPriority">getDailyPriority</a></li><li><a href="global.html#getDailyTodo">getDailyTodo</a></li><li><a href="global.html#getEntry">getEntry</a></li><li><a href="global.html#getFutureBullets">getFutureBullets</a></li><li><a href="global.html#getMonthlyBullets">getMonthlyBullets</a></li><li><a href="global.html#updateBullet">updateBullet</a></li><li><a href="global.html#updateEntry">updateEntry</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 03 2021 23:10:36 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Jun 06 2021 06:38:49 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
