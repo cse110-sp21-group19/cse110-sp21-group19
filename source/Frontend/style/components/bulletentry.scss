@@ -21,6 +21,9 @@
 
     &:hover {
         background-color: $light;
+        .fa-star {
+            color: black;
+        }
     }
 
     .task-bullet:hover {
@@ -81,11 +84,15 @@ svg, input[type=text] {
     display: inline-block;
 }
 
+/* dark mode */
 .entry.dark-mode {
     .bullet-entry {
         color: white !important;
         &:hover {
             background-color: $dark;
+            .fa-star {
+                color: white;
+            }
         }
     }
     #bullet-inputted {

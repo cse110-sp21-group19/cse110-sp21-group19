@@ -104,6 +104,11 @@ class BulletInput extends HTMLElement {
 		bulletInputStyle.setAttribute("rel", "stylesheet");
 		bulletInputStyle.setAttribute("href", "style/css/bulletinput.css");
 
+		// dark mode class
+		if (document.body.className == "dark-mode") {
+			this.shadowRoot.querySelector(".new-bullet").className += " dark-mode";
+		}
+ 
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(bulletInputStyle);
 		shadow.appendChild(BULLETSELECT);
@@ -127,7 +132,7 @@ class BulletList extends HTMLElement {
 			ul {margin: 0}
 		</style>
 		<ul class="bullet-list" id="bullet-list"></ul>`;
- 
+
 		// create a shadow root for this web component
 		this.attachShadow({ mode: "open" });
 		// attach cloned content of template to shadow DOM 

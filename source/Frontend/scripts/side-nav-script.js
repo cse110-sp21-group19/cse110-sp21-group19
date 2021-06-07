@@ -117,9 +117,8 @@ export function closeMenu(){
             WNITEMS.forEach(element => {
                 element.style.background = DARK;
             });
-            BULLETINPUT.style.background = DARK;
-            BULLETINPUTBAR.style.color = WHITE;
-            BULLETSELECTOR.style.color = WHITE;
+            
+            BULLETINPUT.className += " dark-mode";
 
             const BULLETLISTEL = document.querySelectorAll("bullet-list");
             BULLETLISTEL.forEach(element => {
@@ -136,9 +135,7 @@ export function closeMenu(){
             WNITEMS.forEach(element => {
                 element.style.background = WHITE;
             });
-            BULLETINPUT.style.background = LIGHT;
-            BULLETINPUTBAR.style.color = BLACK;
-            BULLETSELECTOR.style.color = BLACK;
+            BULLETINPUT.className = "new-bullet";
 
             const BULLETLISTEL = document.querySelectorAll("bullet-list");
             BULLETLISTEL.forEach(element => {

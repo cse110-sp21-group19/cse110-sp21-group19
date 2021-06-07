@@ -112,6 +112,10 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #E5E5E5;
 }
 
+.bullet-entry:hover .fa-star {
+  color: black;
+}
+
 .bullet-entry .task-bullet:hover {
   cursor: pointer;
 }
@@ -169,6 +173,7 @@ svg, input[type=text] {
   display: inline-block;
 }
 
+/* dark mode */
 .entry.dark-mode {
   /*
         svg {
@@ -194,6 +199,10 @@ svg, input[type=text] {
 
 .entry.dark-mode .bullet-entry:hover {
   background-color: #181A18;
+}
+
+.entry.dark-mode .bullet-entry:hover .fa-star {
+  color: white;
 }
 
 .entry.dark-mode #bullet-inputted {
