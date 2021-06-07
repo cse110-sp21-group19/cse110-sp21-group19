@@ -11,6 +11,8 @@ body {
         //margin-top: 4rem;
         .weekly-nav-container {
             grid-column-start: 1;
+            display: inline-block;
+            // flex-direction: column;
             // display: grid;
             // grid-template-rows: 10% 90%;
         }

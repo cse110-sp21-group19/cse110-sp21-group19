@@ -17,6 +17,8 @@
   max-width: 100%;
   border-radius: 0.8em;
   background: #FFA33F;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .burger-and-title .burger {
@@ -79,6 +81,7 @@
   max-width: 100%;
   -ms-grid-column: 1;
       grid-column-start: 1;
+  z-index: 100;
 }
 
 .side-nav-menu-container .side-nav-menu {
@@ -94,19 +97,11 @@
   transition: max-height 0.4s ease-in-out;
 }
 
-.side-nav-menu-container .side-nav-menu ul a {
+.side-nav-menu-container .side-nav-menu ul .sn-link {
   color: white;
 }
 
-.side-nav-menu-container .side-nav-menu ul a:visited {
-  color: white;
-}
-
-.side-nav-menu-container .side-nav-menu ul a:active {
-  color: white;
-}
-
-.side-nav-menu-container .side-nav-menu ul a:hover {
+.side-nav-menu-container .side-nav-menu ul .sn-link:hover {
   -webkit-transition: color 0.25s linear;
   transition: color 0.25s linear;
   color: black;

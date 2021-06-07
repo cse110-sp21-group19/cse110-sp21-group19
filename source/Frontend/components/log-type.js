@@ -34,9 +34,9 @@ class LogType extends HTMLElement {
 			`;
 
 		// default: set the header to the current date
-        const headerEl = document.createElement("h1");
-        let d = new Date();
-        headerEl.innerText = DAYS[d.getDay()] + ", " + MONTHS[d.getMonth()] + " " + d.getDate();
+		const headerEl = document.createElement("h1");
+		let d = new Date();
+		headerEl.innerText = DAYS[d.getDay()] + ", " + MONTHS[d.getMonth()] + " " + d.getDate();
  
 		// create a shadow root for this web component
 		const shadow = this.attachShadow({ mode: "open" });
@@ -60,13 +60,13 @@ class LogType extends HTMLElement {
 	 *      this.readLog
 	 */
 	get readLog() {
-        const TYPE = this.shadowRoot.getElementById("header").className;
+		const TYPE = this.shadowRoot.getElementById("header").className;
 		const DATE = this.shadowRoot.getElementById("js-date-obj").innerText;
 		const HEADER = this.shadowRoot.querySelector("h1").innerText;
 		let logObj = {
-            "type": TYPE, // can be: daily, monthly, future
+			"type": TYPE, // can be: daily, monthly, future
 			"date": new Date(DATE),
-            "header": HEADER // string with the appropriate title
+			"header": HEADER // string with the appropriate title
 		};
 		return logObj;
 	}
@@ -85,18 +85,18 @@ class LogType extends HTMLElement {
 	 *   						header: "Monday, May 24"
 	 * 							}
 	 */
-    set updateLog(logObj) {
-        // update class name
-        let logType = this.shadowRoot.getElementById("header").className;
-        logType = logObj.type;
+	set updateLog(logObj) {
+		// update class name
+		let logType = this.shadowRoot.getElementById("header");
+		logType.className = logObj.type;
 
 		// update date associated with page
-        let logDate = this.shadowRoot.getElementById("js-date-obj");
-        logDate.innerText = logObj.date;
+		let logDate = this.shadowRoot.getElementById("js-date-obj");
+		logDate.innerText = logObj.date;
 
 		// update main-text header
-        let logHeader = this.shadowRoot.querySelector("h1");
-        logHeader.innerText = logObj.header;
+		let logHeader = this.shadowRoot.querySelector("h1");
+		logHeader.innerText = logObj.header;
 		//console.log("in setter");
 		//console.log("updated type: " + logType);
 		//console.log("updated date: " + logDate);

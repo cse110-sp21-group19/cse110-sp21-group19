@@ -1,28 +1,28 @@
-//
+//side-nav.js
+
 const FUTURE = "Future Log";
 const DAILY = "Daily Log";
 const MONTHLY = "Monthly Log";
 
-//export const SUN = "http://upir.ir/images/3h5bm7om60h8p238b15.svg";
-//export const MOON = "http://upir.ir/images/naf6siuc4jn3eqjb9380.svg";
 import { SUN } from "./icons.js";
 
 //const DHASH = "#daily-log";
 //const MHASH = "#monthly-log";
 //const FHASH = "#future-log";
 
+//<side-nav> custom web component
 class SideNav extends HTMLElement{
 	constructor() {
 		super();
 
 		const template = document.createElement("template");
 
-        //         <ul id="side-nav-menu">
-        //             <a id="sn-future-log" class="sn-link" href="#"><li>${FUTURE}</li></a>
-        //             <a id="sn-daily-log" class="sn-link" href="#"><li>${DAILY}</li></a>
-        //             <a id="sn-monthly-log" class="sn-link" href="#"><li>${MONTHLY}</li></a>
-        //         </ul>
-        //     </div>
+		//         <ul id="side-nav-menu">
+		//             <a id="sn-future-log" class="sn-link" href="#"><li>${FUTURE}</li></a>
+		//             <a id="sn-daily-log" class="sn-link" href="#"><li>${DAILY}</li></a>
+		//             <a id="sn-monthly-log" class="sn-link" href="#"><li>${MONTHLY}</li></a>
+		//         </ul>
+		//     </div>
 		template.innerHTML = `
 			<style>
 				svg {
@@ -44,9 +44,9 @@ class SideNav extends HTMLElement{
 						${SUN}
 					</div>
 					<ul>
-						<li><a id="sn-daily-log" class="sn-link" href="#">${DAILY}</a></li>
-						<li><a id="sn-monthly-log" class="sn-link" href="#">${MONTHLY}</a></li>
-						<li><a id="sn-future-log" class="sn-link" href="#">${FUTURE}</a></li>
+						<li id="sn-daily-log" class="sn-link">${DAILY}</li>
+						<li id="sn-monthly-log" class="sn-link">${MONTHLY}</li>
+						<li id="sn-future-log" class="sn-link">${FUTURE}</li>
 					</ul>
 				</div>
 			</div>
@@ -68,7 +68,5 @@ class SideNav extends HTMLElement{
 	}
 
 }
- 
-
-
+// Define a custom element for the sidenav web component
 customElements.define("side-nav", SideNav);
