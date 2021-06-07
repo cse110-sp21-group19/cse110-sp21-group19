@@ -36,6 +36,7 @@ Be sure to get the following extensions, instructions [here](https://code.visual
 - [LiveShare](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
 - [Markdown All In One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
 - [CodeStream](https://marketplace.visualstudio.com/items?itemName=CodeStream.codestream)
+- [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass)
 
 ## Getting The Code
 Get the source code
@@ -43,13 +44,13 @@ Get the source code
 
 Make sure you read over the [Style Guide](admin/specs/../../../../specs/style_guide.md) before you start coding
 
+For more information about SCSS compiling, read the documentation [here](https://sass-lang.com/documentation)
+
 ## Navigating the Repository
 The source code is separated into 3 parts
 1. Admin
 2. Source
 3. Specs
-
-Getting Sass working
 
 ### Admin
 Administrative documents are located here. Documents and files related to branding, meetings, and videos are all located in the Admin folder. 
@@ -64,6 +65,6 @@ HTML files, web components, JS scripts for the Web components, CSS styling
 IndexDB Database API
 
 ### Specs
-Specification documents are located here. Documents such as ADRs, initial brainstorming, CICD documentation, Source documentation, intial pitch documents, proof of concepts, and testing reports. 
+Specification documents are located here. Documents such as ADRs, initial brainstorming, CICD documentation, Source documentation, design documents, intial pitch documents, proof of concepts, and testing reports. 
 
 Documents that are not administrative are located here.
