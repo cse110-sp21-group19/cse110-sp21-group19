@@ -47,6 +47,7 @@
         overflow: visible;
         width: 8rem;
         height: 10vh;
+        min-height: 50px;
         margin-top: 3vh;
     }
     .new-entry:hover{
@@ -122,8 +123,8 @@
     padding: 2rem;
     height: 75vh;
     width: 90%;
-    min-height: 550px;
-    min-width: 300px;
+    min-height: 600px;
+    min-width: 500px;
     margin-left: 3rem;
     background: $accent;
     border-radius: 1rem;
@@ -165,11 +166,15 @@
         
     }
     .save-btn-wrapper{
-        float: right;
+        position: relative;
     }
     .save-btn{
-        height: 7vh;
+        position: absolute;
+        height: 8vh;
         width: 7vh;
+        min-height: 50px;
+        min-width: 75px;
+        right: 0.5rem;
     
     }
     .save-btn:hover{
@@ -179,15 +184,19 @@
     h1{
         text-align: center;
     }
-
-    .delete-btn{
-        height: 100px;
-        width: 7vh;
-        min-width: 50px;
-        position: absolute;
-        right: 5vw;
-        top: 18vh;
+    .delete-btn-wrapper{
+        position: relative;
+        .delete-btn{
+            position: absolute;
+            bottom: 0.5rem;
+            height: 8vh;
+            width: 7vh;
+            min-height: 50px;
+            min-width: 75px;
+            right: 1rem;
+        }
     }
+   
     .delete-btn:hover{
         cursor: pointer;
     }
@@ -284,11 +293,5 @@
     }
 
 }
-
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
 
 /* End styling image entry*/

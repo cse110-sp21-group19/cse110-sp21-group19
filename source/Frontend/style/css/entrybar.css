@@ -62,6 +62,7 @@
   overflow: visible;
   width: 8rem;
   height: 10vh;
+  min-height: 50px;
   margin-top: 3vh;
 }
 
@@ -148,8 +149,8 @@
   padding: 2rem;
   height: 75vh;
   width: 90%;
-  min-height: 550px;
-  min-width: 300px;
+  min-height: 600px;
+  min-width: 500px;
   margin-left: 3rem;
   background: #71B637;
   border-radius: 1rem;
@@ -195,12 +196,16 @@
 }
 
 .editing .save-btn-wrapper {
-  float: right;
+  position: relative;
 }
 
 .editing .save-btn {
-  height: 7vh;
+  position: absolute;
+  height: 8vh;
   width: 7vh;
+  min-height: 50px;
+  min-width: 75px;
+  right: 0.5rem;
 }
 
 .editing .save-btn:hover {
@@ -211,13 +216,18 @@
   text-align: center;
 }
 
-.editing .delete-btn {
-  height: 100px;
-  width: 7vh;
-  min-width: 50px;
+.editing .delete-btn-wrapper {
+  position: relative;
+}
+
+.editing .delete-btn-wrapper .delete-btn {
   position: absolute;
-  right: 5vw;
-  top: 18vh;
+  bottom: 0.5rem;
+  height: 8vh;
+  width: 7vh;
+  min-height: 50px;
+  min-width: 75px;
+  right: 1rem;
 }
 
 .editing .delete-btn:hover {
@@ -322,28 +332,6 @@
 
 .img-editing .delete-btn:hover {
   cursor: pointer;
-}
-
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
 }
 
 /* End styling image entry*/
