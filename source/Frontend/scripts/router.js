@@ -233,13 +233,15 @@ async function futureLog(date){
 
     // remove previous side navigation
     deleteSideNav();
-
     createFutureNav(date);
+
+    updateAddlEntries();
 
     // update main-text area with future bullets
     const currDate = document.querySelector("log-type").readLog.date;
     let futureBullets = await getFutureBullets(currDate);
     createMainText(futureBullets);
+
 } /* futureLog */
 
 /**
