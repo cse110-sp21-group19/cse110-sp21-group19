@@ -34,7 +34,7 @@ router.setState = (state, statePopped, date, from) => {
 		console.log("monthly");
 		break;
 	case "future-log":
-		futureLog();
+		futureLog(date);
 		console.log("future");
 		break;
 	default:
@@ -67,7 +67,7 @@ export async function dailyLog(date, from){
         // update the header text above main-text area
         let headerText = DAYS[date.getDay()] + ", " + MONTHS[date.getMonth()] + " " + date.getDate();
         const DAILYINFO = {
-            "type": "daily",
+            "type": "daily-log",
             "date": date,
             "header": headerText
         }
@@ -92,19 +92,9 @@ export async function dailyLog(date, from){
               }, 300);
             }
         else if(from == "monthly-log" || from == "side-nav"){
-            const CAL = document.querySelector("calendar-component");
-			const TODO = document.querySelector("todo-list");
-            const FUTURENAV = document.querySelector("future-nav");
-            if(CAL){
-                CAL.remove();
-            }
-            if(TODO){
-                TODO.remove();  
-            }
-            if(FUTURENAV){
-                FUTURENAV.remove();  
-            }
-                await createWeeklyNav(date);
+            // remove previous side navigation
+            deleteSideNav();
+            await createWeeklyNav(date);
             WEEKLYNAV = document.querySelector("weekly-nav");
             WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
             WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
@@ -134,6 +124,15 @@ export async function dailyLog(date, from){
         
 		updateAddlEntries();
 
+        /*
+        const currDate = document.querySelector("log-type").readLog.date;
+        console.log(currDate);
+        let todayBullets = await getDailyBullets(currDate);
+        console.log("todayBullets");
+        console.log(todayBullets);
+        createMainText(todayBullets);
+        */
+
         // reset current main-text area
         const MAINTEXT = document.getElementById("main-text");
         MAINTEXT.innerHTML = "";
@@ -162,9 +161,7 @@ export async function dailyLog(date, from){
         createNewBullets(INPUT, bulletStack);
         // add ability to add nested bullets
         nestedBullets(INPUT, bulletStack);
-        //let parentBullet = nestedBullets(INPUT, bulletStack);
-		//console.log("parentBullet from router");
-		//console.log(parentBullet);
+
     }
 } /* dailyLog */
 
@@ -188,20 +185,15 @@ async function monthlyLog(date){
         // update the header text above main-text area
         let headerText = MONTHS[date.getMonth()] + " " + date.getFullYear();
         const MONTHLYINFO = {
-            "type": "monthly",
+            "type": "monthly-log",
             "date": date,
             "header": headerText
         }
         LOGTYPE.updateLog = MONTHLYINFO;
 
-        const WEEKLYNAV = document.querySelector("weekly-nav");
-        const FUTURENAV = document.querySelector("future-nav");
-        if(WEEKLYNAV){
-            WEEKLYNAV.remove();
-        }
-        if(FUTURENAV){
-            FUTURENAV.remove();  
-        }
+        // remove previous side navigation
+        deleteSideNav();
+
         let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
         console.log(firstDay.getMonth());
 		await createToDoList(firstDay);
@@ -221,39 +213,25 @@ async function monthlyLog(date){
  * @example
  *      futureLog();
  */
-function futureLog(){
+function futureLog(date){
 	const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
 	let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
 	sideNavTitle.textContent = "Future Log";
 
-	// defaults to current year
-	// FIXME: new behavior
 	const LOGTYPE = document.querySelector("log-type");
-	let d = new Date();
 	// update the header text above main-text area
-	let headerText = d.getFullYear();
+	let headerText = date.getFullYear();
 	const FUTUREINFO = {
-		"type": "future",
-		"date": d,
+		"type": "future-log",
+		"date": date,
 		"header": headerText
 	};
 	LOGTYPE.updateLog = FUTUREINFO;
 
-	//remove the weekly nav menu
-	const WEEKLYNAV = document.querySelector("weekly-nav");
-    const CAL = document.querySelector("calendar-component");
-    const TODO = document.querySelector("todo-list");
-	if(WEEKLYNAV){
-		WEEKLYNAV.remove();
-	}
-    if(CAL){
-        CAL.remove();
-    }
-    if(TODO){
-        TODO.remove();  
-    }
+    // remove previous side navigation
+    deleteSideNav();
 
-    createFutureNav(d);
+    createFutureNav(date);
 } /* futureLog */
 
 /**
@@ -283,7 +261,64 @@ function pushToHistory(state, date, from) {
         default:
             history.pushState({}, '', './');
     }
-    console.log(history)
+    console.log(history);
     return history;
-  }
-  
+}
+
+
+/**
+ * deleteSideNav
+ * Delete the existing side navigation.
+*/
+function deleteSideNav() {
+	const WEEKLYNAV = document.querySelector("weekly-nav");
+    const CAL = document.querySelector("calendar-component");
+    const TODO = document.querySelector("todo-list");
+    const FUTURENAV = document.querySelector("future-nav");
+
+	if(WEEKLYNAV){
+		WEEKLYNAV.remove();
+	}
+    if(CAL){
+        CAL.remove();
+    }
+    if(TODO){
+        TODO.remove();  
+    }
+    if(FUTURENAV){
+        FUTURENAV.remove();  
+    }
+
+} /* deleteSideNav */
+
+
+async function createMainText(bullets) {
+    // reset current main-text area
+    const MAINTEXT = document.getElementById("main-text");
+    MAINTEXT.innerHTML = "";
+
+    // create new bullet list
+    const BULLETS = document.createElement("bullet-list");
+    BULLETS.id = "bullets";
+    // create new bullet input element
+    const INPUT = document.createElement("bullet-input");
+
+    // Bullet Nesting Stack
+    let bulletStack = [];
+    bulletStack.push(BULLETS);
+
+    console.log("in createMainText");
+    console.log(bullets);
+    // Get daily bullets from database
+    bullets[1].forEach(function(item, index) {
+        bulletsFromDB(item, index, bulletStack, todayBullets);
+    });
+
+    MAINTEXT.appendChild(BULLETS);
+    MAINTEXT.appendChild(INPUT);
+
+    // add ability to create new bullets
+    createNewBullets(INPUT, bulletStack);
+    // add ability to add nested bullets
+    nestedBullets(INPUT, bulletStack);
+}

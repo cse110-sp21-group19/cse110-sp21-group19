@@ -82,24 +82,45 @@ PREVLOG.addEventListener("click", () => {
 	const DATE = LOGTYPE.readLog.date;
 	const LOG = LOGTYPE.readLog.type;
 	// decrement the current date
-	console.log("LOG: " + LOG);
-	const prevDate= new Date(DATE);
+	const prevDate = new Date(DATE);
+	// set date for daily log
 	if(LOG == "daily-log"){
 		prevDate.setDate(prevDate.getDate() - 1);
 	}
-	//TODO IMPLEMENT THIS IN FORWARD AND HAVE IT CHANGE NECESSARY THINGS IN ROUTER
-	else if (LOG == "monthly-log"){
-		prevDate.setDate(prevDate.getFullYear(), prevDate.getMonth() - 1, 1);
+	// set date for monthly log, note that the date will be set to the first of 
+	// the month
+	else if (LOG == "monthly-log") {
+		prevDate.setFullYear(prevDate.getFullYear(), prevDate.getMonth() - 1, 1);
 	}
-
+	// set date for yearly log, note that the month will be set to January and the
+	// date will be set to the first of the month
+	else {
+		prevDate.setFullYear(prevDate.getFullYear() - 1, 1, 1);
+		console.log(prevDate);
+	}
 	router.setState(LOG, false, prevDate, "prev");
 });
 
 // Go to the next main-text log when the '>' button is hit, set the state
 NEXTLOG.addEventListener("click", () => {
-	const DATE = document.querySelector("log-type").readLog.date;
+	const LOGTYPE = document.querySelector("log-type");
+	const DATE = LOGTYPE.readLog.date;
+	const LOG = LOGTYPE.readLog.type;
 	// increment the current date
 	const nextDate = new Date(DATE)
-	nextDate.setDate(nextDate.getDate() + 1)
-	router.setState("daily-log", false, nextDate, "next");
+	if (LOG == "daily-log") {
+		nextDate.setDate(nextDate.getDate() + 1)
+	}
+	// set date for monthly log, note that the date will be set to the first of 
+	// the month
+	else if (LOG == "monthly-log") {
+		nextDate.setFullYear(nextDate.getFullYear(), nextDate.getMonth() + 1, 1);
+	}
+	// set date for yearly log, note that the month will be set to January and the
+	// date will be set to the first of the month
+	else {
+		nextDate.setFullYear(nextDate.getFullYear() + 1, 1, 1);
+		console.log(nextDate);
+	}
+	router.setState(LOG, false, nextDate, "next");
 });
