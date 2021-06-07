@@ -34,6 +34,12 @@ class WeeklyNav extends HTMLElement{
 		linkElem.setAttribute("rel", "stylesheet");
 		// NOTE: it's important that you do NOT include the slash before "style/css/..."
 		linkElem.setAttribute("href", "style/css/weeklynav.css");
+		
+		// dark mode class
+		if (document.body.className == "dark-mode") {
+			const CONTAINER = this.shadowRoot.querySelector(".week-container");
+			CONTAINER.className += " dark-mode";
+		}
 
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(linkElem);
@@ -60,7 +66,7 @@ class WeeklyNav extends HTMLElement{
 		//set the weekly-nav title
 		const navTitle = this.shadowRoot.querySelector("[class='weekly-nav-title']");
 		navTitle.innerHTML = getWeeklyNavTitle(week[0].date, week[6].date);
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+		const navContainer = this.shadowRoot.querySelector(".week-container");
 		//Add each day to the nav menu
 		week.forEach(element => {
 			let day = getDateString(element.date.getDay());
@@ -76,10 +82,12 @@ class WeeklyNav extends HTMLElement{
 
 			let navItem = document.createElement("div");
 			navItem.className = "wn-item";
+			/*
 			// dark mode class
 			if (document.body.className == "dark-mode") {
 				navItem.className += " dark-mode";
 			}
+			*/
 
 
 			let navDate = document.createElement("div");
@@ -128,7 +136,7 @@ class WeeklyNav extends HTMLElement{
 	 */
 	get selectedInfo() {
 
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+		const navContainer = this.shadowRoot.querySelector(".week-container");
 
 		//iterate over weekly nav items and return info of item with border
 		//(the one with a border is the selected one) 
@@ -160,7 +168,7 @@ class WeeklyNav extends HTMLElement{
 	 *      this.selectedDay = day
 	 */
 	set selectedDay(day){
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+		const navContainer = this.shadowRoot.querySelector(".week-container");
 
 		for(let i = 1; i < navContainer.childNodes.length; i++){
 			if(i == day){

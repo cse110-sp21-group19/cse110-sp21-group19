@@ -161,7 +161,7 @@ export async function dailyLog(date, from){
         nestedBullets(INPUT, bulletStack);
         */
 
-    }
+	}
 } /* dailyLog */
 
 

@@ -103,6 +103,8 @@
 }
 
 /* Dark mode */
-.dark-mode.wn-item {
-  background: $dark;
+.dark-mode.week-container {
+  .wn-item {
+    background: $dark;
+  }
 }

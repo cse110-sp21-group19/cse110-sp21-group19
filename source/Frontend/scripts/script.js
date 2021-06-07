@@ -1,9 +1,9 @@
 // script.js
+import { createDB } from "../../Backend/api/bullet_api.js";
 import { router } from "./router.js";
 import { closeMenu } from "./side-nav-script.js";
 import { SUN, MOON } from "../components/icons.js";
 
-import { createDB } from "../../Backend/api/bullet_api.js";
 const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
 
@@ -156,11 +156,15 @@ COLORCONTAINER.addEventListener("click", () => {
 
 		// style different side-navs
 		if (WEEKLYNAV) {
+			const WNCONTAINER = WEEKLYNAV.shadowRoot.querySelector(".week-container");
+			WNCONTAINER.className += " dark-mode";
+			/*
 			const WNITEMS = WEEKLYNAV.shadowRoot.querySelectorAll(".wn-item");
 			WNITEMS.forEach(element => {
 				//element.style.background = DARK;
 				element.className += " dark-mode";
 			});
+			*/
 		}
 		if (TOODLIST) {
 			const TODOITEMS = TOODLIST.shadowRoot.querySelectorAll(".todo-item");
@@ -195,10 +199,14 @@ COLORCONTAINER.addEventListener("click", () => {
 
 		// style different side-navs
 		if (WEEKLYNAV) {
+			const WNCONTAINER = WEEKLYNAV.shadowRoot.querySelector(".week-container");
+			WNCONTAINER.className = "week-container";
+			/*
 			const WNITEMS = WEEKLYNAV.shadowRoot.querySelectorAll(".wn-item");
 			WNITEMS.forEach(element => {
 				element.className = "wn-item";
 			});
+			*/
 		}
 		if (TOODLIST) {
 			const TODOITEMS = TOODLIST.shadowRoot.querySelectorAll(".todo-item");

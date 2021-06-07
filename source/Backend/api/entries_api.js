@@ -285,8 +285,7 @@ export function getDailyEntries(date) {
 	});
 }
 
-/*
-module.exports = {
+/* module.exports = {
 	createEntry,
 	updateEntry,
 	getEntry,
