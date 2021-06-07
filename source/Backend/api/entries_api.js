@@ -87,7 +87,6 @@ export function updateEntry(key, entry){
 		//Get attributes to change, (date not needed)
 		let title = entry.title;
 		let content = entry.content;
-		let image = entry.image;
 
 		//opening database
 		let request = window.indexedDB.open(DATABASENAME);
@@ -106,7 +105,6 @@ export function updateEntry(key, entry){
 					//updating attributes
 					currEntry.title = title;
 					currEntry.content = content;
-					currEntry.image = image;
 
 					let putRequest = store.put(currEntry, key);
                     
@@ -259,6 +257,7 @@ export function getDailyEntries(date) {
 				let cursor = e.target.result;
 				if(cursor != null) {
 					let currDate = cursor.value.date;
+
 					if(currDate == date) {
 						matchingEntries.push(cursor.value);
 						matchingKeys.push(cursor.key);
@@ -274,14 +273,24 @@ export function getDailyEntries(date) {
 				resolve({});
 			};
 
-            transaction.oncomplete = function () {
-                db.close();
-            }
-        }
-        //unable to open database
-        request.onerror = function(event){
-            console.log.error(ERR_DB_NOT_CREATED);
-            resolve({});
-        }
-    });
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+		//unable to open database
+		request.onerror = function(){
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve({});
+		};
+	});
 }
+
+/*
+module.exports = {
+	createEntry,
+	updateEntry,
+	getEntry,
+	deleteEntry,
+	getDailyEntries
+
+}; */

@@ -20,7 +20,7 @@ export function createFutureNav(date){
 			const currYear = document.querySelector("log-type").readLog.date.getFullYear();
 			let date = new Date(currYear, index, 1);
 			
-			router.setState("monthly-log", false, date, "future-log");
+			router.setState("monthly", false, date, "future");
         }
 
     });

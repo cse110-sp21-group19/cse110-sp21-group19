@@ -21,7 +21,7 @@ export function createCalendar(date){
 				let month = LOGTYPE.readLog.date.getMonth();
 				let year = LOGTYPE.readLog.date.getFullYear();
 				let selectedDate = new Date(year, month, day);
-				router.setState("daily-log", false, selectedDate, "monthly-log");
+				router.setState("daily", false, selectedDate, "monthly");
 		}
 	});
 }
