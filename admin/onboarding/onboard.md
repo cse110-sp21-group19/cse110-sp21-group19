@@ -121,4 +121,6 @@ When you create your pull request, there will be multiple tasks that will automa
 
 When your pull request is approved, you may merge the changes to the main branch. Be sure to delete your private branch once you are done with it.
 
+For questions, contact your mentor or direct manager.
+
 
