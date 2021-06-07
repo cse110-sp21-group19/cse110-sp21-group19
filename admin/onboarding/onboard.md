@@ -1,11 +1,12 @@
 # iNeedA\<br> Onboarding Guide
-Updated 6/3/21
+Updated 6/6/21
 
 ## Navigation
 - [iNeedA\<br> Onboarding Guide](#ineedabr-onboarding-guide)
   - [Navigation](#navigation)
   - [Understanding iNeedA\<br>](#understanding-ineedabr)
   - [Understanding Eucalyptus](#understanding-eucalyptus)
+  - [Building Eucalyptus](#building-eucalyptus)
   - [Understanding iNeedA\<br>'s Team Structure](#understanding-ineedabrs-team-structure)
     - [Management](#management)
     - [Design](#design)
@@ -23,7 +24,7 @@ Updated 6/3/21
       - [Frontend](#frontend)
       - [Backend](#backend)
     - [Specs](#specs)
-  - [Building Eucalyptus](#building-eucalyptus)
+
 
 ## Understanding iNeedA\<br>
 iNeedA\<br> (Group) is founded on the belief that everyone is an ally to everyone else. We value phycological safety and promote an environment where people are able to present ideas and expect to be given constructive criticism. We value individuals who are open about their struggles, are not shy about asking for help, and are constantly improving through constructive criticism. 
@@ -32,6 +33,9 @@ iNeedA\<br> (Group) is founded on the belief that everyone is an ally to everyon
 Eucalyptus is a light-weight online bullet journal tool that allows users to perform rapid logging, prioritization, and more. Eucalyuptus supports three types of bullets: `note`, `task`, and `event`. Eucalyptus also supports the inclusion of additional entries in the form of plaintext documents or images. 
 
 Eucalyptus uses IndexDB as a database for storing and retrieving bullets. Our API supports storing bullets and retriving bullets based on queries (Date, Bullet Type, etc.)
+
+## Building Eucalyptus
+Builds will generate both on pushes and pull requests from any branch to any branch. This should happen automatically and require no extra actions from the developer
 
 ## Understanding iNeedA\<br>'s Team Structure
 Upon joining iNeedA\<br>, you will be included into one of six teams: management, design, frontend developer, backend developer, testing developer, or developer operations (DevOps). 
@@ -60,7 +64,7 @@ For more detailed responsibilities for your team, contact your mentor or direct 
 ## Getting The Tools
 
 ### Github
-Make sure you have a Github account. You can sign up here: github.com
+Make sure you have a Github account. You can sign up [here](github.com)
 
 ### Setting up the IDE
 The Group codes in **Javascript (JS)**. You may want to download [Node.js](https://nodejs.org/en/download/) in order to run JS on your local machine.
@@ -87,7 +91,7 @@ Make sure you read over the [Style Guide](admin/specs/../../../../specs/style_gu
 For more information about SCSS compiling, read the documentation [here](https://sass-lang.com/documentation)
 
 ## Navigating the Repository
-The source code is separated into 3 parts
+The repository is separated into 3 parts
 1. Admin
 2. Source
 3. Specs
@@ -109,5 +113,4 @@ Specification documents are located here. Documents such as ADRs, initial brains
 
 Documents that are not administrative are located here.
 
-## Building Eucalyptus
-Builds will generate both on pushes and pull requests from any branch to any branch. This should happen automatically and require no extra actions from the developer
+
