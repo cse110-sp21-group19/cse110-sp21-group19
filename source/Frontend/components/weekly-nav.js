@@ -76,6 +76,11 @@ class WeeklyNav extends HTMLElement{
 
 			let navItem = document.createElement("div");
 			navItem.className = "wn-item";
+			// dark mode class
+			if (document.body.className == "dark-mode") {
+				navItem.className += " dark-mode";
+			}
+
 
 			let navDate = document.createElement("div");
 			navDate.className = "wn-date";
@@ -107,6 +112,7 @@ class WeeklyNav extends HTMLElement{
 			navContainer.appendChild(navItem);
 
 		}); 
+
 	
 	}/* set daysOfWeek */
 

@@ -118,4 +118,9 @@
 .week-container .wn-item ::-webkit-scrollbar-thumb:hover {
   background: #71B637;
 }
+
+/* Dark mode */
+.dark-mode.wn-item {
+  background: #181A18;
+}
 /*# sourceMappingURL=weeklynav.css.map */

@@ -132,23 +132,50 @@ const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
 
 COLORCONTAINER.addEventListener("click", () => {
 	const IMG = COLORCONTAINER.querySelector("svg");
-	const WNITEMS = document.querySelector("weekly-nav").shadowRoot.querySelectorAll(".wn-item");
+	// diiferent side bars
+	const WEEKLYNAV = document.querySelector("weekly-nav");
+	const TOODLIST = document.querySelector("todo-list");
+	const CALENDAR = document.querySelector("calendar-component");
+	const FUTURENAV = document.querySelector("future-nav");
+
+	// main-text
 	const BULLETINPUTROOT = document.querySelector("bullet-input").shadowRoot;
 	const BULLETINPUT = BULLETINPUTROOT.querySelector(".new-bullet");
+
 	// colors 
 	const LIGHT =  "#E5E5E5";
 	const DARK  = "#181A18";
 	const WHITE =  "white";
 	const BLACK =  "black";
+
 	// if it is currently light mode, switch to dark
 	if (IMG.id === "") {
 		COLORCONTAINER.innerHTML = MOON;
 		IMG.id = "dark-mode";
 		BODY.className = "dark-mode";
 
-		WNITEMS.forEach(element => {
-			element.style.background = DARK;
-		});
+		// style different side-navs
+		if (WEEKLYNAV) {
+			const WNITEMS = WEEKLYNAV.shadowRoot.querySelectorAll(".wn-item");
+			WNITEMS.forEach(element => {
+				//element.style.background = DARK;
+				element.className += " dark-mode";
+			});
+		}
+		if (TOODLIST) {
+			const TODOITEMS = TOODLIST.shadowRoot.querySelectorAll(".todo-item");
+			TODOITEMS.forEach(element => {
+				element.className += " dark-mode";
+			});
+		}
+		if (CALENDAR) {
+			const CALENDARCOMP = CALENDAR.shadowRoot.querySelector(".calendar");
+			CALENDARCOMP.className += " dark-mode";
+		}
+		if (FUTURENAV) {
+			const FUTURECONTAINER = FUTURENAV.shadowRoot.querySelector(".future-container");
+			FUTURECONTAINER.className += " dark-mode";
+		}
 		
 		BULLETINPUT.className += " dark-mode";
 
@@ -165,9 +192,29 @@ COLORCONTAINER.addEventListener("click", () => {
 		COLORCONTAINER.innerHTML = SUN;
 		IMG.id = "light-mode";
 		BODY.className = "";
-		WNITEMS.forEach(element => {
-			element.style.background = WHITE;
-		});
+
+		// style different side-navs
+		if (WEEKLYNAV) {
+			const WNITEMS = WEEKLYNAV.shadowRoot.querySelectorAll(".wn-item");
+			WNITEMS.forEach(element => {
+				element.className = "wn-item";
+			});
+		}
+		if (TOODLIST) {
+			const TODOITEMS = TOODLIST.shadowRoot.querySelectorAll(".todo-item");
+			TODOITEMS.forEach(element => {
+				element.className = "todo-item";
+			});
+		}
+		if (CALENDAR) {
+			const CALENDARCOMP = CALENDAR.shadowRoot.querySelector(".calendar");
+			CALENDARCOMP.className = "calendar";
+		}
+		if (FUTURENAV) {
+			const FUTURECONTAINER = FUTURENAV.shadowRoot.querySelector(".future-container");
+			FUTURECONTAINER.className = "future-container";
+		}
+
 		BULLETINPUT.className = "new-bullet";
 
 		const BULLETLISTEL = document.querySelectorAll("bullet-list");
