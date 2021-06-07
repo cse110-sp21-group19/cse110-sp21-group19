@@ -31,4 +31,4 @@ Open page using Live server, add an additional entry and open the future log.
 ## Output 
 Screenshots / Attached files / etc.
 [Screenshot 1](specs/../Testing%20Report%20Images/[Bug%20Malhar%209]%20-%20Additional%20Entries%20on%20Future%20Log_1.JPG)
-[Screenshot 1](specs/../Testing%20Report%20Images/[Bug%20Malhar%209]%20-%20Additional%20Entries%20on%20Future%20Log_2.JPG)
+[Screenshot 2](specs/../Testing%20Report%20Images/[Bug%20Malhar%209]%20-%20Additional%20Entries%20on%20Future%20Log_2.JPG)
