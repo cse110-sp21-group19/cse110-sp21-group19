@@ -36,6 +36,10 @@ export async function updateAddlEntries() {
 	let fetchedEntries = entriesList[1];
 
 	ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
+
+	if(ADDLENTRYBAR.type == "editing" || ADDLENTRYBAR.type == "img-editing"){
+		ADDLENTRYBAR.type = "openbar";
+	}
 }
 
 //Helper functions to insert text at caret position
