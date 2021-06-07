@@ -8,7 +8,7 @@ import { getDailyEntries } from "../../Backend/api/entries_api.js";
 import { updateAddlEntries, formatEntries } from "./addl-entries-script.js";
 
 import { createNewBullets, nestedBullets, bulletsFromDB } from "./main-text-script.js";
-import { getDailyBullets } from "../../Backend/api/bullet_api.js";
+import { getDailyBullets, getMonthlyBullets, getFutureBullets } from "../../Backend/api/bullet_api.js";
 import { createFutureNav } from "./future-nav-script.js";
 
 export const router = {};
@@ -25,15 +25,15 @@ export const router = {};
 
 router.setState = (state, statePopped, date, from) => {
 	switch (state) {
-	case "daily-log":
+	case "daily":
 		dailyLog(date, from);
 		//console.log("daily " + date);
 		break;
-	case "monthly-log":
+	case "monthly":
 		monthlyLog(date);
 		console.log("monthly");
 		break;
-	case "future-log":
+	case "future":
 		futureLog(date);
 		console.log("future");
 		break;
@@ -67,7 +67,7 @@ export async function dailyLog(date, from){
         // update the header text above main-text area
         let headerText = DAYS[date.getDay()] + ", " + MONTHS[date.getMonth()] + " " + date.getDate();
         const DAILYINFO = {
-            "type": "daily-log",
+            "type": "daily",
             "date": date,
             "header": headerText
         }
@@ -91,7 +91,7 @@ export async function dailyLog(date, from){
                 WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
               }, 300);
             }
-        else if(from == "monthly-log" || from == "side-nav"){
+        else if(from == "monthly" || from == "side-nav"){
             // remove previous side navigation
             deleteSideNav();
             await createWeeklyNav(date);
@@ -124,15 +124,11 @@ export async function dailyLog(date, from){
         
 		updateAddlEntries();
 
-        /*
         const currDate = document.querySelector("log-type").readLog.date;
-        console.log(currDate);
         let todayBullets = await getDailyBullets(currDate);
-        console.log("todayBullets");
-        console.log(todayBullets);
         createMainText(todayBullets);
-        */
 
+        /*
         // reset current main-text area
         const MAINTEXT = document.getElementById("main-text");
         MAINTEXT.innerHTML = "";
@@ -150,6 +146,8 @@ export async function dailyLog(date, from){
         // Get daily bullets from database
         const currDate = document.querySelector("log-type").readLog.date;
         let todayBullets = await getDailyBullets(currDate);
+        console.log("GET DAILY BULLLETS");
+        console.log(todayBullets);
         todayBullets[1].forEach(function(item, index) {
             bulletsFromDB(item, index, bulletStack, todayBullets);
         });
@@ -161,6 +159,7 @@ export async function dailyLog(date, from){
         createNewBullets(INPUT, bulletStack);
         // add ability to add nested bullets
         nestedBullets(INPUT, bulletStack);
+        */
 
     }
 } /* dailyLog */
@@ -185,7 +184,7 @@ async function monthlyLog(date){
         // update the header text above main-text area
         let headerText = MONTHS[date.getMonth()] + " " + date.getFullYear();
         const MONTHLYINFO = {
-            "type": "monthly-log",
+            "type": "monthly",
             "date": date,
             "header": headerText
         }
@@ -198,9 +197,13 @@ async function monthlyLog(date){
         console.log(firstDay.getMonth());
 		await createToDoList(firstDay);
         createCalendar(firstDay);
-        // TODO: update the main-text data with getter
+
         updateAddlEntries();
 
+        // update main-text area with monthly bullets
+        const currDate = document.querySelector("log-type").readLog.date;
+        let monthBullets = await getMonthlyBullets(currDate);
+        createMainText(monthBullets);
     }
 } /* monthlyLog */
 
@@ -213,7 +216,7 @@ async function monthlyLog(date){
  * @example
  *      futureLog();
  */
-function futureLog(date){
+async function futureLog(date){
 	const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
 	let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
 	sideNavTitle.textContent = "Future Log";
@@ -222,7 +225,7 @@ function futureLog(date){
 	// update the header text above main-text area
 	let headerText = date.getFullYear();
 	const FUTUREINFO = {
-		"type": "future-log",
+		"type": "future",
 		"date": date,
 		"header": headerText
 	};
@@ -232,6 +235,11 @@ function futureLog(date){
     deleteSideNav();
 
     createFutureNav(date);
+
+    // update main-text area with future bullets
+    const currDate = document.querySelector("log-type").readLog.date;
+    let futureBullets = await getFutureBullets(currDate);
+    createMainText(futureBullets);
 } /* futureLog */
 
 /**
@@ -247,16 +255,16 @@ function pushToHistory(state, date, from) {
         page: state, date: date, from:from
     };
     switch (state) {
-        case "daily-log":
+        case "daily":
             console.log("here")
-            history.pushState({ page: "daily-log", date: date, from:from}, "", `./#daily${date}`);
+            history.pushState({ page: "daily", date: date, from:from}, "", `./#daily${date}`);
             console.log("here")
             break;
-        case "monthly-log":
-            history.pushState({ page: "monthly-log", date: date, from:from}, "", `./#monthly${date}`);
+        case "monthly":
+            history.pushState({ page: "monthly", date: date, from:from}, "", `./#monthly${date}`);
             break;
-        case "future-log":
-            history.pushState({ page: "future-log", date: date, from:from}, "", `./#future${date}`);
+        case "future":
+            history.pushState({ page: "future", date: date, from:from}, "", `./#future${date}`);
             break;
         default:
             history.pushState({}, '', './');
@@ -291,7 +299,13 @@ function deleteSideNav() {
 
 } /* deleteSideNav */
 
-
+/**
+ * createMainText
+ * Create the main-text area for the current log type. Load in the appropriate 
+ * bullets and allow the user to create and store new bullets for the current 
+ * log.
+ * @param {Array} bullets And array of the bullets returned from the database.
+*/
 async function createMainText(bullets) {
     // reset current main-text area
     const MAINTEXT = document.getElementById("main-text");
@@ -307,11 +321,9 @@ async function createMainText(bullets) {
     let bulletStack = [];
     bulletStack.push(BULLETS);
 
-    console.log("in createMainText");
-    console.log(bullets);
     // Get daily bullets from database
     bullets[1].forEach(function(item, index) {
-        bulletsFromDB(item, index, bulletStack, todayBullets);
+        bulletsFromDB(item, index, bulletStack, bullets);
     });
 
     MAINTEXT.appendChild(BULLETS);
@@ -321,4 +333,4 @@ async function createMainText(bullets) {
     createNewBullets(INPUT, bulletStack);
     // add ability to add nested bullets
     nestedBullets(INPUT, bulletStack);
-}
+} /* createMainText */

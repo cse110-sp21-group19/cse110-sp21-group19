@@ -37,7 +37,7 @@ export async function createWeeklyNav(date) {
 
 			//get the newly selected date and update router
 			let selectedDate = WEEKLYNAV.selectedInfo;
-			router.setState("daily-log", false, selectedDate, "weekly-nav");
+			router.setState("daily", false, selectedDate, "weekly-nav");
            
 		}
 
