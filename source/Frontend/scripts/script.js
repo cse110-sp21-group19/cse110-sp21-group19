@@ -1,6 +1,7 @@
 // script.js
 import { router } from "./router.js";
 import { closeMenu } from "./side-nav-script.js";
+import { SUN, MOON } from "../components/icons.js";
 
 import { createDB } from "../../Backend/api/bullet_api.js";
 const SIDENAV  = document.querySelector("side-nav");
@@ -123,4 +124,58 @@ NEXTLOG.addEventListener("click", () => {
 		console.log(nextDate);
 	}
 	router.setState(LOG, false, nextDate, "next");
+});
+
+// set light/dark mode on clicking sun/moon icon
+const BODY = document.querySelector("body");
+const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
+
+COLORCONTAINER.addEventListener("click", () => {
+	const IMG = COLORCONTAINER.querySelector("svg");
+	const WNITEMS = document.querySelector("weekly-nav").shadowRoot.querySelectorAll(".wn-item");
+	const BULLETINPUTROOT = document.querySelector("bullet-input").shadowRoot;
+	const BULLETINPUT = BULLETINPUTROOT.querySelector(".new-bullet");
+	// colors 
+	const LIGHT =  "#E5E5E5";
+	const DARK  = "#181A18";
+	const WHITE =  "white";
+	const BLACK =  "black";
+	// if it is currently light mode, switch to dark
+	if (IMG.id === "") {
+		COLORCONTAINER.innerHTML = MOON;
+		IMG.id = "dark-mode";
+		BODY.className = "dark-mode";
+
+		WNITEMS.forEach(element => {
+			element.style.background = DARK;
+		});
+		
+		BULLETINPUT.className += " dark-mode";
+
+		const BULLETLISTEL = document.querySelectorAll("bullet-list");
+		BULLETLISTEL.forEach(element => {
+			element.shadowRoot.querySelectorAll("bullet-entry").forEach(element => {
+				element.shadowRoot.querySelector(".entry").className += " dark-mode";
+			});
+		});
+		closeMenu();
+	}
+	// else if it is currently dark mode, switch to light
+	else {
+		COLORCONTAINER.innerHTML = SUN;
+		IMG.id = "light-mode";
+		BODY.className = "";
+		WNITEMS.forEach(element => {
+			element.style.background = WHITE;
+		});
+		BULLETINPUT.className = "new-bullet";
+
+		const BULLETLISTEL = document.querySelectorAll("bullet-list");
+		BULLETLISTEL.forEach(element => {
+			element.shadowRoot.querySelectorAll("bullet-entry").forEach(element => {
+				element.shadowRoot.querySelector(".entry").className = "entry";
+			});
+		});
+	}
+	closeMenu();
 });

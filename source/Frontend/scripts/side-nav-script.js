@@ -96,6 +96,7 @@ export function closeMenu(){
  * 	colorToggle()
  */
 //export function colorToggle() {
+    /*
     const BODY = document.querySelector("body");
     const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
 
@@ -146,5 +147,6 @@ export function closeMenu(){
         }
         closeMenu();
     })
+    */
 
 //} /* colorToggle */
