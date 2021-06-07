@@ -1,9 +1,21 @@
 //calendar.js
-const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-class Calendar extends HTMLElement{
+
+import { MONTHS } from '../components/log-type.js';
+
+/**
+ * Class represting custom calendar web component
+ * @extends HTMLElement
+ * 
+ * @example
+ * <calendar-component>
+ */
+class Calendar extends HTMLElement {
+
+	/**
+	 * Create a calendar component skeleton
+	 */
 	constructor() {
 		super();
-
 		const template = document.createElement("template");
 
 		//list items are weird to get rid of small space in between items
@@ -44,44 +56,58 @@ class Calendar extends HTMLElement{
         
 	}
 
-	set month(date){
+	/**
+	 * set month
+	 * This function fills the contents of the calendar component to the month
+	 * according to the parameter
+	 * 
+	 * @param {Date} date - a date object to the first day of a month
+	 */
+	set month(date) {
 		let month = date.getMonth();
 		let firstDay = date.getDay();
 		const shadow = this.shadowRoot;
 		shadow.querySelector(".month").textContent= MONTHS[month];
-		for(let i = 0; i < firstDay; i++){
+		//empty day boxes
+		for (let i = 0; i < firstDay; i++) {
 			let emptyDay = document.createElement("li");
 			emptyDay.className = "empty-day";
 			shadow.querySelector(".days").appendChild(emptyDay);
 		}
 
+		//fill calendar with dates
 		let currDate = new Date(date);
-		while (currDate.getMonth() === month){
+		while (currDate.getMonth() === month) {
 			let newDay = document.createElement("li");
 			newDay.className = "day";
 			newDay.textContent = currDate.getDate();
 			shadow.querySelector(".days").appendChild(newDay);
 			currDate.setDate(currDate.getDate() + 1);
 		}
-	}
+	}/* set month */
 
-	set currentDay(date){
+	/**
+	 * set currentDay
+	 * sets special styling for whatever day is the current day
+	 * 
+	 * @param {Date} date - a date object for today
+	 */
+	set currentDay(date) {
 		let selectedDay = date.getDate();
 		const shadow = this.shadowRoot;
-		shadow.querySelector(".days").childNodes.forEach(day =>{
-			if(day.className == "day"){
-				if(day.textContent == selectedDay){
+		shadow.querySelector(".days").childNodes.forEach(day => {
+			if (day.className == "day") {
+				if (day.textContent == selectedDay) {
 					day.classList.add("current-day");
 				}
-				else{
+				else {
 					day.classList.remove("current-day");
 				}
 			}
 		})
-	}
+	}/* set currentDay */
 
-}
+}/* Calendar */
  
-
-
+// Define a custom element for the bullet-entry web component   
 customElements.define("calendar-component", Calendar);
