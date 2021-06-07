@@ -1,9 +1,9 @@
 //calendar.js
 
-import { MONTHS } from '../components/log-type.js';
+import { MONTHS } from "./log-type.js";
 
 /**
- * Class represting custom calendar web component
+ * Class representing custom calendar web component
  * @extends HTMLElement
  * 
  * @example
