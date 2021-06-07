@@ -24,6 +24,7 @@ Updated 6/6/21
       - [Frontend](#frontend)
       - [Backend](#backend)
     - [Specs](#specs)
+  - [Contributing to Eucalyptus](#contributing-to-eucalyptus)
 
 
 ## Understanding iNeedA\<br>
@@ -112,5 +113,12 @@ IndexDB Database API
 Specification documents are located here. Documents such as ADRs, initial brainstorming, CICD documentation, Source documentation, design documents, intial pitch documents, proof of concepts, and testing reports. 
 
 Documents that are not administrative are located here.
+
+## Contributing to Eucalyptus
+In order to contribute to Eucalyptus, you must checkout a private branch. When you are ready to push your changes into the main branch, create a pull request and wait for reviews. 
+
+When you create your pull request, there will be multiple tasks that will automatically run. These tasks include documentation generation, code style checking, and more. Be sure that these tasks complete successfully or your pull request will be put on hold. 
+
+When your pull request is approved, you may merge the changes to the main branch. Be sure to delete your private branch once you are done with it.
 
 
