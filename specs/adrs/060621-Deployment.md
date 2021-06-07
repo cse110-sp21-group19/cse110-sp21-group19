@@ -1,7 +1,7 @@
 # 5/25/21 - Deployment
 ## Context and Problem Statement
 
-The team needs to be able to deply our app online.
+The team needs to be able to deploy our app online.
 
 ## Considered Options
 
