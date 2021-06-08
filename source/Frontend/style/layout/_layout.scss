@@ -1,5 +1,4 @@
 body {
-    //max-width: 1280px;
     background: $light;
     margin: auto;
     padding: 0 3rem;
@@ -56,6 +55,8 @@ body {
 /* style logo */
 .logo {
     position: absolute;
+    height: 50px;
+    width: 50px;
     padding: 1rem 5rem;
     right: 0;
     z-index: -1;

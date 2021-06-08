@@ -9,32 +9,36 @@
 }
 
 /*Begin styling additional entry bar*/
-.active-bar {
+.initial {
+  position: relative;
+}
+
+.initial .active-bar {
   background: #FFA33F;
-  height: 20vh;
+  height: 15vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 2vh 2vw 2vh 2vw;
+  padding: 1rem 2rem 3rem 2rem;
   min-width: 300px;
   min-height: 100px;
   border-radius: 1rem;
 }
 
-.active-bar .close {
+.initial .active-bar .close {
   text-align: left;
   font-size: 30px;
   color: black;
 }
 
-.active-bar .close:hover {
+.initial .active-bar .close:hover {
   cursor: pointer;
 }
 
-.active-bar .content {
+.initial .active-bar .content {
   height: 13vh;
   width: 65%;
   min-width: 100px;
@@ -50,57 +54,32 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  padding: 0 1rem 3rem 1rem;
+  padding: 0 2rem 2rem 2rem;
 }
 
-.active-bar .content:hover {
+.initial .active-bar .content:hover {
   overflow-x: auto;
 }
 
-.active-bar .new-entry {
+.initial .active-bar .new-entry {
   overflow: visible;
   width: 8rem;
-  height: 10vh;
+  height: 12vh;
   min-height: 50px;
   margin-top: 3vh;
-}
-
-.active-bar .new-entry:hover {
+  margin-right: 1rem;
   cursor: pointer;
 }
 
-.inactive-bar {
+.initial .inactive-bar {
   position: absolute;
-  right: 0;
-  padding-right: 5rem;
+  right: 2rem;
+  bottom: 3rem;
   width: 3vw;
   height: 3vw;
-  min-width: 3vw;
-  min-height: 3vw;
-  margin: 0 1rem 2rem;
-  background: transparent;
+  min-width: 50px;
+  min-height: 50px;
   border-radius: 1vw;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.inactive-bar svg {
-  position: absolute;
-  bottom: 4rem;
-}
-
-#btn {
-  height: 7vh;
-  width: 7vh;
-  -ms-grid-column: 2;
-      grid-column-start: 2;
-  grid-column-end: 5;
-}
-
-#btn:hover {
   cursor: pointer;
 }
 
@@ -269,8 +248,7 @@
 .img-editing .img-content {
   margin-top: 1rem;
   margin-left: 3vw;
-  width: 55vw;
-  max-width: 1000px;
+  width: 50vw;
   height: 70%;
   background: white;
   border-radius: 1rem;
@@ -291,12 +269,15 @@
   display: none;
 }
 
-.img-editing .img-content .uploaded {
-  max-width: 90%;
-  max-height: 90%;
+.img-editing .img-content .img-wrapper {
+  text-align: center;
+}
+
+.img-editing .img-content .img-wrapper .uploaded {
+  max-width: 70%;
+  max-height: 70%;
   width: auto;
   height: auto;
-  margin-left: 6vw;
 }
 
 .img-editing .img-content:hover {
@@ -321,13 +302,18 @@
   text-align: center;
 }
 
-.img-editing .delete-btn {
-  height: 100px;
-  width: 7vh;
-  min-width: 50px;
+.img-editing .delete-btn-wrapper {
+  position: relative;
+}
+
+.img-editing .delete-btn-wrapper .delete-btn {
   position: absolute;
-  right: 5vw;
-  top: 18vh;
+  bottom: 0.5rem;
+  height: 8vh;
+  width: 7vh;
+  min-height: 50px;
+  min-width: 75px;
+  right: 1rem;
 }
 
 .img-editing .delete-btn:hover {

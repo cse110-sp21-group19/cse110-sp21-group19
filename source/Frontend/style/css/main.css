@@ -172,6 +172,8 @@ body .side-nav-container {
 /* style logo */
 .logo {
   position: absolute;
+  height: 50px;
+  width: 50px;
   padding: 1rem 5rem;
   right: 0;
   z-index: -1;
@@ -187,5 +189,6 @@ body .side-nav-container {
   background: white;
   padding: 2rem;
   margin: 0 1rem;
+  overflow-y: auto;
 }
 /*# sourceMappingURL=main.css.map */

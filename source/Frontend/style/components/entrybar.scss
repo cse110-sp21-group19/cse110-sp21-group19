@@ -6,87 +6,64 @@
     outline: none;
 }
 /*Begin styling additional entry bar*/
-.active-bar{
-    background: $accent2;
-    height: 20vh;
-    display: flex;
-    justify-content: space-between;
-    padding: 2vh 2vw 2vh 2vw;
-    min-width: 300px;
-    min-height: 100px;
-    border-radius: 1rem;
-
-    .close{
-        text-align: left;
-        font-size: 30px;
-        color: black;
-    }
-    .close:hover{
-        cursor: pointer;
-    }
-
-    .content{
-        height: 13vh;
-        width: 65%;
-        min-width: 100px;
-        background: white;
-        border-radius: 1rem;
-        margin-top: 0;
-        overflow-x: hidden;
-        overflow-y: hidden;
+.initial{
+    position: relative;
+    .active-bar{
+        background: $accent2;
+        height: 15vh;
         display: flex;
-        flex-direction: row;
-        padding: 0 1rem 3rem 1rem;
+        justify-content: space-between;
+        padding: 1rem 2rem 3rem 2rem;
+        min-width: 300px;
+        min-height: 100px;
+        border-radius: 1rem;
+    
+        .close{
+            text-align: left;
+            font-size: 30px;
+            color: black;
+        }
+        .close:hover{
+            cursor: pointer;
+        }
+    
+        .content{
+            height: 13vh;
+            width: 65%;
+            min-width: 100px;
+            background: white;
+            border-radius: 1rem;
+            margin-top: 0;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: row;
+            padding: 0 2rem 2rem 2rem;
+        }
+        .content:hover{
+            overflow-x: auto;
+        }
+        .new-entry{
+            overflow: visible;
+            width: 8rem;
+            height: 12vh;
+            min-height: 50px;
+            margin-top: 3vh;
+            margin-right: 1rem;
+            cursor: pointer;
+        }
     }
-    .content:hover{
-        overflow-x: auto;
-    }
-    .new-entry{
-        overflow: visible;
-        width: 8rem;
-        height: 10vh;
-        min-height: 50px;
-        margin-top: 3vh;
-    }
-    .new-entry:hover{
-        cursor: pointer;
-
-    }
-
-}
-.inactive-bar{
-    position: absolute;
-    right: 0;
-    padding-right: 5rem;
-    width: 3vw;
-    height: 3vw;
-    min-width: 3vw;
-    min-height: 3vw;
-    margin: 0 1rem 2rem;
-    background: transparent;
-    border-radius: 1vw;
-    //padding: 0.2rem;
-    //float: right;
-    //display: grid;
-    justify-content: center;
-    white-space: nowrap;
-
-    cursor: pointer;
-
-    svg {
+    .inactive-bar{
         position: absolute;
-        bottom: 4rem;
+        right: 2rem;
+        bottom: 3rem;
+        width: 3vw;
+        height: 3vw;
+        min-width: 50px;
+        min-height: 50px;
+        border-radius: 1vw;
+        cursor: pointer;
     }
-}
-
-#btn{
-    height: 7vh;
-    width: 7vh;
-    grid-column-start: 2;
-    grid-column-end: 5;
-}
-#btn:hover{
-    cursor: pointer;
 }
 
 *:focus{
@@ -239,8 +216,7 @@
     .img-content{
         margin-top: 1rem;
         margin-left: 3vw;
-        width: 55vw;
-        max-width: 1000px;
+        width: 50vw;
         height: 70%;
         background: white;
         border-radius: 1rem;
@@ -256,14 +232,15 @@
         .choose-img{
             display: none;
         }
-        .uploaded{
-            max-width:90%;
-            max-height:90%;
-            width: auto;
-            height: auto;
-            margin-left: 6vw;
+        .img-wrapper{
+            text-align: center;
+            .uploaded{
+                max-width:70%;
+                max-height:70%;
+                width: auto;
+                height: auto;
+            }
         }
-        
     }
    
     .img-content:hover{
@@ -286,14 +263,19 @@
         text-align: center;
     }
 
-    .delete-btn{
-        height: 100px;
-        width: 7vh;
-        min-width: 50px;
-        position: absolute;
-        right: 5vw;
-        top: 18vh;
+    .delete-btn-wrapper{
+        position: relative;
+        .delete-btn{
+            position: absolute;
+            bottom: 0.5rem;
+            height: 8vh;
+            width: 7vh;
+            min-height: 50px;
+            min-width: 75px;
+            right: 1rem;
+        }
     }
+   
     .delete-btn:hover{
         cursor: pointer;
     }
