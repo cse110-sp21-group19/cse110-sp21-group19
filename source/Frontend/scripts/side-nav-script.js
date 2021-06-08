@@ -1,6 +1,6 @@
 //side-nav-script.js
 
-const MENUHEIGHT = "89vh";
+const MENUHEIGHT = "calc(100vh - 2rem)";
 const BORDERADIUS = "0.8em";
 
 //Adding the side nav menu web component 

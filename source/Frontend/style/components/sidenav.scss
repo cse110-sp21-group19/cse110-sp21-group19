@@ -70,7 +70,7 @@
         background: $accent2;
         position: absolute;
         max-height: 0;
-        height: 100vh;
+        height: calc(100vh - 6.5rem);
         width: 100%;
         overflow: hidden;
         border-bottom-left-radius: 0.8em;

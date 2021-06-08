@@ -74,38 +74,25 @@ export async function dailyLog(date, from){
         LOGTYPE.updateLog = DAILYINFO;
 
 
+        const currDate = document.querySelector("log-type").readLog.date;
+        let todayBullets = await getDailyBullets(currDate);
+        createMainText(todayBullets);  
         //get the current selected day of the week from the weekly nav
         let WEEKLYNAV = document.querySelector("weekly-nav");
-
         //If we are currently on a sunday, replace weekly nav menu with prev week
         if ((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
-            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "0";
-            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "0";
-            setTimeout(function() {
-                WEEKLYNAV.remove();
-                createWeeklyNav(date);
-              }, 150);
-            setTimeout(function() {
-                WEEKLYNAV = document.querySelector("weekly-nav");
-                WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
-                WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
-              }, 300);
-            }
+
+            deleteSideNav();
+            createWeeklyNav(date);
+            //createWeeklyNav(date);
+        }
         else if(from == "monthly" || from == "side-nav"){
             // remove previous side navigation
             deleteSideNav();
-            await createWeeklyNav(date);
-            WEEKLYNAV = document.querySelector("weekly-nav");
-            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
-            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
+            createWeeklyNav(date);
         }
         else if(from == "on-load"){
-            await createWeeklyNav(date);
-            WEEKLYNAV = document.querySelector("weekly-nav");
-            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
-            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
-
-            
+            createWeeklyNav(date);            
             const DATE = document.querySelector("log-type").readLog.header;
             const ADDLENTRYBAR = document.createElement("entry-bar");
             const ADDLENTRIES = document.querySelector(".additional")
@@ -124,9 +111,6 @@ export async function dailyLog(date, from){
         
 		updateAddlEntries();
 
-        const currDate = document.querySelector("log-type").readLog.date;
-        let todayBullets = await getDailyBullets(currDate);
-        createMainText(todayBullets);
 
         /*
         // reset current main-text area
@@ -190,20 +174,21 @@ async function monthlyLog(date){
         }
         LOGTYPE.updateLog = MONTHLYINFO;
 
+        // update main-text area with monthly bullets
+        const currDate = document.querySelector("log-type").readLog.date;
+        let monthBullets = await getMonthlyBullets(currDate);
+        createMainText(monthBullets);
+
         // remove previous side navigation
         deleteSideNav();
 
         let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-        console.log(firstDay.getMonth());
 		await createToDoList(firstDay);
         createCalendar(firstDay);
 
         updateAddlEntries();
 
-        // update main-text area with monthly bullets
-        const currDate = document.querySelector("log-type").readLog.date;
-        let monthBullets = await getMonthlyBullets(currDate);
-        createMainText(monthBullets);
+
     }
 } /* monthlyLog */
 
@@ -288,9 +273,11 @@ function deleteSideNav() {
 
 	if(WEEKLYNAV){
 		WEEKLYNAV.remove();
+        document.getElementById("weekly-nav-container").classList.remove("active");
 	}
     if(CAL){
         CAL.remove();
+        document.getElementById("calendar-component-container").classList.remove("active");
     }
     if(TODO){
         TODO.remove();  
@@ -298,6 +285,7 @@ function deleteSideNav() {
     }
     if(FUTURENAV){
         FUTURENAV.remove();  
+        document.getElementById("weekly-nav-container").classList.remove("active");
     }
 
 } /* deleteSideNav */
@@ -310,10 +298,12 @@ function deleteSideNav() {
  * @param {Array} bullets And array of the bullets returned from the database.
 */
 async function createMainText(bullets) {
+    console.log("YOOOOO");
     // reset current main-text area
     const MAINTEXT = document.getElementById("main-text");
     MAINTEXT.innerHTML = "";
-
+    MAINTEXT.classList.remove("active");
+   // document.querySelector(".additional").classList.remove("active");
     // create new bullet list
     const BULLETS = document.createElement("bullet-list");
     BULLETS.id = "bullets";
@@ -336,4 +326,11 @@ async function createMainText(bullets) {
     createNewBullets(INPUT, bulletStack);
     // add ability to add nested bullets
     nestedBullets(INPUT, bulletStack);
+
+
+    //
+     setTimeout(function(){
+        MAINTEXT.classList.add("active");
+       // document.querySelector(".additional").classList.add("active");
+     }, 40);
 } /* createMainText */

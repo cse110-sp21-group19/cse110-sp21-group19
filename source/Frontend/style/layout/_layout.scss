@@ -14,18 +14,38 @@ body {
             display: flex;
             flex-direction: column;
             height: 100vh;
-            .weekly-nav-container {
+            max-height: 100vh;
+            .weekly-nav-container{
+                opacity: 0;
+            }
+            .weekly-nav-container.active{
+                opacity: 1;
+                transition: opacity 350ms ease-in-out;
                 flex-grow: 2;
+            }
+            .todo-component-container{
+                opacity: 0;
             }
             .todo-component-container.active{
-                flex-grow: 2;
-                order: 3;
+                opacity: 1;
+                transition: opacity 350ms ease-in-out;
+                //height: 30%;
+                height:30vh;
+                flex-grow: 1;
             }
             .calendar-component-container{
-                order: 4
+                opacity: 0;;
+            }
+            .calendar-component-container.active{
+                opacity: 1;
+                transition: opacity 350ms ease-in-out;
+                flex-grow: 0;
+                height: fit-content;
+                margin-bottom: 1.5rem;
             }
             .side-nav-container{
                 order: 0;
+                animation: fadein 1s;
             }
         }
         .daily-log {
@@ -51,10 +71,15 @@ body {
                 }
             }
             .additional {
+                //opacity: 0;
                 flex: 0;
                 height: 20%;
                 overflow-y: hidden;
-                transition: flex 0.3s ease-out;
+                transition: all 0.3s ease-out;
+            }
+            .additional.active{
+                opacity: 1;
+                //transition: opacity 425ms ease-in-out;
             }
         }
     }
@@ -66,4 +91,13 @@ body {
     padding: 1rem 5rem;
     right: 0;
     z-index: -1;
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
 }

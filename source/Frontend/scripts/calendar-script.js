@@ -14,6 +14,7 @@ export function createCalendar(date){
 	CAL.month = date;
 	CAL.currentDay = new Date();
 	document.getElementById("calendar-component-container").appendChild(CAL);
+	document.getElementById("calendar-component-container").className += " active";
 	CAL.shadowRoot.querySelector(".days").addEventListener("click", (event)=>{
 		if(event.target.className == "day"){
 				const LOGTYPE = document.querySelector("log-type");

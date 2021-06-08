@@ -61,14 +61,6 @@
   overflow-x: auto;
 }
 
-.active-bar .new-entry {
-  overflow: visible;
-  width: 8rem;
-  height: 50%;
-  min-height: 50px;
-  margin-top: 3vh;
-}
-
 .active-bar .new-entry:hover {
   cursor: pointer;
 }
@@ -94,21 +86,31 @@
 
 .dropdown {
   position: relative;
+  height: 100%;
   display: inline-block;
+}
+
+.dropdown .new-entry {
+  overflow: visible;
+  width: auto;
+  height: 60%;
+  min-height: 50px;
+  margin-top: 20%;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  bottom: 15vh;
+  bottom: 60%;
   background-color: black;
   min-width: 160px;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 10;
 }
 
 .dropdown:hover .dropdown-content {
+  z-index: 10;
   display: block;
   color: black;
 }

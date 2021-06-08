@@ -51,30 +51,32 @@
   /* Handle on hover */
 }
 
-.week-container .wn-item:hover .wn-date {
-  color: #FFA33F;
-  text-decoration: underline;
-}
-
 .week-container .wn-item .wn-date {
-  pointer-events: none;
-  margin-top: 0.6rem;
-  margin-left: 0.6rem;
-  width: 5vw;
-  min-width: 5rem;
+  z-index: 5;
+  cursor: pointer;
+  padding: 0.6rem;
+  width: 18%;
+  min-width: 7.5rem;
   height: 100%;
 }
 
 .week-container .wn-item .wn-date #day-of-month {
+  pointer-events: none;
   font-size: 1.1em;
   font-weight: bold;
 }
 
 .week-container .wn-item .wn-date #day-of-week {
+  pointer-events: none;
   padding: 0 0.35em;
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   font-weight: lighter;
   font-size: 1.1em;
+}
+
+.week-container .wn-item .wn-date:hover {
+  color: #FFA33F;
+  text-decoration: underline;
 }
 
 .week-container .wn-item .wn-bullets-container {
@@ -119,5 +121,23 @@
 
 .week-container .wn-item ::-webkit-scrollbar-thumb:hover {
   background: #71B637;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=weeklynav.css.map */

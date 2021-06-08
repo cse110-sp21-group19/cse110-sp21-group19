@@ -1,5 +1,6 @@
 /* Main Text - Manda */
 .main-text {
+    opacity: 0;
     height: auto;
     flex-grow: 2;
     border-radius: 1rem;
@@ -7,5 +8,9 @@
     padding: 2rem;
     margin: 0 1rem;
     overflow-y: auto;
- 
+}
+
+.main-text.active{
+    opacity: 1;
+    transition: opacity 425ms ease-in-out;
 }
