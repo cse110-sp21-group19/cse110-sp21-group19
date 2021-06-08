@@ -172,7 +172,7 @@ export function setDarkMode() {
 	// update the database to dark mode
 	updateMode(true);
 	
-	router.setState(LOG, false, DATE, "color-settings");
+	router.setState(LOG, true, DATE, "color-settings");
 	
 }
 
@@ -193,5 +193,5 @@ export function setLightMode() {
 	// update the database to dark mode
 	updateMode(false);
 	
-	router.setState(LOG, false, DATE, "color-settings");
+	router.setState(LOG, true, DATE, "color-settings");
 }
