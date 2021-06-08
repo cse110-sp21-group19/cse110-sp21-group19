@@ -385,25 +385,6 @@ class entryBar extends HTMLElement{
 	}
 
 	set mode(mode){
-		if(mode=="light"){
-			//expanded bar
-			this.shadowRoot.querySelector(".content").style.background="white";
-
-			//editing screen for note
-			this.shadowRoot.querySelector(".text-content").style.background="white";
-			//text
-			this.shadowRoot.querySelector(".text-content").style.color="black";
-			this.shadowRoot.querySelector(".entry-title").style.color="black";
-
-			this.shadowRoot.querySelector(".close-edit").style.color="black";
-
-			//editing screen for image
-			this.shadowRoot.querySelector(".img-content").style.background="white";
-			this.shadowRoot.querySelector(".img-text").style.color="black";
-			this.shadowRoot.querySelectorAll(".entry-title")[1].style.color="black";
-			this.shadowRoot.querySelectorAll(".close-edit")[1].style.color="black";
-		}
-
 		if(mode=="dark"){
 			//expanded bar
 			this.shadowRoot.querySelector(".content").style.background="#2A2D32";
@@ -524,7 +505,7 @@ function setEntrybarType(SHADOW, type) {
 	let uploaded = SHADOW.querySelector(".uploaded");
 	let infoText = SHADOW.querySelector(".img-text");
 	let imgContent = SHADOW.querySelector(".img-content");
-	let mainText = document.querySelector(".main-text");
+	let mainText = document.querySelector(".main-text-container");
 	let title = SHADOW.querySelectorAll(".entry-title")[0];
 	let content = SHADOW.querySelector(".text-content");
 	let imgTitle = SHADOW.querySelectorAll(".entry-title")[1];
@@ -568,6 +549,8 @@ function setEntrybarType(SHADOW, type) {
 		//toggle the relevant elements
 		initial.style.display="none";
 		editing.style.display="block";
+		mainText.style.display="none";
+		console.log("reached");
 	
 		if(isViewing){
 			SHADOW.querySelector(".delete-btn").style.display="block";

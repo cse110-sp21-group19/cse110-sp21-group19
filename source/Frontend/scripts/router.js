@@ -123,7 +123,7 @@ export async function dailyLog(date, from){
             let fetchedEntries = entriesList[1];
 
             ADDLENTRYBAR.type = "initial";
-            //ADDLENTRYBAR.mode = "dark";
+            
             ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
             ADDLENTRIES.appendChild(ADDLENTRYBAR);
 
