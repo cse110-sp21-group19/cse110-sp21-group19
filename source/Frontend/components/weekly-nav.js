@@ -6,9 +6,20 @@ const SELECTEDRADIUS = "0.2rem";
 const DEFAULTBORDERLEFT = null;
 const DEFAULTRADIUS = null;
 
-//<weekly-nav> custom web component
+/**
+ * Class represting a custom weeklynav component
+ * @extends HTMLElement
+ * 
+ * @example
+ * <weekly-nav>
+ */
 class WeeklyNav extends HTMLElement{
+
+	/**
+	 * Create a skeleton todolist component, starts off as empty
+	 */
 	constructor() {
+
 		super();
 		const template = document.createElement("template");
 
@@ -17,14 +28,6 @@ class WeeklyNav extends HTMLElement{
 			<div class="week-container">
 			</div>
 		`;
-
-		//Week Item format
-		// <div class="wn-item-mask">
-		// <div class="wn-item">
-		//     <h2 class="wn-date"><span id="day-of-month"></span><span id="day-of-week"></span> </h2>
-		//     <ul class="wn-bullets"></ul>
-		// </div>
-		// create a shadow root for this web component
 
 		const shadow = this.attachShadow({ mode: "open" });
 		// attach cloned content of template to shadow DOM 

@@ -4,19 +4,23 @@ const FUTURE = "Future Log";
 const DAILY = "Daily Log";
 const MONTHLY = "Monthly Log";
 
-//<side-nav> custom web component
+/**
+ * Class represting a custom side nav component
+ * @extends HTMLElement
+ * 
+ * @example
+ * <future-nav>
+ */
 class SideNav extends HTMLElement{
+
+	/**
+	 * Create a side nav component
+	 */
 	constructor() {
 		super();
 
 		const template = document.createElement("template");
 
-		//         <ul id="side-nav-menu">
-		//             <a id="sn-future-log" class="sn-link" href="#"><li>${FUTURE}</li></a>
-		//             <a id="sn-daily-log" class="sn-link" href="#"><li>${DAILY}</li></a>
-		//             <a id="sn-monthly-log" class="sn-link" href="#"><li>${MONTHLY}</li></a>
-		//         </ul>
-		//     </div>
 		template.innerHTML = `
 			<div id="burger-and-title" class="burger-and-title">
 				<div class="burger" id="side-nav-burger">
@@ -52,6 +56,7 @@ class SideNav extends HTMLElement{
         
 	}
 
-}
+}/* SideNav */
+
 // Define a custom element for the sidenav web component
 customElements.define("side-nav", SideNav);

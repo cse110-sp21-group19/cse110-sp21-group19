@@ -3,7 +3,7 @@
 import { MONTHS } from "./log-type.js";
 
 /**
- * Class representing custom calendar web component
+ * Class representing a custom calendar web component
  * @extends HTMLElement
  * 
  * @example
@@ -62,6 +62,9 @@ class Calendar extends HTMLElement {
 	 * according to the parameter
 	 * 
 	 * @param {Date} date - a date object to the first day of a month
+	 * 
+	 * @example
+	 * calendar-component.month = "05-01-2021"
 	 */
 	set month(date) {
 		let month = date.getMonth();
@@ -91,6 +94,9 @@ class Calendar extends HTMLElement {
 	 * sets special styling for whatever day is the current day
 	 * 
 	 * @param {Date} date - a date object for today
+	 * 
+	 * @example
+	 * calendar-component.currentDay = new Date();
 	 */
 	set currentDay(date) {
 		let selectedDay = date.getDate();
@@ -104,7 +110,7 @@ class Calendar extends HTMLElement {
 					day.classList.remove("current-day");
 				}
 			}
-		})
+		});
 	}/* set currentDay */
 
 }/* Calendar */
