@@ -202,13 +202,7 @@ body.dark-mode input {
   background: white;
 }
 
-.main-text-container .main-text .help-container {
-  height: 100%;
-  overflow-y: scroll;
-  padding: 0 1rem;
-}
-
-.main-text .help-container {
+.main-text-container .help-container {
   height: 100%;
   overflow-y: scroll;
   padding: 0 1rem;
