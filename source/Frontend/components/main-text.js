@@ -160,13 +160,13 @@ class BulletEntry extends HTMLElement {
 				}
 			</style>
 			<div class="entry">
+				<p id="edit-msg" class="edit-msg"><i>Double click to edit note</i></p>
 				<div class="bullet-entry">
 					<button id="prioritize-bullet" type="button"></button>
 					<span id="bullet-type"></span>
 					<input id="bullet-inputted" type="text" readonly>
 					<button id="delete-bullet" type="button">X</button>
 				</div>
-				<p id="edit-msg" class="edit-msg"><i>Double click to edit note</i></p>
 			</div>
 			`;
   

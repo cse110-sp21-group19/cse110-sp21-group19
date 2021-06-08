@@ -1,10 +1,16 @@
 /* Main Text - Manda */
-.main-text {
+.main-text-container {
     height: 65vh;
     border-radius: 1rem;
-    background: white;
-    padding: 2rem;
     margin: 0 1rem;
+    padding: 1rem;
+    background: white;
+    .main-text {
+        padding: 1rem;
+        height: calc(100% - 2rem);
+        width: calc(100% - 2rem);
+        overflow-y: scroll;
+        background: white;
 
     .help-container {
         height: 100%;
@@ -13,11 +19,21 @@
     }
 }
 
+        .help-container {
+            height: 100%;
+            overflow-y: scroll;
+            padding: 0 1rem;
+        }
+    }
+}
 
 /* dark mode */
 body.dark-mode {
-    .main-text {
-        //background: black;
+    .main-text-container {
         background: #2A2D32;
+        .main-text {
+            //background: black;
+            background: #2A2D32;
+        }
     }
 }

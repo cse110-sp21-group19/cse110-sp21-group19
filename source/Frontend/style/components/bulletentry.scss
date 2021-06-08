@@ -2,17 +2,26 @@
 
 // style the "double click to edit" message
 .edit-msg {
-    position: absolute;
+    //position: absolute;
+    text-align: right;
     right: 6rem;
-    font-size: 0.6rem;
+    font-size: 0.6rem !important;
+    line-height: 0.6rem !important;
     color: grey;
-    margin-top: -3.2rem;
     display: none;
 }
 
+.entry:hover {
+    margin-top: calc(-0.6rem - 4px);
+    .edit-msg {
+        display: block;
+    }
+}
+/*
 .bullet-entry:hover + .edit-msg {
     display: inline-block;
 }
+*/
 
 .bullet-entry {
     width: 100%;

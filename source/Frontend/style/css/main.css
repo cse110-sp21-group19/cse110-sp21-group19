@@ -186,12 +186,26 @@ body.dark-mode input {
 
 /* Components */
 /* Main Text - Manda */
-.main-text {
+.main-text-container {
   height: 65vh;
   border-radius: 1rem;
-  background: white;
-  padding: 2rem;
   margin: 0 1rem;
+  padding: 1rem;
+  background: white;
+}
+
+.main-text-container .main-text {
+  padding: 1rem;
+  height: calc(100% - 2rem);
+  width: calc(100% - 2rem);
+  overflow-y: scroll;
+  background: white;
+}
+
+.main-text-container .main-text .help-container {
+  height: 100%;
+  overflow-y: scroll;
+  padding: 0 1rem;
 }
 
 .main-text .help-container {
@@ -201,7 +215,11 @@ body.dark-mode input {
 }
 
 /* dark mode */
-body.dark-mode .main-text {
+body.dark-mode .main-text-container {
+  background: #2A2D32;
+}
+
+body.dark-mode .main-text-container .main-text {
   background: #2A2D32;
 }
 /*# sourceMappingURL=main.css.map */

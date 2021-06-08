@@ -90,18 +90,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .edit-msg {
-  position: absolute;
+  text-align: right;
   right: 6rem;
-  font-size: 0.6rem;
+  font-size: 0.6rem !important;
+  line-height: 0.6rem !important;
   color: grey;
-  margin-top: -3.2rem;
   display: none;
 }
 
-.bullet-entry:hover + .edit-msg {
-  display: inline-block;
+.entry:hover {
+  margin-top: calc(-0.6rem - 4px);
 }
 
+.entry:hover .edit-msg {
+  display: block;
+}
+
+/*
+.bullet-entry:hover + .edit-msg {
+    display: inline-block;
+}
+*/
 .bullet-entry {
   width: 100%;
   margin: 4px 0;
