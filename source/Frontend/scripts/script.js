@@ -159,6 +159,7 @@ export function setDarkMode() {
 	const LOGTYPE = document.querySelector("log-type");
 	const DATE = LOGTYPE.readLog.date;
 	const LOG = LOGTYPE.readLog.type;
+	const ADDLENTRYBAR = document.querySelector("entry-bar");
 
 	const BODY = document.querySelector("body");
 	const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
@@ -167,10 +168,11 @@ export function setDarkMode() {
 	IMG.id = "dark-mode";
 	BODY.className = "dark-mode";
 
+	ADDLENTRYBAR.mode = "dark";
 	// update the database to dark mode
 	updateMode(true);
 	
-	router.setState(LOG, false, DATE, "color-settings");
+	router.setState(LOG, true, DATE, "color-settings");
 	
 }
 
@@ -178,6 +180,7 @@ export function setLightMode() {
 	const LOGTYPE = document.querySelector("log-type");
 	const DATE = LOGTYPE.readLog.date;
 	const LOG = LOGTYPE.readLog.type;
+	const ADDLENTRYBAR = document.querySelector("entry-bar");
 
 	const BODY = document.querySelector("body");
 	const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
@@ -185,9 +188,10 @@ export function setLightMode() {
 	const IMG = COLORCONTAINER.querySelector("svg");
 	IMG.id = "light-mode";
 	BODY.className = "";
+	ADDLENTRYBAR.mode = "";
 
 	// update the database to dark mode
 	updateMode(false);
 	
-	router.setState(LOG, false, DATE, "color-settings");
+	router.setState(LOG, true, DATE, "color-settings");
 }

@@ -116,15 +116,22 @@ export async function dailyLog(date, from){
 
             
             const DATE = document.querySelector("log-type").readLog.header;
-            const ADDLENTRIES = document.querySelector(".additional")
+            const ADDLENTRIES = document.querySelector(".additional");
+
+            //console.log(ADDLENTRIES);
 
             let entriesList = await getDailyEntries(DATE);
             let keys = entriesList[0];
             let fetchedEntries = entriesList[1];
 
             ADDLENTRYBAR.type = "initial";
+            
             ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
-            ADDLENTRIES.appendChild(ADDLENTRYBAR);
+
+            if(ADDLENTRIES.childElementCount == 0) {
+                ADDLENTRIES.appendChild(ADDLENTRYBAR);
+            }
+            
 
             const MAINTEXTINPUT = document.querySelector("bullet-input");
             if (!MAINTEXTINPUT) {
@@ -447,6 +454,8 @@ async function createMainText(bullets) {
 
     MAINTEXT.appendChild(BULLETS);
     MAINTEXT.appendChild(INPUT);
+    const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
+    BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
 
     // add ability to create new bullets
     createNewBullets(INPUT, bulletStack);
