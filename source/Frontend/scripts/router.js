@@ -352,7 +352,9 @@ function help(){
         element.addEventListener("click", () => {
             let scrollPos = HELPSEC[index].shadowRoot.getElementById("help-section-title").offsetTop;
             let scrollPosInitial = HELPSEC[0].shadowRoot.getElementById("help-section-title").offsetTop;
-            document.querySelector(".help-container").scrollTop = scrollPos - scrollPosInitial;
+            document.querySelector(".main-text").scrollTop = scrollPos - scrollPosInitial;
+            console.log("clicked help-toc")
+            console.log(scrollPos)
         });
     });
 
