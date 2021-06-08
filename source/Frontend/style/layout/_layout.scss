@@ -1,4 +1,19 @@
 body {
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+  
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
+
+body {
     //max-width: 1280px;
     background: $light;
     margin: auto;
@@ -51,4 +66,7 @@ body {
 body.dark-mode {
     background: $dark;
     color: $light;
+    input {
+        color: $light;
+    }
 }

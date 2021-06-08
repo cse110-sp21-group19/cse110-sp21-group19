@@ -1,5 +1,6 @@
 // script.js
 import { createDB } from "../../Backend/api/bullet_api.js";
+import { createDefault, updateMode } from "../../Backend/api/settings_api.js";
 import { router } from "./router.js";
 import { closeMenu } from "./side-nav-script.js";
 import { SUN, MOON } from "../components/icons.js";
@@ -127,110 +128,55 @@ NEXTLOG.addEventListener("click", () => {
 });
 
 // set light/dark mode on clicking sun/moon icon
-const BODY = document.querySelector("body");
 const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
-
 COLORCONTAINER.addEventListener("click", () => {
 	const IMG = COLORCONTAINER.querySelector("svg");
-	// diiferent side bars
-	const WEEKLYNAV = document.querySelector("weekly-nav");
-	const TOODLIST = document.querySelector("todo-list");
-	const CALENDAR = document.querySelector("calendar-component");
-	const FUTURENAV = document.querySelector("future-nav");
-
-	// main-text
-	const BULLETINPUTROOT = document.querySelector("bullet-input").shadowRoot;
-	const BULLETINPUT = BULLETINPUTROOT.querySelector(".new-bullet");
-
-	// colors 
-	const LIGHT =  "#E5E5E5";
-	const DARK  = "#181A18";
-	const WHITE =  "white";
-	const BLACK =  "black";
 
 	// if it is currently light mode, switch to dark
-	if (IMG.id === "") {
-		COLORCONTAINER.innerHTML = MOON;
-		IMG.id = "dark-mode";
-		BODY.className = "dark-mode";
-
-		// style different side-navs
-		if (WEEKLYNAV) {
-			const WNCONTAINER = WEEKLYNAV.shadowRoot.querySelector(".week-container");
-			WNCONTAINER.className += " dark-mode";
-			/*
-			const WNITEMS = WEEKLYNAV.shadowRoot.querySelectorAll(".wn-item");
-			WNITEMS.forEach(element => {
-				//element.style.background = DARK;
-				element.className += " dark-mode";
-			});
-			*/
-		}
-		if (TOODLIST) {
-			const TODOITEMS = TOODLIST.shadowRoot.querySelectorAll(".todo-item");
-			TODOITEMS.forEach(element => {
-				element.className += " dark-mode";
-			});
-		}
-		if (CALENDAR) {
-			const CALENDARCOMP = CALENDAR.shadowRoot.querySelector(".calendar");
-			CALENDARCOMP.className += " dark-mode";
-		}
-		if (FUTURENAV) {
-			const FUTURECONTAINER = FUTURENAV.shadowRoot.querySelector(".future-container");
-			FUTURECONTAINER.className += " dark-mode";
-		}
-		
-		BULLETINPUT.className += " dark-mode";
-
-		const BULLETLISTEL = document.querySelectorAll("bullet-list");
-		BULLETLISTEL.forEach(element => {
-			element.shadowRoot.querySelectorAll("bullet-entry").forEach(element => {
-				element.shadowRoot.querySelector(".entry").className += " dark-mode";
-			});
-		});
+	if (IMG.id === "light-mode") {
+		setDarkMode();
 		closeMenu();
 	}
 	// else if it is currently dark mode, switch to light
 	else {
-		COLORCONTAINER.innerHTML = SUN;
-		IMG.id = "light-mode";
-		BODY.className = "";
-
-		// style different side-navs
-		if (WEEKLYNAV) {
-			const WNCONTAINER = WEEKLYNAV.shadowRoot.querySelector(".week-container");
-			WNCONTAINER.className = "week-container";
-			/*
-			const WNITEMS = WEEKLYNAV.shadowRoot.querySelectorAll(".wn-item");
-			WNITEMS.forEach(element => {
-				element.className = "wn-item";
-			});
-			*/
-		}
-		if (TOODLIST) {
-			const TODOITEMS = TOODLIST.shadowRoot.querySelectorAll(".todo-item");
-			TODOITEMS.forEach(element => {
-				element.className = "todo-item";
-			});
-		}
-		if (CALENDAR) {
-			const CALENDARCOMP = CALENDAR.shadowRoot.querySelector(".calendar");
-			CALENDARCOMP.className = "calendar";
-		}
-		if (FUTURENAV) {
-			const FUTURECONTAINER = FUTURENAV.shadowRoot.querySelector(".future-container");
-			FUTURECONTAINER.className = "future-container";
-		}
-
-		BULLETINPUT.className = "new-bullet";
-
-		const BULLETLISTEL = document.querySelectorAll("bullet-list");
-		BULLETLISTEL.forEach(element => {
-			element.shadowRoot.querySelectorAll("bullet-entry").forEach(element => {
-				element.shadowRoot.querySelector(".entry").className = "entry";
-			});
-		});
+		setLightMode();
+		closeMenu();
 	}
-	closeMenu();
 });
+
+export function setDarkMode() {
+	const LOGTYPE = document.querySelector("log-type");
+	const DATE = LOGTYPE.readLog.date;
+	const LOG = LOGTYPE.readLog.type;
+
+	const BODY = document.querySelector("body");
+	const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
+	COLORCONTAINER.innerHTML = MOON;
+	const IMG = COLORCONTAINER.querySelector("svg");
+	IMG.id = "dark-mode";
+	BODY.className = "dark-mode";
+
+	// update the database to dark mode
+	updateMode(true);
+	
+	router.setState(LOG, false, DATE, "color-settings");
+	
+}
+
+export function setLightMode() {
+	const LOGTYPE = document.querySelector("log-type");
+	const DATE = LOGTYPE.readLog.date;
+	const LOG = LOGTYPE.readLog.type;
+
+	const BODY = document.querySelector("body");
+	const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
+	COLORCONTAINER.innerHTML = SUN;
+	const IMG = COLORCONTAINER.querySelector("svg");
+	IMG.id = "light-mode";
+	BODY.className = "";
+
+	// update the database to dark mode
+	updateMode(false);
+	
+	router.setState(LOG, false, DATE, "color-settings");
+}

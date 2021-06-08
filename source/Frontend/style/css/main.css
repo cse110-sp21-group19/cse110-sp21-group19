@@ -93,6 +93,33 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Layout */
 body {
+  -webkit-animation: fadeInAnimation ease 1s;
+          animation: fadeInAnimation ease 1s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body {
   background: #E5E5E5;
   margin: auto;
   padding: 0 3rem;
@@ -150,6 +177,10 @@ body .side-nav-container {
 /* dark mode */
 body.dark-mode {
   background: #181A18;
+  color: #E5E5E5;
+}
+
+body.dark-mode input {
   color: #E5E5E5;
 }
 
