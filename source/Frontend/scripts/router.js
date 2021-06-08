@@ -446,6 +446,8 @@ async function createMainText(bullets) {
 
     MAINTEXT.appendChild(BULLETS);
     MAINTEXT.appendChild(INPUT);
+    const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
+    BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
 
     // add ability to create new bullets
     createNewBullets(INPUT, bulletStack);

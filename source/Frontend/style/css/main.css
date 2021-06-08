@@ -208,12 +208,6 @@ body.dark-mode input {
   padding: 0 1rem;
 }
 
-.main-text .help-container {
-  height: 100%;
-  overflow-y: scroll;
-  padding: 0 1rem;
-}
-
 /* dark mode */
 body.dark-mode .main-text-container {
   background: #2A2D32;
