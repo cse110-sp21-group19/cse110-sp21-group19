@@ -1,23 +1,32 @@
 /* Main Text - Manda */
-.main-text {
+.main-text-container {
     height: 65vh;
     border-radius: 1rem;
-    background: white;
-    padding: 2rem;
     margin: 0 1rem;
-
-    .help-container {
-        height: 100%;
+    padding: 1rem;
+    background: white;
+    .main-text {
+        padding: 1rem;
+        height: calc(100% - 2rem);
+        width: calc(100% - 2rem);
         overflow-y: scroll;
-        padding: 0 1rem;
+        background: white;
+
+        .help-container {
+            height: 100%;
+            overflow-y: scroll;
+            padding: 0 1rem;
+        }
     }
 }
 
-
 /* dark mode */
 body.dark-mode {
-    .main-text {
-        //background: black;
+    .main-text-container {
         background: #2A2D32;
+        .main-text {
+            //background: black;
+            background: #2A2D32;
+        }
     }
 }
