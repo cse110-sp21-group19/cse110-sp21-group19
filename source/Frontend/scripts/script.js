@@ -14,6 +14,7 @@ const SIDENAVROOT  = SIDENAV.shadowRoot;
 
 document.addEventListener("DOMContentLoaded", function() {
 	createDB();
+	createDefault();
 	router.setState("daily", false, new Date(), "on-load");
 });
 
@@ -69,6 +70,16 @@ SNFUTURELOG.addEventListener("click", () => {
 
 	// TODO: update the side bar to task list
 	// TODO: update main-text area
+
+	closeMenu();
+});
+
+// on click listener for help button in side nav
+const SNHELP = SIDENAVROOT.getElementById("sn-help");
+SNHELP.addEventListener("click", () => {
+	// when clicking on daily log from side nav, open to current year
+    const d = new Date();
+	router.setState("help", false, d, "side-nav");
 
 	closeMenu();
 });
