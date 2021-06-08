@@ -1,0 +1,174 @@
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* colors */
+/* spacing */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html {
+  font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
+  color: #181A18;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.17rem;
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+h5 {
+  font-size: 0.83rem;
+}
+
+h6 {
+  font-size: 0.67rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bolder;
+}
+
+/* help guide text section */
+#help-section {
+  line-height: 1.5;
+  padding-bottom: 1rem;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
+#help-section-title, #help-section-description > p {
+  padding-bottom: 1rem;
+}
+
+#help-section #help-section-elements {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 32% 32% 32%;
+      grid-template-columns: 32% 32% 32%;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  -webkit-column-gap: 2%;
+          column-gap: 2%;
+  padding-bottom: 1rem;
+}
+
+.help-nav-title {
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+  margin-top: 1.4rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.9rem;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+.help-toc-container {
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+  background: #71B637;
+  z-index: -1;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.help-toc-container .toc-link {
+  min-height: 0;
+  margin: 0.4rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: white;
+  border-radius: 0.4rem;
+  -webkit-transition: border-left 0.15s linear;
+  transition: border-left 0.15s linear;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.help-toc-container .toc-link:hover {
+  color: #FFA33F;
+  text-decoration: underline;
+}
+
+.help-element {
+  padding-bottom: 1rem;
+}
+
+/* Dark mode */
+.dark-mode.help-toc-container .toc-link {
+  background: #181A18;
+}
+/*# sourceMappingURL=helpguide.css.map */

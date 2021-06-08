@@ -39,6 +39,12 @@ class TodoList extends HTMLElement{
 		// NOTE: it's important that you do NOT include the slash before "style/css/..."
 		linkElem.setAttribute("href", "style/css/todo.css");
 
+		// dark mode class
+		if (document.body.className == "dark-mode") {
+			const TODOITEM = this.shadowRoot.querySelector(".todo-item");
+			TODOITEM.className += " dark-mode";
+		}
+
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(linkElem);
 		
@@ -91,6 +97,10 @@ class TodoList extends HTMLElement{
 				//date section
 				let todoItem = document.createElement("div");
 				todoItem.className = "todo-item";
+				// dark mode class
+				if (document.body.className == "dark-mode") {
+					todoItem.className += " dark-mode";
+				}
 
 				let todoDate = document.createElement("div");
 				todoDate.className = "todo-date";

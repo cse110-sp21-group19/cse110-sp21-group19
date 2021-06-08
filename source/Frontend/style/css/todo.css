@@ -32,6 +32,11 @@
   height: 40vh;
   margin: 0.5rem;
   padding-right: 0.3rem;
+  /* Dark mode */
+}
+
+.todo-container .scroll-container .dark-mode.todo-item {
+  background: #181A18;
 }
 
 .todo-container .scroll-container .todo-item {

@@ -101,3 +101,10 @@
   }
     }
 }
+
+/* Dark mode */
+.dark-mode.week-container {
+  .wn-item {
+    background: $dark;
+  }
+}
