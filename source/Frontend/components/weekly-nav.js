@@ -64,7 +64,7 @@ class WeeklyNav extends HTMLElement{
 	set daysOfWeek(week){
 		console.log(week);
 		//set the weekly-nav title
-		const navTitle = this.shadowRoot.querySelector("[class='weekly-nav-title']");
+		const navTitle = this.shadowRoot.querySelector(".weekly-nav-title");
 		navTitle.innerHTML = getWeeklyNavTitle(week[0].date, week[6].date);
 		const navContainer = this.shadowRoot.querySelector(".week-container");
 		//Add each day to the nav menu
@@ -186,7 +186,7 @@ class WeeklyNav extends HTMLElement{
 	} /* set seletedDay */
 
 	set updatePriorityBullets(bullets) {
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+		const navContainer = this.shadowRoot.querySelector(".week-container");
 		for (let i = 1; i < navContainer.childNodes.length; i++) {
 			let currItem = navContainer.childNodes[i];
 			if (currItem.style.borderLeft == SELECTEDBORDERLEFT) {
