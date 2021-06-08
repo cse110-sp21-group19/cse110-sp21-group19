@@ -402,6 +402,22 @@ class entryBar extends HTMLElement{
 			this.shadowRoot.querySelectorAll(".close-edit")[1].style.color="white";
 
 		}
+		else{
+			//expanded bar
+			this.shadowRoot.querySelector(".content").style.background="white";
+
+			//editing screen for note
+			this.shadowRoot.querySelector(".text-content").style.background="white";
+			this.shadowRoot.querySelector(".text-content").style.color="black";
+			this.shadowRoot.querySelector(".entry-title").style.color="black";
+			this.shadowRoot.querySelector(".close-edit").style.color="black";
+
+			//editing screen for image
+			this.shadowRoot.querySelector(".img-content").style.background="white";
+			this.shadowRoot.querySelector(".img-text").style.color="black";
+			this.shadowRoot.querySelectorAll(".entry-title")[1].style.color="black";
+			this.shadowRoot.querySelectorAll(".close-edit")[1].style.color="black";
+		}
 	}
 
 	/**	Setter that loads the entries to the page, given an array of entries from the database
