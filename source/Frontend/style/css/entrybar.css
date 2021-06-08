@@ -15,17 +15,22 @@
 
 .initial .active-bar {
   background: #FFA33F;
-  height: 15vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 1rem 2rem 3rem 2rem;
-  min-width: 300px;
-  min-height: 100px;
   border-radius: 1rem;
+}
+
+@media (min-width: 1124px) {
+  .initial .active-bar {
+    height: 23vh;
+    padding: 1rem 2rem 1rem 2rem;
+    min-width: 300px;
+    min-height: 100px;
+  }
 }
 
 .initial .active-bar .close {
@@ -128,11 +133,19 @@
   padding: 2rem;
   height: 75vh;
   width: 90%;
-  min-height: 600px;
+  min-height: 400px;
   min-width: 500px;
   margin-left: 3rem;
   background: #71B637;
   border-radius: 1rem;
+  margin-top: -1.5rem;
+}
+
+@media (min-width: 1124px) {
+  .editing {
+    margin-top: -1.5rem;
+    margin-left: 2rem;
+  }
 }
 
 .editing .close {
@@ -155,7 +168,6 @@
 
 .editing .text-content {
   min-width: 100%;
-  min-height: 70%;
   margin-top: 1rem;
   width: 98.5%;
   height: 70%;
@@ -174,6 +186,14 @@
   /*remove the resize handle on the bottom right*/
 }
 
+@media (min-width: 1124px) {
+  .editing .text-content {
+    margin-top: 0;
+    height: 40vh;
+    font-size: 1em;
+  }
+}
+
 .editing .save-btn-wrapper {
   position: relative;
 }
@@ -187,12 +207,24 @@
   right: 0.5rem;
 }
 
+@media (min-width: 1124px) {
+  .editing .save-btn {
+    top: 1rem;
+  }
+}
+
 .editing .save-btn:hover {
   cursor: pointer;
 }
 
 .editing h1 {
   text-align: center;
+}
+
+@media (min-width: 1124px) {
+  .editing h1 {
+    font-size: 1em;
+  }
 }
 
 .editing .delete-btn-wrapper {
@@ -211,6 +243,12 @@
 
 .editing .delete-btn:hover {
   cursor: pointer;
+}
+
+@media (min-width: 1124px) {
+  .editing {
+    height: 70vh;
+  }
 }
 
 /* End styling text entry*/

@@ -1,3 +1,4 @@
+@import '../abstracts/mixins', '../abstracts/variables';
 /*text entry icon*/
 .note{
     overflow: visible;
@@ -34,6 +35,11 @@
         font-weight: bold;
         font-size: 1rem;
         overflow-wrap: break-word;
+        
+        @include laptop{
+            font-size: 0.8rem;
+            left: 2rem;
+        }
     }
 }
 
