@@ -2,6 +2,8 @@
 
 import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
 import { createBullet, deleteBullet, updateBullet, getDailyPriority } from "../../Backend/api/bullet_api.js";
+// limit the number of bullets a user can create
+const NESTINGLIMIT = 8;
 
 /** 
  * editableEntry
@@ -293,10 +295,12 @@ export function nestedBullets(inputElement, bulletStack) {
  *     nestedBulletHelper(bulletStack);
  */
 function nestBulletHelper(bulletStack) {
-	const NEWSUBLIST = document.createElement("bullet-list");
-	let parentBullet = bulletStack[bulletStack.length - 1];
-	parentBullet.shadowRoot.getElementById("bullet-list").appendChild(NEWSUBLIST);
-	bulletStack.push(NEWSUBLIST);
+	if (bulletStack.length < NESTINGLIMIT) {
+		const NEWSUBLIST = document.createElement("bullet-list");
+		let parentBullet = bulletStack[bulletStack.length - 1];
+		parentBullet.shadowRoot.getElementById("bullet-list").appendChild(NEWSUBLIST);
+		bulletStack.push(NEWSUBLIST);
+	}
 }
 
 /**
@@ -311,8 +315,8 @@ function nestBulletHelper(bulletStack) {
  */
 function unnestBulletHelper(bulletStack) {
 	if (bulletStack.length > 1) {
-		let parentBullet = bulletStack[bulletStack.length - 1].shadowRoot.querySelector("bullet-entry");
-		bulletStack.pop(bulletStack[bulletStack.length - 1]);
+		let parentBullet = bulletStack[bulletStack.length - 1]
+		bulletStack.pop(parentBullet);
 		//return parentBullet;
 	}
 }
