@@ -40,14 +40,14 @@ class SideNav extends HTMLElement{
 			</div>
 			<div class="side-nav-menu-container">
 				<div class="side-nav-menu" id="side-nav-menu">
-					<div class="color-mode-container">
-						${SUN}
-					</div>
 					<ul>
 						<li id="sn-daily-log" class="sn-link">${DAILY}</li>
 						<li id="sn-monthly-log" class="sn-link">${MONTHLY}</li>
 						<li id="sn-future-log" class="sn-link">${FUTURE}</li>
 					</ul>
+					<div class="color-mode-container">
+						${SUN}
+					</div>
 				</div>
 			</div>
 		`;
