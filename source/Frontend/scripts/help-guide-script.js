@@ -53,16 +53,24 @@ export const helpGuideContent = [{
     "sectionTitle": "Additional Entries",
     "sectionDescription": ["Additional entries allow users to jot down longer notes and add images to any type of layout. To access additional entries, click the “...” button at the bottom right corner of any layout page."],
     "sectionElements": [{
-        "title": "Adding a New Entry",
-        "content": "To create a new additional entry..."
+        "title": "Adding a New Text Entry",
+        "content": "To create a new text entry, hover over the New Entry icon and select 'New Text Entry'. Change the title and content as you see fit, then press the save icon to save the changes you have made."
     },
     {
-        "title": "Editing an Entry",
-        "content": "To edit an existing additional entry..."
+        "title": "Adding a New Image Entry",
+        "content": "To create a new image entry, hover over the New Entry icon and select 'New Image'. Change the title as you see fit and click anywhere inside the panel to upload an image, then press the save icon to save the changes you have made."
+    },
+    {
+        "title": "Editing a Text Entry",
+        "content": "When the additional entries bar is expanded, click on any one of the text entries to view them. Then, change the title and contents of the entry as desired. Click the save button to save your changes."
+    },
+    {
+        "title": "Editing a Image Entry",
+        "content": "When the additional entries bar is expanded, click on any one of the image entries to view them. Then, change the title as desired and click the displayed image to upload a new one. Click the save button to save your changes."
     },
     {
         "title": "Deleting Entries",
-        "content": "To delete an addtional entry..."
+        "content": "When the additional entries bar is expanded, click on any one of the entries to view them. Click on the trash can icon and confirm that you wish to delete the selected entry."
     }]
 }];
 

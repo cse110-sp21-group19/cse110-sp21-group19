@@ -6,12 +6,12 @@ const SELECTEDRADIUS = "0.2rem";
 const DEFAULTBORDERLEFT = null;
 const DEFAULTRADIUS = null;
 
+//<weekly-nav> custom web component
 class WeeklyNav extends HTMLElement{
 	constructor() {
 		super();
 		const template = document.createElement("template");
 
-		//TODO: Fix the styling
 		template.innerHTML = `
 			<h2 class="weekly-nav-title"></h2>
 			<div class="week-container">
@@ -207,23 +207,23 @@ function appendBullets(container, bullets){
 		bulletType.id = "bullet-type";
 		//bullet icon depending on the bullet type
 		switch (bullet.type){
-			case "note":
-				bulletType.innerHTML = NOTEBULLET;
-				break;
-			case "event":
-				bulletType.innerHTML = EVENTBULLET;
-				break;
-			case "task":
-				if(bullet.completed){
-					bulletType.innerHTML = TASKCOMPLETE;
-					bulletElem.style.textDecoration = "line-through";
-				}
-				else{
-					bulletType.innerHTML = TASKBULLET;
-				}
-				break;
-			default:
-				bulletType.innerHTML = NOTEBULLET;
+		case "note":
+			bulletType.innerHTML = NOTEBULLET;
+			break;
+		case "event":
+			bulletType.innerHTML = EVENTBULLET;
+			break;
+		case "task":
+			if(bullet.completed){
+				bulletType.innerHTML = TASKCOMPLETE;
+				bulletElem.style.textDecoration = "line-through";
+			}
+			else{
+				bulletType.innerHTML = TASKBULLET;
+			}
+			break;
+		default:
+			bulletType.innerHTML = NOTEBULLET;
 
 		}
 		bulletElem.appendChild(bulletType);
@@ -299,4 +299,5 @@ function getWeeklyNavTitle(first, last){
 	return title;
 }/* getWeeklyNavTitle */
 
+// Define a custom element for the weekly nav web component   
 customElements.define("weekly-nav", WeeklyNav);

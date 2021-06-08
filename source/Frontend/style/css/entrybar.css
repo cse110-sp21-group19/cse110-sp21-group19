@@ -3,7 +3,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
-/* Begin styling addl button */
+*:focus {
+  outline: none;
+}
+
+/*Begin styling additional entry bar*/
 .active-bar {
   background: #FFA33F;
   height: 20vh;
@@ -15,7 +19,8 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 2vh 2vw 2vh 2vw;
-  min-width: 55%;
+  min-width: 300px;
+  min-height: 100px;
   border-radius: 1rem;
   margin-left: 3vw;
 }
@@ -33,11 +38,11 @@
 .active-bar .content {
   height: 13vh;
   width: 65%;
-  min-width: 55%;
+  min-width: 100px;
   background: white;
   border-radius: 1rem;
   margin-top: 0;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -49,10 +54,15 @@
   padding: 0 1rem 3rem 1rem;
 }
 
+.active-bar .content:hover {
+  overflow-x: auto;
+}
+
 .active-bar .new-entry {
   overflow: visible;
   width: 8rem;
   height: 10vh;
+  min-height: 50px;
   margin-top: 3vh;
 }
 
@@ -98,13 +108,49 @@
   outline: none;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  bottom: 15vh;
+  background-color: black;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  color: black;
+}
+
+.dropdown-content span:hover {
+  cursor: pointer;
+  background: #4AB2D6;
+}
+
+/* Links inside the dropdown */
+.dropdown-content span {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/*End styling additional entry bar*/
+/* Begin styling text entry*/
 .editing {
   display: none;
   padding: 2rem;
   height: 75vh;
   width: 90%;
-  min-height: 550px;
-  min-width: 300px;
+  min-height: 600px;
+  min-width: 500px;
   margin-left: 3rem;
   background: #71B637;
   border-radius: 1rem;
@@ -129,6 +175,8 @@
 }
 
 .editing .text-content {
+  min-width: 100%;
+  min-height: 70%;
   margin-top: 1rem;
   width: 98.5%;
   height: 70%;
@@ -136,16 +184,28 @@
   border-radius: 1rem;
   padding-top: 1rem;
   padding-left: 0.5rem;
-  overflow-y: auto;
+  border: none;
+  overflow: auto;
+  outline: none;
+  font-size: 1em;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  resize: none;
+  /*remove the resize handle on the bottom right*/
 }
 
 .editing .save-btn-wrapper {
-  float: right;
+  position: relative;
 }
 
 .editing .save-btn {
-  height: 7vh;
+  position: absolute;
+  height: 8vh;
   width: 7vh;
+  min-height: 50px;
+  min-width: 75px;
+  right: 0.5rem;
 }
 
 .editing .save-btn:hover {
@@ -156,7 +216,112 @@
   text-align: center;
 }
 
-.editing .delete-btn {
+.editing .delete-btn-wrapper {
+  position: relative;
+}
+
+.editing .delete-btn-wrapper .delete-btn {
+  position: absolute;
+  bottom: 0.5rem;
+  height: 8vh;
+  width: 7vh;
+  min-height: 50px;
+  min-width: 75px;
+  right: 1rem;
+}
+
+.editing .delete-btn:hover {
+  cursor: pointer;
+}
+
+/* End styling text entry*/
+/* Begin styling image entry*/
+.img-editing {
+  display: none;
+  padding: 2rem;
+  height: 75vh;
+  width: 90%;
+  min-height: 550px;
+  min-width: 300px;
+  margin-left: 3rem;
+  background: #71B637;
+  border-radius: 1rem;
+}
+
+.img-editing .close {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.img-editing .close:hover {
+  cursor: pointer;
+}
+
+.img-editing .close-edit {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.img-editing .close-edit:hover {
+  cursor: pointer;
+}
+
+.img-editing .img-content {
+  margin-top: 1rem;
+  margin-left: 3vw;
+  width: 55vw;
+  max-width: 1000px;
+  height: 70%;
+  background: white;
+  border-radius: 1rem;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  overflow-y: auto;
+}
+
+.img-editing .img-content .img-text {
+  position: relative;
+  top: 47%;
+  left: 38%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.img-editing .img-content .choose-img {
+  display: none;
+}
+
+.img-editing .img-content .uploaded {
+  max-width: 90%;
+  max-height: 90%;
+  width: auto;
+  height: auto;
+  margin-left: 6vw;
+}
+
+.img-editing .img-content:hover {
+  cursor: pointer;
+}
+
+.img-editing .save-btn-wrapper {
+  float: right;
+  padding: 1rem;
+}
+
+.img-editing .save-btn {
+  height: 7vh;
+  width: 7vh;
+}
+
+.img-editing .save-btn:hover {
+  cursor: pointer;
+}
+
+.img-editing h1 {
+  text-align: center;
+}
+
+.img-editing .delete-btn {
   height: 100px;
   width: 7vh;
   min-width: 50px;
@@ -165,9 +330,9 @@
   top: 18vh;
 }
 
-.editing .delete-btn:hover {
+.img-editing .delete-btn:hover {
   cursor: pointer;
 }
 
-/* End styling addl button */
+/* End styling image entry*/
 /*# sourceMappingURL=entrybar.css.map */

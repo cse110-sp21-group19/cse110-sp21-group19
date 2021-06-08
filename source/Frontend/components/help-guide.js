@@ -31,12 +31,12 @@ class HelpElement extends HTMLElement {
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
 		// Apply external styles to the shadow dom
-		const bulletEntryStyle = document.createElement("link");
-		bulletEntryStyle.setAttribute("rel", "stylesheet");
-		bulletEntryStyle.setAttribute("href", "style/css/helpguide.css");
+		const helpElementStyle = document.createElement("link");
+		helpElementStyle.setAttribute("rel", "stylesheet");
+		helpElementStyle.setAttribute("href", "style/css/helpguide.css");
 
 		// Attach the created elements to the shadow dom
-		shadow.appendChild(bulletEntryStyle);
+		shadow.appendChild(helpElementStyle);
     }
 
     get info() {
@@ -86,12 +86,12 @@ class HelpSection extends HTMLElement {
 		this.shadowRoot.appendChild(template.content.cloneNode(true))
 
 		// Apply external styles to the shadow dom
-		const bulletEntryStyle = document.createElement("link");
-		bulletEntryStyle.setAttribute("rel", "stylesheet");
-		bulletEntryStyle.setAttribute("href", "style/css/helpguide.css");
+		const helpElementStyle = document.createElement("link");
+		helpElementStyle.setAttribute("rel", "stylesheet");
+		helpElementStyle.setAttribute("href", "style/css/helpguide.css");
 
 		// Attach the created elements to the shadow dom
-		shadow.appendChild(bulletEntryStyle);
+		shadow.appendChild(helpElementStyle);
     }
 
     get info() {
@@ -147,20 +147,17 @@ class HelpTableOfContents extends HTMLElement {
 		`;
 
 		//const shadow = 
-		this.attachShadow({ mode: "open" });
+		let shadow = this.attachShadow({ mode: "open" });
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-		/*
 		// Apply external styles to the shadow dom
-		const linkElem = document.createElement("link");
-		linkElem.setAttribute("rel", "stylesheet");
-		// NOTE: it's important that you do NOT include the slash before "style/css/..."
-		linkElem.setAttribute("href", "style/css/weeklynav.css");
+		const helpElementStyle = document.createElement("link");
+		helpElementStyle.setAttribute("rel", "stylesheet");
+		helpElementStyle.setAttribute("href", "style/css/helpguide.css");
 
 		// Attach the created elements to the shadow dom
-		shadow.appendChild(linkElem);
-		*/
+		shadow.appendChild(helpElementStyle);
 	}
 
 	get contents() {

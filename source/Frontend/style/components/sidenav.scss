@@ -12,6 +12,8 @@
     max-width: 100%;
     border-radius: 0.8em;
     background: $accent2;
+    margin-bottom: 0;
+    padding-bottom: 0;
     .burger{
         z-index: 100;
         order:1;
@@ -63,6 +65,7 @@
     position: relative;
     max-width: 100%;
     grid-column-start: 1;
+    z-index: 100;
     .side-nav-menu{
         background: $accent2;
         position: absolute;
@@ -74,14 +77,8 @@
         border-bottom-right-radius: 0.8em;
         transition: max-height 0.4s ease-in-out;
         ul{
-            a{
+            .sn-link{
                 color:white;
-                &:visited{
-                    color: white;
-                }
-                &:active{
-                    color:white;
-                }
                 &:hover{
                     transition: color 0.25s linear;
                     color: black;

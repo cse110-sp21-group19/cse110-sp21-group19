@@ -1,0 +1,92 @@
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* colors */
+/* spacing */
+.cal-container {
+  background: #71B637;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-top: 3px white solid;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+
+.cal-container .calendar {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  position: relative;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 1.4rem;
+  background: white;
+  border-radius: 1.5rem;
+}
+
+.cal-container .calendar .month {
+  z-index: 1;
+  padding: 0.5rem;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.cal-container .calendar .weekdays {
+  margin-top: 0;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  margin-bottom: 0.6rem;
+  white-space: nowrap;
+}
+
+.cal-container .calendar .weekdays li {
+  padding-top: 0.3rem;
+  display: inline-block;
+  font-size: 1.25em;
+  font-weight: 600;
+  width: 14.2%;
+  color: #414141;
+  text-align: center;
+}
+
+.cal-container .calendar .days {
+  margin-top: 0;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-bottom: 1.2rem;
+}
+
+.cal-container .calendar .days li {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 1.25em;
+  font-weight: 500;
+  list-style-type: none;
+  display: inline-block;
+  width: 14.2%;
+  text-align: center;
+  color: #555555;
+}
+
+.cal-container .calendar .days .day:hover {
+  cursor: pointer;
+  background: rgba(255, 163, 63, 0.35);
+  border-radius: 1rem;
+}
+
+.cal-container .calendar .days .current-day {
+  color: white;
+  background: #FFA33F;
+  border-radius: 1.5rem;
+}
+
+.cal-container .calendar .days .current-day:hover {
+  cursor: pointer;
+  background: rgba(255, 163, 63, 0.35);
+  border-radius: 1rem;
+}
+/*# sourceMappingURL=calendar.css.map */

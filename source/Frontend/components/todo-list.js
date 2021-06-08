@@ -1,22 +1,24 @@
-const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
-const SELECTEDRADIUS = "0.2rem";
-const DEFAULTBORDERLEFT = null;
-const DEFAULTRADIUS = null;
+import { TASKBULLET, TASKCOMPLETE } from "./main-text.js";
 
+//TODO: Complete this webcomponent
 class TodoList extends HTMLElement{
 	constructor() {
 		super();
 		const template = document.createElement("template");
 
-		//TODO: Fix the styling
 		template.innerHTML = `
 			<h2 class="todo-title">To-Do List</h2>
 			<div class="todo-container">
+				<div class ="scroll-container">
+					<div class="todo-item">
+						<div class="no-items">Nothing To Do!</div>
+					</div>
+				</div>
 			</div>
 		`;
 
-		//Week Item format
-		// <div class="wn-item-mask">
+		//ToDo Item format
+		// 
 		// <div class="wn-item">
 		//     <h2 class="wn-date"><span id="day-of-month"></span><span id="day-of-week"></span> </h2>
 		//     <ul class="wn-bullets"></ul>
@@ -39,69 +41,63 @@ class TodoList extends HTMLElement{
 
 
 	set todoList(list){
+		const scrollContainer = this.shadowRoot.querySelector(".scroll-container");
 
-        //TODO
+		 if(list.length > 0){
+		 	scrollContainer.innerHTML = "";
+			list.forEach(element =>{
+				let day = getDateString(element.date.getDay());
+				let date = element.date.getDate();
+				let bullets = element.bullets;
+
+				let todoBullets = document.createElement("div");
+				todoBullets.className = "todo-bullets-container";
+				bullets.forEach(bullet=>{
+					let bulletElem = document.createElement("div");
+					bulletElem.className = "todo-bullet";
+					let bulletType = document.createElement("span");
+					bulletType.id = "bullet-type";
+					if(bullet.completed){
+						bulletType.innerHTML = TASKCOMPLETE;
+						bulletElem.style.textDecoration = "line-through";
+					}
+					else{
+						bulletType.innerHTML = TASKBULLET;
+					}
+		
+					bulletElem.appendChild(bulletType);
+					bulletElem.innerHTML += bullet.content;
+					todoBullets.appendChild(bulletElem);
+				})
+
+
+				let todoItem = document.createElement("div");
+				todoItem.className = "todo-item";
+
+				let todoDate = document.createElement("div");
+				todoDate.className = "todo-date";
+				let dayOfWeek = document.createElement("span");
+				dayOfWeek.id = "day-of-week";
+				dayOfWeek.textContent = day;
+				let dayOfMonth = document.createElement("span");
+				dayOfMonth.id = "day-of-month";
+				dayOfMonth.textContent = date;
+
+				todoDate.appendChild(dayOfMonth);
+				todoDate.appendChild(dayOfWeek);
+
+				todoItem.appendChild(todoDate);
+				todoItem.appendChild(todoBullets);
+
+				console.log(todoItem);
+				scrollContainer.appendChild(todoItem);
+
+			});
+		}
 	}
 
-	/**
-	 * get selectedInfo
-	 * Get the date info of the item selected.
-	 * @param {}
-	 * @returns An object containing the date info of the current selected item in
-	 * the weekly nav menu.
-	 * 
-	 * @example
-	 *      this.selectedInfo
-	 */
-	get selectedInfo (){
-
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
-
-		//iterate over weekly nav items and return info of item with border
-		//(the one with a border is the selected one) 
-		let dateObj;
-		for(let i = 1; i < navContainer.childNodes.length; i++){
-			let currItem = navContainer.childNodes[i];
-			if(currItem.style.borderLeft == SELECTEDBORDERLEFT){
-				dateObj = {
-					"day": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-week']").textContent,
-					"date": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-month']").textContent,
-					"month": currItem.querySelector("p").textContent
-				};
-			}
-		}
-		return dateObj;
-	}/* get selectedInfo */
-
-	/**
-	 * set selectedDay 
-	 * Set an item in the list as selected.
-	 * 
-	 * @param {number} day - The day of the week of the item that is to be styled 
-	 * as selected.
-	 * 
-	 * @example
-	 *      this.selectedDay = day
-	 */
-	set selectedDay(day){
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
-
-		for(let i = 1; i < navContainer.childNodes.length; i++){
-			if(i == day){
-				navContainer.childNodes[i].style.borderTopLeftRadius = SELECTEDRADIUS;
-				navContainer.childNodes[i].style.borderBottomLeftRadius = SELECTEDRADIUS;
-				//navContainer.childNodes[i].style.border = "0.2rem solid darkgreen";
-				navContainer.childNodes[i].style.borderLeft = SELECTEDBORDERLEFT;
-			}
-			else{
-				navContainer.childNodes[i].style.borderTopLeftRadius = DEFAULTRADIUS;
-				navContainer.childNodes[i].style.borderBottomLeftRadius = DEFAULTRADIUS;
-				navContainer.childNodes[i].style.borderLeft = DEFAULTBORDERLEFT;
-			}
-		}
-	} /* set seletedDay */
+	
 }
-
 
 /**
  * getDateString 
@@ -114,7 +110,7 @@ class TodoList extends HTMLElement{
  * @example
  *      getDateString(day)
  */
-function getDateString(day){
+ function getDateString(day){
 	switch(day){
 	case 0:
 		return "Sunday";

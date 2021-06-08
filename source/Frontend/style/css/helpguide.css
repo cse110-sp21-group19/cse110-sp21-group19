@@ -89,6 +89,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bolder;
 }
 
+/* help guide text section */
 #help-section {
   line-height: 1.5;
   padding-bottom: 1rem;
@@ -111,5 +112,54 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-column-gap: 2%;
           column-gap: 2%;
   padding-bottom: 1rem;
+}
+
+.help-nav-title {
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+  margin-top: 1.4rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.9rem;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+.help-toc-container {
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+  background: #71B637;
+  z-index: -1;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.help-toc-container .toc-link {
+  min-height: 0;
+  margin: 0.4rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: white;
+  border-radius: 0.4rem;
+  -webkit-transition: border-left 0.15s linear;
+  transition: border-left 0.15s linear;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.help-toc-container .toc-link:hover {
+  color: #FFA33F;
+  text-decoration: underline;
 }
 /*# sourceMappingURL=helpguide.css.map */

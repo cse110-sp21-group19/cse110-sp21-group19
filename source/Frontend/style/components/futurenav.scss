@@ -1,0 +1,53 @@
+/* Weekly Nav - Cory */
+@import '../abstracts/mixins', '../abstracts/variables';
+
+.future-title{
+    transition: opacity 0.15s linear;
+    margin-top: 1.4rem; //Fix this later
+    margin-bottom: 0.5rem;
+    margin-left: 0.9rem;
+    font-weight: 500;
+    font-size: 1.5em;
+}               		
+.future-container{
+    transition: opacity 0.15s linear;
+    background: $accent;
+    z-index: -1;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    height: 80vh;
+    flex-direction: column;
+
+    .future-item{
+        min-height: 0;
+        margin: 0.3rem 0.5rem;
+        flex: 1 1 0;
+        background: white;
+        border-radius: 0.4rem;
+        transition: border-left 0.15s linear;
+
+        &:hover{
+            transition: filter 0.15s linear;
+            filter: brightness(85%);
+        }
+        .future-date{
+            pointer-events: none;
+            margin-top: 0.6rem;
+            margin-left: 0.6rem;
+            width: 5vw;
+            min-width: 5rem;
+            height: 100%;
+            //grid-column-start: 1;
+            #month-title{
+              font-size: 1.5em;
+              font-weight: bold;
+            }
+            #year-title{
+                padding: 0 0.4rem;
+                font-weight: lighter;
+                font-size: 1.2em;
+            }
+        }
+    }
+}
