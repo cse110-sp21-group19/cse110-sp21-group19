@@ -49,6 +49,8 @@ The source code is separated into 3 parts
 2. Source
 3. Specs
 
+Getting Sass working
+
 ### Admin
 Administrative documents are located here. Documents and files related to branding, meetings, and videos are all located in the Admin folder. 
 

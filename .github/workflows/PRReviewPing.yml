@@ -12,5 +12,5 @@ jobs:
       uses: itsOliverBott/assign-pr-reviewers@release
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        users: "michl1001,derek-hwang27" # comma-separated (example: "itsOliverBott, SantaClaus, b4tman, sp0derman")
+        users: "michl1001, derek-hwang27" # comma-separated (example: "itsOliverBott, SantaClaus, b4tman, sp0derman")
         ignore-drafts: true # defaults to false if not provided

@@ -42,15 +42,18 @@
   display: flex;
   background: white;
   border-radius: 0.5rem;
-  -ms-grid-rows: 1;
-      grid-template-rows: 1;
-  -ms-grid-columns: auto auto;
-      grid-template-columns: auto auto;
 }
 
 .todo-container .scroll-container .todo-item:hover {
   -webkit-filter: brightness(90%);
           filter: brightness(90%);
+}
+
+.todo-container .scroll-container .todo-item .no-items {
+  pointer-events: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 1rem 2rem;
 }
 
 .todo-container .scroll-container .todo-item .todo-date {

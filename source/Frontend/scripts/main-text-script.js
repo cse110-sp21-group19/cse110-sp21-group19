@@ -6,8 +6,7 @@ import { createBullet, deleteBullet, updateBullet, getDailyPriority } from "../.
 /** 
  * editableEntry
  * Allow each bullet entry to be edited on a double click.
- * @param {Number} key - The bullet key returned by the database.
- * @param {object} entry - A bullet-entry element.
+ * @param {object} - A bullet-entry element.
  *
  * @example
  *     editableEntry(key, entry);
