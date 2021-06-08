@@ -116,7 +116,9 @@ export async function dailyLog(date, from){
 
             
             const DATE = document.querySelector("log-type").readLog.header;
-            const ADDLENTRIES = document.querySelector(".additional")
+            const ADDLENTRIES = document.querySelector(".additional");
+
+            //console.log(ADDLENTRIES);
 
             let entriesList = await getDailyEntries(DATE);
             let keys = entriesList[0];
@@ -125,7 +127,11 @@ export async function dailyLog(date, from){
             ADDLENTRYBAR.type = "initial";
             
             ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
-            ADDLENTRIES.appendChild(ADDLENTRYBAR);
+
+            if(ADDLENTRIES.childElementCount == 0) {
+                ADDLENTRIES.appendChild(ADDLENTRYBAR);
+            }
+            
 
             const MAINTEXTINPUT = document.querySelector("bullet-input");
             if (!MAINTEXTINPUT) {

@@ -100,7 +100,7 @@ class entryBar extends HTMLElement{
 	 * @param {}
 	 */
 	connectedCallback(){
-		let mainText = document.querySelector(".main-text");
+		let mainText = document.querySelector(".main-text-container");
 		let innerBar = this.shadowRoot.querySelector(".content");
 		let title = this.shadowRoot.querySelectorAll(".entry-title")[0];
 		let imgTitle = this.shadowRoot.querySelectorAll(".entry-title")[1];
@@ -411,7 +411,7 @@ class entryBar extends HTMLElement{
 	 * @example ENTRYBAR.entries = loadedEntries;
 	 */
 	set entries(entries){
-		let mainText = document.querySelector(".main-text");
+		let mainText = document.querySelector(".main-text-container");
 		let innerBar = this.shadowRoot.querySelector(".content");
 		let title = this.shadowRoot.querySelector(".entry-title");
 		let content = this.shadowRoot.querySelector(".text-content");
@@ -617,7 +617,7 @@ function makeEntry(title, content, key, image){
  */
 function deleteNote() {
 	let SHADOW = document.querySelector("entry-bar").shadowRoot;
-	let mainText = document.querySelector(".main-text");
+	let mainText = document.querySelector(".main-text-container");
 	let innerBar = SHADOW.querySelector(".content");
 	let title = SHADOW.querySelectorAll(".entry-title")[0];
 	let content = SHADOW.querySelector(".text-content");
@@ -665,7 +665,7 @@ function deleteNote() {
  */
 function deleteImg() {
 	let SHADOW = document.querySelector("entry-bar").shadowRoot;
-	let mainText = document.querySelector(".main-text");
+	let mainText = document.querySelector(".main-text-container");
 	let innerBar = SHADOW.querySelector(".content");
 	let imgTitle = SHADOW.querySelectorAll(".entry-title")[1];
 	let uploaded = SHADOW.querySelector(".uploaded");
