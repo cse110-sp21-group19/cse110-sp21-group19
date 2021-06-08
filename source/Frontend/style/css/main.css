@@ -109,6 +109,7 @@ body .container {
 body .container .weekly-nav-container {
   -ms-grid-column: 1;
       grid-column-start: 1;
+  display: inline-block;
 }
 
 body .container .daily-log {

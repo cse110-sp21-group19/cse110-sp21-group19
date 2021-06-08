@@ -1,6 +1,5 @@
 //weekly nav script
-import {DAYS, MONTHS} from '../components/log-type.js';
-import {router} from './router.js';
+import { router } from './router.js';
 import { getDailyPriority } from "../../Backend/api/bullet_api.js";
 
 
@@ -36,11 +35,11 @@ export async function createWeeklyNav(date) {
             let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
             WEEKLYNAV.selectedDay = index;
 
-            //get the newly selected date and update router
-            let selectedDate = WEEKLYNAV.selectedInfo;
-            router.setState("daily-log", false, selectedDate, "weekly-nav");
+			//get the newly selected date and update router
+			let selectedDate = WEEKLYNAV.selectedInfo;
+			router.setState("daily", false, selectedDate, "weekly-nav");
            
-        }
+		}
 
     });
     return true;
@@ -77,6 +76,5 @@ async function createDaysOfWeekArray(date) {
 		currDate.setDate(currDate.getDate() + 1);
 	}
 
-    console.log(daysOfWeek);
 	return daysOfWeek;
 } /* createDaysofWeekArray */

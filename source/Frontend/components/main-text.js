@@ -20,7 +20,7 @@ export const PRIORITY = `<svg id="priority" aria-hidden="true" focusable="false"
  * @property {string} content - The bullet text.
  * @property {boolean} priority - If the priority star is set. Defaults to "false".
  * @property {boolean} completed - For task bullets, if the bullet is completed. Defaults to "false".
- * @property {Array} children - An array of the nested child BulletEntryObj's of the current bullet.
+ * @property {Number} levels - The integer value of the level the bullet is nested.
  * main-text area.
  */
 
@@ -197,7 +197,9 @@ class BulletEntry extends HTMLElement {
 		const LOGTYPE = document.querySelector("log-type").readLog;
 		
 		const BULLETTYPEELEM = this.shadowRoot.getElementById("bullet-type");
-		let bulletType = this.shadowRoot.getElementById("bullet-type").className;
+		let bulletInfo = this.shadowRoot.getElementById("bullet-type").className.split(" ");
+		let bulletType = bulletInfo[0];
+		let bulletLevel = parseInt(bulletInfo[1].split("-")[1]);
 
 		let entryObj = {
 			"log": LOGTYPE.type,
@@ -206,7 +208,7 @@ class BulletEntry extends HTMLElement {
 			"content": this.shadowRoot.getElementById("bullet-inputted").value,
 			"completed": false,
 			"type": bulletType,
-			"children": []
+			"levels": bulletLevel
 		};
 
 		// set priority value
@@ -236,7 +238,7 @@ class BulletEntry extends HTMLElement {
  	 *  				 content: "foo",
  	 *  				 priority: false,
  	 *  				 completed: false,
- 	 *  				 children: [] // json objects (bullet-entries)
+ 	 *  				 levels: 1
 	 * 					}
 	 */
 	set entry(entry) {
@@ -274,6 +276,9 @@ class BulletEntry extends HTMLElement {
 		else {
 			this.shadowRoot.getElementById("prioritize-bullet").innerHTML = NOTPRIORITY;
 		}
+
+		// recored nested indentation level
+		BULLETTYPEELEM.className += " level-" + entry.levels;
 	}
 
 }
@@ -291,6 +296,6 @@ customElements.define("bullet-entry", BulletEntry);
  *   content: "foo",
  *   priority: false, // default
  *   completed: false, // default
- *   children: [] // json objects (bullet-entries)
+ *   levels: 1 // integer value
  * }
  */
