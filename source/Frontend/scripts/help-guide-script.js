@@ -5,15 +5,15 @@ export const helpGuideContent = [{
     "sectionDescription": [""],
     "sectionElements": [{
         "title": "Daily",
-        "content": "Description of Daily Log..."
+        "content": "The daily log provides an area for rapid logging notes, tasks, and events for each day. Navigate to a new day but either clicking on the arrows above the notes area or clicking one of the days in the weekly overview on the left. The weekly overview will display all the prioritized (starred) tasks in each day."
     },
     {
         "title": "Monthly",
-        "content": "Description of Monthly Log..."
+        "content": "The monthly log allows users to jot down bullets for each month. Clicking the arrows above the notes area will navigate to the previous/next month. An overview of every task created in the daily log for current month is displayed in the To-Do List. Clicking on a day in the calendar will navigate the user to the appropriate daily log page."
     },
     {
         "title": "Future",
-        "content": "Description of Future Log..."
+        "content": "The future log is used to record future notes, tasks, and events for the year. Clicking the arrows above the notes area will navigate to the previous/next year. Quickly navigate to a monthly log by clicking on a month on the left."
     }]
 },
 {

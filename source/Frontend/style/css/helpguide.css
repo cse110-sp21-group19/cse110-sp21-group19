@@ -163,6 +163,10 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
 }
 
+.help-element {
+  padding-bottom: 1rem;
+}
+
 /* Dark mode */
 .dark-mode.help-toc-container .toc-link {
   background: #181A18;

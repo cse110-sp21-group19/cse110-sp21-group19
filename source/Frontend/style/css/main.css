@@ -195,17 +195,12 @@ body.dark-mode input {
 }
 
 .main-text-container .main-text {
+  scroll-behavior: smooth;
   padding: 1rem;
   height: calc(100% - 2rem);
   width: calc(100% - 2rem);
   overflow-y: scroll;
   background: white;
-}
-
-.main-text-container .help-container {
-  height: 100%;
-  overflow-y: scroll;
-  padding: 0 1rem;
 }
 
 /* dark mode */
