@@ -82,7 +82,12 @@ export function prioritizeEntry(key, entry) {
 		}
 		else {
 			toPrioritize.innerHTML = PRIORITY;
-			toPrioritize.style.color = "black";
+			if (document.body.className === "dark-mode") {
+				toPrioritize.style.color = "white";
+			}
+			else {
+				toPrioritize.style.color = "black";
+			}
 		}
 		// update prioritized/deprioritized bullet to DB
 		updateBullet(key, entry.entry);

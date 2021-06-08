@@ -162,4 +162,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #FFA33F;
   text-decoration: underline;
 }
+
+/* Dark mode */
+.dark-mode.help-toc-container .toc-link {
+  background: #181A18;
+}
 /*# sourceMappingURL=helpguide.css.map */

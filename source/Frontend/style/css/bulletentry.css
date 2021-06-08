@@ -112,8 +112,16 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #E5E5E5;
 }
 
+.bullet-entry:hover .fa-star {
+  color: black;
+}
+
 .bullet-entry .task-bullet:hover {
   cursor: pointer;
+}
+
+.bullet-entry .fa-star-fill {
+  color: black;
 }
 
 .bullet-entry:hover > button:hover {
@@ -163,5 +171,45 @@ svg {
 svg, input[type=text] {
   vertical-align: middle;
   display: inline-block;
+}
+
+/* dark mode */
+.entry.dark-mode {
+  /*
+        svg {
+            path {
+                fill: white !important;
+            }
+        }
+        */
+  /*
+    button {
+        svg {
+            path {
+                fill: white;
+            }
+        }
+    }
+    */
+}
+
+.entry.dark-mode .bullet-entry {
+  color: white !important;
+}
+
+.entry.dark-mode .bullet-entry:hover {
+  background-color: #181A18;
+}
+
+.entry.dark-mode .bullet-entry:hover .fa-star {
+  color: white;
+}
+
+.entry.dark-mode #bullet-inputted {
+  color: white;
+}
+
+.entry.dark-mode .fa-star-fill {
+  color: white;
 }
 /*# sourceMappingURL=bulletentry.css.map */

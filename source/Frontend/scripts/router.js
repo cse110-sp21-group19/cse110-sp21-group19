@@ -9,6 +9,8 @@ import { updateAddlEntries, formatEntries } from "./addl-entries-script.js";
 
 import { createNewBullets, nestedBullets, bulletsFromDB } from "./main-text-script.js";
 import { getDailyBullets, getMonthlyBullets, getFutureBullets } from "../../Backend/api/bullet_api.js";
+import { createDefault, updateMode, getMode } from "../../Backend/api/settings_api.js";
+import { setLightMode, setDarkMode } from "./script.js";
 import { createFutureNav } from "./future-nav-script.js";
 
 import { helpGuideContent, createHelpPage } from "./help-guide-script.js";
@@ -123,6 +125,29 @@ export async function dailyLog(date, from){
             ADDLENTRYBAR.type = "initial";
             ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
             ADDLENTRIES.appendChild(ADDLENTRYBAR);
+
+            const MAINTEXTINPUT = document.querySelector("bullet-input");
+            if (!MAINTEXTINPUT) {
+                const currDate = document.querySelector("log-type").readLog.date;
+                let todayBullets = await getDailyBullets(currDate);
+                createMainText(todayBullets);
+            }
+
+            let colorMode = await getMode();
+            console.log(colorMode);
+            if (colorMode) {
+                setDarkMode();
+            }
+            else {
+                setLightMode();
+            }
+        }
+        else if (from == "color-settings") {
+            deleteSideNav();
+            await createWeeklyNav(date);
+            WEEKLYNAV = document.querySelector("weekly-nav");
+            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
+            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
         }
         else {
             WEEKLYNAV.selectedDay = date.getDay() + 1;
@@ -130,9 +155,27 @@ export async function dailyLog(date, from){
         
 		updateAddlEntries();
 
+            const currDate = document.querySelector("log-type").readLog.date;
+            let todayBullets = await getDailyBullets(currDate);
+            createMainText(todayBullets);
+        /*
         const currDate = document.querySelector("log-type").readLog.date;
         let todayBullets = await getDailyBullets(currDate);
         createMainText(todayBullets);
+        */
+
+        // set color theme
+        //await createDefault();
+        /*
+        let colorMode = await getMode();
+        console.log(colorMode);
+        if (colorMode) {
+            setDarkMode();
+        }
+        else {
+            setLightMode();
+        }
+        */
 
         /*
         // reset current main-text area
@@ -167,7 +210,7 @@ export async function dailyLog(date, from){
         nestedBullets(INPUT, bulletStack);
         */
 
-    }
+	}
 } /* dailyLog */
 
 

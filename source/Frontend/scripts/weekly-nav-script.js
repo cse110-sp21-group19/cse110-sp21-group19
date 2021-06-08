@@ -26,11 +26,11 @@ export async function createWeeklyNav(date) {
     WEEKLYNAV.selectedDay = date.getDay() + 1;
     document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
     //Onclick listener for the items inside the weekly nav
-    WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "0";
+    WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "0";
     WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
-    const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
+    const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector(".week-container");
     weeklyNavContainer.addEventListener("click", (event)=>{
-        if(event.target.className == "wn-item"){
+        if(event.target.className.includes("wn-item")){
             //which day was selected
             let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
             WEEKLYNAV.selectedDay = index;

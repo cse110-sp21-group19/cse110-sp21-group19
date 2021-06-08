@@ -55,3 +55,10 @@
         }
     }
 }
+
+/* Dark mode */
+.dark-mode.help-toc-container {
+  .toc-link {
+    background: $dark;
+  }
+}

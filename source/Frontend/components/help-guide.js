@@ -151,6 +151,12 @@ class HelpTableOfContents extends HTMLElement {
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
+		// dark mode class
+		if (document.body.className == "dark-mode") {
+			const CONTAINER = this.shadowRoot.querySelector(".help-toc-container");
+			CONTAINER.className += " dark-mode";
+		}
+
 		// Apply external styles to the shadow dom
 		const helpElementStyle = document.createElement("link");
 		helpElementStyle.setAttribute("rel", "stylesheet");

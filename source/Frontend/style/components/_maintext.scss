@@ -12,3 +12,12 @@
         padding: 0 1rem;
     }
 }
+
+
+/* dark mode */
+body.dark-mode {
+    .main-text {
+        //background: black;
+        background: #2A2D32;
+    }
+}

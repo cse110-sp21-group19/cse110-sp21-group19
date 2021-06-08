@@ -23,6 +23,10 @@
         height: 40vh;
         margin: 0.5rem;
         padding-right: 0.3rem;
+        /* Dark mode */
+        .dark-mode.todo-item{
+          background: $dark;
+        }
         .todo-item{
             margin: 0.4rem;
             display: flex;
