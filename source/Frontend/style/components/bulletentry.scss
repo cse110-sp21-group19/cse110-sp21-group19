@@ -21,10 +21,17 @@
 
     &:hover {
         background-color: $light;
+        .fa-star {
+            color: black;
+        }
     }
 
     .task-bullet:hover {
         cursor: pointer;
+    }
+
+    .fa-star-fill {
+        color: black;
     }
 
 }
@@ -75,4 +82,44 @@ svg {
 svg, input[type=text] {
     vertical-align: middle;
     display: inline-block;
+}
+
+/* dark mode */
+.entry.dark-mode {
+    .bullet-entry {
+        color: white !important;
+        &:hover {
+            background-color: $dark;
+            .fa-star {
+                color: white;
+            }
+        }
+    }
+    #bullet-inputted {
+        color: white;
+    }
+    .fa-star-fill {
+        color: white;
+    }
+
+    //.bullet-entry:hover > button:hover {
+        //color: white;
+        /*
+        svg {
+            path {
+                fill: white !important;
+            }
+        }
+        */
+    //}
+
+    /*
+    button {
+        svg {
+            path {
+                fill: white;
+            }
+        }
+    }
+    */
 }

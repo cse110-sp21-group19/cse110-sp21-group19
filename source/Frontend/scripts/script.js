@@ -1,8 +1,10 @@
 // script.js
+import { createDB } from "../../Backend/api/bullet_api.js";
+import { createDefault, updateMode } from "../../Backend/api/settings_api.js";
 import { router } from "./router.js";
 import { closeMenu } from "./side-nav-script.js";
+import { SUN, MOON } from "../components/icons.js";
 
-import { createDB } from "../../Backend/api/bullet_api.js";
 const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
 
@@ -124,3 +126,57 @@ NEXTLOG.addEventListener("click", () => {
 	}
 	router.setState(LOG, false, nextDate, "next");
 });
+
+// set light/dark mode on clicking sun/moon icon
+const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
+COLORCONTAINER.addEventListener("click", () => {
+	const IMG = COLORCONTAINER.querySelector("svg");
+
+	// if it is currently light mode, switch to dark
+	if (IMG.id === "light-mode") {
+		setDarkMode();
+		closeMenu();
+	}
+	// else if it is currently dark mode, switch to light
+	else {
+		setLightMode();
+		closeMenu();
+	}
+});
+
+export function setDarkMode() {
+	const LOGTYPE = document.querySelector("log-type");
+	const DATE = LOGTYPE.readLog.date;
+	const LOG = LOGTYPE.readLog.type;
+
+	const BODY = document.querySelector("body");
+	const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
+	COLORCONTAINER.innerHTML = MOON;
+	const IMG = COLORCONTAINER.querySelector("svg");
+	IMG.id = "dark-mode";
+	BODY.className = "dark-mode";
+
+	// update the database to dark mode
+	updateMode(true);
+	
+	router.setState(LOG, false, DATE, "color-settings");
+	
+}
+
+export function setLightMode() {
+	const LOGTYPE = document.querySelector("log-type");
+	const DATE = LOGTYPE.readLog.date;
+	const LOG = LOGTYPE.readLog.type;
+
+	const BODY = document.querySelector("body");
+	const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
+	COLORCONTAINER.innerHTML = SUN;
+	const IMG = COLORCONTAINER.querySelector("svg");
+	IMG.id = "light-mode";
+	BODY.className = "";
+
+	// update the database to dark mode
+	updateMode(false);
+	
+	router.setState(LOG, false, DATE, "color-settings");
+}
