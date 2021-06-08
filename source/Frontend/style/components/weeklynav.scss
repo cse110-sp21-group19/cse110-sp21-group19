@@ -3,7 +3,7 @@
 
 .weekly-nav-title{
     transition: opacity 0.15s linear;
-    margin-top: 1.4rem; //Fix this later
+    margin-top: 1.5rem; //Fix this later
     margin-bottom: 0.5rem;
     margin-left: 0.9rem;
     font-weight: 500;
@@ -11,12 +11,13 @@
 }               		
 .week-container{
     transition: opacity 0.15s linear;
+    margin-top: 0.5rem;
+    height: calc(100% - 6rem);
     background: $accent;
     z-index: -1;
     border-radius: 1rem;
     padding: 0.5rem;
     display: flex;
-    height: 80vh;
     flex-direction: column;
 
     .wn-item{

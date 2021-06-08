@@ -3,27 +3,37 @@ body {
     background: $light;
     margin: auto;
     padding: 0 3rem;
-
+    // overflow-y: hidden;
     .container {
         margin-top: 0;
         display: grid;
         grid-template-columns: 30% 70%;
         //margin-top: 4rem;
-        .weekly-nav-container {
+        .left-side-container{
             grid-column-start: 1;
-            display: inline-block;
-            height: calc(100vh - 4rem);
-            // flex-direction: column;
-            // display: grid;
-            // grid-template-rows: 10% 90%;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            .weekly-nav-container {
+                flex-grow: 2;
+            }
+            .todo-component-container.active{
+                flex-grow: 2;
+                order: 3;
+            }
+            .calendar-component-container{
+                order: 4
+            }
+            .side-nav-container{
+                order: 0;
+            }
         }
         .daily-log {
             display: flex;
             flex-direction: column;
-            height: calc(100vh - 4rem);
+            height: calc(100vh - 5.7rem);
             grid-column-start: 2;
             padding-top: 4rem;
-
             &-title {
                 display: flex;
                 flex-direction: row;
@@ -40,16 +50,13 @@ body {
                     }
                 }
             }
-
             .additional {
-                padding: 1rem 1rem 0rem 1rem;
+                flex: 0;
+                height: 20%;
+                overflow-y: hidden;
+                transition: flex 0.3s ease-out;
             }
         }
-    }
-
-    .side-nav-container {
-        display: grid;
-        //grid-template-columns: 30% 70%;
     }
 }
 

@@ -21,7 +21,7 @@ document.querySelector("main").insertBefore(LOGOCONTAINER, CONTAINER);
 
 document.addEventListener("DOMContentLoaded", function() {
 	createDB();
-	router.setState("daily-log", false, new Date(), "on-load");
+	router.setState("daily", false, new Date(), "on-load");
 });
 
 
@@ -46,7 +46,7 @@ const SNDAILYLOG = SIDENAVROOT.getElementById("sn-daily-log");
 SNDAILYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current date
 	const d = new Date();
-	router.setState("daily-log", false, d, "side-nav");
+	router.setState("daily", false, d, "side-nav");
 
 	// TODO: update the side bar to weekly-nav
 	// TODO: update main-text area
@@ -59,7 +59,7 @@ const SNMONTHLYLOG = SIDENAVROOT.getElementById("sn-monthly-log");
 SNMONTHLYLOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current month
 	const d = new Date();
-	router.setState("monthly-log", false, d, "side-nav");
+	router.setState("monthly", false, d, "side-nav");
 
 	// TODO: update the side bar to task list
 	// TODO: update main-text area
@@ -72,7 +72,7 @@ const SNFUTURELOG = SIDENAVROOT.getElementById("sn-future-log");
 SNFUTURELOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current year
 	const d = new Date();
-	router.setState("future-log", false, d, "side-nav");
+	router.setState("future", false, d, "side-nav");
 
 	// TODO: update the side bar to task list
 	// TODO: update main-text area
@@ -91,25 +91,45 @@ PREVLOG.addEventListener("click", () => {
 	const DATE = LOGTYPE.readLog.date;
 	const LOG = LOGTYPE.readLog.type;
 	// decrement the current date
-	const prevDate= new Date(DATE);
-	if(LOG == "daily-log"){
+	const prevDate = new Date(DATE);
+	// set date for daily log
+	if(LOG == "daily"){
 		prevDate.setDate(prevDate.getDate() - 1);
 	}
-	//TODO IMPLEMENT THIS IN FORWARD AND HAVE IT CHANGE NECESSARY THINGS IN ROUTER
-	else if (LOG == "monthly-log"){
-		prevDate.setDate(prevDate.getFullYear(), prevDate.getMonth() - 1, 1);
+	// set date for monthly log, note that the date will be set to the first of 
+	// the month
+	else if (LOG == "monthly") {
+		prevDate.setFullYear(prevDate.getFullYear(), prevDate.getMonth() - 1, 1);
 	}
-
+	// set date for yearly log, note that the month will be set to January and the
+	// date will be set to the first of the month
+	else {
+		prevDate.setFullYear(prevDate.getFullYear() - 1, 1, 1);
+		console.log(prevDate);
+	}
 	router.setState(LOG, false, prevDate, "prev");
 });
 
 // Go to the next main-text log when the '>' button is hit, set the state
 NEXTLOG.addEventListener("click", () => {
-	const DATE = document.querySelector("log-type").readLog.date;
+	const LOGTYPE = document.querySelector("log-type");
+	const DATE = LOGTYPE.readLog.date;
+	const LOG = LOGTYPE.readLog.type;
 	// increment the current date
 	const nextDate = new Date(DATE)
-	nextDate.setDate(nextDate.getDate() + 1)
-	router.setState("daily-log", false, nextDate, "next");
+	if (LOG == "daily") {
+		nextDate.setDate(nextDate.getDate() + 1)
+	}
+	// set date for monthly log, note that the date will be set to the first of 
+	// the month
+	else if (LOG == "monthly") {
+		nextDate.setFullYear(nextDate.getFullYear(), nextDate.getMonth() + 1, 1);
+	}
+	// set date for yearly log, note that the month will be set to January and the
+	// date will be set to the first of the month
+	else {
+		nextDate.setFullYear(nextDate.getFullYear() + 1, 1, 1);
+		console.log(nextDate);
+	}
+	router.setState(LOG, false, nextDate, "next");
 });
-
-

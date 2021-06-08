@@ -13,7 +13,7 @@ export function createCalendar(date){
 	const CAL = document.createElement("calendar-component"); 
 	CAL.month = date;
 	CAL.currentDay = new Date();
-	document.getElementById("weekly-nav-container").appendChild(CAL);
+	document.getElementById("calendar-component-container").appendChild(CAL);
 	CAL.shadowRoot.querySelector(".days").addEventListener("click", (event)=>{
 		if(event.target.className == "day"){
 				const LOGTYPE = document.querySelector("log-type");
@@ -21,7 +21,7 @@ export function createCalendar(date){
 				let month = LOGTYPE.readLog.date.getMonth();
 				let year = LOGTYPE.readLog.date.getFullYear();
 				let selectedDate = new Date(year, month, day);
-				router.setState("daily-log", false, selectedDate, "monthly-log");
+				router.setState("daily", false, selectedDate, "monthly");
 		}
 	});
 }

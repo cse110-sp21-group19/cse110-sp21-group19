@@ -1,8 +1,11 @@
 /* Main Text - Manda */
 .main-text {
+    height: auto;
     flex-grow: 2;
     border-radius: 1rem;
     background: white;
     padding: 2rem;
     margin: 0 1rem;
+    overflow-y: auto;
+ 
 }

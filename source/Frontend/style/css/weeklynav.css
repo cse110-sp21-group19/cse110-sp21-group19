@@ -7,7 +7,7 @@
 .weekly-nav-title {
   -webkit-transition: opacity 0.15s linear;
   transition: opacity 0.15s linear;
-  margin-top: 1.4rem;
+  margin-top: 1.5rem;
   margin-bottom: 0.5rem;
   margin-left: 0.9rem;
   font-weight: 500;
@@ -17,6 +17,8 @@
 .week-container {
   -webkit-transition: opacity 0.15s linear;
   transition: opacity 0.15s linear;
+  margin-top: 0.5rem;
+  height: calc(100% - 6rem);
   background: #71B637;
   z-index: -1;
   border-radius: 1rem;
@@ -24,7 +26,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 80vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
