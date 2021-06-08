@@ -14,6 +14,7 @@ const SIDENAVROOT  = SIDENAV.shadowRoot;
 
 document.addEventListener("DOMContentLoaded", function() {
 	createDB();
+	createDefault();
 	router.setState("daily", false, new Date(), "on-load");
 });
 
