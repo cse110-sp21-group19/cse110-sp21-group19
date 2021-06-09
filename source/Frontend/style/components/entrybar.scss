@@ -16,7 +16,6 @@
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 3.5rem;
-    // padding: 2vh 2vw 2vh 2vw;
     margin: 1rem;
     min-width: 300px;
     min-height: 100px;
@@ -42,14 +41,10 @@
         overflow-y: hidden;
         display: flex;
         flex-direction: row;
-        //padding: 0 1rem 3rem 1rem;
+        padding: 0 2rem;
     }
     .content:hover{
         overflow-x: auto;
-    }
-    .new-entry:hover{
-        cursor: pointer;
-
     }
 
 }
@@ -101,16 +96,17 @@
     .new-entry{
         overflow: visible;
         width: auto;
-        height: 60%;
+        height: 8rem;
         min-height: 50px;
-        margin-top: 20%;
-        
+        margin-top: 2rem;
+        cursor: pointer;
     }
 }
 .dropdown-content {
     display: none;
     position: absolute;
-    bottom: 60%;
+    top: -2.5rem;
+    right: -1.5rem;
     background-color: black;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -252,7 +248,6 @@
         margin-top: 1rem;
         margin-left: 3vw;
         width: 55vw;
-        max-width: 1000px;
         height: 70%;
         background: white;
         border-radius: 1rem;
@@ -268,13 +263,17 @@
         .choose-img{
             display: none;
         }
-        .uploaded{
-            max-width:90%;
-            max-height:90%;
-            width: auto;
-            height: auto;
-            margin-left: 6vw;
+        .img-wrapper{
+            text-align: center;
+           
+            .uploaded{
+                max-width: 70%;
+                max-height: 70%;
+                width: auto;
+                height: auto;
+            }
         }
+        
         
     }
    
@@ -298,13 +297,17 @@
         text-align: center;
     }
 
-    .delete-btn{
-        height: 100px;
-        width: 7vh;
-        min-width: 50px;
-        position: absolute;
-        right: 5vw;
-        top: 18vh;
+    .delete-btn-wrapper{
+        position: relative;
+        .delete-btn{
+            position: absolute;
+            bottom: 0.5rem;
+            height: 8vh;
+            width: 7vh;
+            min-height: 50px;
+            min-width: 75px;
+            right: 1rem;
+        }
     }
     .delete-btn:hover{
         cursor: pointer;

@@ -55,14 +55,11 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  padding: 0 2rem;
 }
 
 .active-bar .content:hover {
   overflow-x: auto;
-}
-
-.active-bar .new-entry:hover {
-  cursor: pointer;
 }
 
 #btn {
@@ -93,15 +90,17 @@
 .dropdown .new-entry {
   overflow: visible;
   width: auto;
-  height: 60%;
+  height: 8rem;
   min-height: 50px;
-  margin-top: 20%;
+  margin-top: 2rem;
+  cursor: pointer;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  bottom: 60%;
+  top: -2.5rem;
+  right: -1.5rem;
   background-color: black;
   min-width: 160px;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -256,7 +255,6 @@
   margin-top: 1rem;
   margin-left: 3vw;
   width: 55vw;
-  max-width: 1000px;
   height: 70%;
   background: white;
   border-radius: 1rem;
@@ -277,12 +275,15 @@
   display: none;
 }
 
-.img-editing .img-content .uploaded {
-  max-width: 90%;
-  max-height: 90%;
+.img-editing .img-content .img-wrapper {
+  text-align: center;
+}
+
+.img-editing .img-content .img-wrapper .uploaded {
+  max-width: 70%;
+  max-height: 70%;
   width: auto;
   height: auto;
-  margin-left: 6vw;
 }
 
 .img-editing .img-content:hover {
@@ -307,13 +308,18 @@
   text-align: center;
 }
 
-.img-editing .delete-btn {
-  height: 100px;
-  width: 7vh;
-  min-width: 50px;
+.img-editing .delete-btn-wrapper {
+  position: relative;
+}
+
+.img-editing .delete-btn-wrapper .delete-btn {
   position: absolute;
-  right: 5vw;
-  top: 18vh;
+  bottom: 0.5rem;
+  height: 8vh;
+  width: 7vh;
+  min-height: 50px;
+  min-width: 75px;
+  right: 1rem;
 }
 
 .img-editing .delete-btn:hover {
