@@ -2,6 +2,7 @@
 
 import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
 import { createBullet, deleteBullet, updateBullet, getDailyPriority } from "../../Backend/api/bullet_api.js";
+
 // limit the number of bullets a user can create
 const NESTINGLIMIT = 8;
 

@@ -1,10 +1,13 @@
+/* Bullet Input */
+/* Variables */
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+/* bullet input container */
 .new-bullet {
-  background-color: #E5E5E5;
   border-radius: 0.25rem;
+  background-color: #E5E5E5;
 }
 
 input[type=text], select, button {
@@ -19,12 +22,14 @@ select, button {
   cursor: pointer;
 }
 
+/* adjust width of input text to accomodate bullet selector and padding */
 input[type=text] {
-  width: 80%;
+  width: calc(100% - 40px - 4rem);
 }
 
+/* style bullet selector */
 select {
-  width: 10%;
+  width: calc(40px + 3rem);
   -o-appearance: none;
   -ms-appearance: none;
   -webkit-appearance: none;

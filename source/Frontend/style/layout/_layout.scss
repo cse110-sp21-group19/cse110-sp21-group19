@@ -1,3 +1,5 @@
+/* Layout */
+
 body {
     animation: fadeInAnimation ease 1s;
     animation-iteration-count: 1;
@@ -14,27 +16,28 @@ body {
 }
 
 body {
-    //max-width: 1280px;
-    background: $light;
-    margin: auto;
     padding: 0 3rem;
+    margin: auto;
+    background: $light;
 
     .container {
-        margin-top: 0;
         display: grid;
+        margin-top: 0;
         grid-template-columns: 30% 70%;
-        //margin-top: 4rem;
+
+        /* side navigation and container */
         .weekly-nav-container {
-            grid-column-start: 1;
             display: inline-block;
-            // flex-direction: column;
-            // display: grid;
-            // grid-template-rows: 10% 90%;
+            grid-column-start: 1;
+
+            .side-nav-container {
+                display: grid;
+            }
         }
+
+        /* daily log: main-text and additional entries */
         .daily-log {
             grid-column-start: 2;
-            //display: grid;
-            //grid-template-rows: 10% 90%;
             padding-top: 4rem;
 
             &-title {
@@ -43,9 +46,10 @@ body {
                 align-items: center;
                 padding: 0 1rem;
 
+                /* main-text header arrow buttons */
                 i {
-                    font-size: 1.5rem;
                     padding: 0 1rem;
+                    font-size: 1.5rem;
 
                     &:hover {
                         color: grey;
@@ -55,17 +59,13 @@ body {
             }
         }
     }
-
-    .side-nav-container {
-        display: grid;
-        //grid-template-columns: 30% 70%;
-    }
 }
 
 /* dark mode */
 body.dark-mode {
     background: $dark;
     color: $light;
+
     input {
         color: $light;
     }

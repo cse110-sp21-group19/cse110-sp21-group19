@@ -1,27 +1,29 @@
 /* Main Text - Manda */
 .main-text-container {
     height: 65vh;
-    border-radius: 1rem;
-    margin: 0 1rem;
     padding: 1rem;
+    margin: 0 1rem;
+    border-radius: 1rem;
     background: white;
+
     .main-text {
-        scroll-behavior: smooth;
-        padding: 1rem;
         height: calc(100% - 2rem);
         width: calc(100% - 2rem);
         overflow-y: scroll;
+        padding: 1rem;
         background: white;
+        scroll-behavior: smooth;
     }
 }
 
 /* dark mode */
 body.dark-mode {
+
     .main-text-container {
-        background: #2A2D32;
+        background: $dark2;
+
         .main-text {
-            //background: black;
-            background: #2A2D32;
+            background: $dark2;
         }
     }
 }

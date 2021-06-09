@@ -1,29 +1,27 @@
+/* Bullet Entry */
 @import '../abstracts/mixins', '../abstracts/variables', '../base/reset', '../base/typography';
 
-// style the "double click to edit" message
+/* "double click to edit" message styling */
 .edit-msg {
-    //position: absolute;
-    text-align: right;
     right: 6rem;
-    font-size: 0.6rem !important;
-    line-height: 0.6rem !important;
+    display: none;
     margin-bottom: 0.2rem;
     color: grey;
-    display: none;
+    font-size: 0.6rem !important;
+    line-height: 0.6rem !important;
+    text-align: right;
 }
 
+/* hover over bullet entry styling - show "double click to edit" message */
 .entry:hover {
     margin-top: -0.8rem;
+
     .edit-msg {
         display: block;
     }
 }
-/*
-.bullet-entry:hover + .edit-msg {
-    display: inline-block;
-}
-*/
 
+/* bullet entry styling */
 .bullet-entry {
     width: 100%;
     margin: 0;
@@ -31,6 +29,7 @@
 
     &:hover {
         background-color: $light;
+
         .fa-star {
             color: black;
         }
@@ -43,9 +42,9 @@
     .fa-star-fill {
         color: black;
     }
-
 }
 
+/* show star, delete button on hover */
 .bullet-entry:hover > button:hover {
     color: black !important;
 }
@@ -54,13 +53,15 @@
     color: grey;
 }
 
+/* bullet input styling */
 input[type=text], select, button {
-    padding: 0.5rem;
     box-sizing: border-box;
+    padding: 0.5rem;
     border: none;
     background-color: transparent;
 }
 
+/* show pointer cursor on buttons and selectors */
 select, button {
     cursor: pointer;
 }
@@ -69,6 +70,7 @@ input[type=text] {
     width: calc(100% - 6rem);
 }
 
+/* style selector */
 select {
     width: 10%;
     -o-appearance: none;
@@ -79,9 +81,10 @@ select {
     text-align-last: right;
 }
 
+/* hide buttons */
 button {
-    color: transparent;
     width: auto;
+    color: transparent;
 }
 
 svg {
@@ -98,38 +101,17 @@ svg, input[type=text] {
 .entry.dark-mode {
     .bullet-entry {
         color: white !important;
+
         &:hover {
             background-color: $dark;
+
             .fa-star {
                 color: white;
             }
         }
     }
-    #bullet-inputted {
+    
+    #bullet-inputted, .fa-star-fill {
         color: white;
     }
-    .fa-star-fill {
-        color: white;
-    }
-
-    //.bullet-entry:hover > button:hover {
-        //color: white;
-        /*
-        svg {
-            path {
-                fill: white !important;
-            }
-        }
-        */
-    //}
-
-    /*
-    button {
-        svg {
-            path {
-                fill: white;
-            }
-        }
-    }
-    */
 }

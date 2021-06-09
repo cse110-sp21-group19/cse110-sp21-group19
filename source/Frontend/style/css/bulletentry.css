@@ -1,7 +1,10 @@
+/* Bullet Entry */
+/* Variables */
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+/* Style Resets */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -56,6 +59,7 @@ table {
   border-spacing: 0;
 }
 
+/* Typography - type scale */
 html {
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   color: #181A18;
@@ -89,16 +93,18 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bolder;
 }
 
+/* "double click to edit" message styling */
 .edit-msg {
-  text-align: right;
   right: 6rem;
-  font-size: 0.6rem !important;
-  line-height: 0.6rem !important;
+  display: none;
   margin-bottom: 0.2rem;
   color: grey;
-  display: none;
+  font-size: 0.6rem !important;
+  line-height: 0.6rem !important;
+  text-align: right;
 }
 
+/* hover over bullet entry styling - show "double click to edit" message */
 .entry:hover {
   margin-top: -0.8rem;
 }
@@ -107,11 +113,7 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
-/*
-.bullet-entry:hover + .edit-msg {
-    display: inline-block;
-}
-*/
+/* bullet entry styling */
 .bullet-entry {
   width: 100%;
   margin: 0;
@@ -134,6 +136,7 @@ h1, h2, h3, h4, h5, h6 {
   color: black;
 }
 
+/* show star, delete button on hover */
 .bullet-entry:hover > button:hover {
   color: black !important;
 }
@@ -142,14 +145,16 @@ h1, h2, h3, h4, h5, h6 {
   color: grey;
 }
 
+/* bullet input styling */
 input[type=text], select, button {
-  padding: 0.5rem;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  padding: 0.5rem;
   border: none;
   background-color: transparent;
 }
 
+/* show pointer cursor on buttons and selectors */
 select, button {
   cursor: pointer;
 }
@@ -158,6 +163,7 @@ input[type=text] {
   width: calc(100% - 6rem);
 }
 
+/* style selector */
 select {
   width: 10%;
   -o-appearance: none;
@@ -168,9 +174,10 @@ select {
   text-align-last: right;
 }
 
+/* hide buttons */
 button {
-  color: transparent;
   width: auto;
+  color: transparent;
 }
 
 svg {
@@ -184,25 +191,6 @@ svg, input[type=text] {
 }
 
 /* dark mode */
-.entry.dark-mode {
-  /*
-        svg {
-            path {
-                fill: white !important;
-            }
-        }
-        */
-  /*
-    button {
-        svg {
-            path {
-                fill: white;
-            }
-        }
-    }
-    */
-}
-
 .entry.dark-mode .bullet-entry {
   color: white !important;
 }
@@ -215,11 +203,7 @@ svg, input[type=text] {
   color: white;
 }
 
-.entry.dark-mode #bullet-inputted {
-  color: white;
-}
-
-.entry.dark-mode .fa-star-fill {
+.entry.dark-mode #bullet-inputted, .entry.dark-mode .fa-star-fill {
   color: white;
 }
 /*# sourceMappingURL=bulletentry.css.map */

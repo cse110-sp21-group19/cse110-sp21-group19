@@ -1,7 +1,9 @@
+/* Variables */
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+/* Style Resets */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -56,6 +58,7 @@ table {
   border-spacing: 0;
 }
 
+/* Typography - type scale */
 html {
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   color: #181A18;
