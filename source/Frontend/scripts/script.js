@@ -31,13 +31,16 @@ document.addEventListener("DOMContentLoaded", function() {
 // When the back button is hit, set the state with the new page
 window.addEventListener("popstate", e => {
 	console.log("in popstate");
-
+	console.log(e);
 	const DATE = document.querySelector("log-type").readLog.date;
 	if(DATE.getDay() == 0 && e.state?.date.getDay() == 6 && router.currentState.from == "next"){
 		router.setState(e.state?.page, true, e.state?.date, "prev");
 	}
 	else if(DATE.getDay() == 6 && e.state?.date.getDay() == 0 && router.currentState.from == "prev"){
 		router.setState(e.state?.page, true, e.state?.date, "next");
+	}
+	else if(router.currentState.from == "side-nav"){
+		router.setState(e.state?.page, true, e.state?.date, "side-nav");
 	}
 	else{
 		router.setState(e.state?.page, true, e.state?.date, e.state?.from);

@@ -93,13 +93,13 @@ export async function dailyLog(date, from) {
         if ((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")) {
 
             deleteSideNav();
-            createWeeklyNav(date);
+            await createWeeklyNav(date);
             //createWeeklyNav(date);
         }
         else if (from == "monthly" || from == "side-nav") {
             // remove previous side navigation
             deleteSideNav();
-            createWeeklyNav(date);
+            await createWeeklyNav(date);
         }
         else if (from == "on-load") {
             await createWeeklyNav(date);            
