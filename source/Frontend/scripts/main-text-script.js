@@ -1,6 +1,6 @@
 // main-text-script.js
 
-import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
+import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/icons.js";
 import { createBullet, deleteBullet, updateBullet, getDailyPriority } from "../../Backend/api/bullet_api.js";
 
 // limit the number of bullets a user can create
@@ -198,7 +198,7 @@ export function createNewBullets(inputElement, bulletStack) {
             deleteEntry(bulletKey, newBullet);
         }
     });
-}
+} /* createNestedBullets */
 
 /**
  * bulletsFromDB
@@ -236,6 +236,7 @@ export function bulletsFromDB(item, index, bulletStack, todayBullets) {
 			}
 		}
 	}
+	// create bullet entry
 	let newBullet = document.createElement("bullet-entry");
 	newBullet.entry = item;
 	const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
@@ -243,11 +244,12 @@ export function bulletsFromDB(item, index, bulletStack, todayBullets) {
 
 	let bulletKey = todayBullets[0][index];
 
+	// make bullets from database editable
 	editableEntry(bulletKey, newBullet);
 	prioritizeEntry(bulletKey, newBullet);
 	completeTask(bulletKey, newBullet);
 	deleteEntry(bulletKey, newBullet);
-}
+} /* bulletsFromDB */
 
 /**
  * nestedBullets
@@ -283,7 +285,7 @@ export function nestedBullets(inputElement, bulletStack) {
 			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
         }
     });
-}
+} /* nestedBullets */
 
 /**
  * nestedBulletHelper
@@ -302,7 +304,7 @@ function nestBulletHelper(bulletStack) {
 		parentBullet.shadowRoot.getElementById("bullet-list").appendChild(NEWSUBLIST);
 		bulletStack.push(NEWSUBLIST);
 	}
-}
+} /* nestedBulletHelper */
 
 /**
  * unnestedBulletHelper
@@ -320,4 +322,4 @@ function unnestBulletHelper(bulletStack) {
 		bulletStack.pop(parentBullet);
 		//return parentBullet;
 	}
-}
+} /* unnestedBulletHelper */

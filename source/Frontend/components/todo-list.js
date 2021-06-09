@@ -1,6 +1,6 @@
 //todo-list.js
 
-import { TASKBULLET, TASKCOMPLETE } from "./main-text.js";
+import { TASKBULLET, TASKCOMPLETE } from "./icons.js";
 import { DAYS } from "./log-type.js"
 
 /**

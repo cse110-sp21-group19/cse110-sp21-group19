@@ -1,5 +1,5 @@
 //weekly-nav.js
-import { NOTEBULLET, TASKBULLET, TASKCOMPLETE, EVENTBULLET} from "./main-text.js";
+import { NOTEBULLET, TASKBULLET, TASKCOMPLETE, EVENTBULLET } from "./icons.js";
 
 const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
 const SELECTEDRADIUS = "0.2rem";
