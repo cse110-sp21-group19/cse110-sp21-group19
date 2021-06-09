@@ -23,11 +23,11 @@
 			<div class="tooltip">
 				<span class="tooltiptext">Tooltip text</span>
 				<svg class="note" width="111" height="137" viewBox="0 0 111 137" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path fill-rule="evenodd" clip-rule="evenodd" d="M68.9167 1.41663H15.25C7.84018 1.41663 1.83333 7.42347 1.83333 14.8333V122.167C1.83333 129.576 7.84018 135.583 15.25 135.583H95.75C103.16 135.583 109.167 129.576 109.167 122.167V41.6666L68.9167 1.41663Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M68.9167 1.41663V41.6666H109.167" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M82.3333 75.2084H28.6667" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M82.3333 102.042H28.6667" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M42.0833 48.375H35.375H28.6667" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M68.9167 1.41687H15.25C7.84022 1.41687 1.83337 7.42372 1.83337 14.8335V122.167C1.83337 129.577 7.84022 135.584 15.25 135.584H95.75C103.16 135.584 109.167 129.577 109.167 122.167V41.6669L68.9167 1.41687Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M68.9166 1.41687V41.6669H109.167" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M82.3333 75.2086H28.6666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M82.3333 102.042H28.6666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M42.0833 48.3752H35.375H28.6666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
 				<svg class="image" width="111" height="137" viewBox="0 0 111 137" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M1.125 3.125C1.125 2.02043 2.02043 1.125 3.125 1.125H119.875C120.98 1.125 121.875 2.02043 121.875 3.125V119.875C121.875 120.98 120.98 121.875 119.875 121.875H3.125C2.02043 121.875 1.125 120.98 1.125 119.875V3.125Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -106,6 +106,11 @@
 			noteIcon.style.display="block";
 		}
 	}/*set entry*/	
+	set mode(mode){
+		if(mode == "dark"){
+			this.shadowRoot.querySelector(".note").style.fill="white";
+		}
+	}
 }/*entryBar*/
 //define the custom web component "addl-entry" and associate it to the class "addlEntry"
 customElements.define("addl-entry", addlEntry);

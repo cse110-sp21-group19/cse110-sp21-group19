@@ -1,26 +1,20 @@
 /*text entry icon*/
 .note{
+    height: 13vh;
     overflow: visible;
-    width: 8rem;
-    height: 12vh;
+    width: auto;
     min-height: 50px;
-    margin-top: 3vh;
-    margin-right: 1rem;
-}
-.note:hover{
+    margin: 3vh 0 0 2vw;
     cursor: pointer;
 }
 
 /*image entry icon*/
 .image{
+    height: 13vh;
     overflow: visible;
-    width: 8rem;
-    height: 12vh;
+    width: auto;
     min-height: 50px;
-    margin-top: 3.5vh;
-    margin-right: 1rem;
-}
-.image:hover{
+    margin: 3vh 0 0 2vw;
     cursor: pointer;
 }
 
@@ -29,8 +23,8 @@
     position: relative;
     .tooltiptext{
         position: absolute;
-        bottom: 12.5vh;
-        left: 1vw;
+        top: -2vh;
+        left: 2vw;
         font-weight: bold;
         font-size: 1rem;
         overflow-wrap: break-word;

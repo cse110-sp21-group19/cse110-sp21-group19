@@ -30,6 +30,7 @@ export function formatEntries(entries, keys){
 export async function updateAddlEntries() {
 	let myDate = document.querySelector("log-type").readLog.header;
 	const ADDLENTRYBAR = document.querySelector("entry-bar");
+    ADDLENTRYBAR.style.display="inline";
 
 	let entriesList = await getDailyEntries(myDate);
 	let keys = entriesList[0];
@@ -40,6 +41,8 @@ export async function updateAddlEntries() {
 	if(ADDLENTRYBAR.type == "editing" || ADDLENTRYBAR.type == "img-editing"){
 		ADDLENTRYBAR.type = "openbar";
 	}
+
+   // document.querySelector(".additional").classList.add("active");
 }
 
 //Helper functions to insert text at caret position

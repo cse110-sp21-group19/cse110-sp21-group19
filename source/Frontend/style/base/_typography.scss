@@ -1,6 +1,17 @@
+/* Typography - type scale */
+
 html {
     font-family: $sans-serif;
     color: $dark;
+
+    /*
+    @include tablet {
+        font-size: 1.2rem;
+    };
+    @include desktop {
+        font-size: 1.5rem;
+    };
+    */
 }
 
 h1 {

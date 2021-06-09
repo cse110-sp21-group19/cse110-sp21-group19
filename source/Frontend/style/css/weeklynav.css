@@ -1,71 +1,72 @@
 /* Weekly Nav - Cory */
+/* Variables */
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+/* device sizes */
+/* title of month and year on top of nav */
 .weekly-nav-title {
-  -webkit-transition: opacity 0.15s linear;
-  transition: opacity 0.15s linear;
-  margin-top: 1.4rem;
-  margin-bottom: 0.5rem;
-  margin-left: 0.9rem;
+  margin: 1.5rem 0 0.5rem 0.9rem;
   font-weight: 500;
   font-size: 1.5em;
 }
 
+/* outer container */
 .week-container {
-  -webkit-transition: opacity 0.15s linear;
-  transition: opacity 0.15s linear;
-  background: #71B637;
   z-index: -1;
-  border-radius: 1rem;
-  padding: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 80vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  height: calc(100% - 6rem);
+  margin-top: 0.5rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background: #71B637;
+  /* day of week item */
 }
 
 .week-container .wn-item {
-  min-height: 0;
-  margin: 0.4rem;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 0px;
           flex: 1 1 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background: white;
+  min-height: 0;
+  margin: 0.4rem;
   border-radius: 0.4rem;
-  -webkit-transition: border-left 0.15s linear;
-  transition: border-left 0.15s linear;
+  background: white;
+  -webkit-transition: border-left 0.08s linear;
+  transition: border-left 0.08s linear;
+  /* date text */
+  /* container of prio bullet list */
+  /* hidden month items */
+  /* custom scroll bar */
   /* width */
   /* Track */
   /* Handle */
   /* Handle on hover */
 }
 
-.week-container .wn-item:hover .wn-date {
-  color: #FFA33F;
-  text-decoration: underline;
-}
-
 .week-container .wn-item .wn-date {
-  pointer-events: none;
-  margin-top: 0.6rem;
-  margin-left: 0.6rem;
-  width: 5vw;
-  min-width: 5rem;
+  z-index: 5;
+  cursor: pointer;
+  width: 18%;
+  min-width: 7.5rem;
   height: 100%;
+  padding: 0.6rem;
+  cursor: pointer;
 }
 
 .week-container .wn-item .wn-date #day-of-month {
   font-size: 1.1em;
   font-weight: bold;
+  pointer-events: none;
 }
 
 .week-container .wn-item .wn-date #day-of-week {
@@ -73,6 +74,12 @@
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   font-weight: lighter;
   font-size: 1.1em;
+  pointer-events: none;
+}
+
+.week-container .wn-item .wn-date:hover {
+  color: #FFA33F;
+  text-decoration: underline;
 }
 
 .week-container .wn-item .wn-bullets-container {
@@ -117,5 +124,10 @@
 
 .week-container .wn-item ::-webkit-scrollbar-thumb:hover {
   background: #71B637;
+}
+
+/* Dark mode */
+.dark-mode.week-container .wn-item {
+  background: #181A18;
 }
 /*# sourceMappingURL=weeklynav.css.map */

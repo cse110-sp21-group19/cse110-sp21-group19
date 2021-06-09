@@ -1,8 +1,11 @@
 // script.js
+import { LOGO } from "../components/icons.js";
+import { createDB } from "../../Backend/api/bullet_api.js";
+import { createDefault, updateMode } from "../../Backend/api/settings_api.js";
 import { router } from "./router.js";
 import { closeMenu } from "./side-nav-script.js";
+import { SUN, MOON } from "../components/icons.js";
 
-import { createDB } from "../../Backend/api/bullet_api.js";
 const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
 
@@ -10,8 +13,17 @@ const SIDENAVROOT  = SIDENAV.shadowRoot;
 // router.setState("daily-log", false, today, "first-load");
 // create database
 
+const CONTAINER = document.getElementById("container");
+const LOGOCONTAINER = document.createElement("div");
+LOGOCONTAINER.className = "logo";
+LOGOCONTAINER.innerHTML = LOGO;
+
+//CONTAINER.insertBefore(LOGOCONTAINER, DAILYLOG);
+document.querySelector("main").insertBefore(LOGOCONTAINER, CONTAINER);
+
 document.addEventListener("DOMContentLoaded", function() {
 	createDB();
+	createDefault();
 	router.setState("daily", false, new Date(), "on-load");
 });
 
@@ -19,13 +31,16 @@ document.addEventListener("DOMContentLoaded", function() {
 // When the back button is hit, set the state with the new page
 window.addEventListener("popstate", e => {
 	console.log("in popstate");
-
+	console.log(e);
 	const DATE = document.querySelector("log-type").readLog.date;
 	if(DATE.getDay() == 0 && e.state?.date.getDay() == 6 && router.currentState.from == "next"){
 		router.setState(e.state?.page, true, e.state?.date, "prev");
 	}
 	else if(DATE.getDay() == 6 && e.state?.date.getDay() == 0 && router.currentState.from == "prev"){
 		router.setState(e.state?.page, true, e.state?.date, "next");
+	}
+	else if(router.currentState.from == "side-nav"){
+		router.setState(e.state?.page, true, e.state?.date, "side-nav");
 	}
 	else{
 		router.setState(e.state?.page, true, e.state?.date, e.state?.from);
@@ -67,6 +82,15 @@ SNFUTURELOG.addEventListener("click", () => {
 
 	// TODO: update the side bar to task list
 	// TODO: update main-text area
+
+	closeMenu();
+});
+
+// on click listener for help button in side nav
+const SNHELP = SIDENAVROOT.getElementById("sn-help");
+SNHELP.addEventListener("click", () => {
+    const d = new Date();
+	router.setState("help", false, d, "side-nav");
 
 	closeMenu();
 });
@@ -124,3 +148,61 @@ NEXTLOG.addEventListener("click", () => {
 	}
 	router.setState(LOG, false, nextDate, "next");
 });
+
+// set light/dark mode on clicking sun/moon icon
+const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
+COLORCONTAINER.addEventListener("click", () => {
+	const IMG = COLORCONTAINER.querySelector("svg");
+
+	// if it is currently light mode, switch to dark
+	if (IMG.id === "light-mode") {
+		setDarkMode();
+		closeMenu();
+	}
+	// else if it is currently dark mode, switch to light
+	else {
+		setLightMode();
+		closeMenu();
+	}
+});
+
+export function setDarkMode() {
+	const LOGTYPE = document.querySelector("log-type");
+	const DATE = LOGTYPE.readLog.date;
+	const LOG = LOGTYPE.readLog.type;
+	const ADDLENTRYBAR = document.querySelector("entry-bar");
+
+	const BODY = document.querySelector("body");
+	const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
+	COLORCONTAINER.innerHTML = MOON;
+	const IMG = COLORCONTAINER.querySelector("svg");
+	IMG.id = "dark-mode";
+	BODY.className = "dark-mode";
+
+	ADDLENTRYBAR.mode = "dark";
+	// update the database to dark mode
+	updateMode(true);
+	
+	router.setState(LOG, true, DATE, "color-settings");
+	
+}
+
+export function setLightMode() {
+	const LOGTYPE = document.querySelector("log-type");
+	const DATE = LOGTYPE.readLog.date;
+	const LOG = LOGTYPE.readLog.type;
+	const ADDLENTRYBAR = document.querySelector("entry-bar");
+
+	const BODY = document.querySelector("body");
+	const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
+	COLORCONTAINER.innerHTML = SUN;
+	const IMG = COLORCONTAINER.querySelector("svg");
+	IMG.id = "light-mode";
+	BODY.className = "";
+	ADDLENTRYBAR.mode = "";
+
+	// update the database to dark mode
+	updateMode(false);
+	
+	router.setState(LOG, true, DATE, "color-settings");
+}

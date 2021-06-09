@@ -1,11 +1,11 @@
 /* Tools, Helpers, Variables, Config, etc. */
-@import 'abstracts/mixins', 'abstracts/variables';
+@import 'abstracts/variables', 'abstracts/mixins';
 
 /* Base Styles */
 @import 'base/reset', 'base/typography';
 
 /* Layout */
-@import 'layout/layout', 'layout/header', 'layout/footer';
+@import 'layout/layout';
 
 /* Components */
 @import 'components/maintext';

@@ -1,28 +1,33 @@
 /* Additional Entries - Malhar */
+/* Variables */
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+/* device sizes */
 *:focus {
   outline: none;
 }
 
 /*Begin styling additional entry bar*/
+.initial {
+  height: 100%;
+}
+
 .active-bar {
   background: #FFA33F;
-  height: 20vh;
-  width: 85%;
+  height: calc(100% - 4rem);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 2vh 2vw 2vh 2vw;
+  padding: 1.5rem 3.5rem;
+  margin: 1rem;
   min-width: 300px;
   min-height: 100px;
   border-radius: 1rem;
-  margin-left: 3vw;
 }
 
 .active-bar .close {
@@ -36,7 +41,7 @@
 }
 
 .active-bar .content {
-  height: 13vh;
+  height: 100%;
   width: 65%;
   min-width: 100px;
   background: white;
@@ -47,52 +52,24 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding: 0 1rem;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  padding: 0 1rem 3rem 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .active-bar .content:hover {
   overflow-x: auto;
 }
 
-.active-bar .new-entry {
-  overflow: visible;
-  width: 8rem;
-  height: 10vh;
-  min-height: 50px;
-  margin-top: 3vh;
-}
-
-.active-bar .new-entry:hover {
-  cursor: pointer;
-}
-
-.inactive-bar {
-  width: 3vw;
-  height: 3vw;
-  min-width: 3vw;
-  min-height: 3vw;
-  margin: 0 1rem 2rem;
-  background: transparent;
-  border-radius: 1vw;
-  padding: 0.2rem;
-  float: right;
-  display: -ms-grid;
-  display: grid;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  white-space: nowrap;
-}
-
-.inactive-bar:hover {
-  cursor: pointer;
-}
-
 #btn {
+  position: absolute;
+  right: 6.5vw;
+  bottom: 5.5vh;
   height: 7vh;
   width: 7vh;
   -ms-grid-column: 2;
@@ -110,21 +87,31 @@
 
 .dropdown {
   position: relative;
+  height: 100%;
   display: inline-block;
+}
+
+.dropdown .new-entry {
+  overflow: visible;
+  width: auto;
+  height: calc(4rem + 30%);
+  min-height: 50px;
+  margin-top: 25%;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  bottom: 15vh;
+  bottom: 60%;
   background-color: black;
   min-width: 160px;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 10;
 }
 
 .dropdown:hover .dropdown-content {
+  z-index: 10;
   display: block;
   color: black;
 }
@@ -147,11 +134,10 @@
 .editing {
   display: none;
   padding: 2rem;
-  height: 75vh;
-  width: 90%;
+  height: calc(100% - 4rem);
   min-height: 600px;
   min-width: 500px;
-  margin-left: 3rem;
+  margin-left: 1rem;
   background: #71B637;
   border-radius: 1rem;
 }
@@ -175,15 +161,12 @@
 }
 
 .editing .text-content {
-  min-width: 100%;
-  min-height: 70%;
-  margin-top: 1rem;
-  width: 98.5%;
-  height: 70%;
+  width: calc(100% - 2rem);
+  height: calc(85% - 8rem);
+  margin: 0.9rem 0;
   background: white;
   border-radius: 1rem;
-  padding-top: 1rem;
-  padding-left: 0.5rem;
+  padding: 1rem;
   border: none;
   overflow: auto;
   outline: none;
@@ -210,10 +193,15 @@
 
 .editing .save-btn:hover {
   cursor: pointer;
+  background: rgba(255, 163, 63, 0.35);
 }
 
 .editing h1 {
   text-align: center;
+}
+
+.editing h1:hover {
+  text-decoration: underline;
 }
 
 .editing .delete-btn-wrapper {
@@ -239,11 +227,10 @@
 .img-editing {
   display: none;
   padding: 2rem;
-  height: 75vh;
-  width: 90%;
+  height: calc(100% - 4rem);
+  margin-left: 1rem;
   min-height: 550px;
   min-width: 300px;
-  margin-left: 3rem;
   background: #71B637;
   border-radius: 1rem;
 }
@@ -267,11 +254,8 @@
 }
 
 .img-editing .img-content {
-  margin-top: 1rem;
-  margin-left: 3vw;
-  width: 55vw;
-  max-width: 1000px;
-  height: 70%;
+  height: calc(85% - 8rem);
+  margin: 1.5rem 2rem;
   background: white;
   border-radius: 1rem;
   padding-top: 1rem;
@@ -291,12 +275,15 @@
   display: none;
 }
 
-.img-editing .img-content .uploaded {
-  max-width: 90%;
-  max-height: 90%;
+.img-editing .img-content .img-wrapper {
+  text-align: center;
+}
+
+.img-editing .img-content .img-wrapper .uploaded {
+  max-width: 70%;
+  max-height: 70%;
   width: auto;
   height: auto;
-  margin-left: 6vw;
 }
 
 .img-editing .img-content:hover {
@@ -321,13 +308,22 @@
   text-align: center;
 }
 
-.img-editing .delete-btn {
-  height: 100px;
-  width: 7vh;
-  min-width: 50px;
+.img-editing h1:hover {
+  text-decoration: underline;
+}
+
+.img-editing .delete-btn-wrapper {
+  position: relative;
+}
+
+.img-editing .delete-btn-wrapper .delete-btn {
   position: absolute;
-  right: 5vw;
-  top: 18vh;
+  bottom: 0.5rem;
+  height: 8vh;
+  width: 7vh;
+  min-height: 50px;
+  min-width: 75px;
+  right: 1rem;
 }
 
 .img-editing .delete-btn:hover {

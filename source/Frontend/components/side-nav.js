@@ -1,5 +1,7 @@
 //side-nav.js
 
+import { SUN } from "./icons.js";
+
 const FUTURE = "Future Log";
 const DAILY = "Daily Log";
 const MONTHLY = "Monthly Log";
@@ -9,7 +11,7 @@ const MONTHLY = "Monthly Log";
  * @extends HTMLElement
  * 
  * @example
- * <future-nav>
+ * <side-nav>
  */
 class SideNav extends HTMLElement{
 
@@ -22,6 +24,12 @@ class SideNav extends HTMLElement{
 		const template = document.createElement("template");
 
 		template.innerHTML = `
+			<style>
+				svg {
+					width: 2rem;
+					height: 2rem;
+				}
+			</style>
 			<div id="burger-and-title" class="burger-and-title">
 				<div class="burger" id="side-nav-burger">
 					<div class="x" id="x"></div>
@@ -37,6 +45,14 @@ class SideNav extends HTMLElement{
 						<li id="sn-monthly-log" class="sn-link">${MONTHLY}</li>
 						<li id="sn-future-log" class="sn-link">${FUTURE}</li>
 					</ul>
+					<div class="settings">
+						<ul>
+							<li id="sn-help" class="sn-link">Help</li>
+						</ul>
+						<div class="color-mode-container">
+							${SUN}
+						</div>
+					</div>
 				</div>
 			</div>
 		`;

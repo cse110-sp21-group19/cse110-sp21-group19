@@ -3,7 +3,7 @@
 import { MONTHS } from "./log-type.js";
 
 /**
- * Class represting custom future nav component
+ * Class represting a custom future nav component
  * @extends HTMLElement
  * 
  * @example
@@ -31,6 +31,12 @@ class FutureNav extends HTMLElement {
 		linkElem.setAttribute("rel", "stylesheet");
 		// NOTE: it's important that you do NOT include the slash before "style/css/..."
 		linkElem.setAttribute("href", "style/css/futurenav.css");
+
+		// dark mode class
+		if (document.body.className == "dark-mode") {
+			const CONTAINER = this.shadowRoot.querySelector(".future-container");
+			CONTAINER.className += " dark-mode";
+		}
 
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(linkElem);
@@ -76,5 +82,5 @@ class FutureNav extends HTMLElement {
 	}/* set year */
 }/* FutureNav */
 
-
+// Define a custom element for the future nav web component
 customElements.define("future-nav", FutureNav);

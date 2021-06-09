@@ -6,17 +6,21 @@
     outline: none;
 }
 /*Begin styling additional entry bar*/
+.initial{
+    height: 100%;
+}
 .active-bar{
     background: $accent2;
-    height: 20vh;
-    width: 85%;
+    height: calc(100% - 4rem);
+    //height: 200px;
     display: flex;
     justify-content: space-between;
-    padding: 2vh 2vw 2vh 2vw;
+    padding: 1.5rem 3.5rem;
+    // padding: 2vh 2vw 2vh 2vw;
+    margin: 1rem;
     min-width: 300px;
     min-height: 100px;
     border-radius: 1rem;
-    margin-left: 3vw;
 
     .close{
         text-align: left;
@@ -28,7 +32,7 @@
     }
 
     .content{
-        height: 13vh;
+        height: 100%;
         width: 65%;
         min-width: 100px;
         background: white;
@@ -37,43 +41,45 @@
         overflow-x: hidden;
         overflow-y: hidden;
         display: flex;
+        padding: 0 1rem;
         flex-direction: row;
-        padding: 0 1rem 3rem 1rem;
+        align-items: center;
+        //padding: 0 1rem 3rem 1rem;
     }
     .content:hover{
         overflow-x: auto;
     }
-    .new-entry{
-        overflow: visible;
-        width: 8rem;
-        height: 10vh;
-        min-height: 50px;
-        margin-top: 3vh;
-    }
-    .new-entry:hover{
-        cursor: pointer;
-
-    }
 
 }
-.inactive-bar{
-    width: 3vw;
-    height: 3vw;
-    min-width: 3vw;
-    min-height: 3vw;
-    margin: 0 1rem 2rem;
-    background: transparent;
-    border-radius: 1vw;
-    padding: 0.2rem;
-    float: right;
-    display: grid;
-    justify-content: center;
-    white-space: nowrap;   
-}
-.inactive-bar:hover{
-    cursor: pointer;
-}
+// .inactive-bar{
+//     position: absolute;
+//     right: 0;
+//     padding-right: 5rem;
+//     width: 3vw;
+//     height: 3vw;
+//     min-width: 3vw;
+//     min-height: 3vw;
+//     margin: 0 1rem 2rem;
+//     background: transparent;
+//     border-radius: 1vw;
+//     //padding: 0.2rem;
+//     //float: right;
+//     //display: grid;
+//     justify-content: center;
+//     white-space: nowrap;
+
+//     cursor: pointer;
+
+//     svg {
+//         position: absolute;
+//         bottom: 4rem;
+//     }
+// }
+
 #btn{
+    position: absolute;
+    right: 6.5vw;
+    bottom: 5.5vh;
     height: 7vh;
     width: 7vh;
     grid-column-start: 2;
@@ -88,19 +94,29 @@
 }
 .dropdown {
     position: relative;
+    height: 100%;
     display: inline-block;
+    .new-entry{
+        overflow: visible;
+        width: auto;
+        height: calc(4rem + 30%);
+        min-height: 50px;
+        margin-top: 25%
+        
+    }
 }
 .dropdown-content {
     display: none;
     position: absolute;
-    bottom: 15vh;
+    bottom: 60%;
     background-color: black;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 10;
 }
   .dropdown:hover{
     .dropdown-content {
+        z-index: 10;
         display: block;
         color: black;
     }  
@@ -121,11 +137,11 @@
 .editing{
     display: none;
     padding: 2rem;
-    height: 75vh;
-    width: 90%;
+    height: calc(100% - 4rem);
+    //width: 100%;
     min-height: 600px;
     min-width: 500px;
-    margin-left: 3rem;
+    margin-left: 1rem;
     background: $accent;
     border-radius: 1rem;
     
@@ -144,15 +160,15 @@
         cursor: pointer;
     }
     .text-content{
-        min-width: 100%;
-        min-height: 70%;
-        margin-top: 1rem;
-        width: 98.5%;
-        height: 70%;
+        //min-width: 100%;
+       // min-height: 70%;
+        //margin-top: 1rem;
+        width: calc(100% - 2rem);
+        height: calc(85% - 8rem);
+        margin: 0.9rem 0;
         background: white;
         border-radius: 1rem;
-        padding-top: 1rem;
-        padding-left: 0.5rem;
+        padding: 1rem;
         border: none;
         overflow: auto;
         outline: none;
@@ -179,10 +195,14 @@
     }
     .save-btn:hover{
         cursor: pointer;
+        background:rgba(255, 163, 63, 0.35);
     }
 
     h1{
         text-align: center;
+        &:hover{
+            text-decoration: underline;
+        }
     }
     .delete-btn-wrapper{
         position: relative;
@@ -208,11 +228,11 @@
 .img-editing{
     display: none;
     padding: 2rem;
-    height: 75vh;
-    width: 90%;
+    height: calc(100% - 4rem);
+    //width: 90%;
+    margin-left: 1rem;
     min-height: 550px;
     min-width: 300px;
-    margin-left: 3rem;
     background: $accent;
     border-radius: 1rem;
     
@@ -231,11 +251,14 @@
         cursor: pointer;
     }
     .img-content{
-        margin-top: 1rem;
-        margin-left: 3vw;
-        width: 55vw;
-        max-width: 1000px;
-        height: 70%;
+        //margin-top: 1rem;
+       // margin-left: 3vw;
+        // width: 55vw;
+        // max-width: 1000px;
+        // height: 70%;
+        //width: calc(100% - 2rem);
+        height: calc(85% - 8rem);
+        margin: 1.5rem 2rem;
         background: white;
         border-radius: 1rem;
         padding-top: 1rem;
@@ -250,13 +273,17 @@
         .choose-img{
             display: none;
         }
-        .uploaded{
-            max-width:90%;
-            max-height:90%;
-            width: auto;
-            height: auto;
-            margin-left: 6vw;
+        .img-wrapper{
+            text-align: center;
+           
+            .uploaded{
+                max-width: 70%;
+                max-height: 70%;
+                width: auto;
+                height: auto;
+            }
         }
+        
         
     }
    
@@ -278,15 +305,22 @@
 
     h1{
         text-align: center;
+        &:hover{
+            text-decoration: underline;
+        }
     }
 
-    .delete-btn{
-        height: 100px;
-        width: 7vh;
-        min-width: 50px;
-        position: absolute;
-        right: 5vw;
-        top: 18vh;
+    .delete-btn-wrapper{
+        position: relative;
+        .delete-btn{
+            position: absolute;
+            bottom: 0.5rem;
+            height: 8vh;
+            width: 7vh;
+            min-height: 50px;
+            min-width: 75px;
+            right: 1rem;
+        }
     }
     .delete-btn:hover{
         cursor: pointer;

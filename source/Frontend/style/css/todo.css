@@ -1,20 +1,27 @@
-/* Weekly Nav - Cory */
+/* To Do */
+/* Variables */
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+/* device sizes */
+/* top of todo list title */
 .todo-title {
-  margin-top: 1.4rem;
-  margin-bottom: 0.5rem;
-  margin-left: 0.9rem;
+  margin: 1.5rem 0 0.5rem 0.9rem;
+  font-weight: 500;
+  font-size: 1.5em;
 }
 
+/* outermost container */
 .todo-container {
-  background: #71B637;
   z-index: -1;
+  height: calc(100% - 2rem);
+  padding: 0.5rem;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
-  padding: 0.6rem;
+  background: #71B637;
+  /* container holding todo items and that allows for scrolling */
+  /* custom scrollbar */
   /* Track */
   /* Handle */
   /* Handle on hover */
@@ -29,39 +36,43 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 40vh;
+  height: calc(100% - 3.5rem);
   margin: 0.5rem;
   padding-right: 0.3rem;
+  /* Dark mode */
+  /* each todo item in list */
+}
+
+.todo-container .scroll-container .dark-mode.todo-item {
+  background: #181A18;
 }
 
 .todo-container .scroll-container .todo-item {
-  margin: 0.4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background: white;
+  margin: 0.4rem;
   border-radius: 0.5rem;
-}
-
-.todo-container .scroll-container .todo-item:hover {
-  -webkit-filter: brightness(90%);
-          filter: brightness(90%);
+  background: white;
+  /* styling for no item box */
+  /* date of todo item */
+  /* container of todo bullet list */
 }
 
 .todo-container .scroll-container .todo-item .no-items {
-  pointer-events: none;
+  padding: 1rem 2rem;
   font-size: 1.5em;
   font-weight: bold;
-  padding: 1rem 2rem;
+  pointer-events: none;
 }
 
 .todo-container .scroll-container .todo-item .todo-date {
   pointer-events: none;
-  margin-top: 0.6rem;
-  margin-left: 0.6rem;
-  width: 5vw;
-  min-width: 6rem;
   height: 100%;
+  width: 5vw;
+  min-width: 7.5rem;
+  margin: 0.6rem 0 0 0.6rem;
+  pointer-events: none;
 }
 
 .todo-container .scroll-container .todo-item .todo-date #day-of-month {
