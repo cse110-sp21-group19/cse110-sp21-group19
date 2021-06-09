@@ -13,7 +13,11 @@
  * @property {Array.<HelpElementObj>} sectionElements - An array of help elements.
  */
 
+/** Class representing a help element. */
 class HelpElement extends HTMLElement {
+	/**
+	 * Create a help element.
+	 */
     constructor() {
         super();
 
@@ -37,11 +41,15 @@ class HelpElement extends HTMLElement {
 
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(helpElementStyle);
-    }
+    } /* constructor */
 
+	/**
+	 * get info
+	 * Default function.
+	 */
     get info() {
         return null;
-    }
+    } /* get info */
 
 	/**
 	 * set info
@@ -62,12 +70,16 @@ class HelpElement extends HTMLElement {
         // set content
         const CONTENT = this.shadowRoot.getElementById("help-element-content");
         CONTENT.innerText = info.content;
-    }
+    } /* set info */
 }
 
 customElements.define("help-element", HelpElement);
 
+/** Class representing a section on the help page. */
 class HelpSection extends HTMLElement {
+	/**
+	 * Create a help section.
+	 */
     constructor() {
         super();
 
@@ -92,11 +104,15 @@ class HelpSection extends HTMLElement {
 
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(helpElementStyle);
-    }
+    } /* constructor */
 
+	/**
+	 * get info
+	 * Default function.
+	 */
     get info() {
         return null;
-    }
+    } /* get info */
 
 	/**
 	 * set info
@@ -129,13 +145,16 @@ class HelpSection extends HTMLElement {
             section.info = element;
             HELPELEMENTS.appendChild(section);
         })
-    }
+    } /* set info */
 }
 
 customElements.define("help-section", HelpSection);
 
-
+/** Class representing the help page table of contents. */
 class HelpTableOfContents extends HTMLElement {
+	/**
+	 * Create help page's table of contents.
+	 */
 	constructor() {
 		super();
 		const template = document.createElement("template");
@@ -164,12 +183,33 @@ class HelpTableOfContents extends HTMLElement {
 
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(helpElementStyle);
-	}
+	} /* constructor */
 
+	/**
+	 * get contents
+	 * Default function.
+	 */
 	get contents() {
 		return null;
-	}
+	} /* get contents */
 
+	/**
+	 * set contents
+	 * Set the table of contents for the help page.
+	 * @param {Array.<HelpSectionObj>} entry - An array containing JS object with 
+	 * the type, date, content, priority, and completed information of the bullet.
+	 * 
+	 * @example
+	 *      this.info = [{
+ 	 *  				 sectionTitle: "foo",
+ 	 *  				 sectionDescription: [],
+ 	 *  				 sectionElements: [],
+	 * 					},
+ 	 *  				 sectionTitle: "foo",
+ 	 *  				 sectionDescription: [],
+ 	 *  				 sectionElements: [],
+	 * 					}];
+	 */
 	set contents(contents) {
 		let tocContainer = this.shadowRoot.querySelector(".help-toc-container");
 		contents.forEach(element => {
@@ -179,7 +219,7 @@ class HelpTableOfContents extends HTMLElement {
 			tocLink.innerText = element.sectionTitle;
 			tocContainer.appendChild(tocLink);
 		});
-	}
+	} /* set contents */
 }
 
 customElements.define("help-toc", HelpTableOfContents);

@@ -44,10 +44,14 @@ class SideNav extends HTMLElement{
 						<li id="sn-daily-log" class="sn-link">${DAILY}</li>
 						<li id="sn-monthly-log" class="sn-link">${MONTHLY}</li>
 						<li id="sn-future-log" class="sn-link">${FUTURE}</li>
-						<li id="sn-help" class="sn-link">Help</li>
 					</ul>
-					<div class="color-mode-container">
-						${SUN}
+					<div class="settings">
+						<ul>
+							<li id="sn-help" class="sn-link">Help</li>
+						</ul>
+						<div class="color-mode-container">
+							${SUN}
+						</div>
 					</div>
 				</div>
 			</div>

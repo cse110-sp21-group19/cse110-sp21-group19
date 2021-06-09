@@ -79,7 +79,6 @@ class FutureNav extends HTMLElement {
 
 			futureContainer.appendChild(futureItem);
 		});
-
 	}/* set year */
 }/* FutureNav */
 
