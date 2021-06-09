@@ -41,7 +41,9 @@
         overflow-x: hidden;
         overflow-y: hidden;
         display: flex;
+        padding: 0 1rem;
         flex-direction: row;
+        align-items: center;
         //padding: 0 1rem 3rem 1rem;
     }
     .content:hover{
