@@ -1,4 +1,5 @@
 /* Additional Entries - Malhar */
+/* Variables */
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
@@ -65,10 +66,6 @@
   overflow-x: auto;
 }
 
-.active-bar .new-entry:hover {
-  cursor: pointer;
-}
-
 #btn {
   position: absolute;
   right: 5.5vw;
@@ -97,9 +94,9 @@
 .dropdown .new-entry {
   overflow: visible;
   width: auto;
-  height: 60%;
+  height: calc(4rem + 30%);
   min-height: 50px;
-  margin-top: 20%;
+  margin-top: 25%;
 }
 
 .dropdown-content {
@@ -278,12 +275,15 @@
   display: none;
 }
 
-.img-editing .img-content .uploaded {
-  max-width: 90%;
-  max-height: 90%;
+.img-editing .img-content .img-wrapper {
+  text-align: center;
+}
+
+.img-editing .img-content .img-wrapper .uploaded {
+  max-width: 70%;
+  max-height: 70%;
   width: auto;
   height: auto;
-  margin-left: 6vw;
 }
 
 .img-editing .img-content:hover {
@@ -312,13 +312,18 @@
   text-decoration: underline;
 }
 
-.img-editing .delete-btn {
-  height: 100px;
-  width: 7vh;
-  min-width: 50px;
+.img-editing .delete-btn-wrapper {
+  position: relative;
+}
+
+.img-editing .delete-btn-wrapper .delete-btn {
   position: absolute;
-  right: 5vw;
-  top: 18vh;
+  bottom: 0.5rem;
+  height: 8vh;
+  width: 7vh;
+  min-height: 50px;
+  min-width: 75px;
+  right: 1rem;
 }
 
 .img-editing .delete-btn:hover {

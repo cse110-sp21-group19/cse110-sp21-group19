@@ -1,4 +1,5 @@
 /* Sidebar - Cory */
+/* Variables */
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
@@ -116,9 +117,28 @@
   cursor: pointer;
 }
 
+.side-nav-menu-container .side-nav-menu .settings {
+  bottom: 0;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: calc(100% - 80px);
+  padding: 40px;
+}
+
+.side-nav-menu-container .side-nav-menu .settings ul, .side-nav-menu-container .side-nav-menu .settings li {
+  margin: 0;
+  padding: 0;
+}
+
+.side-nav-menu-container .side-nav-menu .settings ul {
+  width: 50%;
+}
+
 .side-nav-menu-container .side-nav-menu .color-mode-container {
+  width: 50%;
   text-align: right;
-  padding: 0 3rem;
 }
 
 .side-nav-menu-container .side-nav-menu .color-mode-container svg {

@@ -1,10 +1,12 @@
 /* Tools, Helpers, Variables, Config, etc. */
+/* Variables */
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
 /* device sizes */
 /* Base Styles */
+/* Style Resets */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -59,6 +61,7 @@ table {
   border-spacing: 0;
 }
 
+/* Typography - type scale */
 html {
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   color: #181A18;
@@ -101,6 +104,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Layout */
+/* Layout */
 body {
   -webkit-animation: fadeInAnimation ease 1s;
           animation: fadeInAnimation ease 1s;
@@ -129,17 +133,19 @@ body {
 }
 
 body {
-  background: #E5E5E5;
-  margin: auto;
   padding: 0 3rem;
+  margin: auto;
+  background: #E5E5E5;
 }
 
 body .container {
-  margin-top: 0;
   display: -ms-grid;
   display: grid;
+  margin-top: 0;
   -ms-grid-columns: 30% 70%;
       grid-template-columns: 30% 70%;
+  /* side navigation and container */
+  /* daily log: main-text and additional entries */
 }
 
 body .container .left-side-container {
@@ -234,11 +240,12 @@ body .container .daily-log-title {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 1rem;
+  /* main-text header arrow buttons */
 }
 
 body .container .daily-log-title i {
-  font-size: 1.5rem;
   padding: 0 1rem;
+  font-size: 1.5rem;
 }
 
 body .container .daily-log-title i:hover {
@@ -303,25 +310,49 @@ body.dark-mode input {
 /* Main Text - Manda */
 .main-text-container {
   height: calc(100% - 2rem);
-  background: white;
   border-radius: 1rem;
   margin: 0 1rem;
-  padding: 1rem;
+  padding: 2rem 3rem 0 0rem;
+  background: white;
 }
 
 .main-text-container .main-text {
-  opacity: 0;
-  scroll-behavior: smooth;
   height: calc(100% - 3.5rem);
   width: calc(100% - 2rem);
   overflow-y: auto;
+  opacity: 0;
   background: white;
+  scroll-behavior: smooth;
+  padding: 0 2rem;
 }
 
 .main-text-container .main-text.active {
   opacity: 1;
   -webkit-transition: opacity 425ms ease-in-out;
   transition: opacity 425ms ease-in-out;
+}
+
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 8px;
+  position: relative;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FFA33F;
 }
 
 ::-webkit-scrollbar {

@@ -86,7 +86,6 @@ SNFUTURELOG.addEventListener("click", () => {
 // on click listener for help button in side nav
 const SNHELP = SIDENAVROOT.getElementById("sn-help");
 SNHELP.addEventListener("click", () => {
-	// when clicking on daily log from side nav, open to current year
     const d = new Date();
 	router.setState("help", false, d, "side-nav");
 

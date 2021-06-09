@@ -49,10 +49,6 @@
     .content:hover{
         overflow-x: auto;
     }
-    .new-entry:hover{
-        cursor: pointer;
-
-    }
 
 }
 // .inactive-bar{
@@ -103,9 +99,9 @@
     .new-entry{
         overflow: visible;
         width: auto;
-        height: 60%;
+        height: calc(4rem + 30%);
         min-height: 50px;
-        margin-top: 20%;
+        margin-top: 25%
         
     }
 }
@@ -277,13 +273,17 @@
         .choose-img{
             display: none;
         }
-        .uploaded{
-            max-width:90%;
-            max-height:90%;
-            width: auto;
-            height: auto;
-            margin-left: 6vw;
+        .img-wrapper{
+            text-align: center;
+           
+            .uploaded{
+                max-width: 70%;
+                max-height: 70%;
+                width: auto;
+                height: auto;
+            }
         }
+        
         
     }
    
@@ -310,13 +310,17 @@
         }
     }
 
-    .delete-btn{
-        height: 100px;
-        width: 7vh;
-        min-width: 50px;
-        position: absolute;
-        right: 5vw;
-        top: 18vh;
+    .delete-btn-wrapper{
+        position: relative;
+        .delete-btn{
+            position: absolute;
+            bottom: 0.5rem;
+            height: 8vh;
+            width: 7vh;
+            min-height: 50px;
+            min-width: 75px;
+            right: 1rem;
+        }
     }
     .delete-btn:hover{
         cursor: pointer;

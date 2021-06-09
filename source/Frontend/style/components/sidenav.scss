@@ -93,9 +93,23 @@
             }
         
         }
+        .settings {
+            bottom: 0;
+            position: absolute;
+            display: flex;
+            width: calc(100% - 80px);
+            padding: 40px;
+            ul, li {
+                margin: 0;
+                padding: 0
+            }
+            ul {
+                width: 50%;
+            }
+        }
         .color-mode-container {
+            width: 50%;
             text-align: right;
-            padding: 0 3rem;
             svg {
                 width: 2rem;
                 height: 2rem;

@@ -1,7 +1,20 @@
-import { TASKBULLET, TASKCOMPLETE } from "./main-text.js";
+//todo-list.js
 
-//TODO: Complete this webcomponent
+import { TASKBULLET, TASKCOMPLETE } from "./icons.js";
+import { DAYS } from "./log-type.js"
+
+/**
+ * Class represting a custom todolist component
+ * @extends HTMLElement
+ * 
+ * @example
+ * <todo-list>
+ */
 class TodoList extends HTMLElement{
+
+	/**
+	 * Create a skeleton todolist component, starts off as empty
+	 */
 	constructor() {
 		super();
 		const template = document.createElement("template");
@@ -16,14 +29,6 @@ class TodoList extends HTMLElement{
 				</div>
 			</div>
 		`;
-
-		//ToDo Item format
-		// 
-		// <div class="wn-item">
-		//     <h2 class="wn-date"><span id="day-of-month"></span><span id="day-of-week"></span> </h2>
-		//     <ul class="wn-bullets"></ul>
-		// </div>
-		// create a shadow root for this web component
 
 		const shadow = this.attachShadow({ mode: "open" });
 		// attach cloned content of template to shadow DOM 
@@ -46,16 +51,29 @@ class TodoList extends HTMLElement{
 	}
 
 
+	/**
+	 * set todoList
+	 * This function fills the contents of the todo list component with an array
+	 * of arrays of task bullet items
+	 * 
+	 * @param {Array} list - array of arrays of bullets items of type task
+	 * 
+	 * @example
+	 * todo-list.todoList = bullets[];
+	 */
 	set todoList(list){
 		const scrollContainer = this.shadowRoot.querySelector(".scroll-container");
 
-		 if(list.length > 0){
+		//If the list is not empty
+		 if (list.length > 0) {
+			 //get rid of empty marker
 		 	scrollContainer.innerHTML = "";
-			list.forEach(element =>{
-				let day = getDateString(element.date.getDay());
+			list.forEach(element => {
+				let day = DAYS[element.date.getDay()];
 				let date = element.date.getDate();
 				let bullets = element.bullets;
 
+				//put bullets in bullet section
 				let todoBullets = document.createElement("div");
 				todoBullets.className = "todo-bullets-container";
 				bullets.forEach(bullet=>{
@@ -74,9 +92,9 @@ class TodoList extends HTMLElement{
 					bulletElem.appendChild(bulletType);
 					bulletElem.innerHTML += bullet.content;
 					todoBullets.appendChild(bulletElem);
-				})
+				});
 
-
+				//date section
 				let todoItem = document.createElement("div");
 				todoItem.className = "todo-item";
 				// dark mode class
@@ -99,46 +117,12 @@ class TodoList extends HTMLElement{
 				todoItem.appendChild(todoDate);
 				todoItem.appendChild(todoBullets);
 
-				console.log(todoItem);
 				scrollContainer.appendChild(todoItem);
 
 			});
 		}
-	}
+	}/* set todoList */	
+}/* TodoList */
 
-	
-}
-
-/**
- * getDateString 
- * Converts integer day of week to its related string.
- * 
- * @param {number} day - An integer of the day of the week (0-6).
- * 
- * @returns A string of the related day of the week of the parameter.
- * 
- * @example
- *      getDateString(day)
- */
- function getDateString(day){
-	switch(day){
-	case 0:
-		return "Sunday";
-	case 1:
-		return "Monday";
-	case 2:
-		return "Tuesday";
-	case 3:
-		return "Wednesday";
-	case 4:
-		return "Thursday";
-	case 5:
-		return "Friday";
-	case 6:
-		return "Saturday";
-	default:
-		return "Sunday";
-	}
-}/* getDateString */
-
+// Define a custom element for the todolist web component
 customElements.define("todo-list", TodoList);

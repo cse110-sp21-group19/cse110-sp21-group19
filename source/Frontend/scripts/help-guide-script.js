@@ -1,5 +1,6 @@
-// help-guide-script
+// help-guide-script.js
 
+// stores the content for the help guide
 export const helpGuideContent = [{
     "sectionTitle": "Layouts",
     "sectionDescription": [""],
@@ -74,6 +75,24 @@ export const helpGuideContent = [{
     }]
 }];
 
+/**
+ * createHelpPage
+ * Creates the help container and page in the main-text area. populates the
+ * page with help guide content.
+ * @param {array.<helpsectionobj>} entry - an array containing js object with 
+ * the type, date, content, priority, and completed information of the bullet.
+ *
+ * @example
+ *     createHelpPage([{
+ *  				 sectiontitle: "foo",
+ *  				 sectiondescription: [],
+ *  				 sectionelements: [],
+ * 					},
+ *  				 sectiontitle: "foo",
+ *  				 sectiondescription: [],
+ *  				 sectionelements: [],
+ * 					}]);
+ */
 export function createHelpPage(helpContent) {
     const HELPCONTAINER = document.createElement("div");
     HELPCONTAINER.className = "help-container";
@@ -89,9 +108,26 @@ export function createHelpPage(helpContent) {
     // append help-container to main-text area
     const MAINTEXT = document.getElementById("main-text");
     MAINTEXT.appendChild(HELPCONTAINER);
-}
+} /* createHelpPage */
 
+/**
+ * createHelpToc
+ * Creates the help page table of contents.
+ * @param {array.<helpsectionobj>} entry - an array containing js object with 
+ * the type, date, content, priority, and completed information of the bullet.
+ *
+ * @example
+ *     createHelpToc([{
+ 	 *  				 sectiontitle: "foo",
+ 	 *  				 sectiondescription: [],
+ 	 *  				 sectionelements: [],
+	 * 					},
+ 	 *  				 sectiontitle: "foo",
+ 	 *  				 sectiondescription: [],
+ 	 *  				 sectionelements: [],
+	 * 					}]);
+ */
 export function createHelpToc(helpContent) {
     const HELPTOC = document.createElement("help-toc");
     HELPTOC.contents = helpContent;
-}
+} /* createHelpToc */

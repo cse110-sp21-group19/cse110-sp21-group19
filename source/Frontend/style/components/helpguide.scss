@@ -34,7 +34,7 @@
     border-radius: 1rem;
     padding: 0.5rem;
     display: flex;
-    height: 80vh;
+    height: calc(100% - 6rem);
     flex-direction: column;
 
     .toc-link{
