@@ -1,4 +1,5 @@
 // script.js
+import { LOGO } from "../components/icons.js";
 import { createDB } from "../../Backend/api/bullet_api.js";
 import { createDefault, updateMode } from "../../Backend/api/settings_api.js";
 import { router } from "./router.js";
@@ -11,6 +12,14 @@ const SIDENAVROOT  = SIDENAV.shadowRoot;
 // const today = new Date();
 // router.setState("daily-log", false, today, "first-load");
 // create database
+
+const CONTAINER = document.getElementById("container");
+const LOGOCONTAINER = document.createElement("div");
+LOGOCONTAINER.className = "logo";
+LOGOCONTAINER.innerHTML = LOGO;
+
+//CONTAINER.insertBefore(LOGOCONTAINER, DAILYLOG);
+document.querySelector("main").insertBefore(LOGOCONTAINER, CONTAINER);
 
 document.addEventListener("DOMContentLoaded", function() {
 	createDB();

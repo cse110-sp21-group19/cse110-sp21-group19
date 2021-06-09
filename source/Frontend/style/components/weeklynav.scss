@@ -3,7 +3,7 @@
 
 .weekly-nav-title{
     transition: opacity 0.15s linear;
-    margin-top: 1.4rem; //Fix this later
+    margin-top: 1.5rem; //Fix this later
     margin-bottom: 0.5rem;
     margin-left: 0.9rem;
     font-weight: 500;
@@ -11,12 +11,13 @@
 }               		
 .week-container{
     transition: opacity 0.15s linear;
+    margin-top: 0.5rem;
+    height: calc(100% - 6rem);
     background: $accent;
     z-index: -1;
     border-radius: 1rem;
     padding: 0.5rem;
     display: flex;
-    height: 80vh;
     flex-direction: column;
 
     .wn-item{
@@ -31,32 +32,38 @@
         //Ideas for hover/onclick behavior
         //Hover whole item highlights clickable part
         //only hover clickable part
-        //click date
-        &:hover .wn-date{
-            // transition: filter 0.15s linear;
-            // filter: brightness(85%);
-            color: $accent2;
-            text-decoration: underline;
-        }
+        // //click date
+        // &:hover .wn-date{
+        //     color: $accent2;
+        //     text-decoration: underline;
+        // }
         .wn-date{
-            
-            pointer-events: none;
-            margin-top: 0.6rem;
-            margin-left: 0.6rem;
-            width: 5vw;
-            min-width: 5rem;
+            z-index: 5;
+            cursor: pointer;
+            padding: 0.6rem;
+            // margin-top: 0.6rem;
+            // margin-left: 0.6rem;
+            width: 18%;
+            min-width: 7.5rem;
             height: 100%;
             //grid-column-start: 1;
             #day-of-month{
+              pointer-events: none;
               font-size: 1.1em;
               font-weight: bold;
             }
             #day-of-week{
+              pointer-events: none;
                 padding: 0 0.35em;
                 font-family: $sans-serif;
                 font-weight: lighter;
                 font-size: 1.1em;
             }
+            &:hover{
+              color: $accent2;
+              text-decoration: underline;
+          }
+
         }
 
         .wn-bullets-container{

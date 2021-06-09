@@ -25,23 +25,38 @@ export async function createWeeklyNav(date) {
     WEEKLYNAV.daysOfWeek = week;
     WEEKLYNAV.selectedDay = date.getDay() + 1;
     document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
+    document.getElementById("weekly-nav-container").className += " active";
     //Onclick listener for the items inside the weekly nav
-    WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "0";
-    WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
+    // WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "0";
+    // WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
     const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector(".week-container");
-    weeklyNavContainer.addEventListener("click", (event)=>{
-        if(event.target.className.includes("wn-item")){
-            //which day was selected
-            let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
-            WEEKLYNAV.selectedDay = index;
+    weeklyNavContainer.childNodes.forEach(element =>{
+        element.addEventListener("click", (event)=>{
+            if(event.target.className == "wn-date"){
+                //which day was selected
+                let index = [].indexOf.call( weeklyNavContainer.childNodes, element);
+                WEEKLYNAV.selectedDay = index;
+    
+                //get the newly selected date and update router
+                let selectedDate = WEEKLYNAV.selectedInfo;
+                router.setState("daily", false, selectedDate, "weekly-nav");
+               
+            }
+        });
+    })
+    // weeklyNavContainer.addEventListener("click", (event)=>{
+    //     if(event.target.className == "wn-date"){
+    //         //which day was selected
+    //         let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
+    //         WEEKLYNAV.selectedDay = index;
 
-			//get the newly selected date and update router
-			let selectedDate = WEEKLYNAV.selectedInfo;
-			router.setState("daily", false, selectedDate, "weekly-nav");
+	// 		//get the newly selected date and update router
+	// 		let selectedDate = WEEKLYNAV.selectedInfo;
+	// 		router.setState("daily", false, selectedDate, "weekly-nav");
            
-		}
+	// 	}
 
-    });
+    // });
     return true;
 } /* createWeeklyNav */
 

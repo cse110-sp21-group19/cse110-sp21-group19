@@ -197,6 +197,7 @@ export function createNewBullets(inputElement, bulletStack) {
             deleteEntry(bulletKey, newBullet);
         }
     });
+
 }
 
 /**
@@ -246,6 +247,7 @@ export function bulletsFromDB(item, index, bulletStack, todayBullets) {
 	prioritizeEntry(bulletKey, newBullet);
 	completeTask(bulletKey, newBullet);
 	deleteEntry(bulletKey, newBullet);
+
 }
 
 /**
@@ -282,6 +284,7 @@ export function nestedBullets(inputElement, bulletStack) {
 			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
         }
     });
+
 }
 
 /**

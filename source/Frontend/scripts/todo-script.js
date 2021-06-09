@@ -15,7 +15,8 @@ export async function createToDoList(date){
 
     const TODO = document.createElement("todo-list");
     TODO.todoList = todoBullets;
-    document.getElementById("weekly-nav-container").appendChild(TODO);
+    document.getElementById("todo-component-container").appendChild(TODO);
+    document.getElementById("todo-component-container").className += " active";
 
     return true;
 } /* createToDoList */

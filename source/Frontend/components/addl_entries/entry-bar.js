@@ -15,7 +15,8 @@ var currKey = 0;
 class entryBar extends HTMLElement{
 	constructor() {
 		super();
-	
+		//<div class="inactive-bar">
+		//</div>
 		// templated HTML content
 		const template = document.createElement("template");
 		// change inner html of template to the correct format
@@ -23,12 +24,10 @@ class entryBar extends HTMLElement{
 			<link rel="stylesheet" href="style/css/entrybar.css">
 			<link rel="stylesheet" href="style/css/textentry.css">
 			<div class="initial">
-				<div class="inactive-bar">
-				<svg id="btn" width="61" height="36" viewBox="0 0 61 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg id="btn" class="inactive-bar" width="61" height="36" viewBox="0 0 61 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M0 18C0 8.05888 8.05888 0 18 0H43C52.9411 0 61 8.05888 61 18C61 27.9411 52.9411 36 43 36H18C8.05888 36 0 27.9411 0 18Z" fill="#FFA33F"/>
 					<path d="M21.06 22.304C20.0214 22.304 19.1474 21.9493 18.438 21.24C17.7287 20.5307 17.374 19.644 17.374 18.58C17.374 17.4907 17.7287 16.6167 18.438 15.958C19.1474 15.274 20.0214 14.932 21.06 14.932C22.0987 14.932 22.9727 15.274 23.682 15.958C24.3914 16.6167 24.746 17.4907 24.746 18.58C24.746 19.644 24.3914 20.5307 23.682 21.24C22.9727 21.9493 22.0987 22.304 21.06 22.304ZM31.0053 22.304C29.9667 22.304 29.0927 21.9493 28.3833 21.24C27.674 20.5307 27.3193 19.644 27.3193 18.58C27.3193 17.4907 27.674 16.6167 28.3833 15.958C29.0927 15.274 29.9667 14.932 31.0053 14.932C32.044 14.932 32.918 15.274 33.6273 15.958C34.3367 16.6167 34.6913 17.4907 34.6913 18.58C34.6913 19.644 34.3367 20.5307 33.6273 21.24C32.918 21.9493 32.044 22.304 31.0053 22.304ZM40.9507 22.304C39.912 22.304 39.038 21.9493 38.3287 21.24C37.6193 20.5307 37.2647 19.644 37.2647 18.58C37.2647 17.4907 37.6193 16.6167 38.3287 15.958C39.038 15.274 39.912 14.932 40.9507 14.932C41.9893 14.932 42.8633 15.274 43.5727 15.958C44.282 16.6167 44.6367 17.4907 44.6367 18.58C44.6367 19.644 44.282 20.5307 43.5727 21.24C42.8633 21.9493 41.9893 22.304 40.9507 22.304Z" fill="white"/>
 				</svg>
-				</div>
 				<div class="active-bar">
 					<span class="close">&times;</span>
 						<div class="dropdown">
@@ -532,18 +531,23 @@ function setEntrybarType(SHADOW, type) {
 	if(type == "initial"){
 		initial.style.display="block";
 		editing.style.display="none";
-		
+
 		activeBar.style.display = "none";
 		inactiveBar.style.display = "block";
 		//fires when user clicks on collapsed version of the entry bar
 		inactiveBar.addEventListener("click", function(){
-			inactiveBar.style.display = "none";
 			activeBar.style.display="flex";
+			inactiveBar.style.display = "none";
+			document.querySelector(".additional").style.flex = "1";
 		});
 		//fires when user clicks on the close button to collapse the entry bar
 		closeBtn.addEventListener("click", function(){
-			activeBar.style.display = "none";
-			inactiveBar.style.display = "grid";
+						
+			document.querySelector(".additional").style.flex = "0";
+			setTimeout(function() {
+				activeBar.style.display = "none";
+				inactiveBar.style.display = "grid";
+			}, 300);
 		});
 		//fires when user clicks the button to add a new entry
 		newTextEntry.addEventListener("click", function(){
@@ -565,6 +569,7 @@ function setEntrybarType(SHADOW, type) {
 		//toggle the relevant elements
 		initial.style.display="none";
 		editing.style.display="block";
+		document.querySelector(".additional").style.flex = "1";
 		mainText.style.display="none";
 		console.log("reached");
 	

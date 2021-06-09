@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+/* device sizes */
 /* Base Styles */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -61,6 +62,14 @@ table {
 html {
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   color: #181A18;
+  /*
+    @include tablet {
+        font-size: 1.2rem;
+    };
+    @include desktop {
+        font-size: 1.5rem;
+    };
+    */
 }
 
 h1 {
@@ -133,13 +142,81 @@ body .container {
       grid-template-columns: 30% 70%;
 }
 
-body .container .weekly-nav-container {
+body .container .left-side-container {
   -ms-grid-column: 1;
       grid-column-start: 1;
-  display: inline-block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+body .container .left-side-container .weekly-nav-container {
+  opacity: 0;
+}
+
+body .container .left-side-container .weekly-nav-container.active {
+  opacity: 1;
+  -webkit-transition: opacity 350ms ease-in-out;
+  transition: opacity 350ms ease-in-out;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+body .container .left-side-container .todo-component-container {
+  opacity: 0;
+}
+
+body .container .left-side-container .todo-component-container.active {
+  opacity: 1;
+  -webkit-transition: opacity 350ms ease-in-out;
+  transition: opacity 350ms ease-in-out;
+  height: 30vh;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+body .container .left-side-container .calendar-component-container {
+  opacity: 0;
+}
+
+body .container .left-side-container .calendar-component-container.active {
+  opacity: 1;
+  -webkit-transition: opacity 350ms ease-in-out;
+  transition: opacity 350ms ease-in-out;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 1.5rem;
+}
+
+body .container .left-side-container .side-nav-container {
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+  -webkit-animation: fadein 1s;
+          animation: fadein 1s;
 }
 
 body .container .daily-log {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: calc(100vh - 5.7rem);
   -ms-grid-column: 2;
       grid-column-start: 2;
   padding-top: 4rem;
@@ -169,9 +246,47 @@ body .container .daily-log-title i:hover {
   cursor: pointer;
 }
 
-body .side-nav-container {
-  display: -ms-grid;
-  display: grid;
+body .container .daily-log .additional {
+  -webkit-box-flex: 0;
+      -ms-flex: 0;
+          flex: 0;
+  height: 20%;
+  overflow-y: hidden;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+body .container .daily-log .flexgrow {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 30vh;
+}
+
+/* style logo */
+.logo {
+  position: absolute;
+  padding: 1rem 5rem;
+  right: 0;
+  z-index: -1;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* dark mode */
@@ -187,20 +302,49 @@ body.dark-mode input {
 /* Components */
 /* Main Text - Manda */
 .main-text-container {
-  height: 65vh;
+  height: calc(100% - 2rem);
+  background: white;
   border-radius: 1rem;
   margin: 0 1rem;
   padding: 1rem;
-  background: white;
 }
 
 .main-text-container .main-text {
+  opacity: 0;
   scroll-behavior: smooth;
-  padding: 1rem;
-  height: calc(100% - 2rem);
+  height: calc(100% - 3.5rem);
   width: calc(100% - 2rem);
-  overflow-y: scroll;
+  overflow-y: auto;
   background: white;
+}
+
+.main-text-container .main-text.active {
+  opacity: 1;
+  -webkit-transition: opacity 425ms ease-in-out;
+  transition: opacity 425ms ease-in-out;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  position: relative;
+  top: 50px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FFA33F;
 }
 
 /* dark mode */

@@ -13,14 +13,15 @@
     z-index: -1;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
-   
+    //flex-grow: 2;
+    height: calc(100% - 2rem);
     //may have to change this
-    padding: 0.6rem;
+    padding: 0.5rem;
     .scroll-container{
         overflow-y: auto;
         display: flex;
         flex-direction: column;
-        height: 40vh;
+        height: calc(100% - 3.5rem);
         margin: 0.5rem;
         padding-right: 0.3rem;
         /* Dark mode */
@@ -32,9 +33,9 @@
             display: flex;
             background: white;
             border-radius: 0.5rem;
-            &:hover{
-                filter: brightness(90%);
-            }
+            // &:hover{
+            //     filter: brightness(90%);
+            // }
             .no-items{
               pointer-events: none;
               font-size: 1.5em;
@@ -46,7 +47,7 @@
                 margin-top: 0.6rem;
                 margin-left: 0.6rem;
                 width: 5vw;
-                min-width: 6rem;
+                min-width: 7.5rem;
                 height: 100%;
                 #day-of-month{
                     font-size: 1.1em;

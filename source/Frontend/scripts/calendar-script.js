@@ -13,7 +13,8 @@ export function createCalendar(date){
 	const CAL = document.createElement("calendar-component"); 
 	CAL.month = date;
 	CAL.currentDay = new Date();
-	document.getElementById("weekly-nav-container").appendChild(CAL);
+	document.getElementById("calendar-component-container").appendChild(CAL);
+	document.getElementById("calendar-component-container").className += " active";
 	CAL.shadowRoot.querySelector(".days").addEventListener("click", (event)=>{
 		if(event.target.className == "day"){
 				const LOGTYPE = document.querySelector("log-type");

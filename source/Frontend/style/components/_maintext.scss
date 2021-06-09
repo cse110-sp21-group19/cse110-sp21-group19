@@ -1,19 +1,50 @@
 /* Main Text - Manda */
 .main-text-container {
-    height: 65vh;
+    height: calc(100% - 2rem);
+    background: white;
     border-radius: 1rem;
     margin: 0 1rem;
     padding: 1rem;
-    background: white;
     .main-text {
+        //border-radius: 1rem;
+        opacity: 0;
+        // height: auto;
         scroll-behavior: smooth;
-        padding: 1rem;
-        height: calc(100% - 2rem);
+        height: calc(100% - 3.5rem);
         width: calc(100% - 2rem);
-        overflow-y: scroll;
+        overflow-y: auto;
         background: white;
+
+    }
+    
+    .main-text.active{
+        opacity: 1;
+        transition: opacity 425ms ease-in-out;
     }
 }
+::-webkit-scrollbar {
+    width: 8px;
+    
+    position: relative;
+    top: 50px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 6px; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(182, 182, 182);
+    border-radius: 6px; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $accent2;
+  }
 
 /* dark mode */
 body.dark-mode {

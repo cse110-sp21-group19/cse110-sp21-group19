@@ -6,17 +6,21 @@
     outline: none;
 }
 /*Begin styling additional entry bar*/
+.initial{
+    height: 100%;
+}
 .active-bar{
     background: $accent2;
-    height: 20vh;
-    width: 85%;
+    // height: calc(100% - 4rem);
+    height: 200px;
     display: flex;
     justify-content: space-between;
-    padding: 2vh 2vw 2vh 2vw;
+    padding: 1.5rem 3.5rem;
+    // padding: 2vh 2vw 2vh 2vw;
+    margin: 1rem;
     min-width: 300px;
     min-height: 100px;
     border-radius: 1rem;
-    margin-left: 3vw;
 
     .close{
         text-align: left;
@@ -28,7 +32,7 @@
     }
 
     .content{
-        height: 13vh;
+        height: 100%;
         width: 65%;
         min-width: 100px;
         background: white;
@@ -38,17 +42,10 @@
         overflow-y: hidden;
         display: flex;
         flex-direction: row;
-        padding: 0 1rem 3rem 1rem;
+        //padding: 0 1rem 3rem 1rem;
     }
     .content:hover{
         overflow-x: auto;
-    }
-    .new-entry{
-        overflow: visible;
-        width: 8rem;
-        height: 10vh;
-        min-height: 50px;
-        margin-top: 3vh;
     }
     .new-entry:hover{
         cursor: pointer;
@@ -56,24 +53,35 @@
     }
 
 }
-.inactive-bar{
-    width: 3vw;
-    height: 3vw;
-    min-width: 3vw;
-    min-height: 3vw;
-    margin: 0 1rem 2rem;
-    background: transparent;
-    border-radius: 1vw;
-    padding: 0.2rem;
-    float: right;
-    display: grid;
-    justify-content: center;
-    white-space: nowrap;   
-}
-.inactive-bar:hover{
-    cursor: pointer;
-}
+// .inactive-bar{
+//     position: absolute;
+//     right: 0;
+//     padding-right: 5rem;
+//     width: 3vw;
+//     height: 3vw;
+//     min-width: 3vw;
+//     min-height: 3vw;
+//     margin: 0 1rem 2rem;
+//     background: transparent;
+//     border-radius: 1vw;
+//     //padding: 0.2rem;
+//     //float: right;
+//     //display: grid;
+//     justify-content: center;
+//     white-space: nowrap;
+
+//     cursor: pointer;
+
+//     svg {
+//         position: absolute;
+//         bottom: 4rem;
+//     }
+// }
+
 #btn{
+    position: absolute;
+    right: 5.5vw;
+    bottom: 5.5vh;
     height: 7vh;
     width: 7vh;
     grid-column-start: 2;
@@ -88,19 +96,29 @@
 }
 .dropdown {
     position: relative;
+    height: 100%;
     display: inline-block;
+    .new-entry{
+        overflow: visible;
+        width: auto;
+        height: 60%;
+        min-height: 50px;
+        margin-top: 20%;
+        
+    }
 }
 .dropdown-content {
     display: none;
     position: absolute;
-    bottom: 15vh;
+    bottom: 60%;
     background-color: black;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 10;
 }
   .dropdown:hover{
     .dropdown-content {
+        z-index: 10;
         display: block;
         color: black;
     }  

@@ -11,7 +11,9 @@ export function createFutureNav(date){
 	FUTURENAV.year = date.getFullYear();
 
 	document.getElementById("weekly-nav-container").appendChild(FUTURENAV);
+	document.getElementById("weekly-nav-container").className += " active";
 	const FUTURENAVCONTAINER = FUTURENAV.shadowRoot.querySelector(".future-container");
+
     FUTURENAVCONTAINER.addEventListener("click", (event)=>{
         if(event.target.className == "future-item"){
             //which month was selected 0-11
