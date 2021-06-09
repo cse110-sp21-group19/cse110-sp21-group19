@@ -11,8 +11,8 @@
 }
 .active-bar{
     background: $accent2;
-    // height: calc(100% - 4rem);
-    height: 200px;
+    height: calc(100% - 4rem);
+    //height: 200px;
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 3.5rem;
@@ -139,11 +139,11 @@
 .editing{
     display: none;
     padding: 2rem;
-    height: 75vh;
-    width: 90%;
+    height: calc(100% - 4rem);
+    //width: 100%;
     min-height: 600px;
     min-width: 500px;
-    margin-left: 3rem;
+    margin-left: 1rem;
     background: $accent;
     border-radius: 1rem;
     
@@ -162,15 +162,15 @@
         cursor: pointer;
     }
     .text-content{
-        min-width: 100%;
-        min-height: 70%;
-        margin-top: 1rem;
-        width: 98.5%;
-        height: 70%;
+        //min-width: 100%;
+       // min-height: 70%;
+        //margin-top: 1rem;
+        width: calc(100% - 2rem);
+        height: calc(85% - 8rem);
+        margin: 0.9rem 0;
         background: white;
         border-radius: 1rem;
-        padding-top: 1rem;
-        padding-left: 0.5rem;
+        padding: 1rem;
         border: none;
         overflow: auto;
         outline: none;
@@ -197,10 +197,14 @@
     }
     .save-btn:hover{
         cursor: pointer;
+        background:rgba(255, 163, 63, 0.35);
     }
 
     h1{
         text-align: center;
+        &:hover{
+            text-decoration: underline;
+        }
     }
     .delete-btn-wrapper{
         position: relative;
@@ -226,11 +230,11 @@
 .img-editing{
     display: none;
     padding: 2rem;
-    height: 75vh;
-    width: 90%;
+    height: calc(100% - 4rem);
+    //width: 90%;
+    margin-left: 1rem;
     min-height: 550px;
     min-width: 300px;
-    margin-left: 3rem;
     background: $accent;
     border-radius: 1rem;
     
@@ -249,11 +253,14 @@
         cursor: pointer;
     }
     .img-content{
-        margin-top: 1rem;
-        margin-left: 3vw;
-        width: 55vw;
-        max-width: 1000px;
-        height: 70%;
+        //margin-top: 1rem;
+       // margin-left: 3vw;
+        // width: 55vw;
+        // max-width: 1000px;
+        // height: 70%;
+        //width: calc(100% - 2rem);
+        height: calc(85% - 8rem);
+        margin: 1.5rem 2rem;
         background: white;
         border-radius: 1rem;
         padding-top: 1rem;
@@ -296,6 +303,9 @@
 
     h1{
         text-align: center;
+        &:hover{
+            text-decoration: underline;
+        }
     }
 
     .delete-btn{

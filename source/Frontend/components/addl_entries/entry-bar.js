@@ -99,7 +99,7 @@ class entryBar extends HTMLElement{
 	 * @param {}
 	 */
 	connectedCallback(){
-		let mainText = document.querySelector(".main-text-container");
+		let mainText = document.querySelector(".flexgrow");
 		let innerBar = this.shadowRoot.querySelector(".content");
 		let title = this.shadowRoot.querySelectorAll(".entry-title")[0];
 		let imgTitle = this.shadowRoot.querySelectorAll(".entry-title")[1];
@@ -426,7 +426,7 @@ class entryBar extends HTMLElement{
 	 * @example ENTRYBAR.entries = loadedEntries;
 	 */
 	set entries(entries){
-		let mainText = document.querySelector(".main-text-container");
+		let mainText = document.querySelector(".flexgrow");
 		let innerBar = this.shadowRoot.querySelector(".content");
 		let title = this.shadowRoot.querySelector(".entry-title");
 		let content = this.shadowRoot.querySelector(".text-content");
@@ -520,7 +520,7 @@ function setEntrybarType(SHADOW, type) {
 	let uploaded = SHADOW.querySelector(".uploaded");
 	let infoText = SHADOW.querySelector(".img-text");
 	let imgContent = SHADOW.querySelector(".img-content");
-	let mainText = document.querySelector(".main-text-container");
+	let mainText = document.querySelector(".flexgrow");
 	let title = SHADOW.querySelectorAll(".entry-title")[0];
 	let content = SHADOW.querySelector(".text-content");
 	let imgTitle = SHADOW.querySelectorAll(".entry-title")[1];
@@ -569,8 +569,8 @@ function setEntrybarType(SHADOW, type) {
 		//toggle the relevant elements
 		initial.style.display="none";
 		editing.style.display="block";
-		document.querySelector(".additional").style.flex = "1";
-		mainText.style.display="none";
+		//document.querySelector(".additional").style.flex = "1";
+		mainText.style.display = "none";
 		console.log("reached");
 	
 		if(isViewing){
@@ -638,7 +638,7 @@ function makeEntry(title, content, key, image){
  */
 function deleteNote() {
 	let SHADOW = document.querySelector("entry-bar").shadowRoot;
-	let mainText = document.querySelector(".main-text-container");
+	let mainText = document.querySelector(".flexgrow");
 	let innerBar = SHADOW.querySelector(".content");
 	let title = SHADOW.querySelectorAll(".entry-title")[0];
 	let content = SHADOW.querySelector(".text-content");
@@ -686,7 +686,7 @@ function deleteNote() {
  */
 function deleteImg() {
 	let SHADOW = document.querySelector("entry-bar").shadowRoot;
-	let mainText = document.querySelector(".main-text-container");
+	let mainText = document.querySelector(".flexgrow");
 	let innerBar = SHADOW.querySelector(".content");
 	let imgTitle = SHADOW.querySelectorAll(".entry-title")[1];
 	let uploaded = SHADOW.querySelector(".uploaded");

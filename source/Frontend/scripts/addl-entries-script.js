@@ -31,7 +31,7 @@ export async function updateAddlEntries() {
 	let myDate = document.querySelector("log-type").readLog.header;
 	const ADDLENTRYBAR = document.querySelector("entry-bar");
    // document.querySelector(".additional").classList.remove("active");
-    ADDLENTRYBAR.style.display="block";
+    //ADDLENTRYBAR.style.display="block";
 
 	let entriesList = await getDailyEntries(myDate);
 	let keys = entriesList[0];
