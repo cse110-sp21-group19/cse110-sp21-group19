@@ -135,8 +135,6 @@
   display: none;
   padding: 2rem;
   height: calc(100% - 4rem);
-  min-height: 600px;
-  min-width: 500px;
   margin-left: 1rem;
   background: #71B637;
   border-radius: 1rem;
@@ -229,8 +227,6 @@
   padding: 2rem;
   height: calc(100% - 4rem);
   margin-left: 1rem;
-  min-height: 550px;
-  min-width: 300px;
   background: #71B637;
   border-radius: 1rem;
 }
