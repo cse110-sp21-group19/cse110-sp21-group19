@@ -229,10 +229,6 @@ body .container .daily-log .additional {
   transition: all 0.3s ease-out;
 }
 
-body .container .daily-log .additional.active {
-  opacity: 1;
-}
-
 /* style logo */
 .logo {
   position: absolute;
