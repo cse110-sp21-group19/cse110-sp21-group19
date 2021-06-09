@@ -83,7 +83,7 @@ deleteBtn.addEventListener("click", async () => {
         console.log(`Deleted?: ${result}`);
     }); 
 	console.log(`Deleted: ${result}`); */
-	console.log("hello")
+	console.log("hello");
 	updateMode(true);
 
 	let test = await getMode();
