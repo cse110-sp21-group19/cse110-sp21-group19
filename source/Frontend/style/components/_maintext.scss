@@ -3,7 +3,7 @@
     height: calc(100% - 2rem);
     border-radius: 1rem;
     margin: 0 1rem;
-    padding: 1rem;
+    padding: 2rem 3rem 0 0rem;
     background: white;
 
     .main-text {
@@ -13,7 +13,7 @@
         opacity: 0;
         background: white;
         scroll-behavior: smooth;
-        padding: 0 1rem;
+        padding: 0 2rem;
     }
     
     .main-text.active{
@@ -44,6 +44,29 @@
 ::-webkit-scrollbar-thumb:hover {
   background: $accent2;
 }
+::-webkit-scrollbar {
+    width: 8px;
+    
+    position: relative;
+    top: 50px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 6px; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(182, 182, 182);
+    border-radius: 6px; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $accent2;
+  }
 
 /* dark mode */
 body.dark-mode {

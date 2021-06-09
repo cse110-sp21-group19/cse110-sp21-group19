@@ -215,4 +215,8 @@ svg, input[type=text] {
 .entry.dark-mode #bullet-inputted, .entry.dark-mode .fa-star-fill {
   color: white;
 }
+
+.bullet-list {
+  margin-left: 0;
+}
 /*# sourceMappingURL=bulletentry.css.map */

@@ -573,8 +573,8 @@ function setEntrybarType(SHADOW, type) {
 		//toggle the relevant elements
 		initial.style.display="none";
 		editing.style.display="block";
-		document.querySelector(".additional").style.flex = "1";
-		mainText.style.display="none";
+		//document.querySelector(".additional").style.flex = "1";
+		mainText.style.display = "none";
 		console.log("reached");
 	
 		if(isViewing){

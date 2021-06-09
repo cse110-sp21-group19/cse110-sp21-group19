@@ -26,15 +26,6 @@ body {
         grid-template-columns: 30% 70%;
 
         /* side navigation and container */
-        /*
-        .weekly-nav-container {
-            display: inline-block;
-            grid-column-start: 1;
-
-            .side-nav-container {
-                display: grid;
-            */
-        //margin-top: 4rem;
         .left-side-container{
             grid-column-start: 1;
             display: flex;

@@ -145,14 +145,6 @@ body .container {
   -ms-grid-columns: 30% 70%;
       grid-template-columns: 30% 70%;
   /* side navigation and container */
-  /*
-        .weekly-nav-container {
-            display: inline-block;
-            grid-column-start: 1;
-
-            .side-nav-container {
-                display: grid;
-            */
   /* daily log: main-text and additional entries */
 }
 
@@ -320,7 +312,7 @@ body.dark-mode input {
   height: calc(100% - 2rem);
   border-radius: 1rem;
   margin: 0 1rem;
-  padding: 1rem;
+  padding: 2rem 3rem 0 0rem;
   background: white;
 }
 
@@ -331,7 +323,7 @@ body.dark-mode input {
   opacity: 0;
   background: white;
   scroll-behavior: smooth;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 .main-text-container .main-text.active {
@@ -344,6 +336,29 @@ body.dark-mode input {
 ::-webkit-scrollbar {
   width: 8px;
   position: relative;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FFA33F;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  position: relative;
+  top: 50px;
 }
 
 /* Track */

@@ -11,11 +11,12 @@
 }
 .active-bar{
     background: $accent2;
-    // height: calc(100% - 4rem);
-    height: 200px;
+    height: calc(100% - 4rem);
+    //height: 200px;
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 3.5rem;
+    // padding: 2vh 2vw 2vh 2vw;
     margin: 1rem;
     min-width: 300px;
     min-height: 100px;
@@ -40,8 +41,10 @@
         overflow-x: hidden;
         overflow-y: hidden;
         display: flex;
+        padding: 0 1rem;
         flex-direction: row;
-        padding: 0 2rem;
+        align-items: center;
+        //padding: 0 1rem 3rem 1rem;
     }
     .content:hover{
         overflow-x: auto;
@@ -96,17 +99,16 @@
     .new-entry{
         overflow: visible;
         width: auto;
-        height: 8rem;
+        height: calc(4rem + 30%);
         min-height: 50px;
-        margin-top: 2rem;
-        cursor: pointer;
+        margin-top: 25%
+        
     }
 }
 .dropdown-content {
     display: none;
     position: absolute;
-    top: -2.5rem;
-    right: -1.5rem;
+    bottom: 60%;
     background-color: black;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -135,11 +137,11 @@
 .editing{
     display: none;
     padding: 2rem;
-    height: 75vh;
-    width: 90%;
+    height: calc(100% - 4rem);
+    //width: 100%;
     min-height: 600px;
     min-width: 500px;
-    margin-left: 3rem;
+    margin-left: 1rem;
     background: $accent;
     border-radius: 1rem;
     
@@ -158,15 +160,15 @@
         cursor: pointer;
     }
     .text-content{
-        min-width: 100%;
-        min-height: 70%;
-        margin-top: 1rem;
-        width: 98.5%;
-        height: 70%;
+        //min-width: 100%;
+       // min-height: 70%;
+        //margin-top: 1rem;
+        width: calc(100% - 2rem);
+        height: calc(85% - 8rem);
+        margin: 0.9rem 0;
         background: white;
         border-radius: 1rem;
-        padding-top: 1rem;
-        padding-left: 0.5rem;
+        padding: 1rem;
         border: none;
         overflow: auto;
         outline: none;
@@ -193,10 +195,14 @@
     }
     .save-btn:hover{
         cursor: pointer;
+        background:rgba(255, 163, 63, 0.35);
     }
 
     h1{
         text-align: center;
+        &:hover{
+            text-decoration: underline;
+        }
     }
     .delete-btn-wrapper{
         position: relative;
@@ -222,11 +228,11 @@
 .img-editing{
     display: none;
     padding: 2rem;
-    height: 75vh;
-    width: 90%;
+    height: calc(100% - 4rem);
+    //width: 90%;
+    margin-left: 1rem;
     min-height: 550px;
     min-width: 300px;
-    margin-left: 3rem;
     background: $accent;
     border-radius: 1rem;
     
@@ -245,10 +251,14 @@
         cursor: pointer;
     }
     .img-content{
-        margin-top: 1rem;
-        margin-left: 3vw;
-        width: 55vw;
-        height: 70%;
+        //margin-top: 1rem;
+       // margin-left: 3vw;
+        // width: 55vw;
+        // max-width: 1000px;
+        // height: 70%;
+        //width: calc(100% - 2rem);
+        height: calc(85% - 8rem);
+        margin: 1.5rem 2rem;
         background: white;
         border-radius: 1rem;
         padding-top: 1rem;
@@ -295,6 +305,9 @@
 
     h1{
         text-align: center;
+        &:hover{
+            text-decoration: underline;
+        }
     }
 
     .delete-btn-wrapper{

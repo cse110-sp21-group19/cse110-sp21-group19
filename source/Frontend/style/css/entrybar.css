@@ -16,7 +16,7 @@
 
 .active-bar {
   background: #FFA33F;
-  height: 200px;
+  height: calc(100% - 4rem);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -52,11 +52,14 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding: 0 1rem;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  padding: 0 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .active-bar .content:hover {
@@ -91,17 +94,15 @@
 .dropdown .new-entry {
   overflow: visible;
   width: auto;
-  height: 8rem;
+  height: calc(4rem + 30%);
   min-height: 50px;
-  margin-top: 2rem;
-  cursor: pointer;
+  margin-top: 25%;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  top: -2.5rem;
-  right: -1.5rem;
+  bottom: 60%;
   background-color: black;
   min-width: 160px;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -133,11 +134,10 @@
 .editing {
   display: none;
   padding: 2rem;
-  height: 75vh;
-  width: 90%;
+  height: calc(100% - 4rem);
   min-height: 600px;
   min-width: 500px;
-  margin-left: 3rem;
+  margin-left: 1rem;
   background: #71B637;
   border-radius: 1rem;
 }
@@ -161,15 +161,12 @@
 }
 
 .editing .text-content {
-  min-width: 100%;
-  min-height: 70%;
-  margin-top: 1rem;
-  width: 98.5%;
-  height: 70%;
+  width: calc(100% - 2rem);
+  height: calc(85% - 8rem);
+  margin: 0.9rem 0;
   background: white;
   border-radius: 1rem;
-  padding-top: 1rem;
-  padding-left: 0.5rem;
+  padding: 1rem;
   border: none;
   overflow: auto;
   outline: none;
@@ -196,10 +193,15 @@
 
 .editing .save-btn:hover {
   cursor: pointer;
+  background: rgba(255, 163, 63, 0.35);
 }
 
 .editing h1 {
   text-align: center;
+}
+
+.editing h1:hover {
+  text-decoration: underline;
 }
 
 .editing .delete-btn-wrapper {
@@ -225,11 +227,10 @@
 .img-editing {
   display: none;
   padding: 2rem;
-  height: 75vh;
-  width: 90%;
+  height: calc(100% - 4rem);
+  margin-left: 1rem;
   min-height: 550px;
   min-width: 300px;
-  margin-left: 3rem;
   background: #71B637;
   border-radius: 1rem;
 }
@@ -253,10 +254,8 @@
 }
 
 .img-editing .img-content {
-  margin-top: 1rem;
-  margin-left: 3vw;
-  width: 55vw;
-  height: 70%;
+  height: calc(85% - 8rem);
+  margin: 1.5rem 2rem;
   background: white;
   border-radius: 1rem;
   padding-top: 1rem;
@@ -307,6 +306,10 @@
 
 .img-editing h1 {
   text-align: center;
+}
+
+.img-editing h1:hover {
+  text-decoration: underline;
 }
 
 .img-editing .delete-btn-wrapper {

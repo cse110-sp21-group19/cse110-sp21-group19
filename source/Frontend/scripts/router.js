@@ -90,18 +90,18 @@ export async function dailyLog(date, from) {
         //get the current selected day of the week from the weekly nav
         let WEEKLYNAV = document.querySelector("weekly-nav");
         //If we are currently on a sunday, replace weekly nav menu with prev week
-        if ((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")){
+        if ((date.getDay() == 6 && from == "prev") || (date.getDay() == 0 && from == "next")) {
 
             deleteSideNav();
             createWeeklyNav(date);
             //createWeeklyNav(date);
         }
-        else if(from == "monthly" || from == "side-nav") {
+        else if (from == "monthly" || from == "side-nav") {
             // remove previous side navigation
             deleteSideNav();
             createWeeklyNav(date);
         }
-        else if(from == "on-load") {
+        else if (from == "on-load") {
             await createWeeklyNav(date);            
             const DATE = document.querySelector("log-type").readLog.header;
             const ADDLENTRIES = document.querySelector(".additional");
@@ -261,9 +261,14 @@ function help(){
 	};
 	LOGTYPE.updateLog = HELPINFO;
     
+    document.querySelector(".additional").style.flex = "0";
     // hide additional entries
     let addlEntries = document.querySelector("entry-bar");
     if (addlEntries) {
+        let inactiveBar = addlEntries.shadowRoot.querySelector(".inactive-bar");
+        let activeBar = addlEntries.shadowRoot.querySelector(".active-bar");
+        activeBar.style.display = "none";
+        inactiveBar.style.display = "grid";
         addlEntries.style.display="none";
     }
 
