@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+/* device sizes */
 /* Style Resets */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -62,6 +63,14 @@ table {
 html {
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   color: #181A18;
+  /*
+    @include tablet {
+        font-size: 1.2rem;
+    };
+    @include desktop {
+        font-size: 1.5rem;
+    };
+    */
 }
 
 h1 {
@@ -137,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 80vh;
+  height: calc(100% - 6rem);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;

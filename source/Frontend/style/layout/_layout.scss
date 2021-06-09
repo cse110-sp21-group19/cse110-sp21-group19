@@ -19,27 +19,69 @@ body {
     padding: 0 3rem;
     margin: auto;
     background: $light;
-
+    // overflow-y: hidden;
     .container {
         display: grid;
         margin-top: 0;
         grid-template-columns: 30% 70%;
 
         /* side navigation and container */
+        /*
         .weekly-nav-container {
             display: inline-block;
             grid-column-start: 1;
 
             .side-nav-container {
                 display: grid;
+            */
+        //margin-top: 4rem;
+        .left-side-container{
+            grid-column-start: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-height: 100vh;
+            .weekly-nav-container{
+                opacity: 0;
+            }
+            .weekly-nav-container.active{
+                opacity: 1;
+                transition: opacity 350ms ease-in-out;
+                flex-grow: 1;
+            }
+            .todo-component-container{
+                opacity: 0;
+            }
+            .todo-component-container.active{
+                opacity: 1;
+                transition: opacity 350ms ease-in-out;
+                //height: 30%;
+                height:30vh;
+                flex-grow: 1;
+            }
+            .calendar-component-container{
+                opacity: 0;;
+            }
+            .calendar-component-container.active{
+                opacity: 1;
+                transition: opacity 350ms ease-in-out;
+                flex-grow: 0;
+                height: fit-content;
+                margin-bottom: 1.5rem;
+            }
+            .side-nav-container{
+                order: 0;
+                animation: fadein 1s;
             }
         }
 
         /* daily log: main-text and additional entries */
         .daily-log {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 5.7rem);
             grid-column-start: 2;
             padding-top: 4rem;
-
             &-title {
                 display: flex;
                 flex-direction: row;
@@ -57,7 +99,39 @@ body {
                     }
                 }
             }
+            .additional {
+                //opacity: 0;
+                flex: 0;
+                height: 20%;
+                overflow-y: hidden;
+                transition: all 0.3s ease-out;
+            }
+            .flexgrow{
+                flex-grow: 1;
+                height: 30vh;
+            }
+            // .additional.active{
+            //     opacity: 1;
+            //     //transition: opacity 425ms ease-in-out;
+            // }
         }
+    }
+}
+
+/* style logo */
+.logo {
+    position: absolute;
+    padding: 1rem 5rem;
+    right: 0;
+    z-index: -1;
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
     }
 }
 

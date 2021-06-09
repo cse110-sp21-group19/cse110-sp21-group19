@@ -4,26 +4,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+/* device sizes */
 *:focus {
   outline: none;
 }
 
 /*Begin styling additional entry bar*/
+.initial {
+  height: 100%;
+}
+
 .active-bar {
   background: #FFA33F;
-  height: 20vh;
-  width: 85%;
+  height: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 2vh 2vw 2vh 2vw;
+  padding: 1.5rem 3.5rem;
+  margin: 1rem;
   min-width: 300px;
   min-height: 100px;
   border-radius: 1rem;
-  margin-left: 3vw;
 }
 
 .active-bar .close {
@@ -37,7 +41,7 @@
 }
 
 .active-bar .content {
-  height: 13vh;
+  height: 100%;
   width: 65%;
   min-width: 100px;
   background: white;
@@ -52,48 +56,20 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  padding: 0 1rem 3rem 1rem;
 }
 
 .active-bar .content:hover {
   overflow-x: auto;
 }
 
-.active-bar .new-entry {
-  overflow: visible;
-  width: 8rem;
-  height: 10vh;
-  min-height: 50px;
-  margin-top: 3vh;
-}
-
 .active-bar .new-entry:hover {
   cursor: pointer;
 }
 
-.inactive-bar {
-  width: 3vw;
-  height: 3vw;
-  min-width: 3vw;
-  min-height: 3vw;
-  margin: 0 1rem 2rem;
-  background: transparent;
-  border-radius: 1vw;
-  padding: 0.2rem;
-  float: right;
-  display: -ms-grid;
-  display: grid;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  white-space: nowrap;
-}
-
-.inactive-bar:hover {
-  cursor: pointer;
-}
-
 #btn {
+  position: absolute;
+  right: 5.5vw;
+  bottom: 5.5vh;
   height: 7vh;
   width: 7vh;
   -ms-grid-column: 2;
@@ -111,21 +87,31 @@
 
 .dropdown {
   position: relative;
+  height: 100%;
   display: inline-block;
+}
+
+.dropdown .new-entry {
+  overflow: visible;
+  width: auto;
+  height: 60%;
+  min-height: 50px;
+  margin-top: 20%;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  bottom: 15vh;
+  bottom: 60%;
   background-color: black;
   min-width: 160px;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 10;
 }
 
 .dropdown:hover .dropdown-content {
+  z-index: 10;
   display: block;
   color: black;
 }

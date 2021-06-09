@@ -5,7 +5,7 @@
 	background: $accent;
 	height: fit-content;
 	display: flex;
-	border-top:3px white solid ;
+	border-top: 3px white solid ;
 	border-bottom-left-radius: 1.5rem;
 	border-bottom-right-radius: 1.5rem;
 	/* Dark mode */
@@ -24,25 +24,23 @@
 		flex-grow: 2;
 		position: relative;
 		height: fit-content;
-		margin: 1.4rem;
+		margin: 1.2rem;
 		background: white;
 		border-radius: 1.5rem;
 		.month{
 			z-index: 1;
-			padding: 0.5rem;
+			padding: 1rem 1.5rem 0.5rem 1.5rem;
 			font-size: 1.5em;
 			font-weight: bold;
 		}
 		.weekdays {
-			margin-top: 0;
-			padding-left: 2.5rem;
-			padding-right: 2.5rem;
-			margin-bottom: 0.6rem;
+			padding: 0 2rem;
+			margin: 0;
 			white-space: nowrap;
 			li {
 				padding-top: 0.3rem;
 				display: inline-block;
-				font-size: 1.25em;
+				font-size: 1.1em;
 				font-weight: 600;
 				width: 14.2%;
 				
@@ -53,14 +51,12 @@
 		
 
 		.days{
+			padding: 0.3rem 2rem;
 			margin-top: 0;
-			padding-left: 2.5rem;
-			padding-right: 2.5rem;
-			padding-bottom: 1.2rem;
+			// padding-bottom: 1.2rem;
 			li{
-				padding-top: 1rem;
-				padding-bottom: 1rem;
-				font-size: 1.25em;
+				padding: 0.9rem 0;
+				font-size: 1.1em;
 				font-weight: 500;
 				list-style-type: none;
 				display: inline-block;

@@ -3,7 +3,7 @@
 import { MONTHS } from "./log-type.js";
 
 /**
- * Class represting custom future nav component
+ * Class represting a custom future nav component
  * @extends HTMLElement
  * 
  * @example

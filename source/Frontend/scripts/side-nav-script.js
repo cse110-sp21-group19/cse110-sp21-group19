@@ -2,7 +2,7 @@
 import {DAYS, MONTHS} from '../components/log-type.js';
 import { SUN, MOON } from "../components/icons.js";
 
-const MENUHEIGHT = "89vh";
+const MENUHEIGHT = "calc(100vh - 2rem)";
 const BORDERADIUS = "0.8em";
 
 const LIGHT =  "#E5E5E5";
