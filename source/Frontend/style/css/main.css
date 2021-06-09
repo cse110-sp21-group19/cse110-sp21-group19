@@ -144,7 +144,7 @@ body .container {
   margin-top: 0;
   -ms-grid-columns: 30% 70%;
       grid-template-columns: 30% 70%;
-  /* side navigation and container */
+  /* container for things on the left side of the screen */
   /* daily log: main-text and additional entries */
 }
 
@@ -226,6 +226,8 @@ body .container .daily-log {
   -ms-grid-column: 2;
       grid-column-start: 2;
   padding-top: 4rem;
+  /* container for additional entries */
+  /* container for maintext area */
 }
 
 body .container .daily-log-title {
@@ -278,6 +280,7 @@ body .container .daily-log .flexgrow {
   z-index: -1;
 }
 
+/* fade in animation*/
 @-webkit-keyframes fadein {
   from {
     opacity: 0;
@@ -286,7 +289,6 @@ body .container .daily-log .flexgrow {
     opacity: 1;
   }
 }
-
 @keyframes fadein {
   from {
     opacity: 0;

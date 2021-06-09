@@ -25,7 +25,7 @@ body {
         margin-top: 0;
         grid-template-columns: 30% 70%;
 
-        /* side navigation and container */
+        /* container for things on the left side of the screen */
         .left-side-container{
             grid-column-start: 1;
             display: flex;
@@ -46,7 +46,6 @@ body {
             .todo-component-container.active{
                 opacity: 1;
                 transition: opacity 350ms ease-in-out;
-                //height: 30%;
                 height:30vh;
                 flex-grow: 1;
             }
@@ -90,6 +89,7 @@ body {
                     }
                 }
             }
+            /* container for additional entries */
             .additional {
                 //opacity: 0;
                 flex: 0;
@@ -97,14 +97,11 @@ body {
                 overflow-y: hidden;
                 transition: all 0.3s ease-out;
             }
+            /* container for maintext area */
             .flexgrow{
                 flex-grow: 1;
                 height: 30vh;
             }
-            // .additional.active{
-            //     opacity: 1;
-            //     //transition: opacity 425ms ease-in-out;
-            // }
         }
     }
 }
@@ -117,6 +114,7 @@ body {
     z-index: -1;
 }
 
+/* fade in animation*/
 @keyframes fadein {
     from {
         opacity:0;

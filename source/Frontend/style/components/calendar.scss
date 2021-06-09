@@ -1,13 +1,15 @@
-
+/* Calendar */
 @import '../abstracts/mixins', '../abstracts/variables';
 
+/* Outtermost container (green) */
 .cal-container{
-	background: $accent;
-	height: fit-content;
 	display: flex;
+	height: fit-content;
 	border-top: 3px white solid ;
 	border-bottom-left-radius: 1.5rem;
 	border-bottom-right-radius: 1.5rem;
+
+	background: $accent;
 	/* Dark mode */
 	.calendar.dark-mode {
 		background: $dark;
@@ -20,68 +22,69 @@
 			color: $light;
 		}
 	}
+	/* calendar (white container) */
 	.calendar{
-		flex-grow: 2;
 		position: relative;
+		flex-grow: 2;
 		height: fit-content;
 		margin: 1.2rem;
-		background: white;
 		border-radius: 1.5rem;
+		background: white;
+		/* month title */
 		.month{
 			z-index: 1;
 			padding: 1rem 1.5rem 0.5rem 1.5rem;
 			font-size: 1.5em;
 			font-weight: bold;
 		}
+		/* list of days of week */
 		.weekdays {
 			padding: 0 2rem;
 			margin: 0;
 			white-space: nowrap;
 			li {
-				padding-top: 0.3rem;
 				display: inline-block;
+				width: 14.2%;
+				padding-top: 0.3rem;
+				color: rgb(65, 65, 65);
 				font-size: 1.1em;
 				font-weight: 600;
-				width: 14.2%;
-				
-				color: rgb(65, 65, 65);
 				text-align: center;
 			}
 		}
-		
-
+		/* days of the month */
 		.days{
 			padding: 0.3rem 2rem;
 			margin-top: 0;
-			// padding-bottom: 1.2rem;
 			li{
+				display: inline-block;
+				width: 14.2%;
 				padding: 0.9rem 0;
+				color: rgb(85, 85, 85);
 				font-size: 1.1em;
 				font-weight: 500;
 				list-style-type: none;
-				display: inline-block;
-				width: 14.2%;
 				text-align: center;
-				color: rgb(85, 85, 85);
 			}
+			/* hovering a day of month */
 			.day:hover{
-				cursor: pointer;
-				background: rgba(255, 163, 63, 0.35);
 				border-radius: 1rem;
+				background: rgba(255, 163, 63, 0.35);
+				cursor: pointer;
 			}
+			/* highlight today */
 			.current-day{
+				border-radius: 1.5rem;
 				color: white;
 				background: $accent2;
-				border-radius: 1.5rem;
 				&:hover{
-					cursor: pointer;
-					background: rgba(255, 163, 63, 0.35);
 					border-radius: 1rem;
+					background: rgba(255, 163, 63, 0.35);
+					cursor: pointer;
 				}
 			}
-		
 		}
-}
+	}
 }
 
 

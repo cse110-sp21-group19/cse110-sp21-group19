@@ -1,5 +1,6 @@
 //weekly-nav.js
 import { NOTEBULLET, TASKBULLET, TASKCOMPLETE, EVENTBULLET } from "./icons.js";
+import { DAYS } from "./log-type.js";
 
 const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
 const SELECTEDRADIUS = "0.2rem";
@@ -64,34 +65,27 @@ class WeeklyNav extends HTMLElement{
 	 * @example
 	 *      this.daysOfWeek = week
 	 */
-	set daysOfWeek(week){
-		console.log(week);
+	set daysOfWeek(week) {
 		//set the weekly-nav title
 		const navTitle = this.shadowRoot.querySelector(".weekly-nav-title");
 		navTitle.innerHTML = getWeeklyNavTitle(week[0].date, week[6].date);
 		const navContainer = this.shadowRoot.querySelector(".week-container");
 		//Add each day to the nav menu
 		week.forEach(element => {
-			let day = getDateString(element.date.getDay());
+			let day = DAYS[element.date.getDay()];
 			let date = element.date.getDate();
 			let month = element.date.getMonth();
 			let year = element.date.getFullYear();
-			let bullets = element.bullets;
 
+			//add the prio bullets to item
+			let bullets = element.bullets;
 			let priorityBullets = document.createElement("div");
 			priorityBullets.className = "wn-bullets-container";
-
 			appendBullets(priorityBullets, bullets);
 
+			//add dates to item
 			let navItem = document.createElement("div");
 			navItem.className = "wn-item";
-			/*
-			// dark mode class
-			if (document.body.className == "dark-mode") {
-				navItem.className += " dark-mode";
-			}
-			*/
-
 
 			let navDate = document.createElement("div");
 			navDate.className = "wn-date";
@@ -145,9 +139,9 @@ class WeeklyNav extends HTMLElement{
 		//(the one with a border is the selected one) 
 		let dateInfo;
 		let dateObj;
-		for(let i = 1; i < navContainer.childNodes.length; i++){
+		for (let i = 1; i < navContainer.childNodes.length; i++) {
 			let currItem = navContainer.childNodes[i];
-			if(currItem.style.borderLeft == SELECTEDBORDERLEFT){
+			if (currItem.style.borderLeft == SELECTEDBORDERLEFT) {
 				dateInfo = {
 					"day": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-week']").textContent,
 					"date": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-month']").textContent,
@@ -170,7 +164,7 @@ class WeeklyNav extends HTMLElement{
 	 * @example
 	 *      this.selectedDay = day
 	 */
-	set selectedDay(day){
+	set selectedDay(day) {
 		const navContainer = this.shadowRoot.querySelector(".week-container");
 
 		for(let i = 1; i < navContainer.childNodes.length; i++){
@@ -188,6 +182,15 @@ class WeeklyNav extends HTMLElement{
 		}
 	} /* set seletedDay */
 
+	/**
+	 * updatePriortiyBullets
+	 * update the priortiy bullets of one weekly nav item
+	 * 
+	 * @param {Array} bullets - An array of bullet entry objects to append to container
+	 * 
+	 * @example
+	 * 	weekly-nav.updatePriorityBullets = bullets[];
+	 */
 	set updatePriorityBullets(bullets) {
 		const navContainer = this.shadowRoot.querySelector(".week-container");
 		for (let i = 1; i < navContainer.childNodes.length; i++) {
@@ -202,8 +205,8 @@ class WeeklyNav extends HTMLElement{
 				appendBullets(priorityBullets, bullets);
 			}
 		}
-	}
-}
+	}/* set updatePriorityBullets */
+}/* WeeklyNav */
 
 
 /**
@@ -216,14 +219,14 @@ class WeeklyNav extends HTMLElement{
  * @example
  * 	appendBullets(container, bullets);
  */
-function appendBullets(container, bullets){
+function appendBullets(container, bullets) {
 	bullets.forEach(bullet => {
 		let bulletElem = document.createElement("div");
 		bulletElem.className = "wn-bullet";
 		let bulletType = document.createElement("span");
 		bulletType.id = "bullet-type";
 		//bullet icon depending on the bullet type
-		switch (bullet.type){
+		switch (bullet.type) {
 		case "note":
 			bulletType.innerHTML = NOTEBULLET;
 			break;
@@ -249,37 +252,6 @@ function appendBullets(container, bullets){
 	});
 } /* appendBullets */
 
-/**
- * getDateString 
- * Converts integer day of week to its related string.
- * 
- * @param {number} day - An integer of the day of the week (0-6).
- * 
- * @returns A string of the related day of the week of the parameter.
- * 
- * @example
- *      getDateString(day)
- */
-function getDateString(day){
-	switch(day){
-	case 0:
-		return "Sunday";
-	case 1:
-		return "Monday";
-	case 2:
-		return "Tuesday";
-	case 3:
-		return "Wednesday";
-	case 4:
-		return "Thursday";
-	case 5:
-		return "Friday";
-	case 6:
-		return "Saturday";
-	default:
-		return "Sunday";
-	}
-}/* getDateString */
 
 /**
  * getWeeklyNavTitle 
@@ -295,21 +267,21 @@ function getDateString(day){
  * @example
  *      getWeekyNavTitle(first, last)
  */
-function getWeeklyNavTitle(first, last){
+function getWeeklyNavTitle(first, last) {
 	let title = "";
 	const months= ["January","February","March","April","May","June","July",
 		"August","September","October","November","December"];
-	if(first.getMonth() == last.getMonth()){
+	if (first.getMonth() == last.getMonth()) {
 		title += months[first.getMonth()];
 	}
-	else{
+	else {
 		title +=  months[first.getMonth()] + "/" + months[last.getMonth()];
 	}
 
-	if(first.getFullYear() == last.getFullYear()){
+	if (first.getFullYear() == last.getFullYear()) {
 		title += " " + first.getFullYear();
 	}
-	else{
+	else {
 		title += " " + first.getFullYear() + "/" + last.getFullYear();
 	}
 

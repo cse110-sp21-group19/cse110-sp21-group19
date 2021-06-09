@@ -1,47 +1,44 @@
-/* Weekly Nav - Cory */
+/* Future Nav */
 /* Variables */
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
 /* device sizes */
+/* title on top of nav */
 .future-title {
-  -webkit-transition: opacity 0.15s linear;
-  transition: opacity 0.15s linear;
-  margin-top: 1.4rem;
-  margin-bottom: 0.5rem;
-  margin-left: 0.9rem;
+  margin: 1.5rem 0 0.5rem 0.9rem;
   font-weight: 500;
   font-size: 1.5em;
 }
 
+/* outer container */
 .future-container {
-  -webkit-transition: opacity 0.15s linear;
-  transition: opacity 0.15s linear;
-  background: #71B637;
   z-index: -1;
-  border-radius: 1rem;
-  padding: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: calc(100% - 6rem);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  height: calc(100% - 6rem);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background: #71B637;
+  /* months of the year items */
 }
 
 .future-container .future-item {
-  min-height: 0;
-  margin: 0.3rem 0.5rem;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 0px;
           flex: 1 1 0;
+  min-height: 0;
+  margin: 0.3rem 0.5rem;
+  border-radius: 0.4rem;
   background: white;
   border-radius: 0.4rem;
-  -webkit-transition: border-left 0.15s linear;
-  transition: border-left 0.15s linear;
+  /* date text */
 }
 
 .future-container .future-item:hover {
@@ -54,12 +51,10 @@
 }
 
 .future-container .future-item .future-date {
-  pointer-events: none;
+  height: 100%;
   margin-top: 0.6rem;
   margin-left: 0.6rem;
-  width: 5vw;
-  min-width: 5rem;
-  height: 100%;
+  pointer-events: none;
 }
 
 .future-container .future-item .future-date #month-title {

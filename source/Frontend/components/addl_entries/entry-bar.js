@@ -545,8 +545,7 @@ function setEntrybarType(SHADOW, type) {
 			document.querySelector(".additional").style.flex = "1";
 		});
 		//fires when user clicks on the close button to collapse the entry bar
-		closeBtn.addEventListener("click", function(){
-						
+		closeBtn.addEventListener("click", function(){			
 			document.querySelector(".additional").style.flex = "0";
 			setTimeout(function() {
 				activeBar.style.display = "none";

@@ -82,5 +82,5 @@ class FutureNav extends HTMLElement {
 	}/* set year */
 }/* FutureNav */
 
-
+// Define a custom element for the future nav web component
 customElements.define("future-nav", FutureNav);
