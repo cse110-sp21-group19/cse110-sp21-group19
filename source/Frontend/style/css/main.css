@@ -102,6 +102,33 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Layout */
 body {
+  -webkit-animation: fadeInAnimation ease 1s;
+          animation: fadeInAnimation ease 1s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body {
   background: #E5E5E5;
   margin: auto;
   padding: 0 3rem;
@@ -137,9 +164,9 @@ body .container .left-side-container .weekly-nav-container.active {
   opacity: 1;
   -webkit-transition: opacity 350ms ease-in-out;
   transition: opacity 350ms ease-in-out;
-  -webkit-box-flex: 2;
-      -ms-flex-positive: 2;
-          flex-grow: 2;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 body .container .left-side-container .todo-component-container {
@@ -229,6 +256,13 @@ body .container .daily-log .additional {
   transition: all 0.3s ease-out;
 }
 
+body .container .daily-log .flexgrow {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 30vh;
+}
+
 /* style logo */
 .logo {
   position: absolute;
@@ -255,24 +289,70 @@ body .container .daily-log .additional {
   }
 }
 
-/* Components */
-/* Main Text - Manda */
-.main-text {
-  opacity: 0;
-  height: auto;
-  -webkit-box-flex: 2;
-      -ms-flex-positive: 2;
-          flex-grow: 2;
-  border-radius: 1rem;
-  background: white;
-  padding: 2rem;
-  margin: 0 1rem;
-  overflow-y: auto;
+/* dark mode */
+body.dark-mode {
+  background: #181A18;
+  color: #E5E5E5;
 }
 
-.main-text.active {
+body.dark-mode input {
+  color: #E5E5E5;
+}
+
+/* Components */
+/* Main Text - Manda */
+.main-text-container {
+  height: calc(100% - 2rem);
+  background: white;
+  border-radius: 1rem;
+  margin: 0 1rem;
+  padding: 1rem;
+}
+
+.main-text-container .main-text {
+  opacity: 0;
+  scroll-behavior: smooth;
+  height: calc(100% - 3.5rem);
+  width: calc(100% - 2rem);
+  overflow-y: auto;
+  background: white;
+}
+
+.main-text-container .main-text.active {
   opacity: 1;
   -webkit-transition: opacity 425ms ease-in-out;
   transition: opacity 425ms ease-in-out;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  position: relative;
+  top: 50px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b6b6b6;
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FFA33F;
+}
+
+/* dark mode */
+body.dark-mode .main-text-container {
+  background: #2A2D32;
+}
+
+body.dark-mode .main-text-container .main-text {
+  background: #2A2D32;
 }
 /*# sourceMappingURL=main.css.map */

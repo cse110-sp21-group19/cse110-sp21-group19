@@ -8,6 +8,18 @@
 	border-top: 3px white solid ;
 	border-bottom-left-radius: 1.5rem;
 	border-bottom-right-radius: 1.5rem;
+	/* Dark mode */
+	.calendar.dark-mode {
+		background: $dark;
+		.weekdays {
+			li {
+				color: white;
+			}
+		}
+		.day {
+			color: $light;
+		}
+	}
 	.calendar{
 		flex-grow: 2;
 		position: relative;

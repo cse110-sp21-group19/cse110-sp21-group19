@@ -71,4 +71,9 @@
   font-weight: lighter;
   font-size: 1.2em;
 }
+
+/* Dark mode */
+.future-container.dark-mode .future-item {
+  background: #181A18;
+}
 /*# sourceMappingURL=futurenav.css.map */

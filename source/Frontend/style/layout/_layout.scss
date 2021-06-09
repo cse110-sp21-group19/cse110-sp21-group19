@@ -1,4 +1,19 @@
 body {
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+  
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
+
+body {
     //max-width: 1280px;
     background: $light;
     margin: auto;
@@ -21,7 +36,7 @@ body {
             .weekly-nav-container.active{
                 opacity: 1;
                 transition: opacity 350ms ease-in-out;
-                flex-grow: 2;
+                flex-grow: 1;
             }
             .todo-component-container{
                 opacity: 0;
@@ -77,6 +92,10 @@ body {
                 overflow-y: hidden;
                 transition: all 0.3s ease-out;
             }
+            .flexgrow{
+                flex-grow: 1;
+                height: 30vh;
+            }
             // .additional.active{
             //     opacity: 1;
             //     //transition: opacity 425ms ease-in-out;
@@ -99,5 +118,14 @@ body {
     }
     to {
         opacity:1;
+    }
+}
+
+/* dark mode */
+body.dark-mode {
+    background: $dark;
+    color: $light;
+    input {
+        color: $light;
     }
 }

@@ -15,9 +15,6 @@
   z-index: -1;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
-  -webkit-box-flex: 2;
-      -ms-flex-positive: 2;
-          flex-grow: 2;
   height: calc(100% - 2rem);
   padding: 0.5rem;
   /* Track */
@@ -37,6 +34,11 @@
   height: calc(100% - 3.5rem);
   margin: 0.5rem;
   padding-right: 0.3rem;
+  /* Dark mode */
+}
+
+.todo-container .scroll-container .dark-mode.todo-item {
+  background: #181A18;
 }
 
 .todo-container .scroll-container .todo-item {

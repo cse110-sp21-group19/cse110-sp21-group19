@@ -29,7 +29,7 @@ export async function createWeeklyNav(date) {
     //Onclick listener for the items inside the weekly nav
     // WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "0";
     // WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
-    const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
+    const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector(".week-container");
     weeklyNavContainer.childNodes.forEach(element =>{
         element.addEventListener("click", (event)=>{
             if(event.target.className == "wn-date"){

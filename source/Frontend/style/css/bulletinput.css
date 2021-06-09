@@ -33,4 +33,13 @@ select {
   appearance: none;
   text-align-last: right;
 }
+
+/* dark mode */
+.dark-mode {
+  background: #181A18;
+}
+
+.dark-mode #bullet-type, .dark-mode #bullet-input {
+  color: white;
+}
 /*# sourceMappingURL=bulletinput.css.map */

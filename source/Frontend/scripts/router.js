@@ -9,7 +9,11 @@ import { updateAddlEntries, formatEntries } from "./addl-entries-script.js";
 
 import { createNewBullets, nestedBullets, bulletsFromDB } from "./main-text-script.js";
 import { getDailyBullets, getMonthlyBullets, getFutureBullets } from "../../Backend/api/bullet_api.js";
+import { createDefault, updateMode, getMode } from "../../Backend/api/settings_api.js";
+import { setLightMode, setDarkMode } from "./script.js";
 import { createFutureNav } from "./future-nav-script.js";
+
+import { helpGuideContent, createHelpPage } from "./help-guide-script.js";
 
 export const router = {};
 
@@ -37,6 +41,10 @@ router.setState = (state, statePopped, date, from) => {
 		futureLog(date);
 		console.log("future");
 		break;
+    case "help":
+        help();
+        console.log("help");
+        break;
 	default:
 		console.log("default");
 	}
@@ -63,6 +71,7 @@ export async function dailyLog(date, from){
     sideNavTitle.textContent = "Daily Log";
     // behavior if clicked the '<' or '>' button from the main-text header
     if (date) {
+        const ADDLENTRYBAR = document.createElement("entry-bar");
         const LOGTYPE = document.querySelector("log-type");
         // update the header text above main-text area
         let headerText = DAYS[date.getDay()] + ", " + MONTHS[date.getMonth()] + " " + date.getDate();
@@ -74,9 +83,10 @@ export async function dailyLog(date, from){
         LOGTYPE.updateLog = DAILYINFO;
 
 
-        const currDate = document.querySelector("log-type").readLog.date;
-        let todayBullets = await getDailyBullets(currDate);
-        createMainText(todayBullets);  
+        // const currDate = document.querySelector("log-type").readLog.date;
+        // let todayBullets = await getDailyBullets(currDate);
+        // createMainText(todayBullets);
+
         //get the current selected day of the week from the weekly nav
         let WEEKLYNAV = document.querySelector("weekly-nav");
         //If we are currently on a sunday, replace weekly nav menu with prev week
@@ -92,18 +102,47 @@ export async function dailyLog(date, from){
             createWeeklyNav(date);
         }
         else if(from == "on-load"){
-            createWeeklyNav(date);            
+            await createWeeklyNav(date);            
             const DATE = document.querySelector("log-type").readLog.header;
-            const ADDLENTRYBAR = document.createElement("entry-bar");
-            const ADDLENTRIES = document.querySelector(".additional")
+            const ADDLENTRIES = document.querySelector(".additional");
+
+            //console.log(ADDLENTRIES);
 
             let entriesList = await getDailyEntries(DATE);
             let keys = entriesList[0];
             let fetchedEntries = entriesList[1];
 
             ADDLENTRYBAR.type = "initial";
+            
             ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
-            ADDLENTRIES.appendChild(ADDLENTRYBAR);
+
+            if(ADDLENTRIES.childElementCount == 0) {
+                ADDLENTRIES.appendChild(ADDLENTRYBAR);
+            }
+            
+
+            const MAINTEXTINPUT = document.querySelector("bullet-input");
+            if (!MAINTEXTINPUT) {
+                const currDate = document.querySelector("log-type").readLog.date;
+                let todayBullets = await getDailyBullets(currDate);
+                createMainText(todayBullets);
+            }
+
+            let colorMode = await getMode();
+            console.log(colorMode);
+            if (colorMode) {
+                setDarkMode();
+            }
+            else {
+                setLightMode();
+            }
+        }
+        else if (from == "color-settings") {
+            deleteSideNav();
+            await createWeeklyNav(date);
+            WEEKLYNAV = document.querySelector("weekly-nav");
+            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
+            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
         }
         else {
             WEEKLYNAV.selectedDay = date.getDay() + 1;
@@ -111,6 +150,27 @@ export async function dailyLog(date, from){
         
 		updateAddlEntries();
 
+            const currDate = document.querySelector("log-type").readLog.date;
+            let todayBullets = await getDailyBullets(currDate);
+            createMainText(todayBullets);
+        /*
+        const currDate = document.querySelector("log-type").readLog.date;
+        let todayBullets = await getDailyBullets(currDate);
+        createMainText(todayBullets);
+        */
+
+        // set color theme
+        //await createDefault();
+        /*
+        let colorMode = await getMode();
+        console.log(colorMode);
+        if (colorMode) {
+            setDarkMode();
+        }
+        else {
+            setLightMode();
+        }
+        */
 
         /*
         // reset current main-text area
@@ -145,7 +205,7 @@ export async function dailyLog(date, from){
         nestedBullets(INPUT, bulletStack);
         */
 
-    }
+	}
 } /* dailyLog */
 
 
@@ -230,6 +290,67 @@ async function futureLog(date){
 } /* futureLog */
 
 /**
+ * help 
+ * Set the state for the a help guide page.
+ * 
+ * @example
+ *      help();
+ */
+function help(){
+    const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
+    let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+    sideNavTitle.textContent = "Help";
+
+	const LOGTYPE = document.querySelector("log-type");
+	// update the header text above main-text area
+	const HELPINFO = {
+		"type": "help",
+		"date": new Date(),
+		"header": "Help Guide"
+	};
+	LOGTYPE.updateLog = HELPINFO;
+
+    // remove the weekly nav menu
+    deleteSideNav();
+    
+    // hide additional entries
+    let addlEntries = document.querySelector("entry-bar");
+    if(addlEntries){
+        addlEntries.style.display="none";
+    }
+
+    // hide top arrow navigation
+    const PREVARROW = document.getElementById("prev-log");
+    const NEXTARROW = document.getElementById("next-log");
+    PREVARROW.style.display = "transparent";
+    NEXTARROW.style.display = "transparent";
+   
+    // change main-text header
+    //document.querySelector("log-type").shadowRoot.querySelector("h1").innerText = "Help Guide";
+    // clear main-text area
+    document.getElementById("main-text").innerText = "";
+    // add help page data
+    createHelpPage(helpGuideContent);
+    
+    // add table of contents
+    const HELPSEC = document.querySelectorAll("help-section");
+    const HELPTOC = document.createElement("help-toc");
+    HELPTOC.contents = helpGuideContent;
+    document.getElementById("weekly-nav-container").appendChild(HELPTOC);
+    HELPTOC.shadowRoot.querySelector(".help-toc-container").querySelectorAll(".toc-link").forEach((element, index) => {
+        element.addEventListener("click", () => {
+            let scrollPos = HELPSEC[index].shadowRoot.getElementById("help-section-title").offsetTop;
+            let scrollPosInitial = HELPSEC[0].shadowRoot.getElementById("help-section-title").offsetTop;
+            document.querySelector(".main-text").scrollTop = scrollPos - scrollPosInitial;
+            console.log("clicked help-toc")
+            console.log(scrollPos)
+        });
+    });
+
+
+} /* help */
+
+/**
  * pushToHistory
  * Push a new state to the history stack.
  * @param {string} state The new page to set the state of.
@@ -253,6 +374,9 @@ function pushToHistory(state, date, from) {
         case "future":
             history.pushState({ page: "future", date: date, from:from}, "", `./#future${date}`);
             break;
+        case "help":
+            history.pushState({ page: "help", date: date, from:from}, "", `./#help`);
+            break;
         default:
             history.pushState({}, '', './');
     }
@@ -270,6 +394,7 @@ function deleteSideNav() {
     const CAL = document.querySelector("calendar-component");
     const TODO = document.querySelector("todo-list");
     const FUTURENAV = document.querySelector("future-nav");
+    const HELPNAV = document.querySelector("help-toc");
 
 	if(WEEKLYNAV){
 		WEEKLYNAV.remove();
@@ -286,6 +411,9 @@ function deleteSideNav() {
     if(FUTURENAV){
         FUTURENAV.remove();  
         document.getElementById("weekly-nav-container").classList.remove("active");
+    }
+    if(HELPNAV){
+        HELPNAV.remove();  
     }
 
 } /* deleteSideNav */
@@ -321,6 +449,8 @@ async function createMainText(bullets) {
 
     MAINTEXT.appendChild(BULLETS);
     MAINTEXT.appendChild(INPUT);
+    const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
+    BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
 
     // add ability to create new bullets
     createNewBullets(INPUT, bulletStack);

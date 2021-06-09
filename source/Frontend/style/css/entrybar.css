@@ -15,7 +15,7 @@
 
 .active-bar {
   background: #FFA33F;
-  height: calc(100% - 4rem);
+  height: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

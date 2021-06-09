@@ -106,6 +106,11 @@
 			noteIcon.style.display="block";
 		}
 	}/*set entry*/	
+	set mode(mode){
+		if(mode == "dark"){
+			this.shadowRoot.querySelector(".note").style.fill="white";
+		}
+	}
 }/*entryBar*/
 //define the custom web component "addl-entry" and associate it to the class "addlEntry"
 customElements.define("addl-entry", addlEntry);

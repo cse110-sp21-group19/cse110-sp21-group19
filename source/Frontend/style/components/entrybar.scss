@@ -11,7 +11,8 @@
 }
 .active-bar{
     background: $accent2;
-    height: calc(100% - 4rem);
+    // height: calc(100% - 4rem);
+    height: 200px;
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 3.5rem;

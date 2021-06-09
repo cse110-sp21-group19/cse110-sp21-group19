@@ -99,7 +99,7 @@ class entryBar extends HTMLElement{
 	 * @param {}
 	 */
 	connectedCallback(){
-		let mainText = document.querySelector(".main-text");
+		let mainText = document.querySelector(".main-text-container");
 		let innerBar = this.shadowRoot.querySelector(".content");
 		let title = this.shadowRoot.querySelectorAll(".entry-title")[0];
 		let imgTitle = this.shadowRoot.querySelectorAll(".entry-title")[1];
@@ -122,6 +122,7 @@ class entryBar extends HTMLElement{
 		let exitBtnText = this.shadowRoot.querySelectorAll(".close-edit")[0];
 		let exitBtnImg = this.shadowRoot.querySelectorAll(".close-edit")[1];
 
+		
 		//hide the delete button by default
 		deleteButton.style.display="none";
 		
@@ -381,6 +382,43 @@ class entryBar extends HTMLElement{
 	set type(type){
 		setEntrybarType(this.shadowRoot, type, isViewing);
 	}
+
+	set mode(mode){
+		if(mode=="dark"){
+			//expanded bar
+			this.shadowRoot.querySelector(".content").style.background="#2A2D32";
+
+			//editing screen for note
+			this.shadowRoot.querySelector(".text-content").style.background="#2A2D32";
+			this.shadowRoot.querySelector(".text-content").style.color="white";
+			this.shadowRoot.querySelector(".entry-title").style.color="white";
+			this.shadowRoot.querySelector(".close-edit").style.color="white";
+
+			//editing screen for image
+			this.shadowRoot.querySelector(".img-content").style.background="#2A2D32";
+			this.shadowRoot.querySelector(".img-text").style.color="white";
+			this.shadowRoot.querySelectorAll(".entry-title")[1].style.color="white";
+			this.shadowRoot.querySelectorAll(".close-edit")[1].style.color="white";
+
+		}
+		else{
+			//expanded bar
+			this.shadowRoot.querySelector(".content").style.background="white";
+
+			//editing screen for note
+			this.shadowRoot.querySelector(".text-content").style.background="white";
+			this.shadowRoot.querySelector(".text-content").style.color="black";
+			this.shadowRoot.querySelector(".entry-title").style.color="black";
+			this.shadowRoot.querySelector(".close-edit").style.color="black";
+
+			//editing screen for image
+			this.shadowRoot.querySelector(".img-content").style.background="white";
+			this.shadowRoot.querySelector(".img-text").style.color="black";
+			this.shadowRoot.querySelectorAll(".entry-title")[1].style.color="black";
+			this.shadowRoot.querySelectorAll(".close-edit")[1].style.color="black";
+		}
+	}
+
 	/**	Setter that loads the entries to the page, given an array of entries from the database
 	 * 
 	 * @param {Array.<Object>} entries
@@ -388,7 +426,7 @@ class entryBar extends HTMLElement{
 	 * @example ENTRYBAR.entries = loadedEntries;
 	 */
 	set entries(entries){
-		let mainText = document.querySelector(".main-text");
+		let mainText = document.querySelector(".main-text-container");
 		let innerBar = this.shadowRoot.querySelector(".content");
 		let title = this.shadowRoot.querySelector(".entry-title");
 		let content = this.shadowRoot.querySelector(".text-content");
@@ -482,10 +520,11 @@ function setEntrybarType(SHADOW, type) {
 	let uploaded = SHADOW.querySelector(".uploaded");
 	let infoText = SHADOW.querySelector(".img-text");
 	let imgContent = SHADOW.querySelector(".img-content");
-	let mainText = document.querySelector(".main-text");
+	let mainText = document.querySelector(".main-text-container");
 	let title = SHADOW.querySelectorAll(".entry-title")[0];
 	let content = SHADOW.querySelector(".text-content");
 	let imgTitle = SHADOW.querySelectorAll(".entry-title")[1];
+	let deleteButton = SHADOW.querySelector(".delete-btn");
 
 	imgContent.style.overflow = "hidden";
 	
@@ -497,8 +536,6 @@ function setEntrybarType(SHADOW, type) {
 		inactiveBar.style.display = "block";
 		//fires when user clicks on collapsed version of the entry bar
 		inactiveBar.addEventListener("click", function(){
-
-
 			activeBar.style.display="flex";
 			inactiveBar.style.display = "none";
 			document.querySelector(".additional").style.flex = "1";
@@ -516,6 +553,7 @@ function setEntrybarType(SHADOW, type) {
 		newTextEntry.addEventListener("click", function(){
 			//since we are adding a new entry, set the is viewing mode to false
 			isViewing = false;
+			deleteButton.style.display="none";
 			mainText.style.display = "none";
 			document.querySelector("entry-bar").type="editing";
 		});
@@ -532,6 +570,9 @@ function setEntrybarType(SHADOW, type) {
 		initial.style.display="none";
 		editing.style.display="block";
 		document.querySelector(".additional").style.flex = "1";
+		mainText.style.display="none";
+		console.log("reached");
+	
 		if(isViewing){
 			SHADOW.querySelector(".delete-btn").style.display="block";
 		}
@@ -597,7 +638,7 @@ function makeEntry(title, content, key, image){
  */
 function deleteNote() {
 	let SHADOW = document.querySelector("entry-bar").shadowRoot;
-	let mainText = document.querySelector(".main-text");
+	let mainText = document.querySelector(".main-text-container");
 	let innerBar = SHADOW.querySelector(".content");
 	let title = SHADOW.querySelectorAll(".entry-title")[0];
 	let content = SHADOW.querySelector(".text-content");
@@ -645,7 +686,7 @@ function deleteNote() {
  */
 function deleteImg() {
 	let SHADOW = document.querySelector("entry-bar").shadowRoot;
-	let mainText = document.querySelector(".main-text");
+	let mainText = document.querySelector(".main-text-container");
 	let innerBar = SHADOW.querySelector(".content");
 	let imgTitle = SHADOW.querySelectorAll(".entry-title")[1];
 	let uploaded = SHADOW.querySelector(".uploaded");
