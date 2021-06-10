@@ -1,25 +1,32 @@
 /*text entry icon*/
 @import '../abstracts/mixins', '../abstracts/variables';
 .note{
+    /* Display & Box Model */
     height: 13vh;
-    overflow: visible;
     width: auto;
     margin: 3vh 0 0 2vw;
+
+    /* Other */
     cursor: pointer;
+    overflow: visible;
     
     @include laptop{
+        /* Display & Box Model */
         height: 10vh;
     }
 }
 
 /*image entry icon*/
 .image{
+    /* Display & Box Model */
     height: 13vh;
-    overflow: visible;
     width: auto;
     min-height: 50px;
     margin: 3vh 0 0 2vw;
+
+    /* Other */
     cursor: pointer;
+    overflow: visible;
 
     @include laptop{
         height: 10vh;
@@ -28,28 +35,38 @@
 
 /*Entry title*/
 .tooltip{
+    /* Positioning */
     position: relative;
     .tooltiptext{
+        /* Positioning */
         position: absolute;
         top: -2vh;
         left: 2vw;
+
+        /* Text */
         font-weight: bold;
         font-size: 1rem;
-
         @include laptop{
-            font-size: 10px;
+            /* Positioning */
             top: -1rem;
+
+            /* Text */
+            font-size: 10px;
         }
     }
 }
 
 /*Scrollbar*/
 ::-webkit-scrollbar {
+    /* Display & Box Model */
     height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
+    /* Color */
     background: rgb(182, 182, 182);
+
+    /* Other */
     border-radius: 10px;
 }
 

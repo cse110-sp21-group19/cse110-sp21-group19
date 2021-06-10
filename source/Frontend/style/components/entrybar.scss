@@ -3,53 +3,71 @@
 @import '../abstracts/mixins', '../abstracts/variables';
 
 *:focus{
+    /* Other */
     outline: none;
 }
 /*Begin styling additional entry bar*/
 .initial{
+    /* Display & Box Model */
     height: 100%;
 }
 .active-bar{
-    background: $accent2;
+    /* Display & Box Model */
     height: calc(100% - 4rem);
-    //height: 200px;
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 3.5rem;
     margin: 1rem;
     border-radius: 1rem;
 
+    /* Color */
+    background: $accent2;
+    
+
     @include laptop{
+        /* Display & Box Model */
         height: calc(100% - 3rem);
         padding: 0.5rem 1rem 1rem 1rem;
     }
 
     .close{
+        /* Positioning */
         text-align: left;
-        font-size: 30px;
+
+        /* Color */
         color: black;
 
+        
+        font-size: 30px;
+
         @include laptop{
+            /* Text */
             font-size: 20px;
         }
     }
     .close:hover{
+        /* Other */
         cursor: pointer;
     }
 
     .content{
+        /* Display & Box Model */
         height: 100%;
         width: 65%;
         min-width: 100px;
-        background: white;
         border-radius: 1rem;
         margin-top: 0;
-        overflow-x: hidden;
-        overflow-y: hidden;
         display: flex;
         padding: 0 1rem;
         flex-direction: row;
         align-items: center;
+
+        /* Color */
+        background: white;
+
+        /* Other */
+        overflow-x: hidden;
+        overflow-y: hidden;
     }
     .content:hover{
         overflow-x: auto;
@@ -58,33 +76,40 @@
 }
 
 #btn{
+    /* Positioning */
     position: absolute;
     right: 6.5vw;
     bottom: 5.5vh;
-    height: 7vh;
-    width: 7vh;
     grid-column-start: 2;
     grid-column-end: 5;
-}
-#btn:hover{
+
+    /* Display & Box Model */
+    height: 7vh;
+    width: 7vh;
+
+    /* Other */
     cursor: pointer;
 }
 
-*:focus{
-    outline: none;
-}
 .dropdown {
+    /* Positioning */
     position: relative;
+
+    /* Display & Box Model */
     height: 100%;
     display: inline-block;
 
     .new-entry{
-        overflow: visible;
+        /* Display & Box Model */
         width: auto;
         height: calc(4rem + 30%);
         margin-top: 25%;
 
+        /* Other */
+        overflow: visible;
+
         @include laptop{
+            /* Display & Box Model */
             margin-top: 10%;
             height: calc(3rem + 30%);
         }
@@ -92,40 +117,63 @@
     }
 }
 .dropdown-content {
-    display: none;
+    /* Positioning */
     position: absolute;
     bottom: 60%;
-    background-color: black;
+    z-index: 10;
+
+    /* Display & Box Model */
+    display: none;
     width: 8rem;
     height: 6rem;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 10;
+
+    /* Color */
+    background-color: black;
+   
     @include laptop{
+        /* Positioning */
+        bottom: 10%;
+
+        /* Display & Box Model */
         width: 100px;
         height: 90px;
-        bottom: 10%;
     }
 }
   .dropdown:hover{
     .dropdown-content {
+        /* Positioning */
         z-index: 10;
+
+        /* Display & Box Model */
         display: block;
+
+        /* Color */
         color: black;
     }  
 }
   .dropdown-content span:hover {
-    cursor: pointer;
+    /* Color */
     background: #4AB2D6;
+
+    /* Other */
+    cursor: pointer;
 } 
   /* Links inside the dropdown */
   .dropdown-content span {
-    color: white;
+    /* Display & Box Model */
     margin-top: 0.5rem;
     padding: 8px 16px 8px 16px;
-    text-decoration: none;
     display: block;
 
+    /* Color */
+    color: white;
+
+    /* Text */
+    text-decoration: none;
+
     @include laptop{
+        /* Display & Box Model */
         margin-top: 0;
         padding: 5px 16px 8px 16px;
     }
@@ -133,83 +181,106 @@
   /*End styling additional entry bar*/
 /* Begin styling text entry*/
 .editing{
+    /* Display & Box Model */
     display: none;
     padding: 2rem;
     height: calc(100% - 4rem);
     margin-left: 1rem;
-    background: $accent;
     border-radius: 1rem;
+
+    /* Color */
+    background: $accent;
     
     .close{
+        /* Text */
         font-size: 2rem;
         font-weight: bold;
-    }
-    .close:hover{
+
+        /* Other */
         cursor: pointer;
     }
+    
     .close-edit{
+        /* Text */
         font-size: 2rem;
         font-weight: bold;
-    }
-    .close-edit:hover{
+
+        /* Other */
         cursor: pointer;
     }
     .text-content{
+        /* Display & Box Model */
         width: calc(100% - 2rem);
         height: calc(85% - 8rem);
         margin: 0.9rem 0;
-        background: white;
         border-radius: 1rem;
         padding: 1rem;
         border: none;
-        overflow: auto;
         outline: none;
-        font-size: 1em;
-        font-family: 'Open Sans', sans-serif;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none;
-
         resize: none; /*remove the resize handle on the bottom right*/
-        
+
+        /* Color */
+        background: white;
+        font-size: 1em;
+        font-family: 'Open Sans', sans-serif;
+       
+        /* Other */
+        overflow: auto;
     }
     .save-btn-wrapper{
+        /* Positioning */
         position: relative;
     }
     .save-btn{
+        /* Positioning */
         position: absolute;
+        right: 0.5rem;
+
+        /* Display & Box Model */
         height: 8vh;
         width: 7vh;
         min-height: 50px;
         min-width: 75px;
-        right: 0.5rem;
-    
     }
     .save-btn:hover{
-        cursor: pointer;
+        /* Color */
         background:rgba(255, 163, 63, 0.35);
+
+        /* Other */
+        cursor: pointer;
     }
 
     h1{
+        /* Text */
         text-align: center;
         &:hover{
+            /* Text */
             text-decoration: underline;
         }
     }
     .delete-btn-wrapper{
+        /* Positioning */
         position: relative;
         .delete-btn{
+            /* Positioning */
             position: absolute;
             bottom: 0.5rem;
+            right: 1rem;
+
+            /* Display & Box Model */
             height: 8vh;
             width: 7vh;
             min-height: 50px;
             min-width: 75px;
-            right: 1rem;
+            
         }
     }
    
     .delete-btn:hover{
+        /* Other */
         cursor: pointer;
     }
 
@@ -218,116 +289,130 @@
 
 /* Begin styling image entry*/
 .img-editing{
+    /* Display & Box Model */
     display: none;
     padding: 2rem;
     height: calc(100% - 4rem);
-    //width: 90%;
     margin-left: 1rem;
-   // min-height: 550px;
-    //min-width: 300px;
-    background: $accent;
     border-radius: 1rem;
+
+    /* Color */
+    background: $accent;
     
     .close{
+        /* Text */
         font-size: 2rem;
         font-weight: bold;
-    }
-    .close:hover{
+
+        /* Other */
         cursor: pointer;
     }
     .close-edit{
+        /* Text */
         font-size: 2rem;
         font-weight: bold;
-    }
-    .close-edit:hover{
+
+        /* Other */
         cursor: pointer;
     }
     .img-content{
-        //margin-top: 1rem;
-       // margin-left: 3vw;
-        // width: 55vw;
-        // max-width: 1000px;
-        // height: 70%;
-        //width: calc(100% - 2rem);
+        /* Display & Box Model */
         height: calc(85% - 8rem);
         margin: 1.5rem 2rem;
         background: white;
         border-radius: 1rem;
         padding-top: 1rem;
         padding-left: 0.5rem;
+
+        /* Other */
         overflow-y: auto;
+        cursor: pointer;
+
         @include laptop{
+            /* Display & Box Model */
             height: calc(90% - 8rem);
             padding-top: 0.5rem;
         }
         .img-text{
+            /* Positioning */
             position: relative;
             top: 47%;
             left: 38%;
             transform: translateY(-50%);
         }
         .choose-img{
+            /* Display & Box Model */
             display: none;
         }
         .img-wrapper{
+            /* Text */
             text-align: center;
            
             .uploaded{
+                /* Display & Box Model */
                 max-width: 70%;
                 max-height: 70%;
                 width: auto;
                 height: auto;
 
                 @include laptop{
+                    /* Display & Box Model */
                     max-width: 40%;
                     max-height: 40%;
                 }
             }
         }
-        
-        
-    }
-   
-    .img-content:hover{
-        cursor: pointer;
     }
     .save-btn-wrapper{
+        /* Positioning */
         float: right;
+
+        /* Display & Box Model */
         padding: 1rem;
+
         @include laptop{
+            /* Display & Box Model */
             margin-top: -2rem;
         }
     }
     .save-btn{
+        /* Display & Box Model */
         height: 7vh;
         width: 7vh;
+
+        /* Other */
+        cursor: pointer;
     
     }
-    .save-btn:hover{
-        cursor: pointer;
-    }
-
+    
     h1{
+        /* Text */
         text-align: center;
         &:hover{
+            /* Text */
             text-decoration: underline;
         }
     }
 
     .delete-btn-wrapper{
+        /* Positioning */
         position: relative;
+
         .delete-btn{
+            /* Positioning */
             position: absolute;
             bottom: 0.5rem;
+            right: 1rem;
+
+            /* Display & Box Model */
             height: 8vh;
             width: 7vh;
             min-height: 50px;
             min-width: 75px;
-            right: 1rem;
+
+            /* Other */
+            cursor: pointer;
         }
-    }
-    .delete-btn:hover{
-        cursor: pointer;
     }
 
 }

@@ -67,7 +67,7 @@
 		let key = this.shadowRoot.querySelector(".key").innerText;
 		let currImg = this.shadowRoot.querySelector(".entry-img").innerText;
 
-		if(currImg == "true"){
+		if (currImg == "true") {
 			return {title: currTitle, content: currContent, key: parseInt(key), image: true};
 		}
 		return {title: currTitle, content: currContent, key: parseInt(key), image: false};
@@ -97,20 +97,16 @@
 		currImg.innerHTML = entry.image;
 		key.innerHTML = entry.key;
 
-		if(entry.image == "true"){
+		if (entry.image == "true") {
 			noteIcon.style.display="none";
 			imgIcon.style.display="block";
 		}
-		else{
+		else {
 			imgIcon.style.display="none";
 			noteIcon.style.display="block";
 		}
 	}/*set entry*/	
-	set mode(mode){
-		if(mode == "dark"){
-			this.shadowRoot.querySelector(".note").style.fill="white";
-		}
-	}
+	
 }/*entryBar*/
 //define the custom web component "addl-entry" and associate it to the class "addlEntry"
 customElements.define("addl-entry", addlEntry);
