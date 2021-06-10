@@ -15,8 +15,7 @@ var currKey = 0;
 class entryBar extends HTMLElement{
 	constructor() {
 		super();
-		//<div class="inactive-bar">
-		//</div>
+		
 		// templated HTML content
 		const template = document.createElement("template");
 		// change inner html of template to the correct format
@@ -102,7 +101,7 @@ class entryBar extends HTMLElement{
 	/** connectedCallback runs everytime a new entry-bar component is created
 	 * @param {}
 	 */
-	connectedCallback(){
+	connectedCallback () {
 		let mainText = document.querySelector(".flexgrow");
 		let innerBar = this.shadowRoot.querySelector(".content");
 		let title = this.shadowRoot.querySelectorAll(".entry-title")[0];
@@ -132,30 +131,30 @@ class entryBar extends HTMLElement{
 		
 		textAreaFeatures(this.shadowRoot);
 		//event listener that allows user to upload image
-		imgContent.addEventListener("click", function(){
+		imgContent.addEventListener("click", function () {
 			imgSelector.click();
-			if(isViewing){
+			if (isViewing) {
 				infoText.style.display="none";
 			}
 		});
 
 		//clear cached files
-		imgSelector.addEventListener("click", function(){
+		imgSelector.addEventListener("click", function () {
 			if (infoText.style.display="block"){
 				imgSelector.value="";
 			}
 		});
 
 		//preview the image to upload
-		imgSelector.addEventListener("change", function(){
-			if(this.files[0]){
+		imgSelector.addEventListener("change", function () {
+			if (this.files[0]) {
 				infoText.style.display="none";
 				uploaded.src = URL.createObjectURL(this.files[0]);
 			}
 		});
 
 		//event listener that fires everytime the save button is clicked
-		saveBtn.addEventListener("click", async function(){
+		saveBtn.addEventListener("click", async function () {
 			const DATE = document.querySelector("log-type").readLog.header;
 			let entryTitle = title.innerText;
 			let entryContent = content.value;
@@ -166,7 +165,7 @@ class entryBar extends HTMLElement{
 			
 
 			//fires everytime the new entry is clicked
-			newNote.addEventListener("click", function(){
+			newNote.addEventListener("click", function () {
 				//change the mode to is viewing
 				isViewing = true;
 				//hide and display relevant components
@@ -185,9 +184,9 @@ class entryBar extends HTMLElement{
 
 			//if we are not viewing an existing entry
 			
-			if(!isViewing){
+			if (!isViewing) {
 				//adjust the margin between subsequent entries
-				if(innerBar.childElementCount > 0){
+				if (innerBar.childElementCount > 0) {
 					newNote.style.marginLeft = "7rem";
 				}
 				//append the newly created entry
@@ -208,9 +207,9 @@ class entryBar extends HTMLElement{
 			//if we are viewing an existing entry
 			else{
 				//find the current entry in the document and update its contents
-				for(let i = 0; i < innerBar.childElementCount; ++i){
+				for (let i = 0; i < innerBar.childElementCount; ++i) {
 					let currEntry;
-					if(innerBar.children[i].entry.key == currKey){
+					if (innerBar.children[i].entry.key == currKey) {
 						currEntry = innerBar.children[i];
 						currEntry.entry = makeEntry(entryTitle, entryContent, currKey);
 						break;
@@ -228,7 +227,7 @@ class entryBar extends HTMLElement{
 		
 		});
 
-		saveBtnImg.addEventListener("click", async function(){
+		saveBtnImg.addEventListener("click", async function () {
 			const DATE = document.querySelector("log-type").readLog.header;
 			let entryTitle = imgTitle.innerText;
 			let newNote = document.createElement("addl-entry");
@@ -237,7 +236,7 @@ class entryBar extends HTMLElement{
 			newNote.entry = entry;
 			
 			//fires everytime the new entry is clicked
-			newNote.addEventListener("click", async function(){
+			newNote.addEventListener("click", async function () {
 				//change the mode to is viewing
 				isViewing = true;
 				//hide and display relevant components
@@ -260,10 +259,10 @@ class entryBar extends HTMLElement{
 			});
 
 
-			if(!isViewing){
+			if (!isViewing) {
 				
 				//adjust the margin between subsequent entries
-				if(innerBar.childElementCount > 0){
+				if (innerBar.childElementCount > 0) {
 					newNote.style.marginLeft = "7rem";
 				}
 				//append the newly created entry
@@ -287,9 +286,9 @@ class entryBar extends HTMLElement{
 			//if we are viewing an existing entry
 			else{
 				//find the current entry in the document and update its contents
-				for(let i = 0; i < innerBar.childElementCount; ++i){
+				for (let i = 0; i < innerBar.childElementCount; ++i) {
 					let currEntry;
-					if(innerBar.children[i].entry.key == currKey){
+					if (innerBar.children[i].entry.key == currKey) {
 						currEntry = innerBar.children[i];
 						currEntry.entry = makeEntry(entryTitle, "", currKey, true);
 						break;
@@ -306,7 +305,6 @@ class entryBar extends HTMLElement{
 						});
 					imgSelector.value="";
 				}else{	
-					console.log("image has not been changed");
 					let toUpload = await getEntry(currKey);
 					updateEntry(currKey,
 						{	date: DATE,
@@ -320,15 +318,15 @@ class entryBar extends HTMLElement{
 		});
 
 		//event listener for deleting an entry
-		deleteButton.addEventListener("click", function(){
+		deleteButton.addEventListener("click", function () {
 			deleteNote();
 		});
 
-		deleteButtonImg.addEventListener("click", function(){
+		deleteButtonImg.addEventListener("click", function () {
 			deleteImg();
 		});
 		
-		exitBtnText.addEventListener("click", function(){
+		exitBtnText.addEventListener("click", function () {
 			//discard changes made to the content displayed in the editing panel
 			title.innerText="Add Title";
 			content.value="";
@@ -338,7 +336,7 @@ class entryBar extends HTMLElement{
 			editing.style.display="none";
 			document.querySelector("entry-bar").type="openbar";
 		});
-		exitBtnImg.addEventListener("click", function(){
+		exitBtnImg.addEventListener("click", function () {
 			//discard changes made to the content displayed in the editing panel
 			imgTitle.innerText="Add Title";
 			content.value="";
@@ -368,13 +366,13 @@ class entryBar extends HTMLElement{
 		if (initial.style.display == "block" && activeBar.style.display == "none"){
 			return "initial";
 		}
-		if(editing.style.display == "block"){
+		if (editing.style.display == "block") {
 			return "editing";
 		}
-		if(imgEditing.style.display == "block"){
+		if (imgEditing.style.display == "block") {
 			return "img-editing";
 		}
-		else{
+		else {
 			return "openbar";
 		}
 	}
@@ -387,8 +385,14 @@ class entryBar extends HTMLElement{
 		setEntrybarType(this.shadowRoot, type, isViewing);
 	}
 
+	/** Sets the color mode to display dark mode or light mode
+	 * @param {String} mode
+	 * 
+	 * @example addlEntryBar.mode = "dark";
+	 * 
+	 */
 	set mode(mode){
-		if(mode=="dark"){
+		if (mode=="dark") {
 			//expanded bar
 			this.shadowRoot.querySelector(".content").style.background="#2A2D32";
 
@@ -454,12 +458,11 @@ class entryBar extends HTMLElement{
 		}
 
 		entries.forEach(entry => {
-			//console.log(entry);
 			let newEntry = document.createElement("addl-entry");
 			newEntry.entry = entry;
-			//console.log(newEntry.entry.image);
-			if(newEntry.entry.image){
-				newEntry.addEventListener("click", async function(){
+	
+			if (newEntry.entry.image) {
+				newEntry.addEventListener("click", async function () {
 					//change the mode to is viewing
 					isViewing = true;
 					document.querySelector("entry-bar").type = "img-editing";
@@ -482,7 +485,7 @@ class entryBar extends HTMLElement{
 				});
 
 			}else{
-				newEntry.addEventListener("click", function(){
+				newEntry.addEventListener("click", function () {
 					//change the mode to is viewing
 					isViewing = true;
 		
@@ -500,7 +503,7 @@ class entryBar extends HTMLElement{
 					currKey = newEntry.entry.key;
 				});
 			}
-			if(innerBar.childElementCount > 0){
+			if (innerBar.childElementCount > 0) {
 				newEntry.style.marginLeft = "7rem";
 			}
 			innerBar.appendChild(newEntry);
@@ -512,7 +515,15 @@ class entryBar extends HTMLElement{
 //define the custom web component "entry-bar" and associate it to the class "entryBar"
 customElements.define("entry-bar", entryBar);
 
+/** Helper function that sets the display type of the additional entry bar, and hides/displays relevant components
+ * 
+ * @param {Object} SHADOW 
+ * @param {String} type 
+ * 
+ * @example setEntrybarType(this.shadowRoot, "initial");
+ */
 function setEntrybarType(SHADOW, type) {
+
 	let initial = SHADOW.querySelector(".initial");
 	let editing = SHADOW.querySelector(".editing");
 	let imgEditing = SHADOW.querySelector(".img-editing");
@@ -532,20 +543,20 @@ function setEntrybarType(SHADOW, type) {
 
 	imgContent.style.overflow = "hidden";
 	
-	if(type == "initial"){
+	if (type == "initial") {
 		initial.style.display="block";
 		editing.style.display="none";
 
 		activeBar.style.display = "none";
 		inactiveBar.style.display = "block";
 		//fires when user clicks on collapsed version of the entry bar
-		inactiveBar.addEventListener("click", function(){
+		inactiveBar.addEventListener("click", function () {
 			activeBar.style.display="flex";
 			inactiveBar.style.display = "none";
 			document.querySelector(".additional").style.flex = "1";
 		});
 		//fires when user clicks on the close button to collapse the entry bar
-		closeBtn.addEventListener("click", function(){			
+		closeBtn.addEventListener("click", function () {			
 			document.querySelector(".additional").style.flex = "0";
 			setTimeout(function() {
 				activeBar.style.display = "none";
@@ -553,14 +564,14 @@ function setEntrybarType(SHADOW, type) {
 			}, 300);
 		});
 		//fires when user clicks the button to add a new entry
-		newTextEntry.addEventListener("click", function(){
+		newTextEntry.addEventListener("click", function () {
 			//since we are adding a new entry, set the is viewing mode to false
 			isViewing = false;
 			deleteButton.style.display="none";
 			mainText.style.display = "none";
 			document.querySelector("entry-bar").type="editing";
 		});
-		newImgEntry.addEventListener("click", function(){
+		newImgEntry.addEventListener("click", function () {
 			//since we are adding a new entry, set the is viewing mode to false
 			isViewing = false;
 			mainText.style.display = "none";
@@ -568,22 +579,21 @@ function setEntrybarType(SHADOW, type) {
 		});
 	}
 
-	else if(type == "editing"){
+	else if (type == "editing") {
 		//toggle the relevant elements
 		initial.style.display="none";
 		editing.style.display="block";
 		//document.querySelector(".additional").style.flex = "1";
 		mainText.style.display = "none";
-		console.log("reached");
 	
-		if(isViewing){
+		if (isViewing) {
 			SHADOW.querySelector(".delete-btn").style.display="block";
 		}
 		//fires when user clicks the exit button in the editing panel
 		
 
 	}
-	else if(type == "img-editing"){
+	else if (type == "img-editing") {
 		//toggle the relevant elements
 		uploaded.src="";
 		infoText.style.display="block";
@@ -592,7 +602,7 @@ function setEntrybarType(SHADOW, type) {
 		initial.style.display="none";
 		imgEditing.style.display="block";
 	
-		if(isViewing){
+		if (isViewing) {
 			SHADOW.querySelector(".delete-btn").style.display="block";
 			infoText.style.display="none";
 		}
@@ -629,7 +639,7 @@ function setEntrybarType(SHADOW, type) {
  * @example myEntry = createEntry(title, content, key);
  */
 function makeEntry(title, content, key, image){
-	if(image){
+	if (image) {
 		return {title: title, content: content, key: key, image: "true"};
 	}
 	return {title: title, content: content, key: key, image: "false"};
@@ -652,12 +662,11 @@ function deleteNote() {
 	let response = confirm("Delete this entry?");
 
 	//if user wants to delete the entry, find and delete the entry
-	if(response){
-		for(let i = 0; i < innerBar.childElementCount; ++i){
-			console.log(innerBar.children[i]);
-			if(innerBar.children[i].entry.key == currKey){
+	if (response) {
+		for (let i = 0; i < innerBar.childElementCount; ++i) {
+
+			if (innerBar.children[i].entry.key == currKey) {
 				let currEntry = innerBar.children[i];
-				console.log(currEntry);
 				innerBar.removeChild(currEntry)
 				break;
 			} 
@@ -667,7 +676,7 @@ function deleteNote() {
 		deleteEntry(currKey);
 
 		//adjust the margin of the first entry
-		if(innerBar.children[0]){
+		if (innerBar.children[0]) {
 			innerBar.children[0].style.marginLeft = "1rem";
 		}
 
@@ -700,12 +709,10 @@ function deleteImg() {
 	let response = confirm("Delete this entry?");
 
 	//if user wants to delete the entry, find and delete the entry
-	if(response){
-		for(let i = 0; i < innerBar.childElementCount; ++i){
-			console.log(innerBar.children[i]);
-			if(innerBar.children[i].entry.key == currKey){
+	if (response) {
+		for (let i = 0; i < innerBar.childElementCount; ++i) {
+			if (innerBar.children[i].entry.key == currKey) {
 				let currEntry = innerBar.children[i];
-				console.log(currEntry);
 				innerBar.removeChild(currEntry)
 				break;
 			} 
@@ -715,7 +722,7 @@ function deleteImg() {
 		deleteEntry(currKey);
 
 		//adjust the margin of the first entry
-		if(innerBar.children[0]){
+		if (innerBar.children[0]) {
 			innerBar.children[0].style.marginLeft = "1rem";
 		}
 
@@ -738,7 +745,7 @@ function textAreaFeatures(SHADOW) {
 	let content = SHADOW.querySelector(".text-content");
 	//allow for tabs
 	content.addEventListener("keydown", function(e){
-		if(e.key==="Tab"){
+		if (e.key==="Tab") {
 			e.preventDefault();
 			insertTextAtCaret(content, "\t");
 		}

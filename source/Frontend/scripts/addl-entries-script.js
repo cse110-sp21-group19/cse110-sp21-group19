@@ -6,15 +6,14 @@ import { getDailyEntries} from "../../Backend/api/entries_api.js";
  * @param {Array.<Object>} keys 
  * @returns {Array.<Object>}
  */
-export function formatEntries(entries, keys){
+export function formatEntries (entries, keys) {
 	let toReturn = [];
-	for (let i = 0; i < entries.length; ++i){
-		//console.log(entries[i]);
-		if(entries[i].image){
+	for (let i = 0; i < entries.length; ++i) {
+		if (entries[i].image) {
 			let toInsert = {title: entries[i].title, content: "", key: Number(keys[i]), image: "true"};
 			toReturn.push(toInsert);
 		}
-		else{
+		else {
 			let toInsert = {title: entries[i].title, content: entries[i].content, key: Number(keys[i]), image: "false"};
 			toReturn.push(toInsert);
 		}
@@ -38,11 +37,10 @@ export async function updateAddlEntries() {
 
 	ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
 
-	if(ADDLENTRYBAR.type == "editing" || ADDLENTRYBAR.type == "img-editing"){
+	if (ADDLENTRYBAR.type == "editing" || ADDLENTRYBAR.type == "img-editing") {
 		ADDLENTRYBAR.type = "openbar";
 	}
 
-   // document.querySelector(".additional").classList.add("active");
 }
 
 //Helper functions to insert text at caret position

@@ -6,27 +6,32 @@
 /* spacing */
 /* device sizes */
 .note {
+  /* Display & Box Model */
   height: 13vh;
-  overflow: visible;
   width: auto;
   margin: 3vh 0 0 2vw;
+  /* Other */
   cursor: pointer;
+  overflow: visible;
 }
 
 @media (max-height: 700px) {
   .note {
+    /* Display & Box Model */
     height: 10vh;
   }
 }
 
 /*image entry icon*/
 .image {
+  /* Display & Box Model */
   height: 13vh;
-  overflow: visible;
   width: auto;
   min-height: 50px;
   margin: 3vh 0 0 2vw;
+  /* Other */
   cursor: pointer;
+  overflow: visible;
 }
 
 @media (max-height: 700px) {
@@ -37,31 +42,39 @@
 
 /*Entry title*/
 .tooltip {
+  /* Positioning */
   position: relative;
 }
 
 .tooltip .tooltiptext {
+  /* Positioning */
   position: absolute;
   top: -2vh;
   left: 2vw;
+  /* Text */
   font-weight: bold;
   font-size: 1rem;
 }
 
 @media (max-height: 700px) {
   .tooltip .tooltiptext {
-    font-size: 10px;
+    /* Positioning */
     top: -1rem;
+    /* Text */
+    font-size: 10px;
   }
 }
 
 /*Scrollbar*/
 ::-webkit-scrollbar {
+  /* Display & Box Model */
   height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
+  /* Color */
   background: #b6b6b6;
+  /* Other */
   border-radius: 10px;
 }
 /*# sourceMappingURL=textentry.css.map */
