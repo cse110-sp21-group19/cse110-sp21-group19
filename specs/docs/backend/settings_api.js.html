@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: settings_api.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: settings_api.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//CONSTANTS
+const DATABASENAME = "BuJoDatabase";
+const SETTINGDB = "settingDB";
+const ERR_DB_NOT_CREATED = "ERROR: Database hasn't been created!";
+const ERR_CANT_ACCESS_SETTINGS = "ERROR: Unable to access settingsDB";
+
+/**
+ * createDefault()
+ * adds default darkMode input set as false
+ * 
+ * @return {number} - key of newly added item, (not needed to store)
+ * 
+ * @example createDefault();
+ */
+export function createDefault(){
+	return new Promise((resolve) => {
+		//opening database
+		let request = window.indexedDB.open(DATABASENAME);
+
+		//successfully opened database
+		request.onsuccess = function () {
+			let db = request.result;
+			let transaction = db.transaction([SETTINGDB], "readwrite");
+			let store = transaction.objectStore(SETTINGDB);
+
+			let defaultSettings = {"darkMode": false};
+			let storeRequest = store.add(defaultSettings, 1);
+
+			//return the key on newly added entry
+			storeRequest.onsuccess = function () {
+				resolve(storeRequest.result);
+			};
+            
+			//unable to add entry, returns -1
+			storeRequest.onerror = function() {
+				resolve(-1);
+			};
+
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+        
+		//unable to open database
+		request.onerror = function () {
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve(-1);
+		};
+	});
+}
+
+/**
+ * updateMode
+ * updates the current darkMode to either true or false
+ * 
+ * @param {boolean} - whether darkmode is on or off
+ * 
+ * @return {boolean} - true if updated successfully, false if not
+ * 
+ * @example updateMode(true);
+ */
+export function updateMode(darkMode){
+	return new Promise((resolve) => {
+
+		//opening database
+		let request = window.indexedDB.open(DATABASENAME);
+
+		//successfully opened database
+		request.onsuccess = function () {
+			let db = request.result;
+			let transaction = db.transaction([SETTINGDB], "readwrite");
+			let store = transaction.objectStore(SETTINGDB);
+			let key = 1;
+			let getRequest = store.get(key);
+
+			getRequest.onsuccess = function (event) {
+				let currSettings = event.target.result;
+                
+				if (currSettings !== undefined) {
+					//updating attributes
+					currSettings.darkMode = darkMode;
+
+					let putRequest = store.put(currSettings, key);
+                    
+					//successfully updated entry
+					putRequest.onsuccess = function () { resolve(true); };
+                    
+					//unable to uppdate entry
+					putRequest.onerror = function () { resolve(false); };
+				} else {
+					resolve(false);
+				}
+			};
+            
+			getRequest.onerror = function () {
+				console.log.eror(ERR_CANT_ACCESS_SETTINGS);
+				resolve(false);
+			};
+
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+		//unable to open database
+		request.onerror = function () {
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve(false);
+		};
+	});
+}
+
+/**
+ * getMode
+ * Returns the true or false for dark mode as strings
+ * 
+ * @return {boolean} returns either true, or false for darkMode
+ * 
+ * @example getEntry();
+ */
+export function getMode(){
+	return new Promise((resolve) => {
+		//opening database
+		let request = window.indexedDB.open(DATABASENAME);
+
+		//db opens successfully
+		request.onsuccess = function(){
+			let db = request.result;
+			let transaction = db.transaction([SETTINGDB], "readonly");
+			let objStore = transaction.objectStore(SETTINGDB);
+			let key = 1;
+			let objStoreRequest = objStore.get(key);
+
+			//entry object successfully accessed
+			objStoreRequest.onsuccess = function (e){
+				resolve(e.target.result.darkMode);
+			};
+			//unable to access entry object
+			objStoreRequest.onerror = function(){
+				console.log.error(ERR_CANT_ACCESS_SETTINGS);
+				resolve({});
+			};
+
+			transaction.oncomplete = function () {
+				db.close();
+			};
+		};
+		//unable to open database
+		request.onerror = function(){
+			console.log.error(ERR_DB_NOT_CREATED);
+			resolve({});
+		};
+	});
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createBullet">createBullet</a></li><li><a href="global.html#createDB">createDB</a></li><li><a href="global.html#createDefault">createDefault</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#deleteBullet">deleteBullet</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#getAllPriority">getAllPriority</a></li><li><a href="global.html#getBullet">getBullet</a></li><li><a href="global.html#getDailyBullets">getDailyBullets</a></li><li><a href="global.html#getDailyEntries">getDailyEntries</a></li><li><a href="global.html#getDailyPriority">getDailyPriority</a></li><li><a href="global.html#getDailyTodo">getDailyTodo</a></li><li><a href="global.html#getEntry">getEntry</a></li><li><a href="global.html#getFutureBullets">getFutureBullets</a></li><li><a href="global.html#getMode">getMode</a></li><li><a href="global.html#getMonthlyBullets">getMonthlyBullets</a></li><li><a href="global.html#updateBullet">updateBullet</a></li><li><a href="global.html#updateEntry">updateEntry</a></li><li><a href="global.html#updateMode">updateMode</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:04:44 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

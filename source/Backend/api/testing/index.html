@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>IndexedDB</title>
+</head>
+
+<body>
+   <h1>Bullet Database</h1>
+    <button id="create">CreateDB</button><br><br>
+ <!--    <button id="add">Add</button><br><br> -->
+    <form>
+        <label for="log">Log:</label>
+        <input type="text" id="log" name="log"><br><br>
+
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type"><br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date"><br><br>
+
+        <label for="priority">Priority:</label>
+        <input type="text" id="priority" name="priority"><br><br>
+
+        <label for="content">Content:</label>
+        <input type="text" id="content" name="content"><br><br>
+
+        <label for="completed">Completed:</label>
+        <input type="text" id="completed" name="completed"><br><br>
+        
+        <label for="level">level:</label>
+        <input type="text" id="level" name="level"><br><br>
+
+        <button id="add">Add Bullet</button>
+        
+    </form><br><br>
+
+    <label for="key">key:</label>
+    <input type="text" id="key" name="key"><br><br>
+    <button id="get">Get Bullet</button>
+    <button id="update">Update Bullet</button>
+    <button id="delete">Delete Bullet</button>
+
+    <br><br>
+    <button id="important">Get All Important Bullets</button>
+    <br><br>
+
+    <label for="dateget">Date:</label>
+    <input type="date" id="dateget" name="dateget"><br><br>
+
+    <button id="daily">Get Bullets for day</button>
+    <button id="dailypriority">Get Priority Bullets for day</button>
+    <button id="dailytodo">Get Todo Bullets for day</button><br><br>
+
+<!--     ENTRIES -->
+    <h1>Entries Database</h1>
+    <form>
+        <label for="entrydate">Date:</label>
+        <input type="date" id="entrydate" name="entrydate"><br><br>
+
+        <label for="entrytitle">Title:</label>
+        <input type="text" id="entrytitle" name="entrytitle"><br><br>
+
+        <label for="entrycontent">content:</label>
+        <input type="text" id="entrycontent" name="entrycontent"><br><br>
+
+        <button id="entryadd">Add Entry</button>
+    </form>
+
+    <br><br>
+
+    <label for="entrykey">key:</label>
+    <input type="text" id="entrykey" name="entrykey"><br><br>
+    <button id="entryget">Get Entry</button>
+    <button id="entryupdate">Update Entry</button>
+    <button id="entrydelete">Delete Entry</button><br><br>
+
+    <label for="dateget2">Date:</label>
+    <input type="date" id="dateget2" name="dateget2"><br><br>
+
+    <button id="entrydaily">Get Entries for day</button><br><br>
+    
+    <!-- imports -->
+    <script type="module" src="../bullet_api.js"></script>
+    <script type="module" src="../entries_api.js"></script>
+    <script type="module" src="../settings_api.js"></script>
+
+    <script type="module" src="bullet_api_test.js"></script>
+    <script type="module" src="entries_api_test.js"></script>
+<!--     <script src="entries_api.js"></script> -->
+</body>
+</html>

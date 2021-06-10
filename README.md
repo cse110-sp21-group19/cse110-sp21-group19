@@ -5,6 +5,7 @@ Repo for CSE 110 Sp21 Group 19
 [iNeedA\<br> - Group Page](admin/team.md)
 
 ## Project Navigation
+- [Project Onboarding](admin/onboarding/onboard.md)
 - [Project Source Code](source)
 - [Style Guide](specs/style_guide.md)
 - [Meeting Notes](#meeting-notes)
@@ -15,6 +16,7 @@ Repo for CSE 110 Sp21 Group 19
 This quarter, we will be working on making a [Bullet Journal](https://en.wikipedia.org/wiki/Bullet_journal)
 
 # Meeting Notes
+- [6/7/21 - Brainstorm Public Video](admin/meetings/060721-Brainstorm-Public-Video.md) 
 - [6/3/21 - Sprint 3 Thursday](admin/meetings/060321-Sprint-3-Thursday.md)
 - [6/1/21 - Sprint 3 Tuesday](admin/meetings/060121-Sprint-3-Tuesday.md)
 - [5/29/21 - Sprint 2 Retrospective](admin/meetings/052921-Sprint-2-Retrospective.md)

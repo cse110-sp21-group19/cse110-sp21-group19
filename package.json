@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --passWithNoTests \"./source/Testing/index.js\"",
+    "test": "jest --coverage --passWithNoTests \"./source/Testing/backend.test.js\"",
     "lint": "eslint \"source/**\" --ext .js",
     "lint:fix": "npm run lint -- --fix",
     "docs": "npm run docsFront && npm run docsBack",
@@ -15,9 +15,13 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
     "eslint": "^7.25.0",
     "fake-indexeddb": "^3.1.2",
     "jest": "^26.6.3",
     "jsdoc": "^3.6.7"
+  },
+  "dependencies": {
+    "ts-jest": "^27.0.2"
   }
 }
