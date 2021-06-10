@@ -30,10 +30,7 @@
 const DATABASENAME = "BuJoDatabase";
 const BULLETDB = "bulletDB";
 const ENTRYDB = "entryDB";
-<<<<<<< HEAD
-=======
 const SETTINGDB = "settingDB";
->>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
 const ERR_DB_NOT_CREATED = "ERROR: Database hasn't been created!";
 const ERR_CANT_GET_BULLET = "ERROR: Unable to access bullet with key: ";
 const ERR_CANT_ACCESS_BULLET = "ERROR: Unable to access bullet";
@@ -80,8 +77,6 @@ export function createDB() {
 		entryStore.createIndex("date", "date", {unique: false});
 		entryStore.createIndex("title", "title", {unique: false});
 		entryStore.createIndex("content", "content", {unique: false});
-<<<<<<< HEAD
-=======
 
 		//creating settingStore to store color
 		let settingStore = db.createObjectStore(SETTINGDB, {autoIncrement: true});
@@ -89,7 +84,6 @@ export function createDB() {
 		//define columns
 		settingStore.createIndex("darkMode", "darkMode", {unique: true});
 
->>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
 	};
 }
 
