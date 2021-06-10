@@ -21,15 +21,15 @@ export function createFutureNav(date){
 	document.getElementById("weekly-nav-container").appendChild(FUTURENAV);
 	document.getElementById("weekly-nav-container").className += " active";
 	const FUTURENAVCONTAINER = FUTURENAV.shadowRoot.querySelector(".future-container");
-    FUTURENAVCONTAINER.addEventListener("click", (event) => {
+	FUTURENAVCONTAINER.addEventListener("click", (event) => {
 		//when month is clicked switch to that monthly log
-        if (event.target.className == "future-item") {
-            //which month was selected 0-11
-            let index = [].indexOf.call( FUTURENAVCONTAINER.childNodes, event.target);
+		if (event.target.className == "future-item") {
+			//which month was selected 0-11
+			let index = [].indexOf.call( FUTURENAVCONTAINER.childNodes, event.target);
 			const currYear = document.querySelector("log-type").readLog.date.getFullYear();
 			let date = new Date(currYear, index, 1);
 			router.setState("monthly", false, date, "future");
 		}
-    });
+	});
 }/* createFutureNav */
 

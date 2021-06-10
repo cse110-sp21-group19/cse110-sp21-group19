@@ -26,14 +26,14 @@ expand.addEventListener("click", () => {
  * 	openMenu()
  */
 function openMenu() {
-    //get elements of burger(x,y,z) and side nav
+	//get elements of burger(x,y,z) and side nav
 	let x = SIDENAVROOT.getElementById("x");
 	let y = SIDENAVROOT.getElementById("y");
 	let z = SIDENAVROOT.getElementById("z");
 	let menu = SIDENAVROOT.getElementById("side-nav-menu");
 	let title = SIDENAVROOT.getElementById("burger-and-title");
 
-    //expand and add transition
+	//expand and add transition
 	expand.classList.remove("closed");
 	expand.classList.add("opened");
 	x.classList.add("transformx");
@@ -53,14 +53,14 @@ function openMenu() {
  * 	closeMenu()
  */
 export function closeMenu() {
-    //get elements of burger(x,y,z) and side nav
+	//get elements of burger(x,y,z) and side nav
 	let x = SIDENAVROOT.getElementById("x");
 	let y = SIDENAVROOT.getElementById("y");
 	let z = SIDENAVROOT.getElementById("z");
 	let menu = SIDENAVROOT.getElementById("side-nav-menu");
 	let title = SIDENAVROOT.getElementById("burger-and-title");
 
-    //close and add transition
+	//close and add transition
 	menu.style.maxHeight = null;
 	setTimeout(function() {
 		title.style.borderBottomLeftRadius = BORDERADIUS;

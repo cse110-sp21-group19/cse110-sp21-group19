@@ -85,7 +85,7 @@ deleteBtn.addEventListener("click", async () => {
     }); */
 	console.log(`Deleted: ${result}`);
 
-/* 	let key = document.getElementById("key").value;
+	/* 	let key = document.getElementById("key").value;
 	let result = await deleteBullet(Number(key));/* .then(result => {
         console.log(`Deleted?: ${result}`);
     }); 

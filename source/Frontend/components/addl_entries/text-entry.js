@@ -12,7 +12,7 @@
  *
  * This class represents a single additional text entry
  */
- class addlEntry extends HTMLElement{
+class addlEntry extends HTMLElement{
 	constructor() {
 		super();
 		// templated HTML content

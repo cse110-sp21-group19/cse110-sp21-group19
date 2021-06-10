@@ -65,9 +65,9 @@ class TodoList extends HTMLElement{
 		const scrollContainer = this.shadowRoot.querySelector(".scroll-container");
 
 		//If the list is not empty
-		 if (list.length > 0) {
-			 //get rid of empty marker
-		 	scrollContainer.innerHTML = "";
+		if (list.length > 0) {
+			//get rid of empty marker
+			scrollContainer.innerHTML = "";
 			list.forEach(element => {
 				let day = DAYS[element.date.getDay()];
 				let date = element.date.getDate();

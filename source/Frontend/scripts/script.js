@@ -75,7 +75,7 @@ SNFUTURELOG.addEventListener("click", () => {
 // on click listener for help button in side nav
 const SNHELP = SIDENAVROOT.getElementById("sn-help");
 SNHELP.addEventListener("click", () => {
-    const d = new Date();
+	const d = new Date();
 	router.setState("help", false, d, "side-nav");
 
 	closeMenu();
@@ -115,9 +115,9 @@ NEXTLOG.addEventListener("click", () => {
 	const DATE = LOGTYPE.readLog.date;
 	const LOG = LOGTYPE.readLog.type;
 	// increment the current date
-	const nextDate = new Date(DATE)
+	const nextDate = new Date(DATE);
 	if (LOG == "daily") {
-		nextDate.setDate(nextDate.getDate() + 1)
+		nextDate.setDate(nextDate.getDate() + 1);
 	}
 	// set date for monthly log, note that the date will be set to the first of 
 	// the month

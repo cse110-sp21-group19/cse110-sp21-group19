@@ -57,7 +57,7 @@ export function formatEntries (entries, keys) {
 export async function updateAddlEntries() {
 	let myDate = document.querySelector("log-type").readLog.header;
 	const ADDLENTRYBAR = document.querySelector("entry-bar");
-    ADDLENTRYBAR.style.display="inline";
+	ADDLENTRYBAR.style.display="inline";
 
 	let entriesList = await getDailyEntries(myDate);
 	let keys = entriesList[0];
@@ -75,71 +75,71 @@ export async function updateAddlEntries() {
 // SOURCE: https://stackoverflow.com/questions/3510351/how-do-i-add-text-to-a-textarea-at-the-cursor-location-using-javascript
 
 function getInputSelection(el) {
-    var start = 0, end = 0, normalizedValue, range,
-        textInputRange, len, endRange;
+	var start = 0, end = 0, normalizedValue, range,
+		textInputRange, len, endRange;
 
-    if (typeof el.selectionStart == "number" &amp;&amp; typeof el.selectionEnd == "number") {
-        start = el.selectionStart;
-        end = el.selectionEnd;
-    } else {
-        range = document.selection.createRange();
+	if (typeof el.selectionStart == "number" &amp;&amp; typeof el.selectionEnd == "number") {
+		start = el.selectionStart;
+		end = el.selectionEnd;
+	} else {
+		range = document.selection.createRange();
 
-        if (range &amp;&amp; range.parentElement() == el) {
-            len = el.value.length;
-            normalizedValue = el.value.replace(/\r\n/g, "\n");
+		if (range &amp;&amp; range.parentElement() == el) {
+			len = el.value.length;
+			normalizedValue = el.value.replace(/\r\n/g, "\n");
 
-            // Create a working TextRange that lives only in the input
-            textInputRange = el.createTextRange();
-            textInputRange.moveToBookmark(range.getBookmark());
+			// Create a working TextRange that lives only in the input
+			textInputRange = el.createTextRange();
+			textInputRange.moveToBookmark(range.getBookmark());
 
-            // Check if the start and end of the selection are at the very end
-            // of the input, since moveStart/moveEnd doesn't return what we want
-            // in those cases
-            endRange = el.createTextRange();
-            endRange.collapse(false);
+			// Check if the start and end of the selection are at the very end
+			// of the input, since moveStart/moveEnd doesn't return what we want
+			// in those cases
+			endRange = el.createTextRange();
+			endRange.collapse(false);
 
-            if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
-                start = end = len;
-            } else {
-                start = -textInputRange.moveStart("character", -len);
-                start += normalizedValue.slice(0, start).split("\n").length - 1;
+			if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
+				start = end = len;
+			} else {
+				start = -textInputRange.moveStart("character", -len);
+				start += normalizedValue.slice(0, start).split("\n").length - 1;
 
-                if (textInputRange.compareEndPoints("EndToEnd", endRange) > -1) {
-                    end = len;
-                } else {
-                    end = -textInputRange.moveEnd("character", -len);
-                    end += normalizedValue.slice(0, end).split("\n").length - 1;
-                }
-            }
-        }
-    }
+				if (textInputRange.compareEndPoints("EndToEnd", endRange) > -1) {
+					end = len;
+				} else {
+					end = -textInputRange.moveEnd("character", -len);
+					end += normalizedValue.slice(0, end).split("\n").length - 1;
+				}
+			}
+		}
+	}
 
-    return {
-        start: start,
-        end: end
-    };
+	return {
+		start: start,
+		end: end
+	};
 }
 
 function offsetToRangeCharacterMove(el, offset) {
-    return offset - (el.value.slice(0, offset).split("\r\n").length - 1);
+	return offset - (el.value.slice(0, offset).split("\r\n").length - 1);
 }
 
 function setSelection(el, start, end) {
-    if (typeof el.selectionStart == "number" &amp;&amp; typeof el.selectionEnd == "number") {
-        el.selectionStart = start;
-        el.selectionEnd = end;
-    } else if (typeof el.createTextRange != "undefined") {
-        var range = el.createTextRange();
-        var startCharMove = offsetToRangeCharacterMove(el, start);
-        range.collapse(true);
-        if (start == end) {
-            range.move("character", startCharMove);
-        } else {
-            range.moveEnd("character", offsetToRangeCharacterMove(el, end));
-            range.moveStart("character", startCharMove);
-        }
-        range.select();
-    }
+	if (typeof el.selectionStart == "number" &amp;&amp; typeof el.selectionEnd == "number") {
+		el.selectionStart = start;
+		el.selectionEnd = end;
+	} else if (typeof el.createTextRange != "undefined") {
+		var range = el.createTextRange();
+		var startCharMove = offsetToRangeCharacterMove(el, start);
+		range.collapse(true);
+		if (start == end) {
+			range.move("character", startCharMove);
+		} else {
+			range.moveEnd("character", offsetToRangeCharacterMove(el, end));
+			range.moveStart("character", startCharMove);
+		}
+		range.select();
+	}
 }
 
 /** Function that inserts a given character at the caret position in a textarea
@@ -150,11 +150,11 @@ function setSelection(el, start, end) {
  * @example insertTextAtCaret(myTextArea, "[INSERTED]");
  */
 export function insertTextAtCaret(el, text) {
-    var pos = getInputSelection(el).end;
-    var newPos = pos + text.length;
-    var val = el.value;
-    el.value = val.slice(0, pos) + text + val.slice(pos);
-    setSelection(el, newPos, newPos);
+	var pos = getInputSelection(el).end;
+	var newPos = pos + text.length;
+	var val = el.value;
+	el.value = val.slice(0, pos) + text + val.slice(pos);
+	setSelection(el, newPos, newPos);
 }
 
 
@@ -175,7 +175,7 @@ export function insertTextAtCaret(el, text) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:36:06 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 05:42:04 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
