@@ -38,7 +38,11 @@ export const MONTHS = ["January", "February", "March", "April", "May", "June", "
  */
 
 // &lt;log-type> custom web component
+/** Class representing a the type of log. */
 class LogType extends HTMLElement {
+	/**
+     * Create log type element.
+     */
 	constructor() {
 		super();
 
@@ -54,7 +58,6 @@ class LogType extends HTMLElement {
 					width: 29rem;
 					text-align: center;
 				}
-
 			&lt;/style>
 			&lt;div class="daily" id="header">
 				&lt;div id="js-date-obj">&lt;/div>
@@ -71,10 +74,10 @@ class LogType extends HTMLElement {
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-		// Attach the created elements to the shadow dom
+		// attach the created elements to the shadow dom
 		shadow.getElementById("header").appendChild(headerEl);
 		shadow.getElementById("js-date-obj").innerText = d;
-	}
+	} /* constructor */
 
 
 	/**
@@ -97,7 +100,7 @@ class LogType extends HTMLElement {
 			"header": HEADER // string with the appropriate title
 		};
 		return logObj;
-	}
+	} /* get readLog */
 
 	/**
 	 * set updateLog
@@ -125,11 +128,7 @@ class LogType extends HTMLElement {
 		// update main-text header
 		let logHeader = this.shadowRoot.querySelector("h1");
 		logHeader.innerText = logObj.header;
-		//console.log("in setter");
-		//console.log("updated type: " + logType);
-		//console.log("updated date: " + logDate);
-		//console.log("updated header: " + logHeader);
-	}
+	} /* set updateLog */
 }
 	
 // Define a custom element for the bullet-input web component   
@@ -155,13 +154,13 @@ customElements.define("log-type", LogType);
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="entryBar.html">entryBar</a></li><li><a href="textEntry.html">textEntry</a></li></ul><h3>Global</h3><ul><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="addlEntry.html">addlEntry</a></li><li><a href="BulletEntry.html">BulletEntry</a></li><li><a href="BulletInput.html">BulletInput</a></li><li><a href="BulletList.html">BulletList</a></li><li><a href="Calendar.html">Calendar</a></li><li><a href="entryBar.html">entryBar</a></li><li><a href="FutureNav.html">FutureNav</a></li><li><a href="HelpElement.html">HelpElement</a></li><li><a href="HelpSection.html">HelpSection</a></li><li><a href="HelpTableOfContents.html">HelpTableOfContents</a></li><li><a href="LogType.html">LogType</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="TodoList.html">TodoList</a></li><li><a href="WeeklyNav.html">WeeklyNav</a></li></ul><h3>Global</h3><ul><li><a href="global.html#appendBullets">appendBullets</a></li><li><a href="global.html#bulletsFromDB">bulletsFromDB</a></li><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createCalendar">createCalendar</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createFutureNav">createFutureNav</a></li><li><a href="global.html#createHelpPage">createHelpPage</a></li><li><a href="global.html#createHelpToc">createHelpToc</a></li><li><a href="global.html#createMainText">createMainText</a></li><li><a href="global.html#createNewBullets">createNewBullets</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#deleteImg">deleteImg</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteSideNav">deleteSideNav</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#formatEntries">formatEntries</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getMonthTodoBullets">getMonthTodoBullets</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#insertTextAtCaret">insertTextAtCaret</a></li><li><a href="global.html#makeEntry">makeEntry</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#nestBulletHelper">nestBulletHelper</a></li><li><a href="global.html#nestedBullets">nestedBullets</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li><li><a href="global.html#setDarkMode">setDarkMode</a></li><li><a href="global.html#setEntrybarType">setEntrybarType</a></li><li><a href="global.html#setLightMode">setLightMode</a></li><li><a href="global.html#textAreaFeatures">textAreaFeatures</a></li><li><a href="global.html#unnestBulletHelper">unnestBulletHelper</a></li><li><a href="global.html#updateAddlEntries">updateAddlEntries</a></li><li><a href="global.html#updateWeeklyNavHelper">updateWeeklyNavHelper</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:04:43 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:32:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

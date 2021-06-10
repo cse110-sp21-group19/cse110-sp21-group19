@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: entryBar</title>
+    <title>JSDoc: Class: WeeklyNav</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: entryBar</h1>
+    <h1 class="page-title">Class: WeeklyNav</h1>
 
     
 
@@ -28,10 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>entryBar<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>WeeklyNav<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>{entryBar}</p>
-<p>This class represents additional entries bar at the bottom of the screen</p></div>
+            <div class="class-description"><p>Class represting a custom weeklynav component</p></div>
         
     
 </header>
@@ -46,12 +45,16 @@
     
 
     
-    <h4 class="name" id="entryBar"><span class="type-signature"></span>new entryBar<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="WeeklyNav"><span class="type-signature"></span>new WeeklyNav<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
 
 
+
+<div class="description">
+    <p>Create a skeleton todolist component, starts off as empty</p>
+</div>
 
 
 
@@ -94,7 +97,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line16">line 16</a>
+        <a href="components_weekly-nav.js.html">components/weekly-nav.js</a>, <a href="components_weekly-nav.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -123,9 +126,25 @@
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>&lt;weekly-nav></code></pre>
+
+
 
     
     </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li>HTMLElement</li>
+    </ul>
+
 
     
 
@@ -144,13 +163,15 @@
 
         
             
-<h4 class="name" id="entries"><span class="type-signature"></span>entries<span class="type-signature"></span></h4>
+<h4 class="name" id="daysOfWeek"><span class="type-signature"></span>daysOfWeek<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    <p>Setter that loads the entries to the page, given an array of entries from the database</p>
+    <p>set daysOfWeek takes in an array of objects which contains date objects of a week
+and fills the weekly nav menu with objects corresponding to those days. Those date
+objects could also contain important bullet info to fill menu.</p>
 </div>
 
 
@@ -188,7 +209,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line438">line 438</a>
+        <a href="components_weekly-nav.js.html">components/weekly-nav.js</a>, <a href="components_weekly-nav.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -205,19 +226,20 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>ENTRYBAR.entries = loadedEntries;</code></pre>
+    <pre class="prettyprint"><code>this.daysOfWeek = week</code></pre>
 
 
 
         
             
-<h4 class="name" id="mode"><span class="type-signature"></span>mode<span class="type-signature"></span></h4>
+<h4 class="name" id="selectedDay"><span class="type-signature"></span>selectedDay<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    <p>Sets the color mode to display dark mode or light mode</p>
+    <p>set selectedDay
+Set an item in the list as selected.</p>
 </div>
 
 
@@ -255,7 +277,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line396">line 396</a>
+        <a href="components_weekly-nav.js.html">components/weekly-nav.js</a>, <a href="components_weekly-nav.js.html#line167">line 167</a>
     </li></ul></dd>
     
 
@@ -272,82 +294,20 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>addlEntryBar.mode = "dark";</code></pre>
+    <pre class="prettyprint"><code>this.selectedDay = day</code></pre>
 
 
 
         
             
-<h4 class="name" id="type"><span class="type-signature"></span>type<span class="type-signature"></span></h4>
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line361">line 361</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>let type = entryBar.type;</code></pre>
-
-
-
-        
-            
-<h4 class="name" id="type"><span class="type-signature"></span>type<span class="type-signature"></span></h4>
+<h4 class="name" id="selectedInfo"><span class="type-signature"></span>selectedInfo<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    <p>Set the 'type' attribute of the entry bar which determines what content to hide/display</p>
+    <p>get selectedInfo
+get the date info of the item selected</p>
 </div>
 
 
@@ -385,7 +345,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line386">line 386</a>
+        <a href="components_weekly-nav.js.html">components/weekly-nav.js</a>, <a href="components_weekly-nav.js.html#line134">line 134</a>
     </li></ul></dd>
     
 
@@ -402,79 +362,22 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>entryBar.type = "initial";</code></pre>
+    <pre class="prettyprint"><code>this.selectedInfo</code></pre>
 
 
-
-        
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
 
         
             
+<h4 class="name" id="updatePriorityBullets"><span class="type-signature"></span>updatePriorityBullets<span class="type-signature"></span></h4>
 
-    
-
-    
-    <h4 class="name" id="connectedCallback"><span class="type-signature"></span>connectedCallback<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
 
 
 
 <div class="description">
-    <p>connectedCallback runs everytime a new entry-bar component is created</p>
+    <p>updatePriortiyBullets
+update the priortiy bullets of one weekly nav item</p>
 </div>
 
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -510,7 +413,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line105">line 105</a>
+        <a href="components_weekly-nav.js.html">components/weekly-nav.js</a>, <a href="components_weekly-nav.js.html#line193">line 193</a>
     </li></ul></dd>
     
 
@@ -525,22 +428,15 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>weekly-nav.updatePriorityBullets = bullets[];</code></pre>
 
 
 
         
+    
+
     
 
     

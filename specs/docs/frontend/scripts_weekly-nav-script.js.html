@@ -26,13 +26,10 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>//weekly nav script
-import {router} from "./router.js";
-let today = new Date();
-createWeeklyNav(today);
-let WEEKLYNAV = document.querySelector("weekly-nav");
-WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "1";
-WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "1";
+            <pre class="prettyprint source linenums"><code>//weekly-nav-script.js
+import { router } from './router.js';
+import { getDailyPriority } from "../../Backend/api/bullet_api.js";
+
 /**
  * createWeeklyNav
  * Takes in a date and creates a weekly nav component from that date and 
@@ -40,56 +37,66 @@ WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity =
  * 
  * @param {Date} date - Date object to make the weekly nav menu around.
  * 
+ * @returns {Boolean} - true if created and appened, false else
+ * 
  * @example
- *  createWeeklyNav(date)
+ *  createWeeklyNav("05-25-2021")
  */
-export function createWeeklyNav(date) {
-	//adding weekly navigation web component
-	let week = createDaysOfWeekArray(date);
-	const WEEKLYNAV = document.createElement("weekly-nav");
-	WEEKLYNAV.daysOfWeek = week;
-	WEEKLYNAV.selectedDay = date.getDay() + 1;
-	document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
-	//Onclick listener for the items inside the weekly nav
-	WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "0";
-	WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
-	const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
-	weeklyNavContainer.addEventListener("click", (event)=>{
-		if(event.target.className == "wn-item"){
-			//which day was selected
-			let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
-			WEEKLYNAV.selectedDay = index;
+export async function createWeeklyNav(date) {
+    //creating weekly nav and setting date
+    let week = await createDaysOfWeekArray(date);
+    const WEEKLYNAV = document.createElement("weekly-nav");
+    WEEKLYNAV.daysOfWeek = week;
+    WEEKLYNAV.selectedDay = date.getDay() + 1;
 
-			//get the newly selected date and update router
-			let selectedDate = WEEKLYNAV.selectedInfo;
-			router.setState("daily-log", false, selectedDate, "weekly-nav");
-           
-		}
-
-	});
+    //appending to page and adding onclick listener
+    document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
+    document.getElementById("weekly-nav-container").className += " active";
+    const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector(".week-container");
+    weeklyNavContainer.childNodes.forEach(element => {
+        element.addEventListener("click", (event) => {
+            if (event.target.className == "wn-date") {
+                //which day was selected
+                let index = [].indexOf.call( weeklyNavContainer.childNodes, element);
+                WEEKLYNAV.selectedDay = index;
+    
+                //get the newly selected date and update router
+                let selectedDate = WEEKLYNAV.selectedInfo;
+                router.setState("daily", false, selectedDate, "weekly-nav");
+            }
+        });
+    })
+    return true;
 } /* createWeeklyNav */
 
 
 /**
  * createDaysofWeekyArray 
- * Creates an array of days of the week for a given week.
+ * Creates an array of days of the week and get all priority bullets of that week
  * 
  * @param {Date} date - A date object of a day in the week that will be created.
  * 
- * @returns An array of date objects (As is, if we attatch important bullets, this will change)
+ * @returns {Array} - An array of objects containing the date and a list of priority bullets
  * for the days of the current week.
  * 
  * @example 
  *      createDaysOfWeekArray()
  */
-function createDaysOfWeekArray(date) {
-	//NOTE: if we want to pass data into the weekly nav like important bullets we can attach to this array
+async function createDaysOfWeekArray(date) {
 	let daysOfWeek = [];
 	let currDate = new Date(date);
 	//start on Sunday
 	currDate.setDate((currDate.getDate() - currDate.getDay()));
-	for(let i = 0; i &lt; 7; i++){
-		daysOfWeek.push(new Date(currDate));
+	for(let i = 0; i &lt; 7; i++) {
+        let dayObj = {
+            date: currDate,
+            bullets: []        
+        }
+        //get priority bullets and add to list
+        let bullets = await getDailyPriority(currDate);
+        dayObj.date = new Date(currDate);
+		dayObj.bullets = bullets;
+        daysOfWeek.push(dayObj);
 		currDate.setDate(currDate.getDate() + 1);
 	}
 
@@ -104,13 +111,13 @@ function createDaysOfWeekArray(date) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="entryBar.html">entryBar</a></li><li><a href="textEntry.html">textEntry</a></li></ul><h3>Global</h3><ul><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="addlEntry.html">addlEntry</a></li><li><a href="BulletEntry.html">BulletEntry</a></li><li><a href="BulletInput.html">BulletInput</a></li><li><a href="BulletList.html">BulletList</a></li><li><a href="Calendar.html">Calendar</a></li><li><a href="entryBar.html">entryBar</a></li><li><a href="FutureNav.html">FutureNav</a></li><li><a href="HelpElement.html">HelpElement</a></li><li><a href="HelpSection.html">HelpSection</a></li><li><a href="HelpTableOfContents.html">HelpTableOfContents</a></li><li><a href="LogType.html">LogType</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="TodoList.html">TodoList</a></li><li><a href="WeeklyNav.html">WeeklyNav</a></li></ul><h3>Global</h3><ul><li><a href="global.html#appendBullets">appendBullets</a></li><li><a href="global.html#bulletsFromDB">bulletsFromDB</a></li><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createCalendar">createCalendar</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createFutureNav">createFutureNav</a></li><li><a href="global.html#createHelpPage">createHelpPage</a></li><li><a href="global.html#createHelpToc">createHelpToc</a></li><li><a href="global.html#createMainText">createMainText</a></li><li><a href="global.html#createNewBullets">createNewBullets</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#deleteImg">deleteImg</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteSideNav">deleteSideNav</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#formatEntries">formatEntries</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getMonthTodoBullets">getMonthTodoBullets</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#insertTextAtCaret">insertTextAtCaret</a></li><li><a href="global.html#makeEntry">makeEntry</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#nestBulletHelper">nestBulletHelper</a></li><li><a href="global.html#nestedBullets">nestedBullets</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li><li><a href="global.html#setDarkMode">setDarkMode</a></li><li><a href="global.html#setEntrybarType">setEntrybarType</a></li><li><a href="global.html#setLightMode">setLightMode</a></li><li><a href="global.html#textAreaFeatures">textAreaFeatures</a></li><li><a href="global.html#unnestBulletHelper">unnestBulletHelper</a></li><li><a href="global.html#updateAddlEntries">updateAddlEntries</a></li><li><a href="global.html#updateWeeklyNavHelper">updateWeeklyNavHelper</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:04:43 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:32:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

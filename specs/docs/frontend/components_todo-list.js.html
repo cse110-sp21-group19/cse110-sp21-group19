@@ -26,30 +26,37 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
-const SELECTEDRADIUS = "0.2rem";
-const DEFAULTBORDERLEFT = null;
-const DEFAULTRADIUS = null;
+            <pre class="prettyprint source linenums"><code>//todo-list.js
 
+import { TASKBULLET, TASKCOMPLETE } from "./icons.js";
+import { DAYS } from "./log-type.js";
+
+/**
+ * Class represting a custom todolist component
+ * @extends HTMLElement
+ * 
+ * @example
+ * &lt;todo-list>
+ */
 class TodoList extends HTMLElement{
+
+	/**
+	 * Create a skeleton todolist component, starts off as empty
+	 */
 	constructor() {
 		super();
 		const template = document.createElement("template");
 
-		//TODO: Fix the styling
 		template.innerHTML = `
 			&lt;h2 class="todo-title">To-Do List&lt;/h2>
 			&lt;div class="todo-container">
+				&lt;div class ="scroll-container">
+					&lt;div class="todo-item">
+						&lt;div class="no-items">Nothing To Do!&lt;/div>
+					&lt;/div>
+				&lt;/div>
 			&lt;/div>
 		`;
-
-		//Week Item format
-		// &lt;div class="wn-item-mask">
-		// &lt;div class="wn-item">
-		//     &lt;h2 class="wn-date">&lt;span id="day-of-month">&lt;/span>&lt;span id="day-of-week">&lt;/span> &lt;/h2>
-		//     &lt;ul class="wn-bullets">&lt;/ul>
-		// &lt;/div>
-		// create a shadow root for this web component
 
 		const shadow = this.attachShadow({ mode: "open" });
 		// attach cloned content of template to shadow DOM 
@@ -60,109 +67,92 @@ class TodoList extends HTMLElement{
 		// NOTE: it's important that you do NOT include the slash before "style/css/..."
 		linkElem.setAttribute("href", "style/css/todo.css");
 
+		// dark mode class
+		if (document.body.className == "dark-mode") {
+			const TODOITEM = this.shadowRoot.querySelector(".todo-item");
+			TODOITEM.className += " dark-mode";
+		}
+
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(linkElem);
 		
 	}
 
 
+	/**
+	 * set todoList
+	 * This function fills the contents of the todo list component with an array
+	 * of arrays of task bullet items
+	 * 
+	 * @param {Array} list - array of arrays of bullets items of type task
+	 * 
+	 * @example
+	 * todo-list.todoList = bullets[];
+	 */
 	set todoList(list){
+		const scrollContainer = this.shadowRoot.querySelector(".scroll-container");
 
-		//TODO
-	}
+		//If the list is not empty
+		 if (list.length > 0) {
+			 //get rid of empty marker
+		 	scrollContainer.innerHTML = "";
+			list.forEach(element => {
+				let day = DAYS[element.date.getDay()];
+				let date = element.date.getDate();
+				let bullets = element.bullets;
 
-	/**
-	 * get selectedInfo
-	 * Get the date info of the item selected.
-	 * @param {}
-	 * @returns An object containing the date info of the current selected item in
-	 * the weekly nav menu.
-	 * 
-	 * @example
-	 *      this.selectedInfo
-	 */
-	get selectedInfo (){
+				//put bullets in bullet section
+				let todoBullets = document.createElement("div");
+				todoBullets.className = "todo-bullets-container";
+				bullets.forEach(bullet=>{
+					let bulletElem = document.createElement("div");
+					bulletElem.className = "todo-bullet";
+					let bulletType = document.createElement("span");
+					bulletType.id = "bullet-type";
+					if(bullet.completed){
+						bulletType.innerHTML = TASKCOMPLETE;
+						bulletElem.style.textDecoration = "line-through";
+					}
+					else{
+						bulletType.innerHTML = TASKBULLET;
+					}
+		
+					bulletElem.appendChild(bulletType);
+					bulletElem.innerHTML += bullet.content;
+					todoBullets.appendChild(bulletElem);
+				});
 
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+				//date section
+				let todoItem = document.createElement("div");
+				todoItem.className = "todo-item";
+				// dark mode class
+				if (document.body.className == "dark-mode") {
+					todoItem.className += " dark-mode";
+				}
 
-		//iterate over weekly nav items and return info of item with border
-		//(the one with a border is the selected one) 
-		let dateObj;
-		for(let i = 1; i &lt; navContainer.childNodes.length; i++){
-			let currItem = navContainer.childNodes[i];
-			if(currItem.style.borderLeft == SELECTEDBORDERLEFT){
-				dateObj = {
-					"day": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-week']").textContent,
-					"date": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-month']").textContent,
-					"month": currItem.querySelector("p").textContent
-				};
-			}
+				let todoDate = document.createElement("div");
+				todoDate.className = "todo-date";
+				let dayOfWeek = document.createElement("span");
+				dayOfWeek.id = "day-of-week";
+				dayOfWeek.textContent = day;
+				let dayOfMonth = document.createElement("span");
+				dayOfMonth.id = "day-of-month";
+				dayOfMonth.textContent = date;
+
+				todoDate.appendChild(dayOfMonth);
+				todoDate.appendChild(dayOfWeek);
+
+				todoItem.appendChild(todoDate);
+				todoItem.appendChild(todoBullets);
+
+				scrollContainer.appendChild(todoItem);
+
+			});
 		}
-		return dateObj;
-	}/* get selectedInfo */
+	}/* set todoList */	
+}/* TodoList */
 
-	/**
-	 * set selectedDay 
-	 * Set an item in the list as selected.
-	 * 
-	 * @param {number} day - The day of the week of the item that is to be styled 
-	 * as selected.
-	 * 
-	 * @example
-	 *      this.selectedDay = day
-	 */
-	set selectedDay(day){
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
-
-		for(let i = 1; i &lt; navContainer.childNodes.length; i++){
-			if(i == day){
-				navContainer.childNodes[i].style.borderTopLeftRadius = SELECTEDRADIUS;
-				navContainer.childNodes[i].style.borderBottomLeftRadius = SELECTEDRADIUS;
-				//navContainer.childNodes[i].style.border = "0.2rem solid darkgreen";
-				navContainer.childNodes[i].style.borderLeft = SELECTEDBORDERLEFT;
-			}
-			else{
-				navContainer.childNodes[i].style.borderTopLeftRadius = DEFAULTRADIUS;
-				navContainer.childNodes[i].style.borderBottomLeftRadius = DEFAULTRADIUS;
-				navContainer.childNodes[i].style.borderLeft = DEFAULTBORDERLEFT;
-			}
-		}
-	} /* set seletedDay */
-}
-
-
-/**
- * getDateString 
- * Converts integer day of week to its related string.
- * 
- * @param {number} day - An integer of the day of the week (0-6).
- * 
- * @returns A string of the related day of the week of the parameter.
- * 
- * @example
- *      getDateString(day)
- */
-function getDateString(day){
-	switch(day){
-	case 0:
-		return "Sunday";
-	case 1:
-		return "Monday";
-	case 2:
-		return "Tuesday";
-	case 3:
-		return "Wednesday";
-	case 4:
-		return "Thursday";
-	case 5:
-		return "Friday";
-	case 6:
-		return "Saturday";
-	default:
-		return "Sunday";
-	}
-}/* getDateString */
-
+// Define a custom element for the todolist web component
 customElements.define("todo-list", TodoList);</code></pre>
         </article>
     </section>
@@ -173,13 +163,13 @@ customElements.define("todo-list", TodoList);</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="entryBar.html">entryBar</a></li><li><a href="textEntry.html">textEntry</a></li></ul><h3>Global</h3><ul><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="addlEntry.html">addlEntry</a></li><li><a href="BulletEntry.html">BulletEntry</a></li><li><a href="BulletInput.html">BulletInput</a></li><li><a href="BulletList.html">BulletList</a></li><li><a href="Calendar.html">Calendar</a></li><li><a href="entryBar.html">entryBar</a></li><li><a href="FutureNav.html">FutureNav</a></li><li><a href="HelpElement.html">HelpElement</a></li><li><a href="HelpSection.html">HelpSection</a></li><li><a href="HelpTableOfContents.html">HelpTableOfContents</a></li><li><a href="LogType.html">LogType</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="TodoList.html">TodoList</a></li><li><a href="WeeklyNav.html">WeeklyNav</a></li></ul><h3>Global</h3><ul><li><a href="global.html#appendBullets">appendBullets</a></li><li><a href="global.html#bulletsFromDB">bulletsFromDB</a></li><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createCalendar">createCalendar</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createFutureNav">createFutureNav</a></li><li><a href="global.html#createHelpPage">createHelpPage</a></li><li><a href="global.html#createHelpToc">createHelpToc</a></li><li><a href="global.html#createMainText">createMainText</a></li><li><a href="global.html#createNewBullets">createNewBullets</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#deleteImg">deleteImg</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteSideNav">deleteSideNav</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#formatEntries">formatEntries</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getMonthTodoBullets">getMonthTodoBullets</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#insertTextAtCaret">insertTextAtCaret</a></li><li><a href="global.html#makeEntry">makeEntry</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#nestBulletHelper">nestBulletHelper</a></li><li><a href="global.html#nestedBullets">nestedBullets</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li><li><a href="global.html#setDarkMode">setDarkMode</a></li><li><a href="global.html#setEntrybarType">setEntrybarType</a></li><li><a href="global.html#setLightMode">setLightMode</a></li><li><a href="global.html#textAreaFeatures">textAreaFeatures</a></li><li><a href="global.html#unnestBulletHelper">unnestBulletHelper</a></li><li><a href="global.html#updateAddlEntries">updateAddlEntries</a></li><li><a href="global.html#updateWeeklyNavHelper">updateWeeklyNavHelper</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 03 2021 23:10:35 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:32:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

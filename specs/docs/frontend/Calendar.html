@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: scripts/side-nav-script.js</title>
+    <title>JSDoc: Class: Calendar</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,92 +17,298 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: scripts/side-nav-script.js</h1>
+    <h1 class="page-title">Class: Calendar</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>//side-nav-script.js
+        <h2><span class="attribs"><span class="type-signature"></span></span>Calendar<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p>Class representing a custom calendar web component</p></div>
+        
+    
+</header>
 
-const MENUHEIGHT = "calc(100vh - 2rem)";
-const BORDERADIUS = "0.8em";
+<article>
+    <div class="container-overview">
+    
+        
 
-//Adding the side nav menu web component 
-const SIDENAV  = document.createElement("side-nav");
-document.getElementById("side-nav-container").appendChild(SIDENAV);
-//onclick listener for the side nav menu button
-const SIDENAVROOT = SIDENAV.shadowRoot;
-const expand = SIDENAVROOT.querySelector(".burger");
-expand.addEventListener("click", () => {
-	if (expand.classList.contains("opened")) {
-		closeMenu();
-	}
-	else {
-		openMenu();
-	}
-});
+    
+    <h2>Constructor</h2>
+    
 
-/** 
- * openMenu
- * Function to open the side nav menu, adds classes to perform animations/transformations.
- * 
- * @example
- * 	openMenu()
- */
-function openMenu() {
-    //get elements of burger(x,y,z) and side nav
-	let x = SIDENAVROOT.getElementById("x");
-	let y = SIDENAVROOT.getElementById("y");
-	let z = SIDENAVROOT.getElementById("z");
-	let menu = SIDENAVROOT.getElementById("side-nav-menu");
-	let title = SIDENAVROOT.getElementById("burger-and-title");
+    
+    <h4 class="name" id="Calendar"><span class="type-signature"></span>new Calendar<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
-    //expand and add transition
-	expand.classList.remove("closed");
-	expand.classList.add("opened");
-	x.classList.add("transformx");
-	y.classList.add("transformy");
-	z.classList.add("transformz");
-	menu.style.maxHeight = MENUHEIGHT;
-	title.style.borderBottomLeftRadius = "0";
-	title.style.borderBottomRightRadius = "0";
-}/* openMenu */
+    
 
 
-/**
- * closeMenu
- * Function to close the side nav menu, removes classes to perform animations/transformations.
- * 
- * @example
- * 	closeMenu()
- */
-export function closeMenu() {
-    //get elements of burger(x,y,z) and side nav
-	let x = SIDENAVROOT.getElementById("x");
-	let y = SIDENAVROOT.getElementById("y");
-	let z = SIDENAVROOT.getElementById("z");
-	let menu = SIDENAVROOT.getElementById("side-nav-menu");
-	let title = SIDENAVROOT.getElementById("burger-and-title");
 
-    //close and add transition
-	menu.style.maxHeight = null;
-	setTimeout(function() {
-		title.style.borderBottomLeftRadius = BORDERADIUS;
-		title.style.borderBottomRightRadius = BORDERADIUS;
-	}, 400);
-	expand.classList.remove("opened");
-	expand.classList.add("closed");
-	x.classList.remove("transformx");
-	y.classList.remove("transformy");
-	z.classList.remove("transformz");
-}/* closeMenu */
-</code></pre>
-        </article>
-    </section>
+<div class="description">
+    <p>Create a calendar component skeleton</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_calendar.js.html">components/calendar.js</a>, <a href="components_calendar.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>&lt;calendar-component></code></pre>
+
+
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li>HTMLElement</li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="currentDay"><span class="type-signature"></span>currentDay<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>set currentDay
+sets special styling for whatever day is the current day</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_calendar.js.html">components/calendar.js</a>, <a href="components_calendar.js.html#line107">line 107</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>calendar-component.currentDay = new Date();</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="month"><span class="type-signature"></span>month<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>set month
+This function fills the contents of the calendar component to the month
+according to the parameter</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_calendar.js.html">components/calendar.js</a>, <a href="components_calendar.js.html#line75">line 75</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>calendar-component.month = "05-01-2021"</code></pre>
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

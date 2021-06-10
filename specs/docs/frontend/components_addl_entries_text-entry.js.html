@@ -26,18 +26,21 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
+            <pre class="prettyprint source linenums"><code>
+/**
  * @typedef {Object} entry
  * @property {string} title - The title of the entry object
  * @property {string} content - The contents of the entry object
+ * @property {string} image - The src to an image
+ * @property {Number} key
  */
 
 /**
- * @class {textEntry} 
+ * @class {addlEntry} 
  *
  * This class represents a single additional text entry
  */
-class textEntry extends HTMLElement{
+ class addlEntry extends HTMLElement{
 	constructor() {
 		super();
 		// templated HTML content
@@ -47,17 +50,24 @@ class textEntry extends HTMLElement{
 			&lt;link rel="stylesheet" href="style/css/textentry.css">
 			&lt;div class="tooltip">
 				&lt;span class="tooltiptext">Tooltip text&lt;/span>
-				&lt;svg class="note" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-					&lt;path fill-rule="evenodd" clip-rule="evenodd" d="M68.9167 1.4165H15.25C7.84018 1.4165 1.83333 7.42335 1.83333 14.8332V122.167C1.83333 129.576 7.84018 135.583 15.25 135.583H95.75C103.16 135.583 109.167 129.576 109.167 122.167V41.6665L68.9167 1.4165Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					&lt;path d="M68.9167 1.4165V41.6665H109.167" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					&lt;path d="M82.3333 75.2085H28.6667" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					&lt;path d="M82.3333 102.042H28.6667" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					&lt;path d="M42.0833 48.375H35.375H28.6667" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+				&lt;svg class="note" width="111" height="137" viewBox="0 0 111 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+					&lt;path fill-rule="evenodd" clip-rule="evenodd" d="M68.9167 1.41687H15.25C7.84022 1.41687 1.83337 7.42372 1.83337 14.8335V122.167C1.83337 129.577 7.84022 135.584 15.25 135.584H95.75C103.16 135.584 109.167 129.577 109.167 122.167V41.6669L68.9167 1.41687Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					&lt;path d="M68.9166 1.41687V41.6669H109.167" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					&lt;path d="M82.3333 75.2086H28.6666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					&lt;path d="M82.3333 102.042H28.6666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					&lt;path d="M42.0833 48.3752H35.375H28.6666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+				&lt;/svg>
+				&lt;svg class="image" width="111" height="137" viewBox="0 0 111 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+					&lt;path fill-rule="evenodd" clip-rule="evenodd" d="M1.125 3.125C1.125 2.02043 2.02043 1.125 3.125 1.125H119.875C120.98 1.125 121.875 2.02043 121.875 3.125V119.875C121.875 120.98 120.98 121.875 119.875 121.875H3.125C2.02043 121.875 1.125 120.98 1.125 119.875V3.125Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					&lt;path fill-rule="evenodd" clip-rule="evenodd" d="M38.0208 48.0834C43.5782 48.0834 48.0833 43.5782 48.0833 38.0209C48.0833 32.4635 43.5782 27.9584 38.0208 27.9584C32.4635 27.9584 27.9583 32.4635 27.9583 38.0209C27.9583 43.5782 32.4635 48.0834 38.0208 48.0834Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					&lt;path d="M121.875 81.625L88.3333 48.0834L14.5417 121.875" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 				&lt;/svg>
 			&lt;/div>
 			&lt;div class="entry-data">
 				&lt;span class="entry-title">Title&lt;/span>
 				&lt;span class="entry-content">Enter note...&lt;/span>
+				&lt;span class="key">&lt;/span>
+				&lt;span class="entry-img">&lt;/span>
 			&lt;/div>		
 			`;
 	
@@ -70,6 +80,7 @@ class textEntry extends HTMLElement{
 	connectedCallback(){
 		//entry-data only stores the contents of each entry, and is not to be displayed
 		this.shadowRoot.querySelector(".entry-data").style.display="none";
+
 	}
 	/** Gets the entry attribute of the text-entry component
 	 * @param {}
@@ -81,8 +92,13 @@ class textEntry extends HTMLElement{
 	get entry(){
 		let currTitle = this.shadowRoot.querySelector(".entry-title").innerText;
 		let currContent = this.shadowRoot.querySelector(".entry-content").innerText;
-		let toReturn = {title: currTitle, content: currContent};
-		return toReturn;
+		let key = this.shadowRoot.querySelector(".key").innerText;
+		let currImg = this.shadowRoot.querySelector(".entry-img").innerText;
+
+		if (currImg == "true") {
+			return {title: currTitle, content: currContent, key: parseInt(key), image: true};
+		}
+		return {title: currTitle, content: currContent, key: parseInt(key), image: false};
 	} /*get entry*/
 
 	/** Sets the entry attribute of the text-entry component
@@ -90,22 +106,38 @@ class textEntry extends HTMLElement{
 	 * @param entry
 	 * 
 	 * 
-	 * @example newEntry.entry = {title: "myTitle", content: "myContents"};
+	 * @example newEntry.entry = {title: "myTitle", content: "myContents", key: 3, image: "false"};
 	 */
 	set entry(entry){
 		let currTitle = this.shadowRoot.querySelector(".entry-title");
 		let currContent = this.shadowRoot.querySelector(".entry-content");
+		let currImg = this.shadowRoot.querySelector(".entry-img");
 		let toDisplay = this.shadowRoot.querySelector(".tooltiptext");
+		let key = this.shadowRoot.querySelector(".key");
+		let imgIcon = this.shadowRoot.querySelector(".image");
+		let noteIcon = this.shadowRoot.querySelector(".note");
+
 		//update the title being displayed
 		toDisplay.innerText = entry.title;
 		//save entry contents
 		currTitle.innerHTML = entry.title;
 		currContent.innerHTML = entry.content;
+		currImg.innerHTML = entry.image;
+		key.innerHTML = entry.key;
 
+		if (entry.image == "true") {
+			noteIcon.style.display="none";
+			imgIcon.style.display="block";
+		}
+		else {
+			imgIcon.style.display="none";
+			noteIcon.style.display="block";
+		}
 	}/*set entry*/	
+	
 }/*entryBar*/
-//define the custom web component "text-entry" and associate it to the class "textEntry"
-customElements.define("text-entry", textEntry);
+//define the custom web component "addl-entry" and associate it to the class "addlEntry"
+customElements.define("addl-entry", addlEntry);
 
 </code></pre>
         </article>
@@ -117,13 +149,13 @@ customElements.define("text-entry", textEntry);
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="entryBar.html">entryBar</a></li><li><a href="textEntry.html">textEntry</a></li></ul><h3>Global</h3><ul><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="addlEntry.html">addlEntry</a></li><li><a href="BulletEntry.html">BulletEntry</a></li><li><a href="BulletInput.html">BulletInput</a></li><li><a href="BulletList.html">BulletList</a></li><li><a href="Calendar.html">Calendar</a></li><li><a href="entryBar.html">entryBar</a></li><li><a href="FutureNav.html">FutureNav</a></li><li><a href="HelpElement.html">HelpElement</a></li><li><a href="HelpSection.html">HelpSection</a></li><li><a href="HelpTableOfContents.html">HelpTableOfContents</a></li><li><a href="LogType.html">LogType</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="TodoList.html">TodoList</a></li><li><a href="WeeklyNav.html">WeeklyNav</a></li></ul><h3>Global</h3><ul><li><a href="global.html#appendBullets">appendBullets</a></li><li><a href="global.html#bulletsFromDB">bulletsFromDB</a></li><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createCalendar">createCalendar</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createFutureNav">createFutureNav</a></li><li><a href="global.html#createHelpPage">createHelpPage</a></li><li><a href="global.html#createHelpToc">createHelpToc</a></li><li><a href="global.html#createMainText">createMainText</a></li><li><a href="global.html#createNewBullets">createNewBullets</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#deleteImg">deleteImg</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteSideNav">deleteSideNav</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#formatEntries">formatEntries</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getMonthTodoBullets">getMonthTodoBullets</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#insertTextAtCaret">insertTextAtCaret</a></li><li><a href="global.html#makeEntry">makeEntry</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#nestBulletHelper">nestBulletHelper</a></li><li><a href="global.html#nestedBullets">nestedBullets</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li><li><a href="global.html#setDarkMode">setDarkMode</a></li><li><a href="global.html#setEntrybarType">setEntrybarType</a></li><li><a href="global.html#setLightMode">setLightMode</a></li><li><a href="global.html#textAreaFeatures">textAreaFeatures</a></li><li><a href="global.html#unnestBulletHelper">unnestBulletHelper</a></li><li><a href="global.html#updateAddlEntries">updateAddlEntries</a></li><li><a href="global.html#updateWeeklyNavHelper">updateWeeklyNavHelper</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:04:43 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:32:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

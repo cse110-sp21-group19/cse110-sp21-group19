@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: scripts/side-nav-script.js</title>
+    <title>JSDoc: Source: components/future-nav.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: scripts/side-nav-script.js</h1>
+    <h1 class="page-title">Source: components/future-nav.js</h1>
 
     
 
@@ -26,81 +26,92 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>//side-nav-script.js
+            <pre class="prettyprint source linenums"><code>//future-nav.js
 
-const MENUHEIGHT = "calc(100vh - 2rem)";
-const BORDERADIUS = "0.8em";
-
-//Adding the side nav menu web component 
-const SIDENAV  = document.createElement("side-nav");
-document.getElementById("side-nav-container").appendChild(SIDENAV);
-//onclick listener for the side nav menu button
-const SIDENAVROOT = SIDENAV.shadowRoot;
-const expand = SIDENAVROOT.querySelector(".burger");
-expand.addEventListener("click", () => {
-	if (expand.classList.contains("opened")) {
-		closeMenu();
-	}
-	else {
-		openMenu();
-	}
-});
-
-/** 
- * openMenu
- * Function to open the side nav menu, adds classes to perform animations/transformations.
- * 
- * @example
- * 	openMenu()
- */
-function openMenu() {
-    //get elements of burger(x,y,z) and side nav
-	let x = SIDENAVROOT.getElementById("x");
-	let y = SIDENAVROOT.getElementById("y");
-	let z = SIDENAVROOT.getElementById("z");
-	let menu = SIDENAVROOT.getElementById("side-nav-menu");
-	let title = SIDENAVROOT.getElementById("burger-and-title");
-
-    //expand and add transition
-	expand.classList.remove("closed");
-	expand.classList.add("opened");
-	x.classList.add("transformx");
-	y.classList.add("transformy");
-	z.classList.add("transformz");
-	menu.style.maxHeight = MENUHEIGHT;
-	title.style.borderBottomLeftRadius = "0";
-	title.style.borderBottomRightRadius = "0";
-}/* openMenu */
-
+import { MONTHS } from "./log-type.js";
 
 /**
- * closeMenu
- * Function to close the side nav menu, removes classes to perform animations/transformations.
+ * Class represting a custom future nav component
+ * @extends HTMLElement
  * 
  * @example
- * 	closeMenu()
+ * &lt;future-nav>
  */
-export function closeMenu() {
-    //get elements of burger(x,y,z) and side nav
-	let x = SIDENAVROOT.getElementById("x");
-	let y = SIDENAVROOT.getElementById("y");
-	let z = SIDENAVROOT.getElementById("z");
-	let menu = SIDENAVROOT.getElementById("side-nav-menu");
-	let title = SIDENAVROOT.getElementById("burger-and-title");
+class FutureNav extends HTMLElement {
 
-    //close and add transition
-	menu.style.maxHeight = null;
-	setTimeout(function() {
-		title.style.borderBottomLeftRadius = BORDERADIUS;
-		title.style.borderBottomRightRadius = BORDERADIUS;
-	}, 400);
-	expand.classList.remove("opened");
-	expand.classList.add("closed");
-	x.classList.remove("transformx");
-	y.classList.remove("transformy");
-	z.classList.remove("transformz");
-}/* closeMenu */
-</code></pre>
+	/**
+	 * Create a calendar component skeleton
+	 */
+	constructor() {
+		super();
+		const template = document.createElement("template");
+
+		template.innerHTML = `
+			&lt;h2 class="future-title">Navigate to month&lt;/h2>
+			&lt;div class="future-container">&lt;/div>
+		`;
+
+		const shadow = this.attachShadow({ mode: "open" });
+		// attach cloned content of template to shadow DOM 
+		this.shadowRoot.appendChild(template.content.cloneNode(true));
+		// Apply external styles to the shadow dom
+		const linkElem = document.createElement("link");
+		linkElem.setAttribute("rel", "stylesheet");
+		// NOTE: it's important that you do NOT include the slash before "style/css/..."
+		linkElem.setAttribute("href", "style/css/futurenav.css");
+
+		// dark mode class
+		if (document.body.className == "dark-mode") {
+			const CONTAINER = this.shadowRoot.querySelector(".future-container");
+			CONTAINER.className += " dark-mode";
+		}
+
+		// Attach the created elements to the shadow dom
+		shadow.appendChild(linkElem);
+		
+	}
+
+
+	/**
+	 * set year
+	 * This function fills the contents of the future nav component to the year
+	 * according to the parameter
+	 * 
+	 * @param {String} year - the year to create the future nav component
+	 * 
+	 * @example
+	 * future-nav.year = 2021
+	 */
+	set year(year) {
+
+		const futureContainer = this.shadowRoot.querySelector(".future-container");
+
+		//append each month of a year to the nav
+		MONTHS.forEach(month => {
+			let futureItem =  document.createElement("div");
+			futureItem.className = "future-item";
+
+			let futureDate = document.createElement("div");
+			futureDate.className = "future-date";
+			let monthTitle = document.createElement("span");
+			monthTitle.id = "month-title";
+			monthTitle.textContent = month;
+			let yearTitle = document.createElement("span");
+			yearTitle.id = "year-title";
+			yearTitle.textContent = year;
+
+			futureDate.appendChild(monthTitle);
+			futureDate.appendChild(yearTitle);
+
+			futureItem.appendChild(futureDate)
+
+			futureContainer.appendChild(futureItem);
+		});
+	}/* set year */
+}/* FutureNav */
+
+// Define a custom element for the future nav web component
+customElements.define("future-nav", FutureNav);</code></pre>
         </article>
     </section>
 

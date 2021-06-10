@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: scripts/side-nav-script.js</title>
+    <title>JSDoc: Source: scripts/future-nav-script.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: scripts/side-nav-script.js</h1>
+    <h1 class="page-title">Source: scripts/future-nav-script.js</h1>
 
     
 
@@ -26,80 +26,41 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>//side-nav-script.js
+            <pre class="prettyprint source linenums"><code>//future-nav-script
 
-const MENUHEIGHT = "calc(100vh - 2rem)";
-const BORDERADIUS = "0.8em";
-
-//Adding the side nav menu web component 
-const SIDENAV  = document.createElement("side-nav");
-document.getElementById("side-nav-container").appendChild(SIDENAV);
-//onclick listener for the side nav menu button
-const SIDENAVROOT = SIDENAV.shadowRoot;
-const expand = SIDENAVROOT.querySelector(".burger");
-expand.addEventListener("click", () => {
-	if (expand.classList.contains("opened")) {
-		closeMenu();
-	}
-	else {
-		openMenu();
-	}
-});
-
-/** 
- * openMenu
- * Function to open the side nav menu, adds classes to perform animations/transformations.
- * 
- * @example
- * 	openMenu()
- */
-function openMenu() {
-    //get elements of burger(x,y,z) and side nav
-	let x = SIDENAVROOT.getElementById("x");
-	let y = SIDENAVROOT.getElementById("y");
-	let z = SIDENAVROOT.getElementById("z");
-	let menu = SIDENAVROOT.getElementById("side-nav-menu");
-	let title = SIDENAVROOT.getElementById("burger-and-title");
-
-    //expand and add transition
-	expand.classList.remove("closed");
-	expand.classList.add("opened");
-	x.classList.add("transformx");
-	y.classList.add("transformy");
-	z.classList.add("transformz");
-	menu.style.maxHeight = MENUHEIGHT;
-	title.style.borderBottomLeftRadius = "0";
-	title.style.borderBottomRightRadius = "0";
-}/* openMenu */
-
+import { router } from "./router.js";
 
 /**
- * closeMenu
- * Function to close the side nav menu, removes classes to perform animations/transformations.
+ * createFutureNav
+ * create a future nav object and append to the webpage
+ * 
+ * @param {Date} date - date object to any day in the year
  * 
  * @example
- * 	closeMenu()
+ * 	createFutureNav("01-01-2021");
  */
-export function closeMenu() {
-    //get elements of burger(x,y,z) and side nav
-	let x = SIDENAVROOT.getElementById("x");
-	let y = SIDENAVROOT.getElementById("y");
-	let z = SIDENAVROOT.getElementById("z");
-	let menu = SIDENAVROOT.getElementById("side-nav-menu");
-	let title = SIDENAVROOT.getElementById("burger-and-title");
+export function createFutureNav(date){
 
-    //close and add transition
-	menu.style.maxHeight = null;
-	setTimeout(function() {
-		title.style.borderBottomLeftRadius = BORDERADIUS;
-		title.style.borderBottomRightRadius = BORDERADIUS;
-	}, 400);
-	expand.classList.remove("opened");
-	expand.classList.add("closed");
-	x.classList.remove("transformx");
-	y.classList.remove("transformy");
-	z.classList.remove("transformz");
-}/* closeMenu */
+	//create the future nav component and set the year
+	const FUTURENAV = document.createElement("future-nav");
+	FUTURENAV.year = date.getFullYear();
+
+	//append to page and add onclick listener
+	document.getElementById("weekly-nav-container").appendChild(FUTURENAV);
+	document.getElementById("weekly-nav-container").className += " active";
+	const FUTURENAVCONTAINER = FUTURENAV.shadowRoot.querySelector(".future-container");
+    FUTURENAVCONTAINER.addEventListener("click", (event) => {
+		//when month is clicked switch to that monthly log
+        if (event.target.className == "future-item") {
+            //which month was selected 0-11
+            let index = [].indexOf.call( FUTURENAVCONTAINER.childNodes, event.target);
+			const currYear = document.querySelector("log-type").readLog.date.getFullYear();
+			let date = new Date(currYear, index, 1);
+			router.setState("monthly", false, date, "future");
+		}
+    });
+}/* createFutureNav */
+
 </code></pre>
         </article>
     </section>
