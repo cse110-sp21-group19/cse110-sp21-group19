@@ -9,18 +9,15 @@ import { SUN, MOON } from "../components/icons.js";
 const SIDENAV  = document.querySelector("side-nav");
 const SIDENAVROOT  = SIDENAV.shadowRoot;
 
-// const today = new Date();
-// router.setState("daily-log", false, today, "first-load");
-// create database
 
+// insert logo on the page
 const CONTAINER = document.getElementById("container");
 const LOGOCONTAINER = document.createElement("div");
 LOGOCONTAINER.className = "logo";
 LOGOCONTAINER.innerHTML = LOGO;
-
-//CONTAINER.insertBefore(LOGOCONTAINER, DAILYLOG);
 document.querySelector("main").insertBefore(LOGOCONTAINER, CONTAINER);
 
+// create database, set default color scheme to light, direct to the daily page
 document.addEventListener("DOMContentLoaded", function() {
 	createDB();
 	createDefault();
@@ -30,8 +27,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // When the back button is hit, set the state with the new page
 window.addEventListener("popstate", e => {
-	console.log("in popstate");
-	console.log(e);
 	const DATE = document.querySelector("log-type").readLog.date;
 	if(DATE.getDay() == 0 && e.state?.date.getDay() == 6 && router.currentState.from == "next"){
 		router.setState(e.state?.page, true, e.state?.date, "prev");
@@ -54,9 +49,6 @@ SNDAILYLOG.addEventListener("click", () => {
 	const d = new Date();
 	router.setState("daily", false, d, "side-nav");
 
-	// TODO: update the side bar to weekly-nav
-	// TODO: update main-text area
-
 	closeMenu();
 });
 
@@ -67,9 +59,6 @@ SNMONTHLYLOG.addEventListener("click", () => {
 	const d = new Date();
 	router.setState("monthly", false, d, "side-nav");
 
-	// TODO: update the side bar to task list
-	// TODO: update main-text area
-
 	closeMenu();
 });
 
@@ -79,9 +68,6 @@ SNFUTURELOG.addEventListener("click", () => {
 	// when clicking on daily log from side nav, open to current year
 	const d = new Date();
 	router.setState("future", false, d, "side-nav");
-
-	// TODO: update the side bar to task list
-	// TODO: update main-text area
 
 	closeMenu();
 });
@@ -96,7 +82,6 @@ SNHELP.addEventListener("click", () => {
 });
 
 // weekly-nav elements
-
 const PREVLOG = document.getElementById("prev-log");
 const NEXTLOG = document.getElementById("next-log");
 
@@ -120,7 +105,6 @@ PREVLOG.addEventListener("click", () => {
 	// date will be set to the first of the month
 	else {
 		prevDate.setFullYear(prevDate.getFullYear() - 1, 1, 1);
-		console.log(prevDate);
 	}
 	router.setState(LOG, false, prevDate, "prev");
 });
@@ -144,7 +128,6 @@ NEXTLOG.addEventListener("click", () => {
 	// date will be set to the first of the month
 	else {
 		nextDate.setFullYear(nextDate.getFullYear() + 1, 1, 1);
-		console.log(nextDate);
 	}
 	router.setState(LOG, false, nextDate, "next");
 });
@@ -166,43 +149,64 @@ COLORCONTAINER.addEventListener("click", () => {
 	}
 });
 
+/**
+ * setDarkMode
+ * Set dark mode for the app.
+ * 
+ * @example
+ * 		setDarkMode();
+ */
 export function setDarkMode() {
+	// get log type info to set state
 	const LOGTYPE = document.querySelector("log-type");
 	const DATE = LOGTYPE.readLog.date;
 	const LOG = LOGTYPE.readLog.type;
-	const ADDLENTRYBAR = document.querySelector("entry-bar");
 
-	const BODY = document.querySelector("body");
+	// update dark mode classes and change icon to moon
 	const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
 	COLORCONTAINER.innerHTML = MOON;
 	const IMG = COLORCONTAINER.querySelector("svg");
 	IMG.id = "dark-mode";
+	const BODY = document.querySelector("body");
 	BODY.className = "dark-mode";
 
+	// set dark mode for additional entries
+	const ADDLENTRYBAR = document.querySelector("entry-bar");
 	ADDLENTRYBAR.mode = "dark";
+
 	// update the database to dark mode
 	updateMode(true);
 	
 	router.setState(LOG, true, DATE, "color-settings");
-	
-}
+} /* setDarkMode */
 
+/**
+ * setLightMode
+ * Set light mode for the app.
+ * 
+ * @example
+ * 		setLightMode();
+ */
 export function setLightMode() {
+	// get log type info to set state
 	const LOGTYPE = document.querySelector("log-type");
 	const DATE = LOGTYPE.readLog.date;
 	const LOG = LOGTYPE.readLog.type;
-	const ADDLENTRYBAR = document.querySelector("entry-bar");
 
-	const BODY = document.querySelector("body");
+	// update light mode classes and change icon to sun
 	const COLORCONTAINER = SIDENAVROOT.querySelector(".color-mode-container");
 	COLORCONTAINER.innerHTML = SUN;
 	const IMG = COLORCONTAINER.querySelector("svg");
 	IMG.id = "light-mode";
+	const BODY = document.querySelector("body");
 	BODY.className = "";
+
+	// set light mode for additional entries
+	const ADDLENTRYBAR = document.querySelector("entry-bar");
 	ADDLENTRYBAR.mode = "";
 
 	// update the database to dark mode
 	updateMode(false);
 	
 	router.setState(LOG, true, DATE, "color-settings");
-}
+} /* setLightMode */

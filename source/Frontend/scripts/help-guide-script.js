@@ -96,11 +96,9 @@ export const helpGuideContent = [{
 export function createHelpPage(helpContent) {
     const HELPCONTAINER = document.createElement("div");
     HELPCONTAINER.className = "help-container";
-    console.log(HELPCONTAINER);
 
     helpContent.forEach(element => {
         let section = document.createElement("help-section");
-        console.log("in createHelpPage");
         section.info = element;
         HELPCONTAINER.appendChild(section);
     });
