@@ -54,14 +54,9 @@ export function deleteEntry(key, entry) {
 		entry.remove();
 		// remove bullet from database
 		deleteBullet(key);
-		// TODO: delete all children of a parent bullet
 
-
-		//Updates the weekly nav 
-		const WEEKLYNAV = document.querySelector("weekly-nav");
-		const currDate = document.querySelector("log-type").readLog.date;
-		let bullets =  await getDailyPriority(currDate);
-		WEEKLYNAV.updatePriorityBullets = bullets;
+		// updates the weekly nav 
+		updateWeeklyNavHelper();
 	});
 } /* deleteEntry */
 
@@ -95,12 +90,8 @@ export function prioritizeEntry(key, entry) {
 		// update prioritized/deprioritized bullet to DB
 		updateBullet(key, entry.entry);
 
-		//Should probably put this stuff into a function
-		//Updates the weekly nav 
-		const WEEKLYNAV = document.querySelector("weekly-nav");
-		const currDate = document.querySelector("log-type").readLog.date;
-		let bullets =  await getDailyPriority(currDate);
-		WEEKLYNAV.updatePriorityBullets = bullets;
+		// updates the weekly nav 
+		updateWeeklyNavHelper();
 	});
 	// update styling to only show priority star if the bullet is prioritized
 	if (toPrioritize.innerHTML.includes("priority")) {
@@ -138,11 +129,8 @@ export function completeTask(key, entry) {
 		}
 		// update completed/incomplete task bullet to DB
 		updateBullet(key, entry.entry);
-		//Updates the weekly nav 
-		const WEEKLYNAV = document.querySelector("weekly-nav");
-		const currDate = document.querySelector("log-type").readLog.date;
-		let bullets =  await getDailyPriority(currDate);
-		WEEKLYNAV.updatePriorityBullets = bullets;
+		// updates the weekly nav 
+		updateWeeklyNavHelper();
 	});
 
 	if (toComplete.innerHTML.includes("incomplete")) {
@@ -266,14 +254,13 @@ export function bulletsFromDB(item, index, bulletStack, todayBullets) {
 export function nestedBullets(inputElement, bulletStack) {
 
     inputElement.addEventListener("keydown", function (event) {
-        // FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
         // Unnest by one level on shift + tab
         const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
         if ((event.shiftKey && event.key === "Tab")) {
             event.preventDefault();
 			unnestBulletHelper(bulletStack);
 			// unindent the input text
-			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+			BULLETINPUT.style.paddingLeft = (2 * (bulletStack.length-1) + 0.5)+ "rem";
         }
         // Nest by one level on tab
         else if (event.key === "Tab") {
@@ -282,7 +269,7 @@ export function nestedBullets(inputElement, bulletStack) {
             event.preventDefault();
 			nestBulletHelper(bulletStack);
 			// indent the input text
-			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+			BULLETINPUT.style.paddingLeft = (2 * (bulletStack.length-1) + 0.5)+ "rem";
         }
     });
 } /* nestedBullets */
@@ -323,3 +310,18 @@ function unnestBulletHelper(bulletStack) {
 		//return parentBullet;
 	}
 } /* unnestedBulletHelper */
+
+/**
+ * updateWeeklyNavHelper
+ * Helper function to update weekly nav priority items.
+ *
+ * @example
+ *     updateWeeklyNavHelper();
+ */
+async function updateWeeklyNavHelper() {
+	// updates the weekly nav 
+	const WEEKLYNAV = document.querySelector("weekly-nav");
+	const currDate = document.querySelector("log-type").readLog.date;
+	let bullets =  await getDailyPriority(currDate);
+	WEEKLYNAV.updatePriorityBullets = bullets;
+} /* updateWeeklyNavHelper */

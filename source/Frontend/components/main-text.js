@@ -75,7 +75,7 @@ class BulletList extends HTMLElement {
 
 		template.innerHTML = `
 		<style>
-			ul {margin: 0; padding-left: 1rem}
+			ul {margin: 0; padding-left: 2rem}
 		</style>
 		<ul class="bullet-list" id="bullet-list"></ul>`;
 

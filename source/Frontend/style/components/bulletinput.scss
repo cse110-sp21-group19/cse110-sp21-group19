@@ -20,12 +20,12 @@ select, button {
 
 /* adjust width of input text to accomodate bullet selector and padding */
 input[type=text] {
-    width: calc(100% - 40px - 4rem);
+    width: calc(100% - 6rem);
 }
 
 /* style bullet selector */
 select {
-    width: calc(40px + 3rem);
+    width: 5rem;
     -o-appearance: none;
     -ms-appearance: none;
     -webkit-appearance: none;

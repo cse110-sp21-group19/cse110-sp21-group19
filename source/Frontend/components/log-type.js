@@ -10,12 +10,17 @@ export const MONTHS = ["January", "February", "March", "April", "May", "June", "
  */
 
 // <log-type> custom web component
+/** Class representing a the type of log. */
 class LogType extends HTMLElement {
+	/**
+     * Create log type element.
+     */
 	constructor() {
 		super();
 
 		// templated HTML content
 		const template = document.createElement("template");
+
 		// Wednesday, September 30 --> 23 characters
 		template.innerHTML = `
 			<style>
@@ -26,7 +31,6 @@ class LogType extends HTMLElement {
 					width: 29rem;
 					text-align: center;
 				}
-
 			</style>
 			<div class="daily" id="header">
 				<div id="js-date-obj"></div>
@@ -43,10 +47,10 @@ class LogType extends HTMLElement {
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-		// Attach the created elements to the shadow dom
+		// attach the created elements to the shadow dom
 		shadow.getElementById("header").appendChild(headerEl);
 		shadow.getElementById("js-date-obj").innerText = d;
-	}
+	} /* constructor */
 
 
 	/**
@@ -69,7 +73,7 @@ class LogType extends HTMLElement {
 			"header": HEADER // string with the appropriate title
 		};
 		return logObj;
-	}
+	} /* get readLog */
 
 	/**
 	 * set updateLog
@@ -97,11 +101,7 @@ class LogType extends HTMLElement {
 		// update main-text header
 		let logHeader = this.shadowRoot.querySelector("h1");
 		logHeader.innerText = logObj.header;
-		//console.log("in setter");
-		//console.log("updated type: " + logType);
-		//console.log("updated date: " + logDate);
-		//console.log("updated header: " + logHeader);
-	}
+	} /* set updateLog */
 }
 	
 // Define a custom element for the bullet-input web component   
