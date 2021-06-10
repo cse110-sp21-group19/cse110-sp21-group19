@@ -1,5 +1,4 @@
 //weekly nav script
-
 import {router} from "./router.js";
 let today = new Date();
 createWeeklyNav(today);
