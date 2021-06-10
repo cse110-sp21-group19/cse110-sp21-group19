@@ -75,7 +75,7 @@ class FutureNav extends HTMLElement {
 			futureDate.appendChild(monthTitle);
 			futureDate.appendChild(yearTitle);
 
-			futureItem.appendChild(futureDate)
+			futureItem.appendChild(futureDate);
 
 			futureContainer.appendChild(futureItem);
 		});

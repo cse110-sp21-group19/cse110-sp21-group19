@@ -1,7 +1,7 @@
 //entry-bar.js
 import { createEntry, deleteEntry, getEntry, updateEntry } from "../../../Backend/api/entries_api.js";
-import { binaryToImgUrl, imgToBinary} from "../../scripts/binary-helpers.js"
-import { insertTextAtCaret } from "../../scripts/addl-entries-script.js"
+import { binaryToImgUrl, imgToBinary} from "../../scripts/binary-helpers.js";
+import { insertTextAtCaret } from "../../scripts/addl-entries-script.js";
 //global variable to keep track of whether user is viewing an existing entry or creating a new one
 var isViewing = false;
 //variable that tracks the key of the entry currently being viewed
@@ -141,7 +141,7 @@ class entryBar extends HTMLElement{
 
 		//clear cached files
 		imgSelector.addEventListener("click", function () {
-			if (infoText.style.display="block"){
+			if (infoText.style.display=="block"){
 				imgSelector.value="";
 			}
 		});
@@ -243,7 +243,7 @@ class entryBar extends HTMLElement{
 				//hide and display relevant components
 			
 				infoText.style.display="none";
-				mainText.style.display="none"
+				mainText.style.display="none";
 				initial.style.display="none";
 				imgEditing.style.display="block";
 				deleteButtonImg.style.display="block";
@@ -331,7 +331,7 @@ class entryBar extends HTMLElement{
 			//discard changes made to the content displayed in the editing panel
 			title.innerText="Add Title";
 			content.value="";
-			content.placeholder="Add note here..."
+			content.placeholder="Add note here...";
 			//const DATE = document.querySelector("log-type").readLog.date;
 			mainText.style.display = "block";
 			editing.style.display="none";
@@ -341,7 +341,7 @@ class entryBar extends HTMLElement{
 			//discard changes made to the content displayed in the editing panel
 			imgTitle.innerText="Add Title";
 			content.value="";
-			content.placeholder="Add note here..."
+			content.placeholder="Add note here...";
 			//const DATE = document.querySelector("log-type").readLog.date;
 			mainText.style.display = "block";
 			imgEditing.style.display="none";
@@ -469,7 +469,7 @@ class entryBar extends HTMLElement{
 					isViewing = true;
 					document.querySelector("entry-bar").type = "img-editing";
 					//hide and display relevant components
-					mainText.style.display="none"
+					mainText.style.display="none";
 					initial.style.display="none";
 					imgEditing.style.display="block";
 					deleteButtonImg.style.display="block";
@@ -492,7 +492,7 @@ class entryBar extends HTMLElement{
 					isViewing = true;
 		
 					//hide and display relevant components
-					mainText.style.display="none"
+					mainText.style.display="none";
 					initial.style.display="none";
 					editing.style.display="block";
 					deleteButton.style.display="block";
@@ -669,7 +669,7 @@ function deleteNote() {
 
 			if (innerBar.children[i].entry.key == currKey) {
 				let currEntry = innerBar.children[i];
-				innerBar.removeChild(currEntry)
+				innerBar.removeChild(currEntry);
 				break;
 			} 
 		}
@@ -715,7 +715,7 @@ function deleteImg() {
 		for (let i = 0; i < innerBar.childElementCount; ++i) {
 			if (innerBar.children[i].entry.key == currKey) {
 				let currEntry = innerBar.children[i];
-				innerBar.removeChild(currEntry)
+				innerBar.removeChild(currEntry);
 				break;
 			} 
 		}

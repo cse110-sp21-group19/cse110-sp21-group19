@@ -30,7 +30,7 @@
 
 import { createWeeklyNav } from "./weekly-nav-script.js";
 import { createCalendar } from "./calendar-script.js";
-import { DAYS, MONTHS } from '../components/log-type.js';
+import { DAYS, MONTHS } from "../components/log-type.js";
 import { createToDoList } from "./todo-script.js";
 import { getDailyEntries } from "../../Backend/api/entries_api.js";
 import { updateAddlEntries, formatEntries } from "./addl-entries-script.js";
@@ -66,9 +66,9 @@ router.setState = (state, statePopped, date, from) => {
 	case "future":
 		futureLog(date);
 		break;
-    case "help":
-        help();
-        break;
+	case "help":
+		help();
+		break;
 	default:
 		dailyLog(date, from);
 	}
@@ -90,80 +90,80 @@ router.currentState = null;
  *      dailyLog("5-24-2021");
  */
 export async function dailyLog(date, from) {
-    const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
-    let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
-    sideNavTitle.textContent = "Daily Log";
-    if (date) {
-        const ADDLENTRYBAR = document.createElement("entry-bar");
-        const LOGTYPE = document.querySelector("log-type");
-        // update the header text above main-text area
-        let headerText = DAYS[date.getDay()] + ", " + MONTHS[date.getMonth()] + " " + date.getDate();
-        const DAILYINFO = {
-            "type": "daily",
-            "date": date,
-            "header": headerText
-        }
-        LOGTYPE.updateLog = DAILYINFO;
+	const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
+	let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+	sideNavTitle.textContent = "Daily Log";
+	if (date) {
+		const ADDLENTRYBAR = document.createElement("entry-bar");
+		const LOGTYPE = document.querySelector("log-type");
+		// update the header text above main-text area
+		let headerText = DAYS[date.getDay()] + ", " + MONTHS[date.getMonth()] + " " + date.getDate();
+		const DAILYINFO = {
+			"type": "daily",
+			"date": date,
+			"header": headerText
+		};
+		LOGTYPE.updateLog = DAILYINFO;
 
-        // get the current selected day of the week from the weekly nav
-        let WEEKLYNAV = document.querySelector("weekly-nav");
-        // if we are currently on a sunday, replace weekly nav menu with prev week
-        if ((date.getDay() == 6 &amp;&amp; from == "prev") || (date.getDay() == 0 &amp;&amp; from == "next")) {
-            deleteSideNav();
-            await createWeeklyNav(date);
-        }
-        else if (from == "monthly" || from == "side-nav") {
-            // remove previous side navigation
-            deleteSideNav();
-            await createWeeklyNav(date);
-        }
-        else if (from == "on-load") {
-            await createWeeklyNav(date);            
-            const DATE = document.querySelector("log-type").readLog.header;
-            const ADDLENTRIES = document.querySelector(".additional");
+		// get the current selected day of the week from the weekly nav
+		let WEEKLYNAV = document.querySelector("weekly-nav");
+		// if we are currently on a sunday, replace weekly nav menu with prev week
+		if ((date.getDay() == 6 &amp;&amp; from == "prev") || (date.getDay() == 0 &amp;&amp; from == "next")) {
+			deleteSideNav();
+			await createWeeklyNav(date);
+		}
+		else if (from == "monthly" || from == "side-nav") {
+			// remove previous side navigation
+			deleteSideNav();
+			await createWeeklyNav(date);
+		}
+		else if (from == "on-load") {
+			await createWeeklyNav(date);            
+			const DATE = document.querySelector("log-type").readLog.header;
+			const ADDLENTRIES = document.querySelector(".additional");
 
-            let entriesList = await getDailyEntries(DATE);
-            let keys = entriesList[0];
-            let fetchedEntries = entriesList[1];
+			let entriesList = await getDailyEntries(DATE);
+			let keys = entriesList[0];
+			let fetchedEntries = entriesList[1];
 
-            ADDLENTRYBAR.type = "initial";
-            ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
-            if(ADDLENTRIES.childElementCount == 0) {
-                ADDLENTRIES.appendChild(ADDLENTRYBAR);
-            }
+			ADDLENTRYBAR.type = "initial";
+			ADDLENTRYBAR.entries = formatEntries(fetchedEntries, keys);
+			if(ADDLENTRIES.childElementCount == 0) {
+				ADDLENTRIES.appendChild(ADDLENTRYBAR);
+			}
 
-            const MAINTEXTINPUT = document.querySelector("bullet-input");
-            if (!MAINTEXTINPUT) {
-                const currDate = document.querySelector("log-type").readLog.date;
-                let todayBullets = await getDailyBullets(currDate);
-                createMainText(todayBullets);
-            }
+			const MAINTEXTINPUT = document.querySelector("bullet-input");
+			if (!MAINTEXTINPUT) {
+				const currDate = document.querySelector("log-type").readLog.date;
+				let todayBullets = await getDailyBullets(currDate);
+				createMainText(todayBullets);
+			}
 
-            // set the saved color mode
-            let colorMode = await getMode();
-            if (colorMode) {
-                setDarkMode();
-            }
-            else {
-                setLightMode();
-            }
-        }
-        else if (from == "color-settings") {
-            deleteSideNav();
-            await createWeeklyNav(date);
-            WEEKLYNAV = document.querySelector("weekly-nav");
-            WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
-            WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
-        }
-        else {
-            WEEKLYNAV.selectedDay = date.getDay() + 1;
-        }
+			// set the saved color mode
+			let colorMode = await getMode();
+			if (colorMode) {
+				setDarkMode();
+			}
+			else {
+				setLightMode();
+			}
+		}
+		else if (from == "color-settings") {
+			deleteSideNav();
+			await createWeeklyNav(date);
+			WEEKLYNAV = document.querySelector("weekly-nav");
+			WEEKLYNAV.shadowRoot.querySelector(".week-container").style.opacity = "1";
+			WEEKLYNAV.shadowRoot.querySelector(".weekly-nav-title").style.opacity = "1";
+		}
+		else {
+			WEEKLYNAV.selectedDay = date.getDay() + 1;
+		}
         
 		updateAddlEntries();
 
-        const currDate = document.querySelector("log-type").readLog.date;
-        let todayBullets = await getDailyBullets(currDate);
-        createMainText(todayBullets);
+		const currDate = document.querySelector("log-type").readLog.date;
+		let todayBullets = await getDailyBullets(currDate);
+		createMainText(todayBullets);
 	}
 } /* dailyLog */
 
@@ -177,37 +177,37 @@ export async function dailyLog(date, from) {
  *      monthlyLog("5-24-2021");
  */
 async function monthlyLog(date){
-    const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
-    let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
-    sideNavTitle.textContent = "Monthly Log";
-    // behavior if clicked the '&lt;' or '>' button from the main-text header
-    if (date) {
-        const LOGTYPE = document.querySelector("log-type");
-        // update the header text above main-text area
-        let headerText = MONTHS[date.getMonth()] + " " + date.getFullYear();
-        const MONTHLYINFO = {
-            "type": "monthly",
-            "date": date,
-            "header": headerText
-        }
-        LOGTYPE.updateLog = MONTHLYINFO;
+	const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
+	let sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+	sideNavTitle.textContent = "Monthly Log";
+	// behavior if clicked the '&lt;' or '>' button from the main-text header
+	if (date) {
+		const LOGTYPE = document.querySelector("log-type");
+		// update the header text above main-text area
+		let headerText = MONTHS[date.getMonth()] + " " + date.getFullYear();
+		const MONTHLYINFO = {
+			"type": "monthly",
+			"date": date,
+			"header": headerText
+		};
+		LOGTYPE.updateLog = MONTHLYINFO;
 
-        // update main-text area with monthly bullets
-        const currDate = document.querySelector("log-type").readLog.date;
-        let monthBullets = await getMonthlyBullets(currDate);
-        createMainText(monthBullets);
+		// update main-text area with monthly bullets
+		const currDate = document.querySelector("log-type").readLog.date;
+		let monthBullets = await getMonthlyBullets(currDate);
+		createMainText(monthBullets);
 
-        // remove previous side navigation
-        deleteSideNav();
+		// remove previous side navigation
+		deleteSideNav();
 
-        let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+		let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
 		await createToDoList(firstDay);
-        createCalendar(firstDay);
+		createCalendar(firstDay);
 
-        updateAddlEntries();
+		updateAddlEntries();
 
 
-    }
+	}
 } /* monthlyLog */
 
 
@@ -234,16 +234,16 @@ async function futureLog(date){
 	};
 	LOGTYPE.updateLog = FUTUREINFO;
 
-    // remove previous side navigation
-    deleteSideNav();
-    createFutureNav(date);
+	// remove previous side navigation
+	deleteSideNav();
+	createFutureNav(date);
 
-    updateAddlEntries();
+	updateAddlEntries();
 
-    // update main-text area with future bullets
-    const currDate = document.querySelector("log-type").readLog.date;
-    let futureBullets = await getFutureBullets(currDate);
-    createMainText(futureBullets);
+	// update main-text area with future bullets
+	const currDate = document.querySelector("log-type").readLog.date;
+	let futureBullets = await getFutureBullets(currDate);
+	createMainText(futureBullets);
 
 } /* futureLog */
 
@@ -255,13 +255,13 @@ async function futureLog(date){
  *      help();
  */
 function help(){
-    const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
-    const sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
+	const SIDENAVROOT = document.querySelector("side-nav").shadowRoot;
+	const sideNavTitle = SIDENAVROOT.getElementById("side-nav-title");
 
-    // remove the weekly nav menu
-    deleteSideNav();
+	// remove the weekly nav menu
+	deleteSideNav();
 
-    sideNavTitle.textContent = "Help";
+	sideNavTitle.textContent = "Help";
 	const LOGTYPE = document.querySelector("log-type");
 	// update the header text above main-text area
 	const HELPINFO = {
@@ -271,42 +271,42 @@ function help(){
 	};
 	LOGTYPE.updateLog = HELPINFO;
     
-    document.querySelector(".additional").style.flex = "0";
-    // hide additional entries
-    let addlEntries = document.querySelector("entry-bar");
-    if (addlEntries) {
-        let inactiveBar = addlEntries.shadowRoot.querySelector(".inactive-bar");
-        let activeBar = addlEntries.shadowRoot.querySelector(".active-bar");
-        activeBar.style.display = "none";
-        inactiveBar.style.display = "grid";
-        addlEntries.style.display="none";
-    }
+	document.querySelector(".additional").style.flex = "0";
+	// hide additional entries
+	let addlEntries = document.querySelector("entry-bar");
+	if (addlEntries) {
+		let inactiveBar = addlEntries.shadowRoot.querySelector(".inactive-bar");
+		let activeBar = addlEntries.shadowRoot.querySelector(".active-bar");
+		activeBar.style.display = "none";
+		inactiveBar.style.display = "grid";
+		addlEntries.style.display="none";
+	}
 
-    // hide top arrow navigation
-    const PREVARROW = document.getElementById("prev-log");
-    const NEXTARROW = document.getElementById("next-log");
-    PREVARROW.style.display = "transparent";
-    NEXTARROW.style.display = "transparent";
+	// hide top arrow navigation
+	const PREVARROW = document.getElementById("prev-log");
+	const NEXTARROW = document.getElementById("next-log");
+	PREVARROW.style.display = "transparent";
+	NEXTARROW.style.display = "transparent";
    
-    // clear main-text area
-    document.getElementById("main-text").innerText = "";
-    // add help page data
-    createHelpPage(helpGuideContent);
+	// clear main-text area
+	document.getElementById("main-text").innerText = "";
+	// add help page data
+	createHelpPage(helpGuideContent);
     
-    // add table of contents
-    const WEEKLYNAV = document.getElementById("weekly-nav-container");
-    WEEKLYNAV.classList.add("active");
-    const HELPSEC = document.querySelectorAll("help-section");
-    const HELPTOC = document.createElement("help-toc");
-    HELPTOC.contents = helpGuideContent;
-    document.getElementById("weekly-nav-container").appendChild(HELPTOC);
-    HELPTOC.shadowRoot.querySelector(".help-toc-container").querySelectorAll(".toc-link").forEach((element, index) => {
-        element.addEventListener("click", () => {
-            let scrollPos = HELPSEC[index].shadowRoot.getElementById("help-section-title").offsetTop;
-            let scrollPosInitial = HELPSEC[0].shadowRoot.getElementById("help-section-title").offsetTop;
-            document.querySelector(".main-text").scrollTop = scrollPos - scrollPosInitial;
-        });
-    });
+	// add table of contents
+	const WEEKLYNAV = document.getElementById("weekly-nav-container");
+	WEEKLYNAV.classList.add("active");
+	const HELPSEC = document.querySelectorAll("help-section");
+	const HELPTOC = document.createElement("help-toc");
+	HELPTOC.contents = helpGuideContent;
+	document.getElementById("weekly-nav-container").appendChild(HELPTOC);
+	HELPTOC.shadowRoot.querySelector(".help-toc-container").querySelectorAll(".toc-link").forEach((element, index) => {
+		element.addEventListener("click", () => {
+			let scrollPos = HELPSEC[index].shadowRoot.getElementById("help-section-title").offsetTop;
+			let scrollPosInitial = HELPSEC[0].shadowRoot.getElementById("help-section-title").offsetTop;
+			document.querySelector(".main-text").scrollTop = scrollPos - scrollPosInitial;
+		});
+	});
 
 
 } /* help */
@@ -319,26 +319,26 @@ function help(){
  * @param {string} from where the setState was called from
  */
 function pushToHistory(state, date, from) {
-    router.currentState = {
-        page: state, date: date, from:from
-    };
-    switch (state) {
-        case "daily":
-            history.pushState({ page: "daily", date: date, from:from}, "", `./#daily${date}`);
-            break;
-        case "monthly":
-            history.pushState({ page: "monthly", date: date, from:from}, "", `./#monthly${date}`);
-            break;
-        case "future":
-            history.pushState({ page: "future", date: date, from:from}, "", `./#future${date}`);
-            break;
-        case "help":
-            history.pushState({ page: "help", date: date, from:from}, "", `./#help`);
-            break;
-        default:
-            history.pushState({}, '', './');
-    }
-    return history;
+	router.currentState = {
+		page: state, date: date, from:from
+	};
+	switch (state) {
+	case "daily":
+		history.pushState({ page: "daily", date: date, from:from}, "", `./#daily${date}`);
+		break;
+	case "monthly":
+		history.pushState({ page: "monthly", date: date, from:from}, "", `./#monthly${date}`);
+		break;
+	case "future":
+		history.pushState({ page: "future", date: date, from:from}, "", `./#future${date}`);
+		break;
+	case "help":
+		history.pushState({ page: "help", date: date, from:from}, "", "./#help");
+		break;
+	default:
+		history.pushState({}, "", "./");
+	}
+	return history;
 }
 
 
@@ -348,31 +348,31 @@ function pushToHistory(state, date, from) {
 */
 function deleteSideNav() {
 	const WEEKLYNAV = document.querySelector("weekly-nav");
-    const CAL = document.querySelector("calendar-component");
-    const TODO = document.querySelector("todo-list");
-    const FUTURENAV = document.querySelector("future-nav");
-    const HELPNAV = document.querySelector("help-toc");
+	const CAL = document.querySelector("calendar-component");
+	const TODO = document.querySelector("todo-list");
+	const FUTURENAV = document.querySelector("future-nav");
+	const HELPNAV = document.querySelector("help-toc");
 
 	if(WEEKLYNAV){
 		WEEKLYNAV.remove();
-        document.getElementById("weekly-nav-container").classList.remove("active");
+		document.getElementById("weekly-nav-container").classList.remove("active");
 	}
-    if(CAL){
-        CAL.remove();
-        document.getElementById("calendar-component-container").classList.remove("active");
-    }
-    if(TODO){
-        TODO.remove();  
-        document.getElementById("todo-component-container").classList.remove("active");
-    }
-    if(FUTURENAV){
-        FUTURENAV.remove();  
-        document.getElementById("weekly-nav-container").classList.remove("active");
-    }
-    if(HELPNAV){
-        HELPNAV.remove();  
-        document.getElementById("weekly-nav-container").classList.remove("active");
-    }
+	if(CAL){
+		CAL.remove();
+		document.getElementById("calendar-component-container").classList.remove("active");
+	}
+	if(TODO){
+		TODO.remove();  
+		document.getElementById("todo-component-container").classList.remove("active");
+	}
+	if(FUTURENAV){
+		FUTURENAV.remove();  
+		document.getElementById("weekly-nav-container").classList.remove("active");
+	}
+	if(HELPNAV){
+		HELPNAV.remove();  
+		document.getElementById("weekly-nav-container").classList.remove("active");
+	}
 
 } /* deleteSideNav */
 
@@ -384,38 +384,38 @@ function deleteSideNav() {
  * @param {Array} bullets And array of the bullets returned from the database.
  */
 async function createMainText(bullets) {
-    // reset current main-text area
-    const MAINTEXT = document.getElementById("main-text");
-    MAINTEXT.innerHTML = "";
-    MAINTEXT.classList.remove("active");
-    // create new bullet list
-    const BULLETS = document.createElement("bullet-list");
-    BULLETS.id = "bullets";
-    // create new bullet input element
-    const INPUT = document.createElement("bullet-input");
+	// reset current main-text area
+	const MAINTEXT = document.getElementById("main-text");
+	MAINTEXT.innerHTML = "";
+	MAINTEXT.classList.remove("active");
+	// create new bullet list
+	const BULLETS = document.createElement("bullet-list");
+	BULLETS.id = "bullets";
+	// create new bullet input element
+	const INPUT = document.createElement("bullet-input");
 
-    // bullet nesting stack
-    let bulletStack = [];
-    bulletStack.push(BULLETS);
+	// bullet nesting stack
+	let bulletStack = [];
+	bulletStack.push(BULLETS);
 
-    // get daily bullets from database
-    bullets[1].forEach(function(item, index) {
-        bulletsFromDB(item, index, bulletStack, bullets);
-    });
-    MAINTEXT.appendChild(BULLETS);
-    MAINTEXT.appendChild(INPUT);
-    const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
-    BULLETINPUT.style.paddingLeft = (2 * (bulletStack.length-1) + 0.5)+ "rem";
+	// get daily bullets from database
+	bullets[1].forEach(function(item, index) {
+		bulletsFromDB(item, index, bulletStack, bullets);
+	});
+	MAINTEXT.appendChild(BULLETS);
+	MAINTEXT.appendChild(INPUT);
+	const BULLETINPUT = INPUT.shadowRoot.getElementById("bullet-input");
+	BULLETINPUT.style.paddingLeft = (2 * (bulletStack.length-1) + 0.5)+ "rem";
 
-    // add ability to create new bullets
-    createNewBullets(INPUT, bulletStack);
-    // add ability to add nested bullets
-    nestedBullets(INPUT, bulletStack);
+	// add ability to create new bullets
+	createNewBullets(INPUT, bulletStack);
+	// add ability to add nested bullets
+	nestedBullets(INPUT, bulletStack);
 
-    // add animation
-    setTimeout(function(){
-    MAINTEXT.classList.add("active");
-    }, 40);
+	// add animation
+	setTimeout(function(){
+		MAINTEXT.classList.add("active");
+	}, 40);
 } /* createMainText */
 </code></pre>
         </article>
@@ -433,7 +433,7 @@ async function createMainText(bullets) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:36:06 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 05:53:10 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

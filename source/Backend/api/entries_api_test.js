@@ -22,7 +22,7 @@ addBtn.addEventListener("click", async (event) => {
 
 /* -----GETTING ENTRY----*/
 let get = document.getElementById("entryget");
-get.addEventListener("click", async function(event){
+get.addEventListener("click", async function(){
 	let key = document.getElementById("entrykey").value;
 	let result = await getEntry(Number(key));
 	console.log(result);
@@ -30,7 +30,7 @@ get.addEventListener("click", async function(event){
 
 /* -----UPDATING ENTRY----*/
 let update = document.getElementById("entryupdate");
-update.addEventListener("click", async function(event){
+update.addEventListener("click", async function(){
 	let date = new Date(document.getElementById("entrydate").value);
 	let title = document.getElementById("entrytitle").value;
 	let content = document.getElementById("entrycontent").value;

@@ -18,8 +18,8 @@ class HelpElement extends HTMLElement {
 	/**
 	 * Create a help element.
 	 */
-    constructor() {
-        super();
+	constructor() {
+		super();
 
 		// templated HTML content
 		const template = document.createElement("template");
@@ -29,7 +29,7 @@ class HelpElement extends HTMLElement {
                 <h3 id="help-element-title"></h3>
                 <p id="help-element-content"></p>
 			</div>`;
-        // create a shadow root for this web component
+		// create a shadow root for this web component
 		const shadow = this.attachShadow({ mode: "open" });
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -41,15 +41,15 @@ class HelpElement extends HTMLElement {
 
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(helpElementStyle);
-    } /* constructor */
+	} /* constructor */
 
 	/**
 	 * get info
 	 * Default function.
 	 */
-    get info() {
-        return null;
-    } /* get info */
+	get info() {
+		return null;
+	} /* get info */
 
 	/**
 	 * set info
@@ -63,14 +63,14 @@ class HelpElement extends HTMLElement {
  	 *  				 content: "foo",
 	 * 					}
 	 */
-    set info(info) {
-        // set title
-        const TITLE = this.shadowRoot.getElementById("help-element-title");
-        TITLE.innerText = info.title;
-        // set content
-        const CONTENT = this.shadowRoot.getElementById("help-element-content");
-        CONTENT.innerText = info.content;
-    } /* set info */
+	set info(info) {
+		// set title
+		const TITLE = this.shadowRoot.getElementById("help-element-title");
+		TITLE.innerText = info.title;
+		// set content
+		const CONTENT = this.shadowRoot.getElementById("help-element-content");
+		CONTENT.innerText = info.content;
+	} /* set info */
 }
 
 customElements.define("help-element", HelpElement);
@@ -80,10 +80,10 @@ class HelpSection extends HTMLElement {
 	/**
 	 * Create a help section.
 	 */
-    constructor() {
-        super();
+	constructor() {
+		super();
 
-        // templated HTML content
+		// templated HTML content
 		const template = document.createElement("template");
 
 		template.innerHTML = `
@@ -92,10 +92,10 @@ class HelpSection extends HTMLElement {
                 <div id="help-section-description"></div>
                 <div id="help-section-elements"></div>
 			</div>`;
-        // create a shadow root for this web component
+		// create a shadow root for this web component
 		const shadow = this.attachShadow({ mode: "open" });
 		// attach cloned content of template to shadow DOM 
-		this.shadowRoot.appendChild(template.content.cloneNode(true))
+		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
 		// Apply external styles to the shadow dom
 		const helpElementStyle = document.createElement("link");
@@ -104,15 +104,15 @@ class HelpSection extends HTMLElement {
 
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(helpElementStyle);
-    } /* constructor */
+	} /* constructor */
 
 	/**
 	 * get info
 	 * Default function.
 	 */
-    get info() {
-        return null;
-    } /* get info */
+	get info() {
+		return null;
+	} /* get info */
 
 	/**
 	 * set info
@@ -127,25 +127,25 @@ class HelpSection extends HTMLElement {
  	 *  				 sectionElements: [],
 	 * 					}
 	 */
-    set info(info) {
-        // set title
-        const TITLE = this.shadowRoot.getElementById("help-section-title");
-        TITLE.innerText = info.sectionTitle;
-        // set description
-        const DESCRIPTION = this.shadowRoot.getElementById("help-section-description");
-        info.sectionDescription.forEach(element => {
-            let description = document.createElement("p");
-            description.innerHTML = element;
-            DESCRIPTION.appendChild(description);
-        });
-        // set help elements
-        const HELPELEMENTS = this.shadowRoot.getElementById("help-section-elements");
-        info.sectionElements.forEach(element => {
-            let section = document.createElement("help-element");
-            section.info = element;
-            HELPELEMENTS.appendChild(section);
-        })
-    } /* set info */
+	set info(info) {
+		// set title
+		const TITLE = this.shadowRoot.getElementById("help-section-title");
+		TITLE.innerText = info.sectionTitle;
+		// set description
+		const DESCRIPTION = this.shadowRoot.getElementById("help-section-description");
+		info.sectionDescription.forEach(element => {
+			let description = document.createElement("p");
+			description.innerHTML = element;
+			DESCRIPTION.appendChild(description);
+		});
+		// set help elements
+		const HELPELEMENTS = this.shadowRoot.getElementById("help-section-elements");
+		info.sectionElements.forEach(element => {
+			let section = document.createElement("help-element");
+			section.info = element;
+			HELPELEMENTS.appendChild(section);
+		});
+	} /* set info */
 }
 
 customElements.define("help-section", HelpSection);
