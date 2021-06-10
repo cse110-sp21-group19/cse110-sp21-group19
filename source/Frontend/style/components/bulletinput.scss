@@ -1,8 +1,10 @@
+/* Bullet Input */
 @import '../abstracts/mixins', '../abstracts/variables';
 
+/* bullet input container */
 .new-bullet {
-    background-color: $light;
     border-radius: 0.25rem;
+    background-color: $light;
 }
 
 input[type=text], select, button {
@@ -16,16 +18,27 @@ select, button {
     cursor: pointer;
 }
 
+/* adjust width of input text to accomodate bullet selector and padding */
 input[type=text] {
-    width: 80%;
+    width: calc(100% - 6rem);
 }
 
+/* style bullet selector */
 select {
-    width: 10%;
+    width: 5rem;
     -o-appearance: none;
     -ms-appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     text-align-last: right;
+}
+
+/* dark mode */
+.dark-mode {
+    background: $dark;
+
+    #bullet-type, #bullet-input {
+        color: white;
+    }
 }

@@ -1,33 +1,80 @@
+/*text entry icon*/
+/* Variables */
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* colors */
+/* spacing */
+/* device sizes */
 .note {
-  overflow: visible;
-  width: 8rem;
-  height: 5rem;
-  margin-right: 1rem;
-  padding-top: 2rem;
-}
-
-.note:hover {
+  /* Display & Box Model */
+  height: 13vh;
+  width: auto;
+  margin: 3vh 0 0 2vw;
+  /* Other */
   cursor: pointer;
+  overflow: visible;
 }
 
+@media (max-height: 700px) {
+  .note {
+    /* Display & Box Model */
+    height: 10vh;
+  }
+}
+
+/*image entry icon*/
+.image {
+  /* Display & Box Model */
+  height: 13vh;
+  width: auto;
+  min-height: 50px;
+  margin: 3vh 0 0 2vw;
+  /* Other */
+  cursor: pointer;
+  overflow: visible;
+}
+
+@media (max-height: 700px) {
+  .image {
+    height: 10vh;
+  }
+}
+
+/*Entry title*/
 .tooltip {
+  /* Positioning */
   position: relative;
 }
 
 .tooltip .tooltiptext {
+  /* Positioning */
   position: absolute;
-  top: 10px;
-  left: 2rem;
+  top: -2vh;
+  left: 2vw;
+  /* Text */
   font-weight: bold;
+  font-size: 1rem;
 }
 
+@media (max-height: 700px) {
+  .tooltip .tooltiptext {
+    /* Positioning */
+    top: -1rem;
+    /* Text */
+    font-size: 10px;
+  }
+}
+
+/*Scrollbar*/
 ::-webkit-scrollbar {
+  /* Display & Box Model */
   height: 10px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #616161;
+  /* Color */
+  background: #b6b6b6;
+  /* Other */
   border-radius: 10px;
 }
 /*# sourceMappingURL=textentry.css.map */

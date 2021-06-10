@@ -1,12 +1,26 @@
 //weekly-nav.js
+import { NOTEBULLET, TASKBULLET, TASKCOMPLETE, EVENTBULLET } from "./icons.js";
+import { DAYS } from "./log-type.js";
+
 const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
 const SELECTEDRADIUS = "0.2rem";
 const DEFAULTBORDERLEFT = null;
 const DEFAULTRADIUS = null;
 
-//<weekly-nav> custom web component
+/**
+ * Class represting a custom weeklynav component
+ * @extends HTMLElement
+ * 
+ * @example
+ * <weekly-nav>
+ */
 class WeeklyNav extends HTMLElement{
+
+	/**
+	 * Create a skeleton todolist component, starts off as empty
+	 */
 	constructor() {
+
 		super();
 		const template = document.createElement("template");
 
@@ -16,14 +30,6 @@ class WeeklyNav extends HTMLElement{
 			</div>
 		`;
 
-		//Week Item format
-		// <div class="wn-item-mask">
-		// <div class="wn-item">
-		//     <h2 class="wn-date"><span id="day-of-month"></span><span id="day-of-week"></span> </h2>
-		//     <ul class="wn-bullets"></ul>
-		// </div>
-		// create a shadow root for this web component
-
 		const shadow = this.attachShadow({ mode: "open" });
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -32,6 +38,12 @@ class WeeklyNav extends HTMLElement{
 		linkElem.setAttribute("rel", "stylesheet");
 		// NOTE: it's important that you do NOT include the slash before "style/css/..."
 		linkElem.setAttribute("href", "style/css/weeklynav.css");
+		
+		// dark mode class
+		if (document.body.className == "dark-mode") {
+			const CONTAINER = this.shadowRoot.querySelector(".week-container");
+			CONTAINER.className += " dark-mode";
+		}
 
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(linkElem);
@@ -45,26 +57,37 @@ class WeeklyNav extends HTMLElement{
 	 * objects could also contain important bullet info to fill menu.
 	 * 
 	 * @param {Array} week - an array of objects corresponding to one week
-	 * 
+	 * example object
+	 * dayObj = {
+	 * 		date: date;
+	 * 		bullets: [];
+	 * }
 	 * @example
 	 *      this.daysOfWeek = week
 	 */
-	set daysOfWeek(week){
+	set daysOfWeek(week) {
 		//set the weekly-nav title
-		const navTitle = this.shadowRoot.querySelector("[class='weekly-nav-title']");
-		navTitle.innerHTML = getWeeklyNavTitle(week[0], week[6]);
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+		const navTitle = this.shadowRoot.querySelector(".weekly-nav-title");
+		navTitle.innerHTML = getWeeklyNavTitle(week[0].date, week[6].date);
+		const navContainer = this.shadowRoot.querySelector(".week-container");
 		//Add each day to the nav menu
 		week.forEach(element => {
-			let day = getDateString(element.getDay());
-			let date = element.getDate();
-			let month = element.getMonth();
-			let year = element.getFullYear();
+			let day = DAYS[element.date.getDay()];
+			let date = element.date.getDate();
+			let month = element.date.getMonth();
+			let year = element.date.getFullYear();
 
+			//add the prio bullets to item
+			let bullets = element.bullets;
+			let priorityBullets = document.createElement("div");
+			priorityBullets.className = "wn-bullets-container";
+			appendBullets(priorityBullets, bullets);
+
+			//add dates to item
 			let navItem = document.createElement("div");
 			navItem.className = "wn-item";
 
-			let navDate = document.createElement("h2");
+			let navDate = document.createElement("div");
 			navDate.className = "wn-date";
 			let dayOfWeek = document.createElement("span");
 			dayOfWeek.id = "day-of-week";
@@ -88,9 +111,13 @@ class WeeklyNav extends HTMLElement{
 			navItem.appendChild(navDate);
 			navItem.appendChild(hiddenMonth);
 			navItem.appendChild(hiddenYear);
+			navItem.appendChild(priorityBullets);
+
 
 			navContainer.appendChild(navItem);
+
 		}); 
+
 	
 	}/* set daysOfWeek */
 
@@ -106,15 +133,15 @@ class WeeklyNav extends HTMLElement{
 	 */
 	get selectedInfo() {
 
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+		const navContainer = this.shadowRoot.querySelector(".week-container");
 
 		//iterate over weekly nav items and return info of item with border
 		//(the one with a border is the selected one) 
 		let dateInfo;
 		let dateObj;
-		for(let i = 1; i < navContainer.childNodes.length; i++){
+		for (let i = 1; i < navContainer.childNodes.length; i++) {
 			let currItem = navContainer.childNodes[i];
-			if(currItem.style.borderLeft == SELECTEDBORDERLEFT){
+			if (currItem.style.borderLeft == SELECTEDBORDERLEFT) {
 				dateInfo = {
 					"day": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-week']").textContent,
 					"date": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-month']").textContent,
@@ -137,14 +164,13 @@ class WeeklyNav extends HTMLElement{
 	 * @example
 	 *      this.selectedDay = day
 	 */
-	set selectedDay(day){
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+	set selectedDay(day) {
+		const navContainer = this.shadowRoot.querySelector(".week-container");
 
 		for(let i = 1; i < navContainer.childNodes.length; i++){
 			if(i == day){
 				navContainer.childNodes[i].style.borderTopLeftRadius = SELECTEDRADIUS;
 				navContainer.childNodes[i].style.borderBottomLeftRadius = SELECTEDRADIUS;
-				//navContainer.childNodes[i].style.border = "0.2rem solid darkgreen";
 				navContainer.childNodes[i].style.borderLeft = SELECTEDBORDERLEFT;
 			}
 			else{
@@ -154,40 +180,77 @@ class WeeklyNav extends HTMLElement{
 			}
 		}
 	} /* set seletedDay */
-}
+
+	/**
+	 * updatePriortiyBullets
+	 * update the priortiy bullets of one weekly nav item
+	 * 
+	 * @param {Array} bullets - An array of bullet entry objects to append to container
+	 * 
+	 * @example
+	 * 	weekly-nav.updatePriorityBullets = bullets[];
+	 */
+	set updatePriorityBullets(bullets) {
+		const navContainer = this.shadowRoot.querySelector(".week-container");
+		for (let i = 1; i < navContainer.childNodes.length; i++) {
+			let currItem = navContainer.childNodes[i];
+			if (currItem.style.borderLeft == SELECTEDBORDERLEFT) {
+				let priorityBullets = navContainer.childNodes[i].querySelector(".wn-bullets-container");
+				//remove existing children
+				while (priorityBullets.firstChild) {
+					priorityBullets.removeChild(priorityBullets.firstChild);
+				}
+				//repopulate list
+				appendBullets(priorityBullets, bullets);
+			}
+		}
+	}/* set updatePriorityBullets */
+}/* WeeklyNav */
 
 
 /**
- * getDateString 
- * Converts integer day of week to its related string.
+ * appendBullets()
+ * Helper function to help populate the priority bullets list on each weekly nav item.
  * 
- * @param {number} day - An integer of the day of the week (0-6).
- * 
- * @returns A string of the related day of the week of the parameter.
+ * @param {Element} container - The element in which to append the bullets to
+ * @param {Array} bullets - An array of bullet entry objects to append to container
  * 
  * @example
- *      getDateString(day)
+ * 	appendBullets(container, bullets);
  */
-function getDateString(day){
-	switch(day){
-	case 0:
-		return "Sunday";
-	case 1:
-		return "Monday";
-	case 2:
-		return "Tuesday";
-	case 3:
-		return "Wednesday";
-	case 4:
-		return "Thursday";
-	case 5:
-		return "Friday";
-	case 6:
-		return "Saturday";
-	default:
-		return "Sunday";
-	}
-}/* getDateString */
+function appendBullets(container, bullets) {
+	bullets.forEach(bullet => {
+		let bulletElem = document.createElement("div");
+		bulletElem.className = "wn-bullet";
+		let bulletType = document.createElement("span");
+		bulletType.id = "bullet-type";
+		//bullet icon depending on the bullet type
+		switch (bullet.type) {
+		case "note":
+			bulletType.innerHTML = NOTEBULLET;
+			break;
+		case "event":
+			bulletType.innerHTML = EVENTBULLET;
+			break;
+		case "task":
+			if(bullet.completed){
+				bulletType.innerHTML = TASKCOMPLETE;
+				bulletElem.style.textDecoration = "line-through";
+			}
+			else{
+				bulletType.innerHTML = TASKBULLET;
+			}
+			break;
+		default:
+			bulletType.innerHTML = NOTEBULLET;
+
+		}
+		bulletElem.appendChild(bulletType);
+		bulletElem.innerHTML += bullet.content;
+		container.appendChild(bulletElem);
+	});
+} /* appendBullets */
+
 
 /**
  * getWeeklyNavTitle 
@@ -203,21 +266,21 @@ function getDateString(day){
  * @example
  *      getWeekyNavTitle(first, last)
  */
-function getWeeklyNavTitle(first, last){
+function getWeeklyNavTitle(first, last) {
 	let title = "";
 	const months= ["January","February","March","April","May","June","July",
 		"August","September","October","November","December"];
-	if(first.getMonth() == last.getMonth()){
+	if (first.getMonth() == last.getMonth()) {
 		title += months[first.getMonth()];
 	}
-	else{
+	else {
 		title +=  months[first.getMonth()] + "/" + months[last.getMonth()];
 	}
 
-	if(first.getFullYear() == last.getFullYear()){
+	if (first.getFullYear() == last.getFullYear()) {
 		title += " " + first.getFullYear();
 	}
-	else{
+	else {
 		title += " " + first.getFullYear() + "/" + last.getFullYear();
 	}
 

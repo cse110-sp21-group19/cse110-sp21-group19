@@ -27,14 +27,28 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>//weekly-nav.js
+import { NOTEBULLET, TASKBULLET, TASKCOMPLETE, EVENTBULLET } from "./icons.js";
+import { DAYS } from "./log-type.js";
+
 const SELECTEDBORDERLEFT = "0.5rem solid darkgreen";
 const SELECTEDRADIUS = "0.2rem";
 const DEFAULTBORDERLEFT = null;
 const DEFAULTRADIUS = null;
 
-//&lt;weekly-nav> custom web component
+/**
+ * Class represting a custom weeklynav component
+ * @extends HTMLElement
+ * 
+ * @example
+ * &lt;weekly-nav>
+ */
 class WeeklyNav extends HTMLElement{
+
+	/**
+	 * Create a skeleton todolist component, starts off as empty
+	 */
 	constructor() {
+
 		super();
 		const template = document.createElement("template");
 
@@ -44,14 +58,6 @@ class WeeklyNav extends HTMLElement{
 			&lt;/div>
 		`;
 
-		//Week Item format
-		// &lt;div class="wn-item-mask">
-		// &lt;div class="wn-item">
-		//     &lt;h2 class="wn-date">&lt;span id="day-of-month">&lt;/span>&lt;span id="day-of-week">&lt;/span> &lt;/h2>
-		//     &lt;ul class="wn-bullets">&lt;/ul>
-		// &lt;/div>
-		// create a shadow root for this web component
-
 		const shadow = this.attachShadow({ mode: "open" });
 		// attach cloned content of template to shadow DOM 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -60,6 +66,12 @@ class WeeklyNav extends HTMLElement{
 		linkElem.setAttribute("rel", "stylesheet");
 		// NOTE: it's important that you do NOT include the slash before "style/css/..."
 		linkElem.setAttribute("href", "style/css/weeklynav.css");
+		
+		// dark mode class
+		if (document.body.className == "dark-mode") {
+			const CONTAINER = this.shadowRoot.querySelector(".week-container");
+			CONTAINER.className += " dark-mode";
+		}
 
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(linkElem);
@@ -73,26 +85,37 @@ class WeeklyNav extends HTMLElement{
 	 * objects could also contain important bullet info to fill menu.
 	 * 
 	 * @param {Array} week - an array of objects corresponding to one week
-	 * 
+	 * example object
+	 * dayObj = {
+	 * 		date: date;
+	 * 		bullets: [];
+	 * }
 	 * @example
 	 *      this.daysOfWeek = week
 	 */
-	set daysOfWeek(week){
+	set daysOfWeek(week) {
 		//set the weekly-nav title
-		const navTitle = this.shadowRoot.querySelector("[class='weekly-nav-title']");
-		navTitle.innerHTML = getWeeklyNavTitle(week[0], week[6]);
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+		const navTitle = this.shadowRoot.querySelector(".weekly-nav-title");
+		navTitle.innerHTML = getWeeklyNavTitle(week[0].date, week[6].date);
+		const navContainer = this.shadowRoot.querySelector(".week-container");
 		//Add each day to the nav menu
 		week.forEach(element => {
-			let day = getDateString(element.getDay());
-			let date = element.getDate();
-			let month = element.getMonth();
-			let year = element.getFullYear();
+			let day = DAYS[element.date.getDay()];
+			let date = element.date.getDate();
+			let month = element.date.getMonth();
+			let year = element.date.getFullYear();
 
+			//add the prio bullets to item
+			let bullets = element.bullets;
+			let priorityBullets = document.createElement("div");
+			priorityBullets.className = "wn-bullets-container";
+			appendBullets(priorityBullets, bullets);
+
+			//add dates to item
 			let navItem = document.createElement("div");
 			navItem.className = "wn-item";
 
-			let navDate = document.createElement("h2");
+			let navDate = document.createElement("div");
 			navDate.className = "wn-date";
 			let dayOfWeek = document.createElement("span");
 			dayOfWeek.id = "day-of-week";
@@ -116,9 +139,13 @@ class WeeklyNav extends HTMLElement{
 			navItem.appendChild(navDate);
 			navItem.appendChild(hiddenMonth);
 			navItem.appendChild(hiddenYear);
+			navItem.appendChild(priorityBullets);
+
 
 			navContainer.appendChild(navItem);
+
 		}); 
+
 	
 	}/* set daysOfWeek */
 
@@ -134,15 +161,15 @@ class WeeklyNav extends HTMLElement{
 	 */
 	get selectedInfo() {
 
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+		const navContainer = this.shadowRoot.querySelector(".week-container");
 
 		//iterate over weekly nav items and return info of item with border
 		//(the one with a border is the selected one) 
 		let dateInfo;
 		let dateObj;
-		for(let i = 1; i &lt; navContainer.childNodes.length; i++){
+		for (let i = 1; i &lt; navContainer.childNodes.length; i++) {
 			let currItem = navContainer.childNodes[i];
-			if(currItem.style.borderLeft == SELECTEDBORDERLEFT){
+			if (currItem.style.borderLeft == SELECTEDBORDERLEFT) {
 				dateInfo = {
 					"day": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-week']").textContent,
 					"date": currItem.querySelector("[class='wn-date']").querySelector("[id='day-of-month']").textContent,
@@ -165,14 +192,13 @@ class WeeklyNav extends HTMLElement{
 	 * @example
 	 *      this.selectedDay = day
 	 */
-	set selectedDay(day){
-		const navContainer = this.shadowRoot.querySelector("[class='week-container']");
+	set selectedDay(day) {
+		const navContainer = this.shadowRoot.querySelector(".week-container");
 
 		for(let i = 1; i &lt; navContainer.childNodes.length; i++){
 			if(i == day){
 				navContainer.childNodes[i].style.borderTopLeftRadius = SELECTEDRADIUS;
 				navContainer.childNodes[i].style.borderBottomLeftRadius = SELECTEDRADIUS;
-				//navContainer.childNodes[i].style.border = "0.2rem solid darkgreen";
 				navContainer.childNodes[i].style.borderLeft = SELECTEDBORDERLEFT;
 			}
 			else{
@@ -182,40 +208,77 @@ class WeeklyNav extends HTMLElement{
 			}
 		}
 	} /* set seletedDay */
-}
+
+	/**
+	 * updatePriortiyBullets
+	 * update the priortiy bullets of one weekly nav item
+	 * 
+	 * @param {Array} bullets - An array of bullet entry objects to append to container
+	 * 
+	 * @example
+	 * 	weekly-nav.updatePriorityBullets = bullets[];
+	 */
+	set updatePriorityBullets(bullets) {
+		const navContainer = this.shadowRoot.querySelector(".week-container");
+		for (let i = 1; i &lt; navContainer.childNodes.length; i++) {
+			let currItem = navContainer.childNodes[i];
+			if (currItem.style.borderLeft == SELECTEDBORDERLEFT) {
+				let priorityBullets = navContainer.childNodes[i].querySelector(".wn-bullets-container");
+				//remove existing children
+				while (priorityBullets.firstChild) {
+					priorityBullets.removeChild(priorityBullets.firstChild);
+				}
+				//repopulate list
+				appendBullets(priorityBullets, bullets);
+			}
+		}
+	}/* set updatePriorityBullets */
+}/* WeeklyNav */
 
 
 /**
- * getDateString 
- * Converts integer day of week to its related string.
+ * appendBullets()
+ * Helper function to help populate the priority bullets list on each weekly nav item.
  * 
- * @param {number} day - An integer of the day of the week (0-6).
- * 
- * @returns A string of the related day of the week of the parameter.
+ * @param {Element} container - The element in which to append the bullets to
+ * @param {Array} bullets - An array of bullet entry objects to append to container
  * 
  * @example
- *      getDateString(day)
+ * 	appendBullets(container, bullets);
  */
-function getDateString(day){
-	switch(day){
-	case 0:
-		return "Sunday";
-	case 1:
-		return "Monday";
-	case 2:
-		return "Tuesday";
-	case 3:
-		return "Wednesday";
-	case 4:
-		return "Thursday";
-	case 5:
-		return "Friday";
-	case 6:
-		return "Saturday";
-	default:
-		return "Sunday";
-	}
-}/* getDateString */
+function appendBullets(container, bullets) {
+	bullets.forEach(bullet => {
+		let bulletElem = document.createElement("div");
+		bulletElem.className = "wn-bullet";
+		let bulletType = document.createElement("span");
+		bulletType.id = "bullet-type";
+		//bullet icon depending on the bullet type
+		switch (bullet.type) {
+		case "note":
+			bulletType.innerHTML = NOTEBULLET;
+			break;
+		case "event":
+			bulletType.innerHTML = EVENTBULLET;
+			break;
+		case "task":
+			if(bullet.completed){
+				bulletType.innerHTML = TASKCOMPLETE;
+				bulletElem.style.textDecoration = "line-through";
+			}
+			else{
+				bulletType.innerHTML = TASKBULLET;
+			}
+			break;
+		default:
+			bulletType.innerHTML = NOTEBULLET;
+
+		}
+		bulletElem.appendChild(bulletType);
+		bulletElem.innerHTML += bullet.content;
+		container.appendChild(bulletElem);
+	});
+} /* appendBullets */
+
 
 /**
  * getWeeklyNavTitle 
@@ -231,21 +294,21 @@ function getDateString(day){
  * @example
  *      getWeekyNavTitle(first, last)
  */
-function getWeeklyNavTitle(first, last){
+function getWeeklyNavTitle(first, last) {
 	let title = "";
 	const months= ["January","February","March","April","May","June","July",
 		"August","September","October","November","December"];
-	if(first.getMonth() == last.getMonth()){
+	if (first.getMonth() == last.getMonth()) {
 		title += months[first.getMonth()];
 	}
-	else{
+	else {
 		title +=  months[first.getMonth()] + "/" + months[last.getMonth()];
 	}
 
-	if(first.getFullYear() == last.getFullYear()){
+	if (first.getFullYear() == last.getFullYear()) {
 		title += " " + first.getFullYear();
 	}
-	else{
+	else {
 		title += " " + first.getFullYear() + "/" + last.getFullYear();
 	}
 
@@ -263,13 +326,13 @@ customElements.define("weekly-nav", WeeklyNav);</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="entryBar.html">entryBar</a></li><li><a href="textEntry.html">textEntry</a></li></ul><h3>Global</h3><ul><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="addlEntry.html">addlEntry</a></li><li><a href="BulletEntry.html">BulletEntry</a></li><li><a href="BulletInput.html">BulletInput</a></li><li><a href="BulletList.html">BulletList</a></li><li><a href="Calendar.html">Calendar</a></li><li><a href="entryBar.html">entryBar</a></li><li><a href="FutureNav.html">FutureNav</a></li><li><a href="HelpElement.html">HelpElement</a></li><li><a href="HelpSection.html">HelpSection</a></li><li><a href="HelpTableOfContents.html">HelpTableOfContents</a></li><li><a href="LogType.html">LogType</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="TodoList.html">TodoList</a></li><li><a href="WeeklyNav.html">WeeklyNav</a></li></ul><h3>Global</h3><ul><li><a href="global.html#appendBullets">appendBullets</a></li><li><a href="global.html#bulletsFromDB">bulletsFromDB</a></li><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createCalendar">createCalendar</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createFutureNav">createFutureNav</a></li><li><a href="global.html#createHelpPage">createHelpPage</a></li><li><a href="global.html#createHelpToc">createHelpToc</a></li><li><a href="global.html#createMainText">createMainText</a></li><li><a href="global.html#createNewBullets">createNewBullets</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#deleteImg">deleteImg</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteSideNav">deleteSideNav</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#formatEntries">formatEntries</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getMonthTodoBullets">getMonthTodoBullets</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#insertTextAtCaret">insertTextAtCaret</a></li><li><a href="global.html#makeEntry">makeEntry</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#nestBulletHelper">nestBulletHelper</a></li><li><a href="global.html#nestedBullets">nestedBullets</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li><li><a href="global.html#setDarkMode">setDarkMode</a></li><li><a href="global.html#setEntrybarType">setEntrybarType</a></li><li><a href="global.html#setLightMode">setLightMode</a></li><li><a href="global.html#textAreaFeatures">textAreaFeatures</a></li><li><a href="global.html#unnestBulletHelper">unnestBulletHelper</a></li><li><a href="global.html#updateAddlEntries">updateAddlEntries</a></li><li><a href="global.html#updateWeeklyNavHelper">updateWeeklyNavHelper</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:04:43 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:32:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

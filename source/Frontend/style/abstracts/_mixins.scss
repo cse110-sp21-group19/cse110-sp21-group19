@@ -1,0 +1,13 @@
+// source: https://davidwalsh.name/write-media-queries-sass
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (max-height: 700px) {
+    @content;
+  }
+}

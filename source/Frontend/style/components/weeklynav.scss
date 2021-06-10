@@ -1,60 +1,108 @@
 /* Weekly Nav - Cory */
 @import '../abstracts/mixins', '../abstracts/variables';
 
+/* title of month and year on top of nav */
 .weekly-nav-title{
-    transition: opacity 0.15s linear;
-    margin-top: 1.4rem; //Fix this later
-    margin-bottom: 0.5rem;
-    margin-left: 0.9rem;
+    margin: 1.5rem 0 0.5rem 0.9rem;
     font-weight: 500;
     font-size: 1.5em;
-}               		
+}      
+/* outer container */         		
 .week-container{
-    transition: opacity 0.15s linear;
-    background: $accent;
     z-index: -1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 6rem);
+    margin-top: 0.5rem;
     border-radius: 1rem;
     padding: 0.5rem;
-    display: flex;
-    height: 80vh;
-    flex-direction: column;
+    background: $accent;
 
+    /* day of week item */
     .wn-item{
+        flex: 1 1 0;
+        display: flex;
         min-height: 0;
         margin: 0.4rem;
-        flex: 1 1 0;
-        background: white;
         border-radius: 0.4rem;
-        transition: border-left 0.15s linear;
-        //display: grid;
-        //grid-template-rows: 1;
-        //grid-template-columns: auto auto;
-        &:hover{
-            transition: filter 0.15s linear;
-            filter: brightness(85%);
-        }
+        background: white;
+        transition: border-left 0.08s linear;
+        /* date text */
         .wn-date{
-            pointer-events: none;
-            //grid-column-start: 1;
-            margin-left: 0.5rem;
-            font-size: 1.05em;
+            z-index: 5;
+            cursor: pointer;
+            width: 18%;
+            min-width: 7.5rem;
+            height: 100%;
+            padding: 0.6rem;
+            cursor: pointer;
+            #day-of-month{
+              font-size: 1.1em;
+              font-weight: bold;
+              pointer-events: none;
+            }
             #day-of-week{
-                padding: 0 0.35em;
-                font-family: $sans-serif;
-                font-weight: lighter;
-                font-size: 1.05em;
+              padding: 0 0.35em;
+              font-family: $sans-serif;
+              font-weight: lighter;
+              font-size: 1.1em;
+              pointer-events: none;
+            }
+            &:hover{
+              color: $accent2;
+              text-decoration: underline;
             }
         }
-
-        //TODO
-        // .wn-bullets{
-        //     // //grid-column-start: 3;
-        //     // font-size: 10px;
-        // }
-
-
+        /* container of prio bullet list */
+        .wn-bullets-container{
+            flex-grow: 2;
+            margin: 0.4rem;
+            overflow-y: hidden;
+            svg {
+                height: 1em;
+                width: 1em;
+                padding-right: 0.5rem;
+            }
+            &:hover{
+              overflow-y: auto;
+            }
+            .wn-bullet{
+              margin:0.3rem;
+            }
+        }
+        /* hidden month items */
         p {
-            visibility:collapse;
+            position: absolute;
+            visibility:hidden;
+        }
+
+        /* custom scroll bar */
+        /* width */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+  
+        /* Track */
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+        }
+   
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: rgb(182, 182, 182);
+          border-radius: 6px; 
+        }
+        
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: $accent;
         }
     }
+}
+
+/* Dark mode */
+.dark-mode.week-container {
+  .wn-item {
+    background: $dark;
+  }
 }

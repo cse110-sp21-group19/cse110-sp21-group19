@@ -1,8 +1,81 @@
 /* Main Text - Manda */
-.main-text {
-    height: 65vh;
+.main-text-container {
+    height: calc(100% - 2rem);
     border-radius: 1rem;
-    background: white;
-    padding: 2rem;
     margin: 0 1rem;
+    padding: 2rem 3rem 0 0rem;
+    background: white;
+
+    .main-text {
+        height: calc(100% - 3.5rem);
+        width: calc(100% - 2rem);
+        overflow-y: auto;
+        opacity: 0;
+        background: white;
+        scroll-behavior: smooth;
+        padding: 0 2rem;
+    }
+    
+    .main-text.active{
+        opacity: 1;
+        transition: opacity 425ms ease-in-out;
+    }
+}
+
+/* scroll bar */
+::-webkit-scrollbar {
+    width: 8px;
+    position: relative;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 6px; 
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(182, 182, 182);
+  border-radius: 6px; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $accent2;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    
+    position: relative;
+    top: 50px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 6px; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(182, 182, 182);
+    border-radius: 6px; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $accent2;
+  }
+
+/* dark mode */
+body.dark-mode {
+
+    .main-text-container {
+        background: $dark2;
+
+        .main-text {
+            background: $dark2;
+        }
+    }
 }

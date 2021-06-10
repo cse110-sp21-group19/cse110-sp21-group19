@@ -1,34 +1,72 @@
+/* Layout */
+
 body {
-    //max-width: 1280px;
-    background: $light;
-    margin: auto;
     padding: 0 3rem;
-
+    margin: auto;
+    background: $light;
+    // overflow-y: hidden;
     .container {
-        margin-top: 0;
         display: grid;
+        margin-top: 0;
         grid-template-columns: 30% 70%;
-        //margin-top: 4rem;
-        .weekly-nav-container {
-            grid-column-start: 1;
-            display: grid;
-            grid-template-rows: 10% 90%;
-        }
-        .daily-log {
-            grid-column-start: 2;
-            //display: grid;
-            //grid-template-rows: 10% 90%;
-            padding-top: 4rem;
 
+        /* container for things on the left side of the screen */
+        .left-side-container{
+            grid-column-start: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-height: 100vh;
+            .weekly-nav-container{
+                opacity: 0;
+            }
+            .weekly-nav-container.active{
+                opacity: 1;
+                transition: opacity 350ms ease-in-out;
+                flex-grow: 1;
+            }
+            .todo-component-container{
+                opacity: 0;
+            }
+            .todo-component-container.active{
+                opacity: 1;
+                transition: opacity 350ms ease-in-out;
+                height:30vh;
+                flex-grow: 1;
+            }
+            .calendar-component-container{
+                opacity: 0;;
+            }
+            .calendar-component-container.active{
+                opacity: 1;
+                transition: opacity 350ms ease-in-out;
+                flex-grow: 0;
+                height: fit-content;
+                margin-bottom: 1.5rem;
+            }
+            .side-nav-container{
+                order: 0;
+                animation: fadein 1s;
+            }
+        }
+
+        /* daily log: main-text and additional entries */
+        .daily-log {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 5.7rem);
+            grid-column-start: 2;
+            padding-top: 4rem;
             &-title {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 padding: 0 1rem;
 
+                /* main-text header arrow buttons */
                 i {
-                    font-size: 1.5rem;
                     padding: 0 1rem;
+                    font-size: 1.5rem;
 
                     &:hover {
                         color: grey;
@@ -36,11 +74,47 @@ body {
                     }
                 }
             }
+            /* container for additional entries */
+            .additional {
+                //opacity: 0;
+                flex: 0;
+                height: 20%;
+                overflow-y: hidden;
+                transition: all 0.3s ease-out;
+            }
+            /* container for maintext area */
+            .flexgrow{
+                flex-grow: 1;
+                height: 30vh;
+            }
         }
     }
+}
 
-    .side-nav-container {
-        display: grid;
-        //grid-template-columns: 30% 70%;
+/* style logo */
+.logo {
+    position: absolute;
+    padding: 1rem 5rem;
+    right: 0;
+    z-index: -1;
+}
+
+/* fade in animation */
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
+/* dark mode */
+body.dark-mode {
+    background: $dark;
+    color: $light;
+
+    input {
+        color: $light;
     }
 }

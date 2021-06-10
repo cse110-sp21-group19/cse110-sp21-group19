@@ -28,63 +28,11 @@
         <article>
             <pre class="prettyprint source linenums"><code>// main-text-script.js
 
-// Constants for different bullet types
-import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/main-text.js";
+import { TASKBULLET, TASKCOMPLETE, NOTPRIORITY, PRIORITY } from "../components/icons.js";
+import { createBullet, deleteBullet, updateBullet, getDailyPriority } from "../../Backend/api/bullet_api.js";
 
-// BULLET STUFF
-// DOM Elements
-const MAINTEXT = document.getElementById("main-text");
-
-const BULLETS = document.createElement("bullet-list");
-BULLETS.id = "bullets";
-
-const INPUT = document.createElement("bullet-input");
-const INPUTROOT = INPUT.shadowRoot;
-const BULLETINPUT = INPUTROOT.getElementById("bullet-input");
-
-const BULLETTYPE = INPUTROOT.getElementById("bullet-type");
-
-// Bullet Nesting Stack
-let bulletStack = [];
-bulletStack.push(BULLETS);
-
-MAINTEXT.appendChild(BULLETS);
-MAINTEXT.appendChild(INPUT);
-
-
-//const MAINTEXTHEADER = document.querySelector("#date > h1");
-
-INPUT.addEventListener("keyup", function(event) {
-	if (event.key === "Enter") {
-		event.preventDefault();
-
-		let entry = {
-			"type": BULLETTYPE.value,
-			"date": new Date(Date.now()),
-			"content": BULLETINPUT.value,
-			"priority": false,
-			"completed": false
-		};
-
-		let newBullet = document.createElement("bullet-entry");
-		newBullet.entry = entry;
-
-		// append new bullet entries to main-text element
-		const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
-		BULLETLIST.appendChild(newBullet);
-
-		// clear INPUT value after enter
-		BULLETINPUT.value = "";
-
-		editableEntry(newBullet);
-		prioritizeEntry(newBullet);
-		completeTask(newBullet);
-		deleteEntry(newBullet);
-
-		// TODO: add new bullet to DB
-	}
-});
-
+// limit the number of bullets a user can create
+const NESTINGLIMIT = 8;
 
 /** 
  * editableEntry
@@ -92,9 +40,9 @@ INPUT.addEventListener("keyup", function(event) {
  * @param {object} - A bullet-entry element.
  *
  * @example
- *     editableEntry();
+ *     editableEntry(key, entry);
  */
-function editableEntry(entry) {
+export function editableEntry(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const bulletEntry = bulletEntryRoot.querySelector(".bullet-entry");
 	const inputted = bulletEntryRoot.getElementById("bullet-inputted");
@@ -105,64 +53,81 @@ function editableEntry(entry) {
 			inputted.readOnly = false;
 			hoverMsg.innerHTML = "Enter to save note";
 		});
-		// after 'Enter' return to 'readOnly' mode
+		// after 'Enter' to save the bullet and return to 'readOnly' mode
 		inputted.addEventListener("keyup", function(event) {
 			if (event.key === "Enter") {
 				inputted.readOnly = true;
 				hoverMsg.innerHTML = "Double click to edit note";
+				// update edited bullet to DB
+				updateBullet(key, entry.entry);
 			}
 		});
-		// TODO: after click away from entry, return to 'readyOnly' mode
-		/*
-        document.addEventListener('click', function(event) {
-            var isClickInside = inputted.contains(event.target);
-            if (!isClickInside) {
-                inputted.readOnly = true;
-            }
-        });
-        */
-
-		// TODO: update edited bullet to DB
 	}
 } /* editableEntry */
 
 /**
  * deleteEntry
  * Delete bullet when the 'X' button is clicked.
+ * @param {Number} key - The bullet key returned by the database.
  * @param {object} entry - The bullet entry to be deleted
  *
  * @example
  *     deleteEntry(entry);
  */
-function deleteEntry(entry) {
+export function deleteEntry(key, entry) {
 	let bulletEntryRoot = entry.shadowRoot;
 	const toDelete = bulletEntryRoot.getElementById("delete-bullet");
-	toDelete.addEventListener("click", function() {
+	toDelete.addEventListener("click", async function() {
+		// remove bullet from main-text area
 		entry.remove();
+		// remove bullet from database
+		deleteBullet(key);
+
+		// updates the weekly nav 
+		updateWeeklyNavHelper();
 	});
 } /* deleteEntry */
 
 /**
  * prioritizeEntry
  * Prioritize and deprioritize bullet by toggling the star icon.
- * @param {object} newEntry - A bullet-type element.
+ * @param {Number} key - The bullet key returned by the database.
+ * @param {object} entry - A bullet-type element.
  *
  * @example
- *     prioritizeEntry(entry);
+ *     prioritizeEntry(key, entry);
  */
-function prioritizeEntry(newEntry) {
-	let bulletEntryRoot = newEntry.shadowRoot;
+export function prioritizeEntry(key, entry) {
+	let bulletEntryRoot = entry.shadowRoot;
 	const toPrioritize = bulletEntryRoot.getElementById("prioritize-bullet");
-	toPrioritize.addEventListener("click", function() {
+	toPrioritize.addEventListener("click", async function() {
+
 		if (toPrioritize.innerHTML.includes("priority")) {
 			toPrioritize.innerHTML = NOTPRIORITY;
 			toPrioritize.style.color = "transparent";
 		}
 		else {
 			toPrioritize.innerHTML = PRIORITY;
-			toPrioritize.style.color = "black";
+			if (document.body.className === "dark-mode") {
+				toPrioritize.style.color = "white";
+			}
+			else {
+				toPrioritize.style.color = "black";
+			}
 		}
+		// update prioritized/deprioritized bullet to DB
+		updateBullet(key, entry.entry);
+
+		// updates the weekly nav 
+		updateWeeklyNavHelper();
 	});
+	// update styling to only show priority star if the bullet is prioritized
+	if (toPrioritize.innerHTML.includes("priority")) {
+		toPrioritize.style.color = "black";
+	}
+	else {
+		toPrioritize.style.color = "transparent";
+	}
 }  /* prioritizeEntry */
 
 /**
@@ -171,16 +136,17 @@ function prioritizeEntry(newEntry) {
  * change the task to completed and add a strikethrought to the completed 
  * bullet content. If the task is completed, uncheck the bullet and remove the 
  * strikethrough from the bullet content.
- * @param {object} newEntry - a bullet-type element
+ * @param {Number} key - The bullet key returned by the database.
+ * @param {object} entry - A bullet-type element.
  *
  * @example
- *     completeTask(entry);
+ *     completeTask(key, entry);
  */
-function completeTask(newEntry) {
-	let bulletEntryRoot = newEntry.shadowRoot;
+export function completeTask(key, entry) {
+	let bulletEntryRoot = entry.shadowRoot;
 	const toComplete = bulletEntryRoot.getElementById("bullet-type");
 	const content = bulletEntryRoot.getElementById("bullet-inputted");
-	toComplete.addEventListener("click", function() {
+	toComplete.addEventListener("click", async function() {
 		if (toComplete.innerHTML.includes("incomplete")) {
 			toComplete.innerHTML = TASKCOMPLETE;
 			content.style.textDecoration = "line-through";
@@ -189,33 +155,206 @@ function completeTask(newEntry) {
 			toComplete.innerHTML = TASKBULLET;
 			content.style.textDecoration = "none";
 		}
+		// update completed/incomplete task bullet to DB
+		updateBullet(key, entry.entry);
+		// updates the weekly nav 
+		updateWeeklyNavHelper();
 	});
+
+	if (toComplete.innerHTML.includes("incomplete")) {
+		content.style.textDecoration = "none";
+	}
+	else if (toComplete.innerHTML.includes("complete")) {
+		content.style.textDecoration = "line-through";
+	}
 } /* completeTask */
 
-// Create Nested Bullets
-INPUT.addEventListener("keydown", function(event) {
-	// FIXME: Backspace doesn't work yet, will prevent backspace behavior all together
-	// Unnest by one level on shift + tab
-	if ((event.shiftKey &amp;&amp; event.key === "Tab")) {
-		event.preventDefault();
-		if (bulletStack.length > 1) {
-			bulletStack.pop(bulletStack[bulletStack.length - 1]);
-			// unindent the input text
-			BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+/**
+ * createNewBullets
+ * Add the ability to add new bullets to the current page.
+ * @param {object} inputElement - A bullet-input element.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
+ *
+ * @example
+ *     createNewBullets(inputElement, bulletElement, bulletStack);
+ */
+export function createNewBullets(inputElement, bulletStack) {
+	inputElement.addEventListener("keyup", async function(event) {
+		if (event.key === "Enter") {
+			event.preventDefault();
+
+			const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
+			const BULLETTYPE = inputElement.shadowRoot.getElementById("bullet-type");
+            // create new entry information on enter
+            let entry = {
+                "priority": false,
+                "content": BULLETINPUT.value,
+                "completed": false,
+                "type": BULLETTYPE.value,
+                "levels": bulletStack.length - 1,
+            };
+
+            let newBullet = document.createElement("bullet-entry");
+            newBullet.entry = entry;
+
+            // append new bullet entries to main-text element
+            const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+            BULLETLIST.appendChild(newBullet);
+
+            // clear INPUT value after enter
+            BULLETINPUT.value = "";
+
+            // add new bullet to DB
+            let bulletKey = await createBullet(newBullet.entry);
+
+            editableEntry(bulletKey, newBullet);
+            prioritizeEntry(bulletKey, newBullet);
+            completeTask(bulletKey, newBullet);
+            deleteEntry(bulletKey, newBullet);
+        }
+    });
+} /* createNestedBullets */
+
+/**
+ * bulletsFromDB
+ * Add the ability to get bullets from the database and populate them on the
+ * page.
+ * @param {object} item - The json information of a bullet element 
+ * retrieved from the database.
+ * @param {object} index - The index of the current bullet element.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
+ * @param {Array} todayBullets - An array containing an array of the bullet 
+ * information and an array containing the keys for each of the bullets.
+ *
+ * @example
+ *     bulletsFromDB(item, index, bulletStack, todayBullets);
+ */
+export function bulletsFromDB(item, index, bulletStack, todayBullets) {
+	// nest existing bullets from the data base
+	let prevBullet = todayBullets[1][index-1];
+	if (prevBullet) {
+		// unnest bullets
+		if ((prevBullet.levels > item.levels)) {
+			let currLevels = prevBullet.levels;
+			while (currLevels > item.levels) {
+				unnestBulletHelper(bulletStack);
+				currLevels -= 1;
+			}
+		}
+		// nest bullets
+		if ((prevBullet.levels &lt; item.levels)) {
+			let currLevels = prevBullet.levels;
+			while (currLevels &lt; item.levels) {
+				nestBulletHelper(bulletStack);
+				currLevels += 1;
+			}
 		}
 	}
-	// Nest by one level on tab
-	else if (event.key === "Tab") {
-		// prevent tab key from moving to next button
-		this.focus();
-		event.preventDefault();
-		const newSublist = document.createElement("bullet-list");
-		bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list").appendChild(newSublist);
-		bulletStack.push(newSublist);
-		// indent the input text
-		BULLETINPUT.style.paddingLeft = (40 * (bulletStack.length-1) + 8)+ "px";
+	// create bullet entry
+	let newBullet = document.createElement("bullet-entry");
+	newBullet.entry = item;
+	const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+	BULLETLIST.appendChild(newBullet);
+
+	let bulletKey = todayBullets[0][index];
+
+	// make bullets from database editable
+	editableEntry(bulletKey, newBullet);
+	prioritizeEntry(bulletKey, newBullet);
+	completeTask(bulletKey, newBullet);
+	deleteEntry(bulletKey, newBullet);
+} /* bulletsFromDB */
+
+/**
+ * nestedBullets
+ * Add the ability to create nested bullets on input.
+ * @param {object} inputElement - A bullet-input element.
+ * @param {object} bulletInput - The input field element in a bullet-input.
+ * element
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
+ *
+ * @example
+ *     nestedBullets(inputElement, bulletElement, bulletStack);
+ */
+export function nestedBullets(inputElement, bulletStack) {
+
+    inputElement.addEventListener("keydown", function (event) {
+        // Unnest by one level on shift + tab
+        const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
+        if ((event.shiftKey &amp;&amp; event.key === "Tab")) {
+            event.preventDefault();
+			unnestBulletHelper(bulletStack);
+			// unindent the input text
+			BULLETINPUT.style.paddingLeft = (2 * (bulletStack.length-1) + 0.5)+ "rem";
+        }
+        // Nest by one level on tab
+        else if (event.key === "Tab") {
+            // prevent tab key from moving to next button
+            this.focus();
+            event.preventDefault();
+			nestBulletHelper(bulletStack);
+			// indent the input text
+			BULLETINPUT.style.paddingLeft = (2 * (bulletStack.length-1) + 0.5)+ "rem";
+        }
+    });
+} /* nestedBullets */
+
+/**
+ * nestedBulletHelper
+ * Helper function to nest bullets by inserting a new bullet-list element as a
+ * sublist.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
+ *
+ * @example
+ *     nestedBulletHelper(bulletStack);
+ */
+function nestBulletHelper(bulletStack) {
+	if (bulletStack.length &lt; NESTINGLIMIT) {
+		const NEWSUBLIST = document.createElement("bullet-list");
+		let parentBullet = bulletStack[bulletStack.length - 1];
+		parentBullet.shadowRoot.getElementById("bullet-list").appendChild(NEWSUBLIST);
+		bulletStack.push(NEWSUBLIST);
 	}
-});
+} /* nestedBulletHelper */
+
+/**
+ * unnestedBulletHelper
+ * Helper function to unnest bullets by popping the current bullet-list element 
+ * as a from the bulletStack.
+ * @param {Array} bulletStack - An array, emulating a stack, containing nested 
+ * bullet-list sublists elements.
+ *
+ * @example
+ *     unnestedBulletHelper(bulletStack);
+ */
+function unnestBulletHelper(bulletStack) {
+	if (bulletStack.length > 1) {
+		let parentBullet = bulletStack[bulletStack.length - 1]
+		bulletStack.pop(parentBullet);
+		//return parentBullet;
+	}
+} /* unnestedBulletHelper */
+
+/**
+ * updateWeeklyNavHelper
+ * Helper function to update weekly nav priority items.
+ *
+ * @example
+ *     updateWeeklyNavHelper();
+ */
+async function updateWeeklyNavHelper() {
+	// updates the weekly nav 
+	const WEEKLYNAV = document.querySelector("weekly-nav");
+	const logInfo = document.querySelector("log-type").readLog
+	if (logInfo.type === "daily") {
+		let bullets =  await getDailyPriority(logInfo.date);
+		WEEKLYNAV.updatePriorityBullets = bullets;
+	}
+} /* updateWeeklyNavHelper */
 </code></pre>
         </article>
     </section>
@@ -226,13 +365,13 @@ INPUT.addEventListener("keydown", function(event) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="entryBar.html">entryBar</a></li><li><a href="textEntry.html">textEntry</a></li></ul><h3>Global</h3><ul><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="addlEntry.html">addlEntry</a></li><li><a href="BulletEntry.html">BulletEntry</a></li><li><a href="BulletInput.html">BulletInput</a></li><li><a href="BulletList.html">BulletList</a></li><li><a href="Calendar.html">Calendar</a></li><li><a href="entryBar.html">entryBar</a></li><li><a href="FutureNav.html">FutureNav</a></li><li><a href="HelpElement.html">HelpElement</a></li><li><a href="HelpSection.html">HelpSection</a></li><li><a href="HelpTableOfContents.html">HelpTableOfContents</a></li><li><a href="LogType.html">LogType</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="TodoList.html">TodoList</a></li><li><a href="WeeklyNav.html">WeeklyNav</a></li></ul><h3>Global</h3><ul><li><a href="global.html#appendBullets">appendBullets</a></li><li><a href="global.html#bulletsFromDB">bulletsFromDB</a></li><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createCalendar">createCalendar</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createFutureNav">createFutureNav</a></li><li><a href="global.html#createHelpPage">createHelpPage</a></li><li><a href="global.html#createHelpToc">createHelpToc</a></li><li><a href="global.html#createMainText">createMainText</a></li><li><a href="global.html#createNewBullets">createNewBullets</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#deleteImg">deleteImg</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteSideNav">deleteSideNav</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#formatEntries">formatEntries</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getMonthTodoBullets">getMonthTodoBullets</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#insertTextAtCaret">insertTextAtCaret</a></li><li><a href="global.html#makeEntry">makeEntry</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#nestBulletHelper">nestBulletHelper</a></li><li><a href="global.html#nestedBullets">nestedBullets</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li><li><a href="global.html#setDarkMode">setDarkMode</a></li><li><a href="global.html#setEntrybarType">setEntrybarType</a></li><li><a href="global.html#setLightMode">setLightMode</a></li><li><a href="global.html#textAreaFeatures">textAreaFeatures</a></li><li><a href="global.html#unnestBulletHelper">unnestBulletHelper</a></li><li><a href="global.html#updateAddlEntries">updateAddlEntries</a></li><li><a href="global.html#updateWeeklyNavHelper">updateWeeklyNavHelper</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:04:43 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:32:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

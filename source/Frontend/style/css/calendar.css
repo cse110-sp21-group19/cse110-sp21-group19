@@ -1,0 +1,110 @@
+/* Calendar */
+/* Variables */
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* colors */
+/* spacing */
+/* device sizes */
+/* Outtermost container (green) */
+.cal-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-top: 3px white solid;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  background: #71B637;
+  /* Dark mode */
+  /* calendar (white container) */
+}
+
+.cal-container .calendar.dark-mode {
+  background: #181A18;
+}
+
+.cal-container .calendar.dark-mode .weekdays li {
+  color: white;
+}
+
+.cal-container .calendar.dark-mode .day {
+  color: #E5E5E5;
+}
+
+.cal-container .calendar {
+  position: relative;
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 1.2rem;
+  border-radius: 1.5rem;
+  background: white;
+  /* month title */
+  /* list of days of week */
+  /* days of the month */
+}
+
+.cal-container .calendar .month {
+  z-index: 1;
+  padding: 1rem 1.5rem 0.5rem 1.5rem;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.cal-container .calendar .weekdays {
+  padding: 0 2rem;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.cal-container .calendar .weekdays li {
+  display: inline-block;
+  width: 14.2%;
+  padding-top: 0.3rem;
+  color: #414141;
+  font-size: 1.1em;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cal-container .calendar .days {
+  padding: 0.3rem 2rem;
+  margin-top: 0;
+  /* hovering a day of month */
+  /* highlight today */
+}
+
+.cal-container .calendar .days li {
+  display: inline-block;
+  width: 14.2%;
+  padding: 0.9rem 0;
+  color: #555555;
+  font-size: 1.1em;
+  font-weight: 500;
+  list-style-type: none;
+  text-align: center;
+}
+
+.cal-container .calendar .days .day:hover {
+  border-radius: 1rem;
+  background: rgba(255, 163, 63, 0.35);
+  cursor: pointer;
+}
+
+.cal-container .calendar .days .current-day {
+  border-radius: 1.5rem;
+  color: white;
+  background: #FFA33F;
+}
+
+.cal-container .calendar .days .current-day:hover {
+  border-radius: 1rem;
+  background: rgba(255, 163, 63, 0.35);
+  cursor: pointer;
+}
+/*# sourceMappingURL=calendar.css.map */

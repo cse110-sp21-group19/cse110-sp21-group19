@@ -1,52 +1,103 @@
-/* Weekly Nav - Cory */
+/* To Do */
 @import '../abstracts/mixins', '../abstracts/variables';
 
+/* top of todo list title */
 .todo-title{
-    margin-top: 1.4rem; //Fix this later
-    margin-bottom: 0.5rem;
-    margin-left: 0.9rem;
-
+	margin: 1.5rem 0 0.5rem 0.9rem;
+	font-weight: 500;
+	font-size: 1.5em;
 }
+/* outermost container */
 .todo-container{
-    background: $accent;
     z-index: -1;
-    border-radius: 1rem;
+	height: calc(100% - 2rem);
     padding: 0.5rem;
-    //This will differ from weekly nav
-    display: grid;
-    grid-template-rows: auto auto auto auto auto auto auto;
-    //Will also add overflow
-    height: 80vh; //MAY HAVE TO CHANGE THIS -- look at layout file weekly nav container height
-
-    .wn-item{
-        margin: 0.4rem;
-        display: grid;
-        background: white;
-        border-radius: 0.5rem;
-        grid-template-rows: 1;
-        grid-template-columns: auto auto;
-        &:hover{
-            filter: brightness(90%);
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+	background: $accent;
+	/* container holding todo items and that allows for scrolling */
+    .scroll-container{
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 3.5rem);
+        margin: 0.5rem;
+        padding-right: 0.3rem;
+        /* Dark mode */
+        .dark-mode.todo-item{
+          background: $dark;
         }
-        .wn-date{
-            pointer-events: none;
-            grid-column-start: 1;
-            margin-left: 0.5rem;
-            font-size: 0.95em;
-            #day-of-week{
-                padding: 0 0.35em;
-                font-family: $sans-serif;
-                font-weight: lighter;
-                font-size: 1.05em;
+		/* each todo item in list */
+        .todo-item{
+			display: flex;
+            margin: 0.4rem;
+			border-radius: 0.5rem;
+            background: white;
+			/* styling for no item box */
+            .no-items{
+				padding: 1rem 2rem;
+				font-size: 1.5em;
+				font-weight: bold;
+				pointer-events: none;
+            }
+			/* date of todo item */
+            .todo-date{                       
+                pointer-events: none;
+				height: 100%;
+				width: 5vw;
+                min-width: 7.5rem;
+				margin: 0.6rem 0 0 0.6rem;
+				pointer-events: none;
+                #day-of-month{
+                    font-size: 1.1em;
+                    font-weight: bold;
+                }
+                #day-of-week{
+                      padding: 0 0.35em;
+                      font-family: $sans-serif;
+                      font-weight: lighter;
+                      font-size: 1.1em;
+                }
+            }
+			/* container of todo bullet list */
+            .todo-bullets-container{
+                flex-grow: 2;
+                margin: 0.4rem;
+                overflow-y: none;
+                svg {
+                    height: 1em;
+                    width: 1em;
+                    padding-right: 0.5rem;
+                }
+                .todo-bullet{
+                  margin:0.3rem;
+                }
             }
         }
-        .wn-bullets{
-            grid-column-start: 3;
-            font-size: 10px;
-        }
-
-        p {
-            visibility:hidden;
-        }
     }
+
+	/* custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        position: relative;
+        top: 50px;
+    }
+      
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        border-radius: 6px; 
+    }
+       
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: rgb(182, 182, 182);
+        border-radius: 6px; 
+    }
+      
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: $accent2;
+    }
+    
 }

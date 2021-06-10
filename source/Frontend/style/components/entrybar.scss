@@ -2,144 +2,419 @@
 
 @import '../abstracts/mixins', '../abstracts/variables';
 
-/* Begin styling addl button */
-
+*:focus{
+    /* Other */
+    outline: none;
+}
+/*Begin styling additional entry bar*/
+.initial{
+    /* Display & Box Model */
+    height: 100%;
+}
 .active-bar{
-    background: $accent2;
-    height: 20vh;
-    width: 85%;
+    /* Display & Box Model */
+    height: calc(100% - 4rem);
     display: flex;
     justify-content: space-between;
-    padding: 1rem 2rem 1rem 2rem;
+    padding: 1.5rem 3.5rem;
+    margin: 1rem;
     border-radius: 1rem;
-    margin-left: 1.8rem;
+
+    /* Color */
+    background: $accent2;
+    
+
+    @include laptop{
+        /* Display & Box Model */
+        height: calc(100% - 3rem);
+        padding: 0.5rem 1rem 1rem 1rem;
+    }
 
     .close{
+        /* Positioning */
         text-align: left;
-        font-size: 30px;
+
+        /* Color */
         color: black;
+
+        
+        font-size: 30px;
+
+        @include laptop{
+            /* Text */
+            font-size: 20px;
+        }
     }
     .close:hover{
+        /* Other */
         cursor: pointer;
     }
 
     .content{
-        height: 13vh;
+        /* Display & Box Model */
+        height: 100%;
         width: 65%;
-        min-width: 55%;
-        background: white;
+        min-width: 100px;
         border-radius: 1rem;
         margin-top: 0;
-        overflow-x: auto;
-        overflow-y: hidden;
         display: flex;
+        padding: 0 1rem;
         flex-direction: row;
-        padding: 0 1rem 3rem 1rem;
+        align-items: center;
+
+        /* Color */
+        background: white;
+
+        /* Other */
+        overflow-x: hidden;
+        overflow-y: hidden;
     }
-    .new-entry{
-        overflow: visible;
-        width: 8rem;
-        height: 5rem;
-        margin-top: 2rem;
-    }
-    .new-entry:hover{
-        cursor: pointer;
+    .content:hover{
+        overflow-x: auto;
     }
 
 }
-.inactive-bar{
-    width: 3vw;
-    height: 3vw;
-    min-width: 3vw;
-    min-height: 3vw;
-    margin: 0 1rem 2rem;
-    background: transparent;
-    border-radius: 1vw;
-    padding: 0.2rem;
-    float: right;
-    display: grid;
-    justify-content: center;
-    white-space: nowrap;   
-}
-.inactive-bar:hover{
-    cursor: pointer;
-}
+
 #btn{
-    height: 7vh;
-    width: 7vh;
+    /* Positioning */
+    position: absolute;
+    right: 6.5vw;
+    bottom: 5.5vh;
     grid-column-start: 2;
     grid-column-end: 5;
-}
-#btn:hover{
+
+    /* Display & Box Model */
+    height: 7vh;
+    width: 7vh;
+
+    /* Other */
     cursor: pointer;
 }
 
-*:focus{
-    outline: none;
+.dropdown {
+    /* Positioning */
+    position: relative;
+
+    /* Display & Box Model */
+    height: 100%;
+    display: inline-block;
+
+    .new-entry{
+        /* Display & Box Model */
+        width: auto;
+        height: calc(4rem + 30%);
+        margin-top: 25%;
+
+        /* Other */
+        overflow: visible;
+
+        @include laptop{
+            /* Display & Box Model */
+            margin-top: 10%;
+            height: calc(3rem + 30%);
+        }
+        
+    }
 }
+.dropdown-content {
+    /* Positioning */
+    position: absolute;
+    bottom: 60%;
+    z-index: 10;
+
+    /* Display & Box Model */
+    display: none;
+    width: 8rem;
+    height: 6rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+    /* Color */
+    background-color: black;
+   
+    @include laptop{
+        /* Positioning */
+        bottom: 10%;
+
+        /* Display & Box Model */
+        width: 100px;
+        height: 90px;
+    }
+}
+  .dropdown:hover{
+    .dropdown-content {
+        /* Positioning */
+        z-index: 10;
+
+        /* Display & Box Model */
+        display: block;
+
+        /* Color */
+        color: black;
+    }  
+}
+  .dropdown-content span:hover {
+    /* Color */
+    background: #4AB2D6;
+
+    /* Other */
+    cursor: pointer;
+} 
+  /* Links inside the dropdown */
+  .dropdown-content span {
+    /* Display & Box Model */
+    margin-top: 0.5rem;
+    padding: 8px 16px 8px 16px;
+    display: block;
+
+    /* Color */
+    color: white;
+
+    /* Text */
+    text-decoration: none;
+
+    @include laptop{
+        /* Display & Box Model */
+        margin-top: 0;
+        padding: 5px 16px 8px 16px;
+    }
+  }
+  /*End styling additional entry bar*/
+/* Begin styling text entry*/
 .editing{
+    /* Display & Box Model */
     display: none;
     padding: 2rem;
-    height: 75vh;
-    width: 90%;
-    min-height: 550px;
-    min-width: 300px;
-    margin-left: 3rem;
-    background: $accent;
+    height: calc(100% - 4rem);
+    margin-left: 1rem;
     border-radius: 1rem;
+
+    /* Color */
+    background: $accent;
     
     .close{
+        /* Text */
         font-size: 2rem;
         font-weight: bold;
-    }
-    .close:hover{
+
+        /* Other */
         cursor: pointer;
     }
+    
     .close-edit{
+        /* Text */
         font-size: 2rem;
         font-weight: bold;
-    }
-    .close-edit:hover{
+
+        /* Other */
         cursor: pointer;
     }
     .text-content{
-        margin-top: 1rem;
-        width: 98.5%;
-        height: 70%;
+        /* Display & Box Model */
+        width: calc(100% - 2rem);
+        height: calc(85% - 8rem);
+        margin: 0.9rem 0;
+        border-radius: 1rem;
+        padding: 1rem;
+        border: none;
+        outline: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        resize: none; /*remove the resize handle on the bottom right*/
+
+        /* Color */
+        background: white;
+        font-size: 1em;
+        font-family: 'Open Sans', sans-serif;
+       
+        /* Other */
+        overflow: auto;
+    }
+    .save-btn-wrapper{
+        /* Positioning */
+        position: relative;
+    }
+    .save-btn{
+        /* Positioning */
+        position: absolute;
+        right: 0.5rem;
+
+        /* Display & Box Model */
+        height: 8vh;
+        width: 7vh;
+        min-height: 50px;
+        min-width: 75px;
+    }
+    .save-btn:hover{
+        /* Color */
+        background:rgba(255, 163, 63, 0.35);
+
+        /* Other */
+        cursor: pointer;
+    }
+
+    h1{
+        /* Text */
+        text-align: center;
+        &:hover{
+            /* Text */
+            text-decoration: underline;
+        }
+    }
+    .delete-btn-wrapper{
+        /* Positioning */
+        position: relative;
+        .delete-btn{
+            /* Positioning */
+            position: absolute;
+            bottom: 0.5rem;
+            right: 1rem;
+
+            /* Display & Box Model */
+            height: 8vh;
+            width: 7vh;
+            min-height: 50px;
+            min-width: 75px;
+            
+        }
+    }
+   
+    .delete-btn:hover{
+        /* Other */
+        cursor: pointer;
+    }
+
+}
+/* End styling text entry*/
+
+/* Begin styling image entry*/
+.img-editing{
+    /* Display & Box Model */
+    display: none;
+    padding: 2rem;
+    height: calc(100% - 4rem);
+    margin-left: 1rem;
+    border-radius: 1rem;
+
+    /* Color */
+    background: $accent;
+    
+    .close{
+        /* Text */
+        font-size: 2rem;
+        font-weight: bold;
+
+        /* Other */
+        cursor: pointer;
+    }
+    .close-edit{
+        /* Text */
+        font-size: 2rem;
+        font-weight: bold;
+
+        /* Other */
+        cursor: pointer;
+    }
+    .img-content{
+        /* Display & Box Model */
+        height: calc(85% - 8rem);
+        margin: 1.5rem 2rem;
         background: white;
         border-radius: 1rem;
         padding-top: 1rem;
         padding-left: 0.5rem;
+
+        /* Other */
         overflow-y: auto;
-        
+        cursor: pointer;
+
+        @include laptop{
+            /* Display & Box Model */
+            height: calc(90% - 8rem);
+            padding-top: 0.5rem;
+        }
+        .img-text{
+            /* Positioning */
+            position: relative;
+            top: 47%;
+            left: 38%;
+            transform: translateY(-50%);
+        }
+        .choose-img{
+            /* Display & Box Model */
+            display: none;
+        }
+        .img-wrapper{
+            /* Text */
+            text-align: center;
+           
+            .uploaded{
+                /* Display & Box Model */
+                max-width: 70%;
+                max-height: 70%;
+                width: auto;
+                height: auto;
+
+                @include laptop{
+                    /* Display & Box Model */
+                    max-width: 40%;
+                    max-height: 40%;
+                }
+            }
+        }
     }
     .save-btn-wrapper{
+        /* Positioning */
         float: right;
+
+        /* Display & Box Model */
+        padding: 1rem;
+
+        @include laptop{
+            /* Display & Box Model */
+            margin-top: -2rem;
+        }
     }
     .save-btn{
+        /* Display & Box Model */
         height: 7vh;
         width: 7vh;
+
+        /* Other */
+        cursor: pointer;
     
     }
-    .save-btn:hover{
-        cursor: pointer;
+    
+    h1{
+        /* Text */
+        text-align: center;
+        &:hover{
+            /* Text */
+            text-decoration: underline;
+        }
     }
 
-    h1{text-align: center;
-    }
+    .delete-btn-wrapper{
+        /* Positioning */
+        position: relative;
 
-    .delete-btn{
-        height: 100px;
-        width: 7vh;
-        min-width: 50px;
-        position: absolute;
-        right: 6rem;
-        top: 10rem;
-    }
-    .delete-btn:hover{
-        cursor: pointer;
+        .delete-btn{
+            /* Positioning */
+            position: absolute;
+            bottom: 0.5rem;
+            right: 1rem;
+
+            /* Display & Box Model */
+            height: 8vh;
+            width: 7vh;
+            min-height: 50px;
+            min-width: 75px;
+
+            /* Other */
+            cursor: pointer;
+        }
     }
 
 }
 
-/* End styling addl button */
+/* End styling image entry*/

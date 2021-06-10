@@ -1,0 +1,90 @@
+/* Calendar */
+@import '../abstracts/mixins', '../abstracts/variables';
+
+/* Outtermost container (green) */
+.cal-container{
+	display: flex;
+	height: fit-content;
+	border-top: 3px white solid ;
+	border-bottom-left-radius: 1.5rem;
+	border-bottom-right-radius: 1.5rem;
+
+	background: $accent;
+	/* Dark mode */
+	.calendar.dark-mode {
+		background: $dark;
+		.weekdays {
+			li {
+				color: white;
+			}
+		}
+		.day {
+			color: $light;
+		}
+	}
+	/* calendar (white container) */
+	.calendar{
+		position: relative;
+		flex-grow: 2;
+		height: fit-content;
+		margin: 1.2rem;
+		border-radius: 1.5rem;
+		background: white;
+		/* month title */
+		.month{
+			z-index: 1;
+			padding: 1rem 1.5rem 0.5rem 1.5rem;
+			font-size: 1.5em;
+			font-weight: bold;
+		}
+		/* list of days of week */
+		.weekdays {
+			padding: 0 2rem;
+			margin: 0;
+			white-space: nowrap;
+			li {
+				display: inline-block;
+				width: 14.2%;
+				padding-top: 0.3rem;
+				color: rgb(65, 65, 65);
+				font-size: 1.1em;
+				font-weight: 600;
+				text-align: center;
+			}
+		}
+		/* days of the month */
+		.days{
+			padding: 0.3rem 2rem;
+			margin-top: 0;
+			li{
+				display: inline-block;
+				width: 14.2%;
+				padding: 0.9rem 0;
+				color: rgb(85, 85, 85);
+				font-size: 1.1em;
+				font-weight: 500;
+				list-style-type: none;
+				text-align: center;
+			}
+			/* hovering a day of month */
+			.day:hover{
+				border-radius: 1rem;
+				background: rgba(255, 163, 63, 0.35);
+				cursor: pointer;
+			}
+			/* highlight today */
+			.current-day{
+				border-radius: 1.5rem;
+				color: white;
+				background: $accent2;
+				&:hover{
+					border-radius: 1rem;
+					background: rgba(255, 163, 63, 0.35);
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}
+
+

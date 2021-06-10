@@ -1,10 +1,7 @@
-//weekly nav script
-import {router} from "./router.js";
-let today = new Date();
-createWeeklyNav(today);
-let WEEKLYNAV = document.querySelector("weekly-nav");
-WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "1";
-WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "1";
+//weekly-nav-script.js
+import { router } from './router.js';
+import { getDailyPriority } from "../../Backend/api/bullet_api.js";
+
 /**
  * createWeeklyNav
  * Takes in a date and creates a weekly nav component from that date and 
@@ -12,56 +9,66 @@ WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity =
  * 
  * @param {Date} date - Date object to make the weekly nav menu around.
  * 
+ * @returns {Boolean} - true if created and appened, false else
+ * 
  * @example
- *  createWeeklyNav(date)
+ *  createWeeklyNav("05-25-2021")
  */
-export function createWeeklyNav(date) {
-	//adding weekly navigation web component
-	let week = createDaysOfWeekArray(date);
-	const WEEKLYNAV = document.createElement("weekly-nav");
-	WEEKLYNAV.daysOfWeek = week;
-	WEEKLYNAV.selectedDay = date.getDay() + 1;
-	document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
-	//Onclick listener for the items inside the weekly nav
-	WEEKLYNAV.shadowRoot.querySelector("[class='week-container']").style.opacity = "0";
-	WEEKLYNAV.shadowRoot.querySelector("[class='weekly-nav-title']").style.opacity = "0";
-	const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector("[class='week-container']");
-	weeklyNavContainer.addEventListener("click", (event)=>{
-		if(event.target.className == "wn-item"){
-			//which day was selected
-			let index = [].indexOf.call( weeklyNavContainer.childNodes, event.target);
-			WEEKLYNAV.selectedDay = index;
+export async function createWeeklyNav(date) {
+    //creating weekly nav and setting date
+    let week = await createDaysOfWeekArray(date);
+    const WEEKLYNAV = document.createElement("weekly-nav");
+    WEEKLYNAV.daysOfWeek = week;
+    WEEKLYNAV.selectedDay = date.getDay() + 1;
 
-			//get the newly selected date and update router
-			let selectedDate = WEEKLYNAV.selectedInfo;
-			router.setState("daily-log", false, selectedDate, "weekly-nav");
-           
-		}
-
-	});
+    //appending to page and adding onclick listener
+    document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
+    document.getElementById("weekly-nav-container").className += " active";
+    const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector(".week-container");
+    weeklyNavContainer.childNodes.forEach(element => {
+        element.addEventListener("click", (event) => {
+            if (event.target.className == "wn-date") {
+                //which day was selected
+                let index = [].indexOf.call( weeklyNavContainer.childNodes, element);
+                WEEKLYNAV.selectedDay = index;
+    
+                //get the newly selected date and update router
+                let selectedDate = WEEKLYNAV.selectedInfo;
+                router.setState("daily", false, selectedDate, "weekly-nav");
+            }
+        });
+    })
+    return true;
 } /* createWeeklyNav */
 
 
 /**
  * createDaysofWeekyArray 
- * Creates an array of days of the week for a given week.
+ * Creates an array of days of the week and get all priority bullets of that week
  * 
  * @param {Date} date - A date object of a day in the week that will be created.
  * 
- * @returns An array of date objects (As is, if we attatch important bullets, this will change)
+ * @returns {Array} - An array of objects containing the date and a list of priority bullets
  * for the days of the current week.
  * 
  * @example 
  *      createDaysOfWeekArray()
  */
-function createDaysOfWeekArray(date) {
-	//NOTE: if we want to pass data into the weekly nav like important bullets we can attach to this array
+async function createDaysOfWeekArray(date) {
 	let daysOfWeek = [];
 	let currDate = new Date(date);
 	//start on Sunday
 	currDate.setDate((currDate.getDate() - currDate.getDay()));
-	for(let i = 0; i < 7; i++){
-		daysOfWeek.push(new Date(currDate));
+	for(let i = 0; i < 7; i++) {
+        let dayObj = {
+            date: currDate,
+            bullets: []        
+        }
+        //get priority bullets and add to list
+        let bullets = await getDailyPriority(currDate);
+        dayObj.date = new Date(currDate);
+		dayObj.bullets = bullets;
+        daysOfWeek.push(dayObj);
 		currDate.setDate(currDate.getDate() + 1);
 	}
 

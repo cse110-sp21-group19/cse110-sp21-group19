@@ -1,0 +1,72 @@
+/* Future Nav */
+/* Variables */
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* colors */
+/* spacing */
+/* device sizes */
+/* title on top of nav */
+.future-title {
+  margin: 1.5rem 0 0.5rem 0.9rem;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+/* outer container */
+.future-container {
+  z-index: -1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: calc(100% - 6rem);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background: #71B637;
+  /* months of the year items */
+}
+
+.future-container .future-item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
+  min-height: 0;
+  margin: 0.3rem 0.5rem;
+  border-radius: 0.4rem;
+  background: white;
+  border-radius: 0.4rem;
+  /* date text */
+}
+
+.future-container .future-item:hover .future-date {
+  color: #FFA33F;
+  -webkit-transition: color 0.1s linear;
+  transition: color 0.1s linear;
+}
+
+.future-container .future-item .future-date {
+  height: 100%;
+  margin-top: 0.6rem;
+  margin-left: 0.6rem;
+  pointer-events: none;
+}
+
+.future-container .future-item .future-date #month-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.future-container .future-item .future-date #year-title {
+  padding: 0 0.4rem;
+  font-weight: lighter;
+  font-size: 1.2em;
+}
+
+/* Dark mode */
+.future-container.dark-mode .future-item {
+  background: #181A18;
+}
+/*# sourceMappingURL=futurenav.css.map */

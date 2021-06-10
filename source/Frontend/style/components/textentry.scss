@@ -1,31 +1,72 @@
+/*text entry icon*/
+@import '../abstracts/mixins', '../abstracts/variables';
 .note{
-    overflow: visible;
-    width: 8rem;
-    height: 5rem;
-    margin-right: 1rem;
-    padding-top: 2rem;
+    /* Display & Box Model */
+    height: 13vh;
+    width: auto;
+    margin: 3vh 0 0 2vw;
 
-}
-.note:hover{
+    /* Other */
     cursor: pointer;
-}
-
-.tooltip{
-    position: relative;
-    .tooltiptext{
-        position: absolute;
-        top: 10px;
-        left: 2rem;
-        font-weight: bold;
+    overflow: visible;
+    
+    @include laptop{
+        /* Display & Box Model */
+        height: 10vh;
     }
 }
-::-webkit-scrollbar {
-    height: 10px;
-  }
 
-  /* Handle */
+/*image entry icon*/
+.image{
+    /* Display & Box Model */
+    height: 13vh;
+    width: auto;
+    min-height: 50px;
+    margin: 3vh 0 0 2vw;
+
+    /* Other */
+    cursor: pointer;
+    overflow: visible;
+
+    @include laptop{
+        height: 10vh;
+    }
+}
+
+/*Entry title*/
+.tooltip{
+    /* Positioning */
+    position: relative;
+    .tooltiptext{
+        /* Positioning */
+        position: absolute;
+        top: -2vh;
+        left: 2vw;
+
+        /* Text */
+        font-weight: bold;
+        font-size: 1rem;
+        @include laptop{
+            /* Positioning */
+            top: -1rem;
+
+            /* Text */
+            font-size: 10px;
+        }
+    }
+}
+
+/*Scrollbar*/
+::-webkit-scrollbar {
+    /* Display & Box Model */
+    height: 10px;
+}
+
 ::-webkit-scrollbar-thumb {
-    background: #616161; 
+    /* Color */
+    background: rgb(182, 182, 182);
+
+    /* Other */
     border-radius: 10px;
 }
-    
+

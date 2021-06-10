@@ -104,6 +104,388 @@
     
 
     
+    <h4 class="name" id="appendBullets"><span class="type-signature"></span>appendBullets<span class="signature">(container, bullets)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>appendBullets()
+Helper function to help populate the priority bullets list on each weekly nav item.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>container</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element in which to append the bullets to</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bullets</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array of bullet entry objects to append to container</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_weekly-nav.js.html">components/weekly-nav.js</a>, <a href="components_weekly-nav.js.html#line221">line 221</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>appendBullets(container, bullets);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="bulletsFromDB"><span class="type-signature"></span>bulletsFromDB<span class="signature">(item, index, bulletStack, todayBullets)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>bulletsFromDB
+Add the ability to get bullets from the database and populate them on the
+page.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The json information of a bullet element
+retrieved from the database.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The index of the current bullet element.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bulletStack</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array, emulating a stack, containing nested
+bullet-list sublists elements.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>todayBullets</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array containing an array of the bullet
+information and an array containing the keys for each of the bullets.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line206">line 206</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>bulletsFromDB(item, index, bulletStack, todayBullets);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="closeMenu"><span class="type-signature"></span>closeMenu<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
@@ -157,7 +539,7 @@ Function to close the side nav menu, removes classes to perform animations/trans
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_side-nav-script.js.html">scripts/side-nav-script.js</a>, <a href="scripts_side-nav-script.js.html#line58">line 58</a>
+        <a href="scripts_side-nav-script.js.html">scripts/side-nav-script.js</a>, <a href="scripts_side-nav-script.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -198,7 +580,7 @@ Function to close the side nav menu, removes classes to perform animations/trans
     
 
     
-    <h4 class="name" id="completeTask"><span class="type-signature"></span>completeTask<span class="signature">(newEntry)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="completeTask"><span class="type-signature"></span>completeTask<span class="signature">(key, entry)</span><span class="type-signature"></span></h4>
     
 
     
@@ -246,7 +628,30 @@ strikethrough from the bullet content.</p>
 
         <tr>
             
-                <td class="name"><code>newEntry</code></td>
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The bullet key returned by the database.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
             
 
             <td class="type">
@@ -262,7 +667,7 @@ strikethrough from the bullet content.</p>
 
             
 
-            <td class="description last"><p>a bullet-type element</p></td>
+            <td class="description last"><p>A bullet-type element.</p></td>
         </tr>
 
     
@@ -303,7 +708,7 @@ strikethrough from the bullet content.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line151">line 151</a>
+        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line117">line 117</a>
     </li></ul></dd>
     
 
@@ -334,7 +739,7 @@ strikethrough from the bullet content.</p>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>completeTask(entry);</code></pre>
+    <pre class="prettyprint"><code>completeTask(key, entry);</code></pre>
 
 
 
@@ -344,7 +749,150 @@ strikethrough from the bullet content.</p>
     
 
     
-    <h4 class="name" id="createDaysOfWeekArray"><span class="type-signature"></span>createDaysOfWeekArray<span class="signature">(date)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="createCalendar"><span class="type-signature"></span>createCalendar<span class="signature">(date)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>createCalendar
+creates a calendar web component and adds it to the webpage</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>date</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Date</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>date object to the first day of a month</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_calendar-script.js.html">scripts/calendar-script.js</a>, <a href="scripts_calendar-script.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>createCalendar("05-01-2021");</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="createDaysOfWeekArray"><span class="type-signature">(async) </span>createDaysOfWeekArray<span class="signature">(date)</span><span class="type-signature"> &rarr; {Array}</span></h4>
     
 
     
@@ -353,7 +901,7 @@ strikethrough from the bullet content.</p>
 
 <div class="description">
     <p>createDaysofWeekyArray
-Creates an array of days of the week for a given week.</p>
+Creates an array of days of the week and get all priority bullets of that week</p>
 </div>
 
 
@@ -475,11 +1023,25 @@ Creates an array of days of the week for a given week.</p>
 
         
 <div class="param-desc">
-    <p>An array of date objects (As is, if we attatch important bullets, this will change)
-for the days of the current week.</p>
+    <ul>
+<li>An array of objects containing the date and a list of priority bullets
+for the days of the current week.</li>
+</ul>
 </div>
 
 
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
 
     
 
@@ -498,7 +1060,7 @@ for the days of the current week.</p>
     
 
     
-    <h4 class="name" id="createEntry"><span class="type-signature"></span>createEntry<span class="signature">(title, content)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="createFutureNav"><span class="type-signature"></span>createFutureNav<span class="signature">(date)</span><span class="type-signature"></span></h4>
     
 
     
@@ -506,7 +1068,8 @@ for the days of the current week.</p>
 
 
 <div class="description">
-    <p>Helper function to create a new entry obejct</p>
+    <p>createFutureNav
+create a future nav object and append to the webpage</p>
 </div>
 
 
@@ -542,13 +1105,13 @@ for the days of the current week.</p>
 
         <tr>
             
-                <td class="name"><code>title</code></td>
+                <td class="name"><code>date</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Date</span>
 
 
             
@@ -558,30 +1121,7 @@ for the days of the current week.</p>
 
             
 
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>content</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
+            <td class="description last"><p>date object to any day in the year</p></td>
         </tr>
 
     
@@ -622,7 +1162,7 @@ for the days of the current week.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line267">line 267</a>
+        <a href="scripts_future-nav-script.js.html">scripts/future-nav-script.js</a>, <a href="scripts_future-nav-script.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -647,37 +1187,13 @@ for the days of the current week.</p>
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <ul>
-<li>Return an object of the form: {title: title, content: content}</li>
-</ul>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>myEntry = createEntry(title, content);</code></pre>
+    <pre class="prettyprint"><code>createFutureNav("01-01-2021");</code></pre>
 
 
 
@@ -687,7 +1203,7 @@ for the days of the current week.</p>
     
 
     
-    <h4 class="name" id="createToDoList"><span class="type-signature"></span>createToDoList<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="createHelpPage"><span class="type-signature"></span>createHelpPage<span class="signature">(entry)</span><span class="type-signature"></span></h4>
     
 
     
@@ -695,8 +1211,9 @@ for the days of the current week.</p>
 
 
 <div class="description">
-    <p>createToDoList
-Function create the todo-list side component for the monthly log.</p>
+    <p>createHelpPage
+Creates the help container and page in the main-text area. populates the
+page with help guide content.</p>
 </div>
 
 
@@ -705,6 +1222,56 @@ Function create the todo-list side component for the monthly log.</p>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;helpsectionobj></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>an array containing js object with
+the type, date, content, priority, and completed information of the bullet.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -740,7 +1307,7 @@ Function create the todo-list side component for the monthly log.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_todo-script.js.html">scripts/todo-script.js</a>, <a href="scripts_todo-script.js.html#line11">line 11</a>
+        <a href="scripts_help-guide-script.js.html">scripts/help-guide-script.js</a>, <a href="scripts_help-guide-script.js.html#line96">line 96</a>
     </li></ul></dd>
     
 
@@ -771,7 +1338,15 @@ Function create the todo-list side component for the monthly log.</p>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>createToDoList()</code></pre>
+    <pre class="prettyprint"><code>createHelpPage([{
+ 				 sectiontitle: "foo",
+ 				 sectiondescription: [],
+ 				 sectionelements: [],
+					},
+ 				 sectiontitle: "foo",
+ 				 sectiondescription: [],
+ 				 sectionelements: [],
+					}]);</code></pre>
 
 
 
@@ -781,7 +1356,633 @@ Function create the todo-list side component for the monthly log.</p>
     
 
     
-    <h4 class="name" id="createWeeklyNav"><span class="type-signature"></span>createWeeklyNav<span class="signature">(date)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="createHelpToc"><span class="type-signature"></span>createHelpToc<span class="signature">(entry)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>createHelpToc
+Creates the help page table of contents.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array.&lt;helpsectionobj></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>an array containing js object with
+the type, date, content, priority, and completed information of the bullet.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_help-guide-script.js.html">scripts/help-guide-script.js</a>, <a href="scripts_help-guide-script.js.html#line128">line 128</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>createHelpToc([{
+ 				 sectiontitle: "foo",
+ 				 sectiondescription: [],
+ 				 sectionelements: [],
+					},
+ 				 sectiontitle: "foo",
+ 				 sectiondescription: [],
+ 				 sectionelements: [],
+					}]);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="createMainText"><span class="type-signature">(async) </span>createMainText<span class="signature">(bullets)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>createMainText
+Create the main-text area for the current log type. Load in the appropriate
+bullets and allow the user to create and store new bullets for the current
+log.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>bullets</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>And array of the bullets returned from the database.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_router.js.html">scripts/router.js</a>, <a href="scripts_router.js.html#line358">line 358</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="createNewBullets"><span class="type-signature"></span>createNewBullets<span class="signature">(inputElement, bulletStack)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>createNewBullets
+Add the ability to add new bullets to the current page.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>inputElement</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A bullet-input element.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bulletStack</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array, emulating a stack, containing nested
+bullet-list sublists elements.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line154">line 154</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>createNewBullets(inputElement, bulletElement, bulletStack);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="createToDoList"><span class="type-signature"></span>createToDoList<span class="signature">(date)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>createToDoList
+Function create the todo-list side component for the monthly log.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>date</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Date</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A date object to the first day in the month</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_todo-script.js.html">scripts/todo-script.js</a>, <a href="scripts_todo-script.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>true if created and appended, false else</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>createToDoList("05-01-2021")</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="createWeeklyNav"><span class="type-signature"></span>createWeeklyNav<span class="signature">(date)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
     
 
     
@@ -884,7 +2085,7 @@ appends it to the screen.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_weekly-nav-script.js.html">scripts/weekly-nav-script.js</a>, <a href="scripts_weekly-nav-script.js.html#line18">line 18</a>
+        <a href="scripts_weekly-nav-script.js.html">scripts/weekly-nav-script.js</a>, <a href="scripts_weekly-nav-script.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -909,13 +2110,37 @@ appends it to the screen.</p>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>true if created and appened, false else</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>createWeeklyNav(date)</code></pre>
+    <pre class="prettyprint"><code>createWeeklyNav("05-25-2021")</code></pre>
 
 
 
@@ -925,7 +2150,7 @@ appends it to the screen.</p>
     
 
     
-    <h4 class="name" id="dailyLog"><span class="type-signature"></span>dailyLog<span class="signature">(date)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="dailyLog"><span class="type-signature"></span>dailyLog<span class="signature">(date, from)</span><span class="type-signature"></span></h4>
     
 
     
@@ -990,6 +2215,29 @@ Set the state for the a new daily-log page.</p>
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>from</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Where the setState came from</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -1027,7 +2275,7 @@ Set the state for the a new daily-log page.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_router.js.html">scripts/router.js</a>, <a href="scripts_router.js.html#line67">line 67</a>
+        <a href="scripts_router.js.html">scripts/router.js</a>, <a href="scripts_router.js.html#line64">line 64</a>
     </li></ul></dd>
     
 
@@ -1068,7 +2316,7 @@ Set the state for the a new daily-log page.</p>
     
 
     
-    <h4 class="name" id="deleteEntry"><span class="type-signature"></span>deleteEntry<span class="signature">(entry)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="deleteEntry"><span class="type-signature"></span>deleteEntry<span class="signature">(key, entry)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1109,6 +2357,29 @@ Delete bullet when the 'X' button is clicked.</p>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The bullet key returned by the database.</p></td>
+        </tr>
+
     
 
         <tr>
@@ -1170,7 +2441,7 @@ Delete bullet when the 'X' button is clicked.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line109">line 109</a>
+        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line49">line 49</a>
     </li></ul></dd>
     
 
@@ -1211,7 +2482,352 @@ Delete bullet when the 'X' button is clicked.</p>
     
 
     
-    <h4 class="name" id="editableEntry"><span class="type-signature"></span>editableEntry<span class="signature">(entry)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="deleteImg"><span class="type-signature"></span>deleteImg<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Helper function to delete an image entry</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line701">line 701</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="deleteNote"><span class="type-signature"></span>deleteNote<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Helper function to delete a text entry</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line654">line 654</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="deleteSideNav"><span class="type-signature"></span>deleteSideNav<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>deleteSideNav
+Delete the existing side navigation.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_router.js.html">scripts/router.js</a>, <a href="scripts_router.js.html#line321">line 321</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="editableEntry"><span class="type-signature"></span>editableEntry<span class="signature">(key)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1256,7 +2872,7 @@ Allow each bullet entry to be edited on a double click.</p>
 
         <tr>
             
-                <td class="name"><code>entry</code></td>
+                <td class="name"><code>key</code></td>
             
 
             <td class="type">
@@ -1313,7 +2929,7 @@ Allow each bullet entry to be edited on a double click.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line69">line 69</a>
+        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -1344,7 +2960,7 @@ Allow each bullet entry to be edited on a double click.</p>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>editableEntry();</code></pre>
+    <pre class="prettyprint"><code>editableEntry(key, entry);</code></pre>
 
 
 
@@ -1354,7 +2970,185 @@ Allow each bullet entry to be edited on a double click.</p>
     
 
     
-    <h4 class="name" id="futureLog"><span class="type-signature"></span>futureLog<span class="signature">(date)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="formatEntries"><span class="type-signature"></span>formatEntries<span class="signature">(entries, keys)</span><span class="type-signature"> &rarr; {Array.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Helper function that takes in entries from the DB and applies necessary formatting changes to display them to the screen.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>keys</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_addl-entries-script.js.html">scripts/addl-entries-script.js</a>, <a href="scripts_addl-entries-script.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="futureLog"><span class="type-signature">(async) </span>futureLog<span class="signature">(date)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1456,7 +3250,7 @@ Set the state for the a new future-log page.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_router.js.html">scripts/router.js</a>, <a href="scripts_router.js.html#line150">line 150</a>
+        <a href="scripts_router.js.html">scripts/router.js</a>, <a href="scripts_router.js.html#line194">line 194</a>
     </li></ul></dd>
     
 
@@ -1497,7 +3291,7 @@ Set the state for the a new future-log page.</p>
     
 
     
-    <h4 class="name" id="getDateString"><span class="type-signature"></span>getDateString<span class="signature">(day)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getMonthTodoBullets"><span class="type-signature">(async) </span>getMonthTodoBullets<span class="signature">(date)</span><span class="type-signature"> &rarr; {Array}</span></h4>
     
 
     
@@ -1505,8 +3299,8 @@ Set the state for the a new future-log page.</p>
 
 
 <div class="description">
-    <p>getDateString
-Converts integer day of week to its related string.</p>
+    <p>getMonthTodoBullets
+get all the todo bullets of a given month</p>
 </div>
 
 
@@ -1542,13 +3336,13 @@ Converts integer day of week to its related string.</p>
 
         <tr>
             
-                <td class="name"><code>day</code></td>
+                <td class="name"><code>date</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Date</span>
 
 
             
@@ -1558,7 +3352,7 @@ Converts integer day of week to its related string.</p>
 
             
 
-            <td class="description last"><p>An integer of the day of the week (0-6).</p></td>
+            <td class="description last"><p>A date object to the first day in the month</p></td>
         </tr>
 
     
@@ -1599,7 +3393,7 @@ Converts integer day of week to its related string.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_weekly-nav.js.html">components/weekly-nav.js</a>, <a href="components_weekly-nav.js.html#line171">line 171</a>
+        <a href="scripts_todo-script.js.html">scripts/todo-script.js</a>, <a href="scripts_todo-script.js.html#line38">line 38</a>
     </li></ul></dd>
     
 
@@ -1628,10 +3422,24 @@ Converts integer day of week to its related string.</p>
 
         
 <div class="param-desc">
-    <p>A string of the related day of the week of the parameter.</p>
+    <ul>
+<li>An array of arrays of todo bulelts of a month</li>
+</ul>
 </div>
 
 
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
 
     
 
@@ -1640,7 +3448,7 @@ Converts integer day of week to its related string.</p>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>getDateString(day)</code></pre>
+    <pre class="prettyprint"><code>getMonthTodoBullets("05-01-2021");</code></pre>
 
 
 
@@ -1776,7 +3584,7 @@ Also address edge case if week is between two months and/or two years.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_weekly-nav.js.html">components/weekly-nav.js</a>, <a href="components_weekly-nav.js.html#line206">line 206</a>
+        <a href="components_weekly-nav.js.html">components/weekly-nav.js</a>, <a href="components_weekly-nav.js.html#line269">line 269</a>
     </li></ul></dd>
     
 
@@ -1828,7 +3636,501 @@ Also address edge case if week is between two months and/or two years.</p>
     
 
     
-    <h4 class="name" id="monthlyLog"><span class="type-signature"></span>monthlyLog<span class="signature">(date)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="help"><span class="type-signature"></span>help<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>help
+Set the state for the a help guide page.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_router.js.html">scripts/router.js</a>, <a href="scripts_router.js.html#line229">line 229</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>help();</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="insertTextAtCaret"><span class="type-signature"></span>insertTextAtCaret<span class="signature">(el, text)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Function that inserts a given character at the caret position in a textarea</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_addl-entries-script.js.html">scripts/addl-entries-script.js</a>, <a href="scripts_addl-entries-script.js.html#line124">line 124</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>insertTextAtCaret(myTextArea, "[INSERTED]");</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="makeEntry"><span class="type-signature"></span>makeEntry<span class="signature">(title, content, key, image)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Helper function to create a new entry object</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>content</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>image</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line643">line 643</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>Return an object of the form: {title: title, content: content, key: key}</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>myEntry = createEntry(title, content, key);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="monthlyLog"><span class="type-signature">(async) </span>monthlyLog<span class="signature">(date)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1930,7 +4232,7 @@ Set the state for the a new monthly-log page.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_router.js.html">scripts/router.js</a>, <a href="scripts_router.js.html#line120">line 120</a>
+        <a href="scripts_router.js.html">scripts/router.js</a>, <a href="scripts_router.js.html#line151">line 151</a>
     </li></ul></dd>
     
 
@@ -1962,6 +4264,342 @@ Set the state for the a new monthly-log page.</p>
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>monthlyLog("5-24-2021");</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="nestBulletHelper"><span class="type-signature"></span>nestBulletHelper<span class="signature">(bulletStack)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>nestedBulletHelper
+Helper function to nest bullets by inserting a new bullet-list element as a
+sublist.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>bulletStack</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array, emulating a stack, containing nested
+bullet-list sublists elements.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line287">line 287</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>nestedBulletHelper(bulletStack);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="nestedBullets"><span class="type-signature"></span>nestedBullets<span class="signature">(inputElement, bulletInput, bulletStack)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>nestedBullets
+Add the ability to create nested bullets on input.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>inputElement</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A bullet-input element.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bulletInput</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The input field element in a bullet-input.
+element</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bulletStack</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array, emulating a stack, containing nested
+bullet-list sublists elements.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line254">line 254</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>nestedBullets(inputElement, bulletElement, bulletStack);</code></pre>
 
 
 
@@ -2024,7 +4662,7 @@ Function to open the side nav menu, adds classes to perform animations/transform
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_side-nav-script.js.html">scripts/side-nav-script.js</a>, <a href="scripts_side-nav-script.js.html#line29">line 29</a>
+        <a href="scripts_side-nav-script.js.html">scripts/side-nav-script.js</a>, <a href="scripts_side-nav-script.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -2065,7 +4703,7 @@ Function to open the side nav menu, adds classes to perform animations/transform
     
 
     
-    <h4 class="name" id="prioritizeEntry"><span class="type-signature"></span>prioritizeEntry<span class="signature">(newEntry)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="prioritizeEntry"><span class="type-signature"></span>prioritizeEntry<span class="signature">(key, entry)</span><span class="type-signature"></span></h4>
     
 
     
@@ -2110,7 +4748,30 @@ Prioritize and deprioritize bullet by toggling the star icon.</p>
 
         <tr>
             
-                <td class="name"><code>newEntry</code></td>
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The bullet key returned by the database.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
             
 
             <td class="type">
@@ -2167,7 +4828,7 @@ Prioritize and deprioritize bullet by toggling the star icon.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line125">line 125</a>
+        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line72">line 72</a>
     </li></ul></dd>
     
 
@@ -2198,7 +4859,7 @@ Prioritize and deprioritize bullet by toggling the star icon.</p>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>prioritizeEntry(entry);</code></pre>
+    <pre class="prettyprint"><code>prioritizeEntry(key, entry);</code></pre>
 
 
 
@@ -2356,7 +5017,7 @@ Push a new state to the history stack.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="scripts_router.js.html">scripts/router.js</a>, <a href="scripts_router.js.html#line182">line 182</a>
+        <a href="scripts_router.js.html">scripts/router.js</a>, <a href="scripts_router.js.html#line293">line 293</a>
     </li></ul></dd>
     
 
@@ -2383,6 +5044,863 @@ Push a new state to the history stack.</p>
 
 
 
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setDarkMode"><span class="type-signature"></span>setDarkMode<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>setDarkMode
+Set dark mode for the app.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_script.js.html">scripts/script.js</a>, <a href="scripts_script.js.html#line159">line 159</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>setDarkMode();</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setEntrybarType"><span class="type-signature"></span>setEntrybarType<span class="signature">(SHADOW, type)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Helper function that sets the display type of the additional entry bar, and hides/displays relevant components</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>SHADOW</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line527">line 527</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>setEntrybarType(this.shadowRoot, "initial");</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setLightMode"><span class="type-signature"></span>setLightMode<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>setLightMode
+Set light mode for the app.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_script.js.html">scripts/script.js</a>, <a href="scripts_script.js.html#line190">line 190</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>setLightMode();</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="textAreaFeatures"><span class="type-signature"></span>textAreaFeatures<span class="signature">(SHADOW)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Helper function that allows users to add tabs and bullets to text entries</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>SHADOW</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the shadowRoot of the entry-bar component</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_addl_entries_entry-bar.js.html">components/addl_entries/entry-bar.js</a>, <a href="components_addl_entries_entry-bar.js.html#line746">line 746</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="unnestBulletHelper"><span class="type-signature"></span>unnestBulletHelper<span class="signature">(bulletStack)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>unnestedBulletHelper
+Helper function to unnest bullets by popping the current bullet-list element
+as a from the bulletStack.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>bulletStack</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array, emulating a stack, containing nested
+bullet-list sublists elements.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line306">line 306</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>unnestedBulletHelper(bulletStack);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updateAddlEntries"><span class="type-signature"></span>updateAddlEntries<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Helper function that retrieves entries from the DB and displays them to the screen</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_addl-entries-script.js.html">scripts/addl-entries-script.js</a>, <a href="scripts_addl-entries-script.js.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updateWeeklyNavHelper"><span class="type-signature">(async) </span>updateWeeklyNavHelper<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>updateWeeklyNavHelper
+Helper function to update weekly nav priority items.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="scripts_main-text-script.js.html">scripts/main-text-script.js</a>, <a href="scripts_main-text-script.js.html#line321">line 321</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>updateWeeklyNavHelper();</code></pre>
 
 
 
@@ -2556,13 +6074,13 @@ Push a new state to the history stack.</p>
 
         <tr>
             
-                <td class="name"><code>children</code></td>
+                <td class="name"><code>levels</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array</span>
+<span class="param-type">Number</span>
 
 
             
@@ -2572,7 +6090,7 @@ Push a new state to the history stack.</p>
 
             
 
-            <td class="description last"><p>An array of the nested child BulletEntryObj's of the current bullet.
+            <td class="description last"><p>The integer value of the level the bullet is nested.
 main-text area.</p></td>
         </tr>
 
@@ -2612,7 +6130,7 @@ main-text area.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_main-text.js.html">components/main-text.js</a>, <a href="components_main-text.js.html#line18">line 18</a>
+        <a href="components_main-text.js.html">components/main-text.js</a>, <a href="components_main-text.js.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -2720,6 +6238,52 @@ main-text area.</p></td>
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>image</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The src to an image</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -2755,7 +6319,316 @@ main-text area.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_addl_entries_text-entry.js.html">components/addl_entries/text-entry.js</a>, <a href="components_addl_entries_text-entry.js.html#line1">line 1</a>
+        <a href="components_addl_entries_text-entry.js.html">components/addl_entries/text-entry.js</a>, <a href="components_addl_entries_text-entry.js.html#line2">line 2</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id="HelpElementObj">HelpElementObj</h4>
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The title of the help element.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>content</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The description of the help element.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_help-guide.js.html">components/help-guide.js</a>, <a href="components_help-guide.js.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id="HelpSectionObj">HelpSectionObj</h4>
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sectionTitle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The title of the help section.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sectionDescription</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array of description paragraphs for</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sectionElements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="global.html#HelpElementObj">HelpElementObj</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An array of help elements.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_help-guide.js.html">components/help-guide.js</a>, <a href="components_help-guide.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -2952,13 +6825,13 @@ main-text area.</p></td>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="entryBar.html">entryBar</a></li><li><a href="textEntry.html">textEntry</a></li></ul><h3>Global</h3><ul><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="addlEntry.html">addlEntry</a></li><li><a href="BulletEntry.html">BulletEntry</a></li><li><a href="BulletInput.html">BulletInput</a></li><li><a href="BulletList.html">BulletList</a></li><li><a href="Calendar.html">Calendar</a></li><li><a href="entryBar.html">entryBar</a></li><li><a href="FutureNav.html">FutureNav</a></li><li><a href="HelpElement.html">HelpElement</a></li><li><a href="HelpSection.html">HelpSection</a></li><li><a href="HelpTableOfContents.html">HelpTableOfContents</a></li><li><a href="LogType.html">LogType</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="TodoList.html">TodoList</a></li><li><a href="WeeklyNav.html">WeeklyNav</a></li></ul><h3>Global</h3><ul><li><a href="global.html#appendBullets">appendBullets</a></li><li><a href="global.html#bulletsFromDB">bulletsFromDB</a></li><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createCalendar">createCalendar</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createFutureNav">createFutureNav</a></li><li><a href="global.html#createHelpPage">createHelpPage</a></li><li><a href="global.html#createHelpToc">createHelpToc</a></li><li><a href="global.html#createMainText">createMainText</a></li><li><a href="global.html#createNewBullets">createNewBullets</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#deleteImg">deleteImg</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteSideNav">deleteSideNav</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#formatEntries">formatEntries</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getMonthTodoBullets">getMonthTodoBullets</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#insertTextAtCaret">insertTextAtCaret</a></li><li><a href="global.html#makeEntry">makeEntry</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#nestBulletHelper">nestBulletHelper</a></li><li><a href="global.html#nestedBullets">nestedBullets</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li><li><a href="global.html#setDarkMode">setDarkMode</a></li><li><a href="global.html#setEntrybarType">setEntrybarType</a></li><li><a href="global.html#setLightMode">setLightMode</a></li><li><a href="global.html#textAreaFeatures">textAreaFeatures</a></li><li><a href="global.html#unnestBulletHelper">unnestBulletHelper</a></li><li><a href="global.html#updateAddlEntries">updateAddlEntries</a></li><li><a href="global.html#updateWeeklyNavHelper">updateWeeklyNavHelper</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:04:43 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:32:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

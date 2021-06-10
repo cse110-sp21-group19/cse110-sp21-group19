@@ -28,21 +28,20 @@
         <article>
             <pre class="prettyprint source linenums"><code>//side-nav-script.js
 
-const MENUHEIGHT = "89vh";
+const MENUHEIGHT = "calc(100vh - 2rem)";
 const BORDERADIUS = "0.8em";
 
 //Adding the side nav menu web component 
-
 const SIDENAV  = document.createElement("side-nav");
 document.getElementById("side-nav-container").appendChild(SIDENAV);
 //onclick listener for the side nav menu button
 const SIDENAVROOT = SIDENAV.shadowRoot;
-const expand = SIDENAVROOT.querySelector("[class='burger']");
+const expand = SIDENAVROOT.querySelector(".burger");
 expand.addEventListener("click", () => {
-	if(expand.classList.contains("opened")){
+	if (expand.classList.contains("opened")) {
 		closeMenu();
 	}
-	else{
+	else {
 		openMenu();
 	}
 });
@@ -54,22 +53,20 @@ expand.addEventListener("click", () => {
  * @example
  * 	openMenu()
  */
-function openMenu(){
+function openMenu() {
+    //get elements of burger(x,y,z) and side nav
 	let x = SIDENAVROOT.getElementById("x");
 	let y = SIDENAVROOT.getElementById("y");
 	let z = SIDENAVROOT.getElementById("z");
-
 	let menu = SIDENAVROOT.getElementById("side-nav-menu");
 	let title = SIDENAVROOT.getElementById("burger-and-title");
 
+    //expand and add transition
 	expand.classList.remove("closed");
 	expand.classList.add("opened");
-
 	x.classList.add("transformx");
 	y.classList.add("transformy");
 	z.classList.add("transformz");
-
-
 	menu.style.maxHeight = MENUHEIGHT;
 	title.style.borderBottomLeftRadius = "0";
 	title.style.borderBottomRightRadius = "0";
@@ -83,29 +80,27 @@ function openMenu(){
  * @example
  * 	closeMenu()
  */
-export function closeMenu(){
+export function closeMenu() {
+    //get elements of burger(x,y,z) and side nav
 	let x = SIDENAVROOT.getElementById("x");
 	let y = SIDENAVROOT.getElementById("y");
 	let z = SIDENAVROOT.getElementById("z");
-
 	let menu = SIDENAVROOT.getElementById("side-nav-menu");
 	let title = SIDENAVROOT.getElementById("burger-and-title");
+
+    //close and add transition
 	menu.style.maxHeight = null;
-    
 	setTimeout(function() {
 		title.style.borderBottomLeftRadius = BORDERADIUS;
 		title.style.borderBottomRightRadius = BORDERADIUS;
 	}, 400);
-
 	expand.classList.remove("opened");
 	expand.classList.add("closed");
-
 	x.classList.remove("transformx");
 	y.classList.remove("transformy");
 	z.classList.remove("transformz");
-
-
-}/* closeMenu */</code></pre>
+}/* closeMenu */
+</code></pre>
         </article>
     </section>
 
@@ -115,13 +110,13 @@ export function closeMenu(){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="entryBar.html">entryBar</a></li><li><a href="textEntry.html">textEntry</a></li></ul><h3>Global</h3><ul><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createEntry">createEntry</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getDateString">getDateString</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="addlEntry.html">addlEntry</a></li><li><a href="BulletEntry.html">BulletEntry</a></li><li><a href="BulletInput.html">BulletInput</a></li><li><a href="BulletList.html">BulletList</a></li><li><a href="Calendar.html">Calendar</a></li><li><a href="entryBar.html">entryBar</a></li><li><a href="FutureNav.html">FutureNav</a></li><li><a href="HelpElement.html">HelpElement</a></li><li><a href="HelpSection.html">HelpSection</a></li><li><a href="HelpTableOfContents.html">HelpTableOfContents</a></li><li><a href="LogType.html">LogType</a></li><li><a href="SideNav.html">SideNav</a></li><li><a href="TodoList.html">TodoList</a></li><li><a href="WeeklyNav.html">WeeklyNav</a></li></ul><h3>Global</h3><ul><li><a href="global.html#appendBullets">appendBullets</a></li><li><a href="global.html#bulletsFromDB">bulletsFromDB</a></li><li><a href="global.html#closeMenu">closeMenu</a></li><li><a href="global.html#completeTask">completeTask</a></li><li><a href="global.html#createCalendar">createCalendar</a></li><li><a href="global.html#createDaysOfWeekArray">createDaysOfWeekArray</a></li><li><a href="global.html#createFutureNav">createFutureNav</a></li><li><a href="global.html#createHelpPage">createHelpPage</a></li><li><a href="global.html#createHelpToc">createHelpToc</a></li><li><a href="global.html#createMainText">createMainText</a></li><li><a href="global.html#createNewBullets">createNewBullets</a></li><li><a href="global.html#createToDoList">createToDoList</a></li><li><a href="global.html#createWeeklyNav">createWeeklyNav</a></li><li><a href="global.html#dailyLog">dailyLog</a></li><li><a href="global.html#deleteEntry">deleteEntry</a></li><li><a href="global.html#deleteImg">deleteImg</a></li><li><a href="global.html#deleteNote">deleteNote</a></li><li><a href="global.html#deleteSideNav">deleteSideNav</a></li><li><a href="global.html#editableEntry">editableEntry</a></li><li><a href="global.html#formatEntries">formatEntries</a></li><li><a href="global.html#futureLog">futureLog</a></li><li><a href="global.html#getMonthTodoBullets">getMonthTodoBullets</a></li><li><a href="global.html#getWeeklyNavTitle">getWeeklyNavTitle</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#insertTextAtCaret">insertTextAtCaret</a></li><li><a href="global.html#makeEntry">makeEntry</a></li><li><a href="global.html#monthlyLog">monthlyLog</a></li><li><a href="global.html#nestBulletHelper">nestBulletHelper</a></li><li><a href="global.html#nestedBullets">nestedBullets</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#prioritizeEntry">prioritizeEntry</a></li><li><a href="global.html#pushToHistory">pushToHistory</a></li><li><a href="global.html#setDarkMode">setDarkMode</a></li><li><a href="global.html#setEntrybarType">setEntrybarType</a></li><li><a href="global.html#setLightMode">setLightMode</a></li><li><a href="global.html#textAreaFeatures">textAreaFeatures</a></li><li><a href="global.html#unnestBulletHelper">unnestBulletHelper</a></li><li><a href="global.html#updateAddlEntries">updateAddlEntries</a></li><li><a href="global.html#updateWeeklyNavHelper">updateWeeklyNavHelper</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:04:43 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 10 2021 02:32:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
