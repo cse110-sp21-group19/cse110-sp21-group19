@@ -1,11 +1,22 @@
 /*text entry icon*/
+/* Variables */
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* colors */
+/* spacing */
+/* device sizes */
 .note {
   height: 13vh;
   overflow: visible;
   width: auto;
-  min-height: 50px;
   margin: 3vh 0 0 2vw;
   cursor: pointer;
+}
+
+@media (max-height: 700px) {
+  .note {
+    height: 10vh;
+  }
 }
 
 /*image entry icon*/
@@ -16,6 +27,12 @@
   min-height: 50px;
   margin: 3vh 0 0 2vw;
   cursor: pointer;
+}
+
+@media (max-height: 700px) {
+  .image {
+    height: 10vh;
+  }
 }
 
 /*Entry title*/
@@ -29,7 +46,13 @@
   left: 2vw;
   font-weight: bold;
   font-size: 1rem;
-  overflow-wrap: break-word;
+}
+
+@media (max-height: 700px) {
+  .tooltip .tooltiptext {
+    font-size: 10px;
+    top: -1rem;
+  }
 }
 
 /*Scrollbar*/
