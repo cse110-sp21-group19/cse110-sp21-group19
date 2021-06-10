@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 /* Bullet Entry */
 /* Variables */
+=======
+>>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
 /* fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 /* colors */
 /* spacing */
+<<<<<<< HEAD
 /* device sizes */
 /* Style Resets */
+=======
+>>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -60,6 +66,7 @@ table {
   border-spacing: 0;
 }
 
+<<<<<<< HEAD
 /* Typography - type scale */
 html {
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
@@ -72,6 +79,11 @@ html {
         font-size: 1.5rem;
     };
     */
+=======
+html {
+  font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
+  color: #181A18;
+>>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
 }
 
 h1 {
@@ -102,6 +114,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bolder;
 }
 
+<<<<<<< HEAD
 /* "double click to edit" message styling */
 .edit-msg {
   right: 6rem;
@@ -126,6 +139,24 @@ h1, h2, h3, h4, h5, h6 {
 .bullet-entry {
   width: 100%;
   margin: 0;
+=======
+.edit-msg {
+  position: absolute;
+  right: 6rem;
+  font-size: 0.6rem;
+  color: grey;
+  margin-top: -3.2rem;
+  display: none;
+}
+
+.bullet-entry:hover + .edit-msg {
+  display: inline-block;
+}
+
+.bullet-entry {
+  width: 100%;
+  margin: 4px 0;
+>>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
   border-radius: 0.25rem;
 }
 
@@ -133,19 +164,25 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #E5E5E5;
 }
 
+<<<<<<< HEAD
 .bullet-entry:hover .fa-star {
   color: black;
 }
 
+=======
+>>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
 .bullet-entry .task-bullet:hover {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .bullet-entry .fa-star-fill {
   color: black;
 }
 
 /* show star, delete button on hover */
+=======
+>>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
 .bullet-entry:hover > button:hover {
   color: black !important;
 }
@@ -154,16 +191,26 @@ h1, h2, h3, h4, h5, h6 {
   color: grey;
 }
 
+<<<<<<< HEAD
 /* bullet input styling */
 input[type=text], select, button {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0.5rem;
+=======
+input[type=text], select, button {
+  padding: 0.5rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+>>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
   border: none;
   background-color: transparent;
 }
 
+<<<<<<< HEAD
 /* show pointer cursor on buttons and selectors */
+=======
+>>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
 select, button {
   cursor: pointer;
 }
@@ -172,7 +219,10 @@ input[type=text] {
   width: calc(100% - 6rem);
 }
 
+<<<<<<< HEAD
 /* style selector */
+=======
+>>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
 select {
   width: 10%;
   -o-appearance: none;
@@ -183,10 +233,16 @@ select {
   text-align-last: right;
 }
 
+<<<<<<< HEAD
 /* hide buttons */
 button {
   width: auto;
   color: transparent;
+=======
+button {
+  color: transparent;
+  width: auto;
+>>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
 }
 
 svg {
@@ -198,6 +254,7 @@ svg, input[type=text] {
   vertical-align: middle;
   display: inline-block;
 }
+<<<<<<< HEAD
 
 /* dark mode */
 .entry.dark-mode .bullet-entry {
@@ -219,4 +276,6 @@ svg, input[type=text] {
 .bullet-list {
   margin-left: 0;
 }
+=======
+>>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
 /*# sourceMappingURL=bulletentry.css.map */

@@ -4,6 +4,7 @@
 require("fake-indexeddb/auto");
 const funcs = require("../Backend/api/bullet_api.js");
 const entryFunc = require("../Backend/api/entries_api.js");
+const settings = require("../Backend/api/settings_api.js");
 
 describe("Bullet Database Tests", () => {
 	beforeAll(async () => {
@@ -108,12 +109,12 @@ describe("Bullet Database Tests", () => {
 describe("Entry Database Test", () => {
 	test("Add 2 entries and check first", async () => {
 		let testEntry1 = {
-			"date": new Date(2021, 1, 4),
+			"date": "08/01/2021",
 			"title": "title",
 			"content": "entry 1"
 		};
 		let testEntry2 = {
-			"date": new Date(2021, 1, 4),
+			"date": "08/01/2021",
 			"title": "title",
 			"content": "entry 2"
 		};
@@ -126,7 +127,7 @@ describe("Entry Database Test", () => {
 
 	test("Update Entry", async () => {  
 		await entryFunc.updateEntry(1, {
-			"date": new Date(2021, 1, 4),
+			"date": "04/01/2021",
 			"title": "title",
 			"content": "new entry"
 		});
@@ -142,7 +143,7 @@ describe("Entry Database Test", () => {
 
 	test("Add 10 Entries of same date and getDailyEntries", async () => {
 		let testEntry = {
-			"date": new Date(2021, 1, 9),
+			"date": "09/01/2021",
 			"title": "title",
 			"content": "entry 1"
 		};
@@ -152,7 +153,23 @@ describe("Entry Database Test", () => {
 			await entryFunc.createEntry(testEntry);
 		}
 
-		let arr = await entryFunc.getDailyEntries(new Date(2021, 1, 9));
+		let arr = await entryFunc.getDailyEntries("09/01/2021");
 		expect(arr[0].length).toBe(10);
+	});
+});
+
+describe("Settings Database Test", () => {
+	beforeAll(async () => {
+		await settings.createDefault();
+	});
+	test("Default Light Mode", async () => {
+		let mode = await settings.getMode();
+		expect(mode).toBe(false);
+	});
+
+	test("Dark Mode", async () => {
+		await settings.updateMode(true);
+		let mode = await settings.getMode();
+		expect(mode).toBe(true);
 	});
 });

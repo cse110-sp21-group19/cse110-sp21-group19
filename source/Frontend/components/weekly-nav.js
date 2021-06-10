@@ -171,7 +171,6 @@ class WeeklyNav extends HTMLElement{
 			if(i == day){
 				navContainer.childNodes[i].style.borderTopLeftRadius = SELECTEDRADIUS;
 				navContainer.childNodes[i].style.borderBottomLeftRadius = SELECTEDRADIUS;
-				//navContainer.childNodes[i].style.border = "0.2rem solid darkgreen";
 				navContainer.childNodes[i].style.borderLeft = SELECTEDBORDERLEFT;
 			}
 			else{

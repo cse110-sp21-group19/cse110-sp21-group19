@@ -20,7 +20,6 @@ class LogType extends HTMLElement {
 
 		// templated HTML content
 		const template = document.createElement("template");
-
 		// Wednesday, September 30 --> 23 characters
 		template.innerHTML = `
 			<style>

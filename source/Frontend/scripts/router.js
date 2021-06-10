@@ -140,7 +140,6 @@ export async function dailyLog(date, from) {
 } /* dailyLog */
 
 
-
 /**
  * monthlyLog
  * Set the state for the a new monthly-log page.

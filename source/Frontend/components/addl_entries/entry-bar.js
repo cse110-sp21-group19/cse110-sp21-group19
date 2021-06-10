@@ -1,3 +1,4 @@
+//entry-bar.js
 import { createEntry, deleteEntry, getEntry, updateEntry } from "../../../Backend/api/entries_api.js";
 import { binaryToImgUrl, imgToBinary} from "../../scripts/binary-helpers.js"
 import { insertTextAtCaret } from "../../scripts/addl-entries-script.js"
@@ -360,6 +361,7 @@ class entryBar extends HTMLElement{
 	get type(){
 		let initial = this.shadowRoot.querySelector(".initial");
 		let activeBar = this.shadowRoot.querySelector(".active-bar");
+		//Cory - I added this to fix the linting, not sure if its needed
 		let editing = this.shadowRoot.querySelector(".editing");
 		let imgEditing = this.shadowRoot.querySelector(".img-editing");
 

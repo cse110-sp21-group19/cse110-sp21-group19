@@ -1,6 +1,7 @@
 // main-text.js
 import { NOTEBULLET, TASKBULLET, TASKCOMPLETE, EVENTBULLET, NOTPRIORITY, PRIORITY } from "./icons.js";
 
+
 /**
  * @typedef {Object} BulletEntryObj
  * @property {string} type - The type of log of the current page.

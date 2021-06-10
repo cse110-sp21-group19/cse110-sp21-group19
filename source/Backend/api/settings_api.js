@@ -2,6 +2,7 @@
 const DATABASENAME = "BuJoDatabase";
 const SETTINGDB = "settingDB";
 const ERR_DB_NOT_CREATED = "ERROR: Database hasn't been created!";
+const ERR_CANT_ACCESS_SETTINGS = "ERROR: Unable to access settingsDB";
 
 /**
  * createDefault()
@@ -22,7 +23,7 @@ export function createDefault(){
 			let transaction = db.transaction([SETTINGDB], "readwrite");
 			let store = transaction.objectStore(SETTINGDB);
 
-            let defaultSettings = {"darkMode": false};
+			let defaultSettings = {"darkMode": false};
 			let storeRequest = store.add(defaultSettings, 1);
 
 			//return the key on newly added entry
@@ -69,7 +70,7 @@ export function updateMode(darkMode){
 			let db = request.result;
 			let transaction = db.transaction([SETTINGDB], "readwrite");
 			let store = transaction.objectStore(SETTINGDB);
-            let key = 1;
+			let key = 1;
 			let getRequest = store.get(key);
 
 			getRequest.onsuccess = function (event) {
@@ -92,7 +93,7 @@ export function updateMode(darkMode){
 			};
             
 			getRequest.onerror = function () {
-				console.log.eror(ERR_CANT_GET_ENTRY + key);
+				console.log.eror(ERR_CANT_ACCESS_SETTINGS);
 				resolve(false);
 			};
 
@@ -126,7 +127,7 @@ export function getMode(){
 			let db = request.result;
 			let transaction = db.transaction([SETTINGDB], "readonly");
 			let objStore = transaction.objectStore(SETTINGDB);
-            let key = 1;
+			let key = 1;
 			let objStoreRequest = objStore.get(key);
 
 			//entry object successfully accessed
@@ -135,7 +136,7 @@ export function getMode(){
 			};
 			//unable to access entry object
 			objStoreRequest.onerror = function(){
-				console.log.error(ERR_CANT_GET_ENTRY + key);
+				console.log.error(ERR_CANT_ACCESS_SETTINGS);
 				resolve({});
 			};
 
