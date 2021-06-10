@@ -321,7 +321,9 @@ function unnestBulletHelper(bulletStack) {
 async function updateWeeklyNavHelper() {
 	// updates the weekly nav 
 	const WEEKLYNAV = document.querySelector("weekly-nav");
-	const currDate = document.querySelector("log-type").readLog.date;
-	let bullets =  await getDailyPriority(currDate);
-	WEEKLYNAV.updatePriorityBullets = bullets;
+	const logInfo = document.querySelector("log-type").readLog
+	if (logInfo.type === "daily") {
+		let bullets =  await getDailyPriority(logInfo.date);
+		WEEKLYNAV.updatePriorityBullets = bullets;
+	}
 } /* updateWeeklyNavHelper */
