@@ -52,5 +52,7 @@ Derek's Zoom
     - Stricter and more robust Testing for Frontend --> possibly E2E testing
 
 ### Points of Action
+- Recorded Video, link pending
 
 ## Ended at
+8:16pm PDT
