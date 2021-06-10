@@ -1,5 +1,5 @@
 //weekly-nav-script.js
-import { router } from './router.js';
+import { router } from "./router.js";
 import { getDailyPriority } from "../../Backend/api/bullet_api.js";
 
 /**
@@ -15,30 +15,30 @@ import { getDailyPriority } from "../../Backend/api/bullet_api.js";
  *  createWeeklyNav("05-25-2021")
  */
 export async function createWeeklyNav(date) {
-    //creating weekly nav and setting date
-    let week = await createDaysOfWeekArray(date);
-    const WEEKLYNAV = document.createElement("weekly-nav");
-    WEEKLYNAV.daysOfWeek = week;
-    WEEKLYNAV.selectedDay = date.getDay() + 1;
+	//creating weekly nav and setting date
+	let week = await createDaysOfWeekArray(date);
+	const WEEKLYNAV = document.createElement("weekly-nav");
+	WEEKLYNAV.daysOfWeek = week;
+	WEEKLYNAV.selectedDay = date.getDay() + 1;
 
-    //appending to page and adding onclick listener
-    document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
-    document.getElementById("weekly-nav-container").className += " active";
-    const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector(".week-container");
-    weeklyNavContainer.childNodes.forEach(element => {
-        element.addEventListener("click", (event) => {
-            if (event.target.className == "wn-date") {
-                //which day was selected
-                let index = [].indexOf.call( weeklyNavContainer.childNodes, element);
-                WEEKLYNAV.selectedDay = index;
+	//appending to page and adding onclick listener
+	document.getElementById("weekly-nav-container").appendChild(WEEKLYNAV);
+	document.getElementById("weekly-nav-container").className += " active";
+	const weeklyNavContainer = WEEKLYNAV.shadowRoot.querySelector(".week-container");
+	weeklyNavContainer.childNodes.forEach(element => {
+		element.addEventListener("click", (event) => {
+			if (event.target.className == "wn-date") {
+				//which day was selected
+				let index = [].indexOf.call( weeklyNavContainer.childNodes, element);
+				WEEKLYNAV.selectedDay = index;
     
-                //get the newly selected date and update router
-                let selectedDate = WEEKLYNAV.selectedInfo;
-                router.setState("daily", false, selectedDate, "weekly-nav");
-            }
-        });
-    })
-    return true;
+				//get the newly selected date and update router
+				let selectedDate = WEEKLYNAV.selectedInfo;
+				router.setState("daily", false, selectedDate, "weekly-nav");
+			}
+		});
+	});
+	return true;
 } /* createWeeklyNav */
 
 
@@ -60,15 +60,15 @@ async function createDaysOfWeekArray(date) {
 	//start on Sunday
 	currDate.setDate((currDate.getDate() - currDate.getDay()));
 	for(let i = 0; i < 7; i++) {
-        let dayObj = {
-            date: currDate,
-            bullets: []        
-        }
-        //get priority bullets and add to list
-        let bullets = await getDailyPriority(currDate);
-        dayObj.date = new Date(currDate);
+		let dayObj = {
+			date: currDate,
+			bullets: []        
+		};
+		//get priority bullets and add to list
+		let bullets = await getDailyPriority(currDate);
+		dayObj.date = new Date(currDate);
 		dayObj.bullets = bullets;
-        daysOfWeek.push(dayObj);
+		daysOfWeek.push(dayObj);
 		currDate.setDate(currDate.getDate() + 1);
 	}
 

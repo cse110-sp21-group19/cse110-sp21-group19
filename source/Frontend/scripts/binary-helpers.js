@@ -1,20 +1,18 @@
-import { createEntry } from "../../Backend/api/entries_api.js";
-
 export function binaryHelper(string){
 	return string;
 }
 
 export function imgToBinary(file) {
 	return new Promise(function(resolve, reject) {
-        let reader = new FileReader();
-        reader.onload = function(event) {
-            resolve(event.target.result);
-        };
-        reader.onerror = function(event) {
-            reject(event);
-        };
-        reader.readAsBinaryString(file);
-    });
+		let reader = new FileReader();
+		reader.onload = function(event) {
+			resolve(event.target.result);
+		};
+		reader.onerror = function(event) {
+			reject(event);
+		};
+		reader.readAsBinaryString(file);
+	});
 }
 
 export function binaryToImgUrl(encoded) {

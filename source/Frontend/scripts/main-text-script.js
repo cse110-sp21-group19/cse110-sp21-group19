@@ -158,34 +158,34 @@ export function createNewBullets(inputElement, bulletStack) {
 
 			const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
 			const BULLETTYPE = inputElement.shadowRoot.getElementById("bullet-type");
-            // create new entry information on enter
-            let entry = {
-                "priority": false,
-                "content": BULLETINPUT.value,
-                "completed": false,
-                "type": BULLETTYPE.value,
-                "levels": bulletStack.length - 1,
-            };
+			// create new entry information on enter
+			let entry = {
+				"priority": false,
+				"content": BULLETINPUT.value,
+				"completed": false,
+				"type": BULLETTYPE.value,
+				"levels": bulletStack.length - 1,
+			};
 
-            let newBullet = document.createElement("bullet-entry");
-            newBullet.entry = entry;
+			let newBullet = document.createElement("bullet-entry");
+			newBullet.entry = entry;
 
-            // append new bullet entries to main-text element
-            const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
-            BULLETLIST.appendChild(newBullet);
+			// append new bullet entries to main-text element
+			const BULLETLIST = bulletStack[bulletStack.length - 1].shadowRoot.getElementById("bullet-list");
+			BULLETLIST.appendChild(newBullet);
 
-            // clear INPUT value after enter
-            BULLETINPUT.value = "";
+			// clear INPUT value after enter
+			BULLETINPUT.value = "";
 
-            // add new bullet to DB
-            let bulletKey = await createBullet(newBullet.entry);
+			// add new bullet to DB
+			let bulletKey = await createBullet(newBullet.entry);
 
-            editableEntry(bulletKey, newBullet);
-            prioritizeEntry(bulletKey, newBullet);
-            completeTask(bulletKey, newBullet);
-            deleteEntry(bulletKey, newBullet);
-        }
-    });
+			editableEntry(bulletKey, newBullet);
+			prioritizeEntry(bulletKey, newBullet);
+			completeTask(bulletKey, newBullet);
+			deleteEntry(bulletKey, newBullet);
+		}
+	});
 } /* createNestedBullets */
 
 /**
@@ -253,25 +253,25 @@ export function bulletsFromDB(item, index, bulletStack, todayBullets) {
  */
 export function nestedBullets(inputElement, bulletStack) {
 
-    inputElement.addEventListener("keydown", function (event) {
-        // Unnest by one level on shift + tab
-        const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
-        if ((event.shiftKey && event.key === "Tab")) {
-            event.preventDefault();
+	inputElement.addEventListener("keydown", function (event) {
+		// Unnest by one level on shift + tab
+		const BULLETINPUT = inputElement.shadowRoot.getElementById("bullet-input");
+		if ((event.shiftKey && event.key === "Tab")) {
+			event.preventDefault();
 			unnestBulletHelper(bulletStack);
 			// unindent the input text
 			BULLETINPUT.style.paddingLeft = (2 * (bulletStack.length-1) + 0.5)+ "rem";
-        }
-        // Nest by one level on tab
-        else if (event.key === "Tab") {
-            // prevent tab key from moving to next button
-            this.focus();
-            event.preventDefault();
+		}
+		// Nest by one level on tab
+		else if (event.key === "Tab") {
+			// prevent tab key from moving to next button
+			this.focus();
+			event.preventDefault();
 			nestBulletHelper(bulletStack);
 			// indent the input text
 			BULLETINPUT.style.paddingLeft = (2 * (bulletStack.length-1) + 0.5)+ "rem";
-        }
-    });
+		}
+	});
 } /* nestedBullets */
 
 /**
@@ -305,7 +305,7 @@ function nestBulletHelper(bulletStack) {
  */
 function unnestBulletHelper(bulletStack) {
 	if (bulletStack.length > 1) {
-		let parentBullet = bulletStack[bulletStack.length - 1]
+		let parentBullet = bulletStack[bulletStack.length - 1];
 		bulletStack.pop(parentBullet);
 		//return parentBullet;
 	}
@@ -321,7 +321,7 @@ function unnestBulletHelper(bulletStack) {
 async function updateWeeklyNavHelper() {
 	// updates the weekly nav 
 	const WEEKLYNAV = document.querySelector("weekly-nav");
-	const logInfo = document.querySelector("log-type").readLog
+	const logInfo = document.querySelector("log-type").readLog;
 	if (logInfo.type === "daily") {
 		let bullets =  await getDailyPriority(logInfo.date);
 		WEEKLYNAV.updatePriorityBullets = bullets;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage --passWithNoTests \"./source/Testing/backend.test.js\"",
-    "lint": "eslint \"source/**\" --ext .js",
+    "lint": "eslint \"source/Frontend\" --ext .js && eslint \"source/Backend\" --ext .js",
     "lint:fix": "npm run lint -- --fix",
     "docs": "npm run docsFront && npm run docsBack",
     "docsFront": "jsdoc -c jsdocFront.conf.json",

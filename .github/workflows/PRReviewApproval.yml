@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 name: PRReviewPing
 
 on:
@@ -15,22 +14,4 @@ jobs:
       env:
         APPROVALS: "3"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-=======
-name: PRReviewPing
-
-on:
- pull_request_review:
-    branches: [ main ]
-
-jobs:
-  labelWhenApproved:
-    name: Label when approved
-    runs-on: ubuntu-latest
-    steps:
-    - name: Label when approved
-      uses: pullreminders/label-when-approved-action@master
-      env:
-        APPROVALS: "3"
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
->>>>>>> 5ec17a4ae881fc58b549800f38684cba4d782d59
         ADD_LABEL: "approved"

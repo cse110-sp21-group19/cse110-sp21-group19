@@ -25,12 +25,12 @@ export function createCalendar(date) {
 	CAL.shadowRoot.querySelector(".days").addEventListener("click", (event) => {
 		//clicking a day switches to the daily log page
 		if (event.target.className == "day") {
-				const LOGTYPE = document.querySelector("log-type");
-				let day = event.target.textContent;
-				let month = LOGTYPE.readLog.date.getMonth();
-				let year = LOGTYPE.readLog.date.getFullYear();
-				let selectedDate = new Date(year, month, day);
-				router.setState("daily", false, selectedDate, "monthly");
+			const LOGTYPE = document.querySelector("log-type");
+			let day = event.target.textContent;
+			let month = LOGTYPE.readLog.date.getMonth();
+			let year = LOGTYPE.readLog.date.getFullYear();
+			let selectedDate = new Date(year, month, day);
+			router.setState("daily", false, selectedDate, "monthly");
 		}
 	});
 }/* createCalendar */
