@@ -25,9 +25,9 @@
         background: white;
         border-radius: 0.4rem;
 
-        &:hover{
-            transition: filter 0.15s linear;
-            filter: brightness(85%);
+        &:hover .future-date{
+            color: $accent2;
+            transition: color 0.1s linear;
         }
         /* date text */
         .future-date{

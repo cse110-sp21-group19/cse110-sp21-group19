@@ -41,13 +41,10 @@
   /* date text */
 }
 
-.future-container .future-item:hover {
-  -webkit-transition: -webkit-filter 0.15s linear;
-  transition: -webkit-filter 0.15s linear;
-  transition: filter 0.15s linear;
-  transition: filter 0.15s linear, -webkit-filter 0.15s linear;
-  -webkit-filter: brightness(85%);
-          filter: brightness(85%);
+.future-container .future-item:hover .future-date {
+  color: #FFA33F;
+  -webkit-transition: color 0.1s linear;
+  transition: color 0.1s linear;
 }
 
 .future-container .future-item .future-date {

@@ -280,7 +280,7 @@ body .container .daily-log .flexgrow {
   z-index: -1;
 }
 
-/* fade in animation*/
+/* fade in animation */
 @-webkit-keyframes fadein {
   from {
     opacity: 0;
